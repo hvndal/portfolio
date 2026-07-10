@@ -783,92 +783,242 @@
         <div class="absolute top-1/4 left-1/4 w-1/2 h-1/2 border border-surface-container-highest z-0 hidden md:block"></div>
 
         <!-- Node Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 relative z-10 w-full max-w-[1400px] mx-auto px-4">
-            
-            <!-- Node 1: Newspaper -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-primary transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(var(--color-primary),0.2)]" data-node="newspaper">
-                <img src="assets/images/newspaper.jpg" alt="Newspaper Brutalism" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Newspaper</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">BRUTALISM</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-24 relative z-10 w-full max-w-[1400px] mx-auto px-4 mt-12">
+
+            <!-- Node: Newspaper Brutalism -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="newspaper">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: var(--color-primary)"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(var(--color-primary),0.3); --hover-border: var(--color-primary);" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Newspaper Brutalism</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">BRUTALISM</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                This is the foundation of high-density information architecture. Just as vintage broadsheets packed columns of dense typography into rigid grids to maximize paper real estate, modern brutalist interfaces prioritize raw data delivery.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 2: Acubi -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-secondary transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(var(--color-secondary),0.2)]" data-node="acubi">
-                <img src="assets/images/acubi.jpg" alt="Acubi Y2K" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Acubi Y2K</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">MINIMALISM</p>
+            <!-- Node: Acubi Y2K Minimalism -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="acubi">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: var(--color-secondary)"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(var(--color-secondary),0.3); --hover-border: var(--color-secondary);" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Acubi Y2K Minimalism</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">MINIMALISM</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                Born from the early digital era, this style relies on technical wireframes and highly structured, almost clinical layouts. It treats the interface as a machine blueprint.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 3: Retro 70s -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-[#ff5e00] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,94,0,0.2)]" data-node="retro">
-                <img src="assets/images/retro.jpg" alt="1970s Swiss" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">1970s Swiss</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">GRID SYSTEMS</p>
+            <!-- Node: 1970s Swiss Grid -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="retro">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/retro.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/retro.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/retro.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ff5e00"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,94,0,0.3); --hover-border: #ff5e00;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">1970s Swiss Grid</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">GRID SYSTEMS</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                The bold, flat colors and halftone geometric shapes of the 70s introduced a visual hierarchy that didn't rely on drop shadows or skeuomorphism. It proved that flat design could be deeply engaging.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 4: Biker Gothic -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-on-surface-variant transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]" data-node="biker">
-                <img src="assets/images/biker.jpg" alt="Gothic Biker" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Gothic Biker</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">TYPOGRAPHY</p>
+            <!-- Node: Gothic Biker Typography -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="biker">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/biker.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/biker.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/biker.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ffffff"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,255,255,0.3); --hover-border: #ffffff;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Gothic Biker Typography</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">TYPOGRAPHY</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                While seemingly out of place in SaaS, the aggressive, high-contrast nature of gothic and biker graphics heavily influences modern 'Tech Noir' aesthetics. It's about edge and impact.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 5: Glassmorphism -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface/80 p-4 border border-on-surface hover:border-[rgba(255,255,255,0.5)] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] backdrop-blur-md" data-node="glass">
-                <img src="assets/images/glassmorphism.jpg" alt="Glassmorphism" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Frosted Glass</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">GLASSMORPHISM</p>
+            <!-- Node: Frosted Glassmorphism -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="glass">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/glassmorphism.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/glassmorphism.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/glassmorphism.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: rgba(255,255,255,0.5)"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,255,255,0.5); --hover-border: rgba(255,255,255,0.5);" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Frosted Glassmorphism</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">GLASSMORPHISM</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                Glassmorphism uses background blur and translucent layers to establish spatial hierarchy. It creates a sense of depth without the harshness of solid drop shadows.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 6: Cyberpunk -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-[#ff00ff] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,0,255,0.3)]" data-node="cyberpunk">
-                <img src="assets/images/cyberpunk.jpg" alt="Cyberpunk" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Cyberpunk</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">NEON UI</p>
+            <!-- Node: Cyberpunk Neon -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="cyberpunk">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/cyberpunk.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/cyberpunk.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/cyberpunk.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ff00ff"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,0,255,0.3); --hover-border: #ff00ff;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Cyberpunk Neon</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">NEON UI</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                Cyberpunk isn't just an aesthetic; it's a statement about technology. It relies on pitch-black backgrounds pierced by highly saturated neon vectors, typically pinks, cyans, and greens.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 7: Showa Retroism -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-[#ff99cc] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,153,204,0.3)]" data-node="showa">
-                <img src="assets/images/showa.jpg" alt="Showa Retroism" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Showa Retro</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">CITY POP UI</p>
+            <!-- Node: Showa Retroism -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="showa">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ff99cc"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,153,204,0.3); --hover-border: #ff99cc;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Showa Retroism</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">CITY POP UI</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                The Showa era brought us the booming optimism of 70s and 80s Tokyo—neon signs reflected in rain puddles, pastel color grading, and heavy reliance on nostalgic analog warmth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 8: Vintage Anime -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-[#a0c4ff] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(160,196,255,0.3)]" data-node="anime">
-                <img src="assets/images/anime.jpg" alt="Vintage Anime" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Vintage Anime</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">CEL SHADED</p>
+            <!-- Node: Vintage Anime -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="anime">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #a0c4ff"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(160,196,255,0.3); --hover-border: #a0c4ff;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Vintage Anime</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">CEL SHADED</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                90s Cel Shaded animation was defined by hyper-detailed mechanical environments contrasted with soft, flat-colored character designs. It is the ultimate intersection of humanity and machinery.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 9: Bauhausian -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-[#ff0000] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,0,0,0.3)]" data-node="bauhaus">
-                <img src="assets/images/bauhaus.jpg" alt="Bauhausian" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Bauhausian</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">MODERNIST</p>
+            <!-- Node: Bauhausian Modernism -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="bauhaus">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ff0000"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,0,0,0.3); --hover-border: #ff0000;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Bauhausian Modernism</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">MODERNIST</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                The Bauhaus movement stripped design down to its most functional elements: primary colors (red, blue, yellow) and basic geometric shapes (circle, square, triangle). It argued that utility is inherently beautiful.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Node 10: Tech Greenery -->
-            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-[#00ff99] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(0,255,153,0.3)]" data-node="solarpunk">
-                <img src="assets/images/solarpunk.jpg" alt="Tech Greenery" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
-                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Tech Greenery</h4>
-                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">SOLARPUNK</p>
+            <!-- Node: Tech Greenery -->
+            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="solarpunk">
+                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
+                    <!-- Card 3 (Bottom) -->
+                    <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-12 group-hover:-translate-x-6 md:group-hover:-translate-x-12 shadow-lg z-10"/>
+                    <!-- Card 2 (Middle) -->
+                    <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover border border-surface-container-highest grayscale transition-transform duration-500 origin-bottom group-hover:rotate-12 group-hover:translate-x-6 md:group-hover:translate-x-12 shadow-lg z-20"/>
+                    <!-- Card 1 (Top) -->
+                    <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #00ff99"/>
+                </div>
+                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 bg-surface/95 backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(0,255,153,0.3); --hover-border: #00ff99;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Tech Greenery</h4>
+                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">SOLARPUNK</p>
+                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                        <div class="overflow-hidden">
+                            <p class="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed mt-4 text-left border-t border-surface-container-highest pt-4">
+                                Tech Greenery, or Solarpunk, envisions a future where advanced technology and organic nature seamlessly coexist. Visually, it blends harsh technological UI elements with lush green organic motifs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 </section>
 
-<!-- MINDMAP OVERLAY PANEL -->
-<div id="mindmap-overlay" class="fixed inset-0 bg-background/90 backdrop-blur-sm z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="relative w-full max-w-2xl bg-surface border border-on-surface p-8 transform translate-y-10 opacity-0 transition-all duration-500" id="mindmap-panel">
-        <button id="close-mindmap-overlay" class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-[24px]">close</span>
-        </button>
-        <h3 id="mindmap-overlay-title" class="font-headline-lg text-[32px] md:text-[48px] uppercase tracking-tighter text-primary mb-2"></h3>
-        <p id="mindmap-overlay-subtitle" class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase mb-8"></p>
-        <div id="mindmap-overlay-content" class="font-body-md text-on-surface-variant leading-relaxed text-[16px] space-y-4"></div>
-    </div>
+
 </div>
 
 <!-- ARTICLE VIEW (DYNAMIC) -->
