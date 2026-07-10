@@ -819,10 +819,11 @@
         repos.forEach((repo, index) => {
             const isFeatured = index === 0;
             const colSpan = isFeatured ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1';
+            const specificImgUrl = `assets/${repo.name}.jpg`;
             const fallbackImgUrl = `assets/fallback.jpg`;
             const videoUrl = `https://raw.githubusercontent.com/hvndal/${repo.name}/main/preview.mp4`;
             
-            const fallbackDiv = encodeURIComponent(`<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-[0.5] transition-all duration-500 opacity-60 mix-blend-multiply" style="background-image: url('${fallbackImgUrl}')"></div>`);
+            const fallbackDiv = encodeURIComponent(`<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-[0.5] transition-all duration-500 opacity-60 mix-blend-multiply" style="background-image: url('${specificImgUrl}'), url('${fallbackImgUrl}')"></div>`);
             
             const cardHTML = `
             <article class="w-full bg-surface/95 border border-on-surface flex flex-col relative group transition-all duration-300 hover-glow opacity-0">
