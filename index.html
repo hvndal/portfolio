@@ -407,6 +407,18 @@
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
         .lenis.lenis-stopped { overflow: hidden; }
         .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        .view-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .view-section.active {
+            display: flex;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-primary selection:text-on-primary">
@@ -442,26 +454,26 @@
 </div>
 </div>
 <!-- Navigation Links -->
-<div class="flex flex-col gap-1 w-full flex-grow">
+<div class="flex flex-col gap-1 w-full flex-grow" id="nav-container">
 <!-- HOME -->
-<a class="nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent" href="#">
+<a data-target="view-home" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
 <span class="material-symbols-outlined text-[16px]">home_app_logo</span>
 <span>HOME</span>
 </a>
 <!-- PROJECTS (ACTIVE) -->
-<a class="bg-secondary text-on-secondary font-bold flex items-center gap-3 px-4 py-2 border-r-4 border-primary transition-all duration-75 font-label-caps text-label-caps uppercase relative" href="#">
+<a data-target="view-projects" class="nav-btn bg-secondary text-on-secondary font-bold flex items-center gap-3 px-4 py-2 border-r-4 border-primary transition-all duration-75 font-label-caps text-label-caps uppercase relative cursor-none" href="#">
 <span class="material-symbols-outlined text-[16px]">folder_open</span>
 <span>PROJECTS</span>
 <!-- Active Indicator -->
-<div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-3 bg-primary glow-active mr-[-2px]"></div>
+<div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-3 bg-primary glow-active mr-[-2px] nav-indicator"></div>
 </a>
 <!-- ABOUT -->
-<a class="nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent" href="#">
+<a data-target="view-about" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
 <span class="material-symbols-outlined text-[16px]">fingerprint</span>
 <span>ABOUT</span>
 </a>
 <!-- STACK -->
-<a class="nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent" href="#">
+<a data-target="view-stack" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
 <span class="material-symbols-outlined text-[16px]">layers</span>
 <span>STACK</span>
 </a>
@@ -513,7 +525,93 @@
 </div>
 </header>
 <!-- Content Canvas -->
-<div class="flex-grow p-4 md:p-8 max-w-container-max mx-auto w-full flex flex-col gap-8 relative z-10">
+<div id="spa-container" class="flex-grow p-4 md:p-8 max-w-container-max mx-auto w-full relative z-10">
+
+<!-- HOME VIEW -->
+<section id="view-home" class="view-section">
+    <div class="flex flex-col items-start justify-center min-h-[60vh] gap-6">
+        <div class="bg-on-surface text-surface px-4 py-1 font-label-caps text-label-caps uppercase tracking-widest">
+            INITIALIZING_USER_PROFILE // STATUS: OPTIMAL
+        </div>
+        <h2 class="font-headline-lg text-[48px] md:text-[72px] leading-none text-on-surface uppercase tracking-tighter glitch-hover" data-text="FULL STACK ENGINEER">
+            FULL STACK ENGINEER
+        </h2>
+        <p class="font-body-md text-[18px] md:text-[24px] text-on-surface-variant max-w-2xl border-l-4 border-primary pl-4">
+            Building high-performance, precision-engineered web applications. Combining Brutalist architecture with Tech Noir aesthetics.
+        </p>
+        <div class="flex gap-4 mt-4">
+            <button class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-3 hover:bg-surface hover:text-primary border border-primary transition-colors duration-300 relative">
+                DEPLOY_COMMUNICATION
+                <div class="absolute top-0 right-0 w-2 h-2 bg-on-surface"></div>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT VIEW -->
+<section id="view-about" class="view-section">
+    <div class="border-b border-surface-container-highest pb-6 node-enter-title">
+        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">Operator Profile</h2>
+        <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">CLASSIFIED // EYES ONLY</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-surface/90 border border-on-surface p-6 halftone-bg hover-glow transition-all">
+            <h3 class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">SYSTEM_BIO</h3>
+            <p class="font-body-md text-on-surface-variant leading-relaxed">
+                I am a specialized software engineer focused on building robust, scalable infrastructure and pixel-perfect user interfaces. Operating at the intersection of data and design, I forge applications that don't just function—they perform with surgical precision. 
+            </p>
+            <p class="font-body-md text-on-surface-variant leading-relaxed mt-4">
+                My workflow is heavily influenced by brutalist design systems and light tech-noir aesthetics, prioritizing high information density and stark, uncompromised utility.
+            </p>
+        </div>
+        <div class="bg-surface/90 border border-on-surface p-6">
+            <h3 class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">TIMELINE_LOG</h3>
+            <ul class="flex flex-col gap-4 font-micro-feed text-micro-feed uppercase">
+                <li class="border-b border-surface-container-highest pb-2"><span class="text-primary mr-2">2023 - CURR</span> // LEAD ARCHITECT @ NEXUS_CORE</li>
+                <li class="border-b border-surface-container-highest pb-2"><span class="text-on-surface-variant mr-2">2021 - 2023</span> // SR. FRONTEND @ DATA_SYNC_INC</li>
+                <li class="border-b border-surface-container-highest pb-2"><span class="text-on-surface-variant mr-2">2019 - 2021</span> // OPERATIVE @ SYNTHETIC_DREAMS</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- STACK VIEW -->
+<section id="view-stack" class="view-section">
+    <div class="border-b border-surface-container-highest pb-6 node-enter-title">
+        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">Technology Matrix</h2>
+        <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">ACTIVE MODULES // LOADED IN MEMORY</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Tech Items -->
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">TYPESCRIPT</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">v5.2.0</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">REACT / NEXT.JS</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">v14.0</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">NODE / EXPRESS</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">RUNTIME</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">POSTGRESQL</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">DB_CLUSTER</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">TAILWINDCSS</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">STYLING</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">GSAP / WEBGL</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">ANIMATION</span>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS VIEW -->
+<section id="view-projects" class="view-section active">
 <!-- Header Section -->
 <section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-surface-container-highest pb-6 node-enter-title">
 <div>
@@ -530,13 +628,6 @@
 </section>
 <!-- Grid Layout (Bento style) -->
 <section id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[minmax(300px,_auto)]">
-<!-- Project Card 1 (Large Image focus) -->
-<article class="col-span-1 md:col-span-2 lg:col-span-2 bg-surface/95 border border-on-surface flex flex-col relative group transition-all duration-300 hover-glow node-enter-1">
-<!-- Data Header -->
-<div class="bg-on-surface text-surface h-5 flex items-center justify-between px-2 w-full">
-<span class="font-label-caps text-label-caps uppercase tracking-widest">ID_001 // NEXUS_UI</span>
-<div class="flex items-center gap-2">
-<span class="font-micro-feed text-micro-feed uppercase">STATUS:</span>
 <div class="w-2 h-2 bg-secondary-container animate-pulse-fast"></div>
 </div>
 </div>
@@ -802,6 +893,8 @@
             const fallbackImgUrl = `assets/fallback.jpg`;
             const videoUrl = `https://raw.githubusercontent.com/hvndal/${repo.name}/main/preview.mp4`;
             
+            const fallbackDiv = encodeURIComponent(`<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-[0.5] transition-all duration-500 opacity-60 mix-blend-multiply" style="background-image: url('${fallbackImgUrl}')"></div>`);
+            
             const cardHTML = `
             <article class="${colSpan} bg-surface/95 border border-on-surface flex flex-col relative group transition-all duration-300 hover-glow opacity-0">
                 <div class="bg-on-surface text-surface h-5 flex items-center justify-between px-2 w-full">
@@ -816,7 +909,7 @@
                         <video class="w-full h-full object-cover filter grayscale group-hover:grayscale-[0.2] transition-all duration-500 opacity-80" 
                                autoplay loop muted playsinline 
                                src="${videoUrl}" 
-                               onerror="this.onerror=null; this.outerHTML='<div class=\\'w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-[0.5] transition-all duration-500 opacity-60 mix-blend-multiply\\' style=\\'background-image: url(${fallbackImgUrl})\\'></div>';">
+                               onerror="this.onerror=null; this.outerHTML=decodeURIComponent('${fallbackDiv}');">
                         </video>
                         <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
                         <div class="absolute left-0 right-0 h-[2px] bg-cyber-cherry opacity-0 group-hover:opacity-100 group-hover:animate-scan-line shadow-[0_0_10px_rgba(255,0,60,0.8)] pointer-events-none"></div>
@@ -968,5 +1061,44 @@
             tempEl.innerText = `CORE_TEMP: ${temp}C`;
         }, 3000);
     }
+
+    // 6. SPA Navigation
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const views = document.querySelectorAll('.view-section');
+
+    navBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = btn.getAttribute('data-target');
+            
+            // Update Active Nav State
+            navBtns.forEach(b => {
+                b.classList.remove('bg-secondary', 'text-on-secondary', 'font-bold', 'border-primary');
+                b.classList.add('nav-link', 'text-on-surface-variant', 'border-transparent');
+                const ind = b.querySelector('.nav-indicator');
+                if (ind) ind.remove();
+            });
+            
+            btn.classList.add('bg-secondary', 'text-on-secondary', 'font-bold', 'border-primary');
+            btn.classList.remove('nav-link', 'text-on-surface-variant', 'border-transparent');
+            btn.insertAdjacentHTML('beforeend', '<div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-3 bg-primary glow-active mr-[-2px] nav-indicator"></div>');
+
+            // Switch Views
+            views.forEach(v => {
+                v.classList.remove('active');
+            });
+            setTimeout(() => {
+                const targetView = document.getElementById(targetId);
+                targetView.classList.add('active');
+                
+                // Re-trigger GSAP animations if going back to projects
+                if (targetId === 'view-projects') {
+                    initAnimations();
+                }
+            }, 50);
+            
+            lenis.scrollTo(0, { immediate: true });
+        });
+    });
 </script>
 </body></html>
