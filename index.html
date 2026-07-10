@@ -763,6 +763,23 @@
                 READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
         </article>
+
+        <!-- Article 4 -->
+        <article class="border border-on-surface bg-surface-container-lowest hover-glow group transition-all p-6 relative overflow-hidden">
+            <div class="absolute right-0 top-0 w-32 h-32 bg-on-surface-variant/10 rounded-bl-full pointer-events-none transition-transform group-hover:scale-150"></div>
+            <div class="flex justify-between items-start mb-4 relative z-10">
+                <div class="flex gap-2">
+                    <span class="bg-on-surface-variant text-surface px-2 py-0.5 font-label-caps text-label-caps uppercase">DESIGN HISTORY</span>
+                    <span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">8 MIN READ</span>
+                </div>
+                <span class="font-micro-feed text-micro-feed text-on-surface-variant uppercase">JUL 11, 2026</span>
+            </div>
+            <h3 class="font-headline-md text-2xl text-on-surface uppercase tracking-tight mb-3 relative z-10">The Evolution of Digital Aesthetics: From Vintage to Brutalism</h3>
+            <p class="font-body-md text-on-surface-variant leading-relaxed max-w-3xl mb-6 relative z-10">Tracing the lineage of UI design through Newspaper Brutalism, Acubi Y2K Minimalism, 70s Swiss Grids, and Gothic Biker typography.</p>
+            <button class="read-article-btn font-label-caps text-label-caps text-on-surface flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-4">
+                READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </button>
+        </article>
     </div>
 </section>
 
@@ -1234,6 +1251,54 @@
                 <p>CookCan started as a simple hypothesis: Can we eliminate the friction of meal planning by just pointing a camera at a fridge? The answer is yes, but the execution requires extremely tight API orchestration.</p>
                 <p>We integrated Google's Gemini Vision models directly into the pipeline. When a user captures an image, the client side compresses the stream into a base64 payload, which hits our Node edge function. The prompt engineering is critical here—we don't just ask for recipes. We demand a strictly typed JSON payload detailing ingredients identified, missing staples, and three generated recipes mapped directly to the user's dietary preferences.</p>
                 <p>The magic happens on the frontend. While the Gemini API processes the image, the UI enters a 'scan state', using GSAP animations to mask the 2-3 second latency. Once the JSON payload hits the client, it dynamically hydrates the UI. It's a masterclass in blending AI power with seamless user experience.</p>
+            `
+        },
+        "article-4": {
+            tags: '<span class="bg-on-surface-variant text-surface px-2 py-0.5 font-label-caps text-label-caps uppercase">DESIGN HISTORY</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">8 MIN READ</span>',
+            date: "JUL 11, 2026",
+            title: "The Evolution of Digital Aesthetics: From Vintage to Brutalism",
+            content: `
+                <p>Modern user interfaces do not exist in a vacuum. Every aesthetic decision we make—from the padding on a button to the tracking of a headline—is inherited from decades of analog and early digital design movements.</p>
+                <p>To truly understand how to build impactful, high-retention SaaS platforms, we must map the architectural lineage of design. Below is a taxonomy of four critical aesthetics that actively inform today's top-tier digital experiences.</p>
+
+                <div class="flex flex-col items-center gap-4 my-12 w-full max-w-3xl mx-auto">
+                  <div class="border border-on-surface bg-surface p-4 text-center w-full relative z-10">
+                     <h4 class="font-headline-sm uppercase tracking-widest text-primary">Core Aesthetic Architecture</h4>
+                  </div>
+                  <div class="w-px h-8 bg-on-surface"></div>
+                  <div class="w-full border-t border-on-surface h-px relative">
+                     <div class="absolute left-[12.5%] top-0 w-px h-6 bg-on-surface"></div>
+                     <div class="absolute left-[37.5%] top-0 w-px h-6 bg-on-surface"></div>
+                     <div class="absolute right-[37.5%] top-0 w-px h-6 bg-on-surface"></div>
+                     <div class="absolute right-[12.5%] top-0 w-px h-6 bg-on-surface"></div>
+                  </div>
+                  <div class="grid grid-cols-4 gap-4 w-full pt-4">
+                     <div class="text-center group">
+                         <img src="assets/images/newspaper.jpg" alt="Newspaper Brutalism" class="w-full aspect-[3/4] object-cover mb-3 border border-surface-container-highest group-hover:border-primary transition-colors grayscale"/>
+                         <span class="font-label-caps text-[10px] uppercase tracking-widest block text-on-surface-variant">NEWSPAPER<br/>BRUTALISM</span>
+                     </div>
+                     <div class="text-center group">
+                         <img src="assets/images/acubi.jpg" alt="Acubi Wireframe" class="w-full aspect-[3/4] object-cover mb-3 border border-surface-container-highest group-hover:border-primary transition-colors grayscale"/>
+                         <span class="font-label-caps text-[10px] uppercase tracking-widest block text-on-surface-variant">ACUBI Y2K<br/>MINIMALISM</span>
+                     </div>
+                     <div class="text-center group">
+                         <img src="assets/images/retro.jpg" alt="70s Swiss Grid" class="w-full aspect-[3/4] object-cover mb-3 border border-surface-container-highest group-hover:border-primary transition-colors grayscale"/>
+                         <span class="font-label-caps text-[10px] uppercase tracking-widest block text-on-surface-variant">1970s<br/>SWISS GRID</span>
+                     </div>
+                     <div class="text-center group">
+                         <img src="assets/images/biker.jpg" alt="Biker Gothic" class="w-full aspect-[3/4] object-cover mb-3 border border-surface-container-highest group-hover:border-primary transition-colors grayscale"/>
+                         <span class="font-label-caps text-[10px] uppercase tracking-widest block text-on-surface-variant">GOTHIC BIKER<br/>TYPOGRAPHY</span>
+                     </div>
+                  </div>
+                </div>
+
+                <p><strong>1. Newspaper Brutalism:</strong> This is the foundation of high-density information architecture. Just as vintage broadsheets packed columns of dense typography into rigid grids to maximize paper real estate, modern brutalist interfaces prioritize raw data delivery. It’s unapologetic, utilizing stark contrast and heavy black-on-white text to minimize cognitive friction for operators.</p>
+
+                <p><strong>2. Acubi Y2K Minimalism:</strong> Born from the early digital era, this style relies on technical wireframes and highly structured, almost clinical layouts. It treats the interface as a machine blueprint. When I build state management dashboards, I draw heavily from Acubi—using thin, precise borders and monochrome palettes to reduce noise while highlighting interactive data nodes.</p>
+
+                <p><strong>3. 1970s Swiss Retro:</strong> The bold, flat colors and halftone geometric shapes of the 70s introduced a visual hierarchy that didn't rely on drop shadows or skeuomorphism. It proved that flat design could be deeply engaging. In our modern tech stacks, we use these principles for micro-interactions and status indicators—using stark, saturated colors to instantly communicate system states.</p>
+
+                <p><strong>4. Gothic Biker Typography:</strong> While seemingly out of place in SaaS, the aggressive, high-contrast nature of gothic and biker graphics heavily influences modern 'Tech Noir' aesthetics. It's about edge and impact. We use these chaotic, thorny typographic styles in controlled bursts—like in our glitch animations and hero headers—to inject personality and break the monotony of standard corporate interfaces.</p>
             `
         }
     };
