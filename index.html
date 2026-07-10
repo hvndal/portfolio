@@ -725,7 +725,7 @@
             </div>
             <h3 class="font-headline-md text-2xl text-on-surface uppercase tracking-tight mb-3 relative z-10">The Architecture of Brutalism in Modern SaaS</h3>
             <p class="font-body-md text-on-surface-variant leading-relaxed max-w-3xl mb-6 relative z-10">Why high information density and unapologetic structural design lead to faster operator workflows and superior edge delivery.</p>
-            <button class="font-label-caps text-label-caps text-primary flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase">
+            <button class="read-article-btn font-label-caps text-label-caps text-primary flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-1">
                 READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
         </article>
@@ -742,7 +742,7 @@
             </div>
             <h3 class="font-headline-md text-2xl text-on-surface uppercase tracking-tight mb-3 relative z-10">State Management for Data-Dense Dashboards</h3>
             <p class="font-body-md text-on-surface-variant leading-relaxed max-w-3xl mb-6 relative z-10">Implementing zero-latency fluid state structures using custom hook architectures in React, specifically for property management interfaces.</p>
-            <button class="font-label-caps text-label-caps text-secondary flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase">
+            <button class="read-article-btn font-label-caps text-label-caps text-secondary flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-2">
                 READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
         </article>
@@ -759,10 +759,24 @@
             </div>
             <h3 class="font-headline-md text-2xl text-on-surface uppercase tracking-tight mb-3 relative z-10">Building CookCan: Multi-modal Vision API Integration</h3>
             <p class="font-body-md text-on-surface-variant leading-relaxed max-w-3xl mb-6 relative z-10">A deep dive into piping raw camera stream data through Gemini's vision models to generate structured JSON recipe payloads on the fly.</p>
-            <button class="font-label-caps text-label-caps text-on-surface flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase">
+            <button class="read-article-btn font-label-caps text-label-caps text-on-surface flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-3">
                 READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
         </article>
+    </div>
+</section>
+
+<!-- ARTICLE VIEW (DYNAMIC) -->
+<section id="view-article" class="view-section">
+    <div class="border-b border-surface-container-highest pb-6 mb-6 node-enter-title">
+        <button id="btn-back-blog" class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-2 hover:text-primary transition-colors uppercase mb-8 cursor-none">
+            <span class="material-symbols-outlined text-[14px]">arrow_back</span> BACK TO LOG
+        </button>
+        <div class="flex gap-2 mb-4" id="article-tags"></div>
+        <h2 id="article-title" class="font-headline-lg text-[32px] md:text-[48px] leading-tight text-on-surface uppercase tracking-tighter"></h2>
+        <p id="article-date" class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-4"></p>
+    </div>
+    <div id="article-content" class="font-body-md text-on-surface-variant leading-relaxed text-[16px] md:text-[18px] max-w-4xl flex flex-col gap-6">
     </div>
 </section>
 
@@ -1190,6 +1204,74 @@
             
             lenis.scrollTo(0, { immediate: true });
         });
+    });
+    const blogDatabase = {
+        "article-1": {
+            tags: '<span class="bg-primary text-on-primary px-2 py-0.5 font-label-caps text-label-caps uppercase">UI/UX</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">4 MIN READ</span>',
+            date: "JUL 10, 2026",
+            title: "The Architecture of Brutalism in Modern SaaS",
+            content: `
+                <p>When engineering interfaces for high-frequency operators, the standard 'clean' aesthetic often fails. It hides necessary data behind dropdowns and smooth animations that waste precious milliseconds. Brutalist design solves this.</p>
+                <p>In my recent architecture for commercial gym software, I stripped away the fluff. We exposed raw data tables, utilized stark monochromatic contrast with high-visibility accent colors, and minimized padding to maximize data density. The result? Operators could process information 40% faster.</p>
+                <p>Brutalism isn't about making things ugly; it's about unapologetic utility. It forces the engineer to focus entirely on state, layout, and hierarchy, stripping away the psychological safety net of soft shadows and rounded corners. It is the purest form of UI/UX engineering.</p>
+            `
+        },
+        "article-2": {
+            tags: '<span class="bg-secondary text-on-secondary px-2 py-0.5 font-label-caps text-label-caps uppercase">FRONTEND</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">7 MIN READ</span>',
+            date: "JUN 28, 2026",
+            title: "State Management for Data-Dense Dashboards",
+            content: `
+                <p>Building the full-stack property management system presented a unique challenge: rendering thousands of dynamic property states (occupied, vacant, maintenance required, rent overdue) without choking the browser's main thread.</p>
+                <p>Relying on out-of-the-box Redux or Context API led to massive re-render cascades. The solution required a custom hook architecture leveraging atomic state patterns and highly memoized selectors. We broke the global state into granular, independent 'nodes'.</p>
+                <p>By implementing a pub/sub model directly within the React layer, components only subscribed to the exact atomic slice they needed. When a rent payment came through the websocket, only the specific property card re-rendered, taking the interaction latency down to under 16ms (a perfect 60fps). This is what it takes to build truly fluid enterprise dashboards.</p>
+            `
+        },
+        "article-3": {
+            tags: '<span class="bg-on-surface text-surface px-2 py-0.5 font-label-caps text-label-caps uppercase">AI / GEMINI</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">5 MIN READ</span>',
+            date: "MAY 15, 2026",
+            title: "Building CookCan: Multi-modal Vision API Integration",
+            content: `
+                <p>CookCan started as a simple hypothesis: Can we eliminate the friction of meal planning by just pointing a camera at a fridge? The answer is yes, but the execution requires extremely tight API orchestration.</p>
+                <p>We integrated Google's Gemini Vision models directly into the pipeline. When a user captures an image, the client side compresses the stream into a base64 payload, which hits our Node edge function. The prompt engineering is critical here—we don't just ask for recipes. We demand a strictly typed JSON payload detailing ingredients identified, missing staples, and three generated recipes mapped directly to the user's dietary preferences.</p>
+                <p>The magic happens on the frontend. While the Gemini API processes the image, the UI enters a 'scan state', using GSAP animations to mask the 2-3 second latency. Once the JSON payload hits the client, it dynamically hydrates the UI. It's a masterclass in blending AI power with seamless user experience.</p>
+            `
+        }
+    };
+
+    // Blog Dynamic Logic
+    document.querySelectorAll('.read-article-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const articleId = e.currentTarget.getAttribute('data-article');
+            const data = blogDatabase[articleId];
+            
+            document.getElementById('article-tags').innerHTML = data.tags;
+            document.getElementById('article-date').innerText = data.date;
+            document.getElementById('article-title').innerText = data.title;
+            document.getElementById('article-content').innerHTML = data.content;
+
+            // Switch to view-article
+            views.forEach(v => v.classList.remove('active'));
+            const targetView = document.getElementById('view-article');
+            targetView.classList.add('active');
+            
+            gsap.fromTo(targetView.children, 
+                { y: 30, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }
+            );
+            lenis.scrollTo(0, { immediate: true });
+        });
+    });
+
+    document.getElementById('btn-back-blog').addEventListener('click', () => {
+        views.forEach(v => v.classList.remove('active'));
+        const targetView = document.getElementById('view-blog');
+        targetView.classList.add('active');
+        
+        gsap.fromTo(targetView.children, 
+            { y: 30, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }
+        );
+        lenis.scrollTo(0, { immediate: true });
     });
 </script>
 </body></html>
