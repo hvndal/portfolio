@@ -498,6 +498,11 @@
 <span class="material-symbols-outlined text-[16px]">history_edu</span>
 <span>BLOG</span>
 </a>
+<!-- MINDMAP -->
+<a data-target="view-mindmap" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>
+<span>MINDMAP</span>
+</a>
 </div>
 <!-- CTA -->
 <div class="px-4 mt-auto">
@@ -759,29 +764,84 @@
             </div>
             <h3 class="font-headline-md text-2xl text-on-surface uppercase tracking-tight mb-3 relative z-10">Building CookCan: Multi-modal Vision API Integration</h3>
             <p class="font-body-md text-on-surface-variant leading-relaxed max-w-3xl mb-6 relative z-10">A deep dive into piping raw camera stream data through Gemini's vision models to generate structured JSON recipe payloads on the fly.</p>
-            <button class="read-article-btn font-label-caps text-label-caps text-on-surface flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-3">
-                READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </button>
-        </article>
-
-        <!-- Article 4 -->
-        <article class="border border-on-surface bg-surface-container-lowest hover-glow group transition-all p-6 relative overflow-hidden">
-            <div class="absolute right-0 top-0 w-32 h-32 bg-on-surface-variant/10 rounded-bl-full pointer-events-none transition-transform group-hover:scale-150"></div>
-            <div class="flex justify-between items-start mb-4 relative z-10">
-                <div class="flex gap-2">
-                    <span class="bg-on-surface-variant text-surface px-2 py-0.5 font-label-caps text-label-caps uppercase">DESIGN HISTORY</span>
-                    <span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">8 MIN READ</span>
-                </div>
-                <span class="font-micro-feed text-micro-feed text-on-surface-variant uppercase">JUL 11, 2026</span>
-            </div>
-            <h3 class="font-headline-md text-2xl text-on-surface uppercase tracking-tight mb-3 relative z-10">The Evolution of Digital Aesthetics: From Vintage to Brutalism</h3>
-            <p class="font-body-md text-on-surface-variant leading-relaxed max-w-3xl mb-6 relative z-10">Tracing the lineage of UI design through Newspaper Brutalism, Acubi Y2K Minimalism, 70s Swiss Grids, and Gothic Biker typography.</p>
-            <button class="read-article-btn font-label-caps text-label-caps text-on-surface flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-4">
-                READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </button>
-        </article>
     </div>
 </section>
+
+<!-- MINDMAP VIEW -->
+<section id="view-mindmap" class="view-section">
+    <div class="border-b border-surface-container-highest pb-6 mb-8 node-enter-title flex justify-between items-end">
+        <div>
+            <h2 class="font-headline-lg text-[32px] md:text-headline-lg text-on-surface uppercase tracking-tight">Aesthetic Taxonomy</h2>
+            <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">INTERACTIVE MINDMAP // CLICK NODES FOR ESSAYS</p>
+        </div>
+    </div>
+    
+    <div class="relative w-full min-h-[600px] flex items-center justify-center py-12">
+        <!-- Connecting lines (Absolute) -->
+        <div class="absolute top-1/2 left-0 w-full h-px bg-surface-container-highest -translate-y-1/2 z-0 hidden md:block"></div>
+        <div class="absolute top-0 left-1/2 w-px h-full bg-surface-container-highest -translate-x-1/2 z-0 hidden md:block"></div>
+        <div class="absolute top-1/4 left-1/4 w-1/2 h-1/2 border border-surface-container-highest z-0 hidden md:block"></div>
+
+        <!-- Node Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 relative z-10 w-full max-w-5xl mx-auto px-4">
+            
+            <!-- Node 1: Newspaper -->
+            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-primary transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(var(--color-primary),0.2)]" data-node="newspaper">
+                <img src="assets/images/newspaper.jpg" alt="Newspaper Brutalism" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
+                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Newspaper</h4>
+                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">BRUTALISM</p>
+            </div>
+
+            <!-- Node 2: Acubi -->
+            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-secondary transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(var(--color-secondary),0.2)]" data-node="acubi">
+                <img src="assets/images/acubi.jpg" alt="Acubi Y2K" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
+                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Acubi Y2K</h4>
+                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">MINIMALISM</p>
+            </div>
+
+            <!-- Node 3: Retro 70s -->
+            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-[#ff5e00] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,94,0,0.2)]" data-node="retro">
+                <img src="assets/images/retro.jpg" alt="1970s Swiss" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
+                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">1970s Swiss</h4>
+                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">GRID SYSTEMS</p>
+            </div>
+
+            <!-- Node 4: Biker Gothic -->
+            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-on-surface-variant transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]" data-node="biker">
+                <img src="assets/images/biker.jpg" alt="Gothic Biker" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
+                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Gothic Biker</h4>
+                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">TYPOGRAPHY</p>
+            </div>
+
+            <!-- Node 5: Glassmorphism -->
+            <div class="mindmap-node group cursor-pointer text-center bg-surface/80 p-4 border border-on-surface hover:border-[rgba(255,255,255,0.5)] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] backdrop-blur-md" data-node="glass">
+                <img src="assets/images/glassmorphism.jpg" alt="Glassmorphism" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
+                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Frosted Glass</h4>
+                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">GLASSMORPHISM</p>
+            </div>
+
+            <!-- Node 6: Cyberpunk -->
+            <div class="mindmap-node group cursor-pointer text-center bg-surface p-4 border border-on-surface hover:border-[#ff00ff] transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(255,0,255,0.3)]" data-node="cyberpunk">
+                <img src="assets/images/cyberpunk.jpg" alt="Cyberpunk" class="w-full aspect-square object-cover mb-4 border border-surface-container-highest grayscale group-hover:grayscale-0 transition-all"/>
+                <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-on-surface">Cyberpunk</h4>
+                <p class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mt-2 hidden md:block">NEON UI</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- MINDMAP OVERLAY PANEL -->
+<div id="mindmap-overlay" class="fixed inset-0 bg-background/90 backdrop-blur-sm z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="relative w-full max-w-2xl bg-surface border border-on-surface p-8 transform translate-y-10 opacity-0 transition-all duration-500" id="mindmap-panel">
+        <button id="close-mindmap-overlay" class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+            <span class="material-symbols-outlined text-[24px]">close</span>
+        </button>
+        <h3 id="mindmap-overlay-title" class="font-headline-lg text-[32px] md:text-[48px] uppercase tracking-tighter text-primary mb-2"></h3>
+        <p id="mindmap-overlay-subtitle" class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase mb-8"></p>
+        <div id="mindmap-overlay-content" class="font-body-md text-on-surface-variant leading-relaxed text-[16px] space-y-4"></div>
+    </div>
+</div>
 
 <!-- ARTICLE VIEW (DYNAMIC) -->
 <section id="view-article" class="view-section">
@@ -1249,56 +1309,7 @@
             title: "Building CookCan: Multi-modal Vision API Integration",
             content: `
                 <p>CookCan started as a simple hypothesis: Can we eliminate the friction of meal planning by just pointing a camera at a fridge? The answer is yes, but the execution requires extremely tight API orchestration.</p>
-                <p>We integrated Google's Gemini Vision models directly into the pipeline. When a user captures an image, the client side compresses the stream into a base64 payload, which hits our Node edge function. The prompt engineering is critical here—we don't just ask for recipes. We demand a strictly typed JSON payload detailing ingredients identified, missing staples, and three generated recipes mapped directly to the user's dietary preferences.</p>
                 <p>The magic happens on the frontend. While the Gemini API processes the image, the UI enters a 'scan state', using GSAP animations to mask the 2-3 second latency. Once the JSON payload hits the client, it dynamically hydrates the UI. It's a masterclass in blending AI power with seamless user experience.</p>
-            `
-        },
-        "article-4": {
-            tags: '<span class="bg-on-surface-variant text-surface px-2 py-0.5 font-label-caps text-label-caps uppercase">DESIGN HISTORY</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">8 MIN READ</span>',
-            date: "JUL 11, 2026",
-            title: "The Evolution of Digital Aesthetics: From Vintage to Brutalism",
-            content: `
-                <p>Modern user interfaces do not exist in a vacuum. Every aesthetic decision we make—from the padding on a button to the tracking of a headline—is inherited from decades of analog and early digital design movements.</p>
-                <p>To truly understand how to build impactful, high-retention SaaS platforms, we must map the architectural lineage of design. Below is a taxonomy of four critical aesthetics that actively inform today's top-tier digital experiences.</p>
-
-                <div class="flex flex-col items-center gap-4 my-12 w-full max-w-3xl mx-auto">
-                  <div class="border border-on-surface bg-surface p-4 text-center w-full relative z-10">
-                     <h4 class="font-headline-sm uppercase tracking-widest text-primary">Core Aesthetic Architecture</h4>
-                  </div>
-                  <div class="w-px h-8 bg-on-surface"></div>
-                  <div class="w-full border-t border-on-surface h-px relative">
-                     <div class="absolute left-[12.5%] top-0 w-px h-6 bg-on-surface"></div>
-                     <div class="absolute left-[37.5%] top-0 w-px h-6 bg-on-surface"></div>
-                     <div class="absolute right-[37.5%] top-0 w-px h-6 bg-on-surface"></div>
-                     <div class="absolute right-[12.5%] top-0 w-px h-6 bg-on-surface"></div>
-                  </div>
-                  <div class="grid grid-cols-4 gap-4 w-full pt-4">
-                     <div class="text-center group">
-                         <img src="assets/images/newspaper.jpg" alt="Newspaper Brutalism" class="w-full aspect-[3/4] object-cover mb-3 border border-surface-container-highest group-hover:border-primary transition-colors grayscale"/>
-                         <span class="font-label-caps text-[10px] uppercase tracking-widest block text-on-surface-variant">NEWSPAPER<br/>BRUTALISM</span>
-                     </div>
-                     <div class="text-center group">
-                         <img src="assets/images/acubi.jpg" alt="Acubi Wireframe" class="w-full aspect-[3/4] object-cover mb-3 border border-surface-container-highest group-hover:border-primary transition-colors grayscale"/>
-                         <span class="font-label-caps text-[10px] uppercase tracking-widest block text-on-surface-variant">ACUBI Y2K<br/>MINIMALISM</span>
-                     </div>
-                     <div class="text-center group">
-                         <img src="assets/images/retro.jpg" alt="70s Swiss Grid" class="w-full aspect-[3/4] object-cover mb-3 border border-surface-container-highest group-hover:border-primary transition-colors grayscale"/>
-                         <span class="font-label-caps text-[10px] uppercase tracking-widest block text-on-surface-variant">1970s<br/>SWISS GRID</span>
-                     </div>
-                     <div class="text-center group">
-                         <img src="assets/images/biker.jpg" alt="Biker Gothic" class="w-full aspect-[3/4] object-cover mb-3 border border-surface-container-highest group-hover:border-primary transition-colors grayscale"/>
-                         <span class="font-label-caps text-[10px] uppercase tracking-widest block text-on-surface-variant">GOTHIC BIKER<br/>TYPOGRAPHY</span>
-                     </div>
-                  </div>
-                </div>
-
-                <p><strong>1. Newspaper Brutalism:</strong> This is the foundation of high-density information architecture. Just as vintage broadsheets packed columns of dense typography into rigid grids to maximize paper real estate, modern brutalist interfaces prioritize raw data delivery. It’s unapologetic, utilizing stark contrast and heavy black-on-white text to minimize cognitive friction for operators.</p>
-
-                <p><strong>2. Acubi Y2K Minimalism:</strong> Born from the early digital era, this style relies on technical wireframes and highly structured, almost clinical layouts. It treats the interface as a machine blueprint. When I build state management dashboards, I draw heavily from Acubi—using thin, precise borders and monochrome palettes to reduce noise while highlighting interactive data nodes.</p>
-
-                <p><strong>3. 1970s Swiss Retro:</strong> The bold, flat colors and halftone geometric shapes of the 70s introduced a visual hierarchy that didn't rely on drop shadows or skeuomorphism. It proved that flat design could be deeply engaging. In our modern tech stacks, we use these principles for micro-interactions and status indicators—using stark, saturated colors to instantly communicate system states.</p>
-
-                <p><strong>4. Gothic Biker Typography:</strong> While seemingly out of place in SaaS, the aggressive, high-contrast nature of gothic and biker graphics heavily influences modern 'Tech Noir' aesthetics. It's about edge and impact. We use these chaotic, thorny typographic styles in controlled bursts—like in our glitch animations and hero headers—to inject personality and break the monotony of standard corporate interfaces.</p>
             `
         }
     };
