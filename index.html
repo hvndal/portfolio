@@ -402,6 +402,22 @@
             100% { clip: rect(18px, 9999px, 60px, 0); }
         }
 
+        /* Custom Animations */
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        .animate-scan-line {
+            animation: scan 3s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.3333%); }
+        }
+        .animate-marquee {
+            animation: marquee 15s linear infinite;
+        }
+
         html.lenis { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto; }
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
@@ -411,7 +427,7 @@
         .view-section {
             display: none;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.2s ease;
             flex-direction: column;
             gap: 2rem;
         }
@@ -546,6 +562,15 @@
             </button>
         </div>
     </div>
+    
+    <div class="w-full mt-12 md:mt-24 overflow-hidden border-y border-surface-container-highest py-3 flex items-center bg-surface/50 backdrop-blur-sm pointer-events-none">
+        <div class="whitespace-nowrap font-label-caps text-label-caps text-primary uppercase tracking-[0.2em] animate-marquee flex gap-8 select-none">
+            <span>AVAILABLE FOR HIRE // FRONT-END ARCHITECTURE // UI-UX DESIGN // CLIENT RELATIONS // GLOBAL REACH // WEBGL // GSAP // AGILE // CREATIVE CODING //</span>
+            <span>AVAILABLE FOR HIRE // FRONT-END ARCHITECTURE // UI-UX DESIGN // CLIENT RELATIONS // GLOBAL REACH // WEBGL // GSAP // AGILE // CREATIVE CODING //</span>
+            <span>AVAILABLE FOR HIRE // FRONT-END ARCHITECTURE // UI-UX DESIGN // CLIENT RELATIONS // GLOBAL REACH // WEBGL // GSAP // AGILE // CREATIVE CODING //</span>
+            <span>AVAILABLE FOR HIRE // FRONT-END ARCHITECTURE // UI-UX DESIGN // CLIENT RELATIONS // GLOBAL REACH // WEBGL // GSAP // AGILE // CREATIVE CODING //</span>
+        </div>
+    </div>
 </section>
 
 <!-- ABOUT VIEW -->
@@ -647,6 +672,30 @@
         <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
             <span class="font-label-caps text-label-caps uppercase text-primary">GSAP / WEBGL</span>
             <span class="font-micro-feed text-micro-feed text-on-surface-variant">ANIMATION</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">AGILE / SCRUM</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">METHODOLOGY</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">CROSS-FUNCTIONAL</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">LEADERSHIP</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">PROBLEM SOLVING</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">ALGORITHMIC</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">FIGMA / UI</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">PROTOTYPING</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">GIT / GITHUB</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">VERSION_CTRL</span>
+        </div>
+        <div class="border border-on-surface p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <span class="font-label-caps text-label-caps uppercase text-primary">VERCEL / CI-CD</span>
+            <span class="font-micro-feed text-micro-feed text-on-surface-variant">DEPLOYMENT</span>
         </div>
     </div>
 </section>
@@ -1058,15 +1107,20 @@
             views.forEach(v => {
                 v.classList.remove('active');
             });
-            setTimeout(() => {
-                const targetView = document.getElementById(targetId);
-                targetView.classList.add('active');
-                
-                // Re-trigger GSAP animations if going back to projects
-                if (targetId === 'view-projects') {
-                    initAnimations();
-                }
-            }, 50);
+            
+            const targetView = document.getElementById(targetId);
+            targetView.classList.add('active');
+            
+            // GSAP Fluid Animation for view content
+            gsap.fromTo(targetView.children, 
+                { y: 30, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }
+            );
+
+            // Re-trigger GSAP animations if going back to projects
+            if (targetId === 'view-projects') {
+                initAnimations();
+            }
             
             lenis.scrollTo(0, { immediate: true });
         });
