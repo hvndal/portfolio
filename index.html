@@ -60,173 +60,36 @@
           darkMode: "class",
           theme: {
             extend: {
-              "colors": {
-                "surface-container-high": "#e8e8eb",
-                "on-secondary": "#ffffff",
-                "secondary": "#006877",
-                "on-error-container": "#93000a",
-                "tertiary": "#5d5c5b",
-                "secondary-container": "#00e0ff",
-                "primary-fixed": "#ffdad8",
-                "surface-bright": "#f9f9fc",
-                "on-tertiary-fixed": "#1c1b1b",
-                "on-error": "#ffffff",
-                "secondary-fixed-dim": "#00daf8",
-                "surface-dim": "#d9dadd",
-                "tertiary-fixed": "#e5e2e1",
-                "primary-fixed-dim": "#ffb3b2",
-                "on-tertiary-fixed-variant": "#474646",
-                "background": "#f9f9fc",
-                "on-secondary-container": "#005f6d",
-                "surface-container": "#edeef1",
-                "on-surface-variant": "#5f3e3e",
-                "tertiary-container": "#767474",
-                "on-surface": "#1a1c1e",
-                "on-background": "#1a1c1e",
-                "error": "#ba1a1a",
-                "surface-tint": "#bf002a",
-                "inverse-surface": "#2f3133",
-                "inverse-primary": "#ffb3b2",
-                "surface": "#f9f9fc",
-                "outline-variant": "#e9bcba",
-                "on-primary-container": "#fffbff",
-                "surface-variant": "#e2e2e5",
-                "surface-container-low": "#f3f3f6",
-                "tertiary-fixed-dim": "#c9c6c5",
-                "surface-container-highest": "#e2e2e5",
-                "on-secondary-fixed": "#001f25",
-                "on-tertiary": "#ffffff",
-                "on-primary": "#ffffff",
-                "inverse-on-surface": "#f0f0f3",
-                "primary-container": "#e90036",
-                "secondary-fixed": "#a5eeff",
-                "primary": "#ba0029",
-                "error-container": "#ffdad6",
-                "on-primary-fixed-variant": "#92001e",
-                "surface-container-lowest": "#ffffff",
-                "on-tertiary-container": "#f7feff",
-                "on-primary-fixed": "#410008",
-                "on-secondary-fixed-variant": "#004e5a",
-                "outline": "#946e6d",
+              colors: {
+                "cinematic-bg": "#09070a",
+                "cinematic-card": "#120e14",
+                "cinematic-accent": "#ff451a",
+                "cinematic-glow": "#e62e00",
+                "cinematic-purple": "#8a1c6a",
+                "cinematic-text": "#f4f0eb",
+                "cinematic-muted": "#8f868c",
+                "surface": "#0d0b0f",
+                "on-surface": "#f4f0eb",
+                "on-surface-variant": "#a398a0",
+                "primary": "#ff451a",
                 "cyber-cherry": "#ff003c"
               },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "margin-panel": "16px",
-                      "container-max": "1440px",
-                      "unit": "4px",
-                      "gutter-dense": "8px",
-                      "grid-line": "1px"
-              },
-              "fontFamily": {
-                      "label-caps": [
-                              "JetBrains Mono"
-                      ],
-                      "headline-md": [
-                              "Space Grotesk"
-                      ],
-                      "body-md": [
-                              "Geist"
-                      ],
-                      "headline-lg": [
-                              "Space Grotesk"
-                      ],
-                      "headline-lg-mobile": [
-                              "Space Grotesk"
-                      ],
-                      "micro-feed": [
-                              "JetBrains Mono"
-                      ],
-                      "data-display": [
-                              "JetBrains Mono"
-                      ]
-              },
-              "fontSize": {
-                      "label-caps": [
-                              "10px",
-                              {
-                                      "lineHeight": "12px",
-                                      "letterSpacing": "0.1em",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "headline-md": [
-                              "20px",
-                              {
-                                      "lineHeight": "1.2",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "body-md": [
-                              "14px",
-                              {
-                                      "lineHeight": "1.5",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "headline-lg": [
-                              "32px",
-                              {
-                                      "lineHeight": "1.1",
-                                      "letterSpacing": "-0.02em",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "headline-lg-mobile": [
-                              "24px",
-                              {
-                                      "lineHeight": "1.2",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "micro-feed": [
-                              "9px",
-                              {
-                                      "lineHeight": "10px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "data-display": [
-                              "13px",
-                              {
-                                      "lineHeight": "1.4",
-                                      "letterSpacing": "-0.01em",
-                                      "fontWeight": "500"
-                              }
-                      ]
-              },
-              "animation": {
-                "scan-line": "scan 2s linear infinite",
-                "fade-slide-up": "fadeSlideUp 0.6s ease-out forwards",
-                "pulse-fast": "pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-                "fade-in": "fadeIn 1s ease-out forwards",
-              },
-              "keyframes": {
-                "scan": {
-                  "0%": { top: "-5%" },
-                  "100%": { top: "105%" },
-                },
-                "fadeSlideUp": {
-                  "0%": { opacity: "0", transform: "translateY(20px)" },
-                  "100%": { opacity: "1", transform: "translateY(0)" },
-                },
-                "fadeIn": {
-                  "0%": { opacity: "0" },
-                  "100%": { opacity: "1" },
-                }
+              fontFamily: {
+                "cinematic": ["'Bebas Neue'", "sans-serif"],
+                "sans": ["'Syne'", "'Geist'", "sans-serif"],
+                "mono": ["'JetBrains Mono'", "monospace"],
+                "label-caps": ["'JetBrains Mono'"],
+                "headline-md": ["'Syne'"],
+                "body-md": ["'Syne'"],
+                "headline-lg": ["'Bebas Neue'"]
               }
-            },
-          },
+            }
+          }
         }
     </script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
         body {
@@ -481,9 +344,32 @@
             display: flex;
             opacity: 1;
         }
-    </style>
+    
+        /* Hexagon Clip Path */
+        .clip-hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        /* Dark Theme Default Overrides */
+        body {
+            background-color: #080609 !important;
+            color: #f4f0eb !important;
+        }
+
+        .cinematic-title {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.02em;
+            line-height: 0.88;
+        }
+
+        .cinematic-sub {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.18em;
+        }
+
+</style>
 </head>
-<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<body class="font-sans text-body-md antialiased min-h-screen flex flex-col bg-[#080609] text-[#f4f0eb] overflow-x-hidden selection:bg-cinematic-accent selection:text-black">
 <!-- Custom Cursor -->
 <div id="custom-cursor"></div>
 
@@ -498,136 +384,84 @@
 <!-- WebGL Background -->
 <canvas id="webgl-canvas"></canvas>
 <!-- Main content wrapper to sit above background -->
-<div class="content-wrapper flex flex-col md:flex-row w-full min-h-screen">
-<!-- SideNavBar (Desktop Focus) -->
-<nav class="bg-surface-container-low/90 backdrop-blur-sm dark:bg-inverse-surface/90 h-screen w-64 fixed left-0 top-0 border-r border-outline dark:border-outline-variant flat no shadows flex flex-col pt-16 pb-4 transition-all duration-75 z-50 hidden md:flex">
-<!-- Header / HUD -->
-<div class="px-6 mb-8">
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-none border border-on-surface overflow-hidden bg-surface relative group">
-<img alt="Designer Portrait HUD" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A highly detailed 50-100 word prompt describing a stark, minimalist black and white portrait of a technical operator. The image should feature deep contrast, hard lighting, and subtle red overlays to fit a Light Tech Noir aesthetic. The subject should appear focused and professional in a high-tech lab environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZbiRU-uGROqEGSIddpbvTT2JrPUpAMYdUs1ZZ59iJBNcCu4ccV7M-WGNGpeTa7EKhS5fLIV9YCTtKJumqvEv3yEJhAh1ho-3_wGWO4zvWUQIBHIH6bA8kQ9RGn_pNNREYZwzZEumI94Ktbk_WPvGRT4DpPhfvzFhTPd7coDeXq69X45mOOzmjd7DUjKJ_mg7XIb5PNDCW85Z6HWvLZk8vvsiyHCBScwe7BR3GCj-ymZlPbCWwZ6xumA"/>
-<!-- Corner accent -->
-<div class="absolute top-0 right-0 w-2 h-2 bg-on-surface"></div>
-</div>
-<div>
-<h1 class="font-headline-md text-headline-md text-primary tracking-tighter glitch-hover" data-text="HERMAN HUNDAL">HERMAN HUNDAL</h1>
-<p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-1">SYSTEM_ACTIVE</p>
-</div>
-</div>
-</div>
-<!-- Navigation Links -->
-<div class="flex flex-col gap-1 w-full flex-grow" id="nav-container">
-<!-- HOME -->
-<a data-target="view-home" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
-<span class="material-symbols-outlined text-[16px]">home_app_logo</span>
-<span>HOME</span>
-</a>
-<!-- PROJECTS (ACTIVE) -->
-<a data-target="view-projects" class="nav-btn bg-secondary text-on-secondary font-bold flex items-center gap-3 px-4 py-2 border-r-4 border-primary transition-all duration-75 font-label-caps text-label-caps uppercase relative cursor-none" href="#">
-<span class="material-symbols-outlined text-[16px]">folder_open</span>
-<span>PROJECTS</span>
-<!-- Active Indicator -->
-<div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-3 bg-primary glow-active mr-[-2px] nav-indicator"></div>
-</a>
-<!-- ABOUT -->
-<a data-target="view-about" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
-<span class="material-symbols-outlined text-[16px]">fingerprint</span>
-<span>ABOUT</span>
-</a>
-<!-- STACK -->
-<a data-target="view-stack" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
-<span class="material-symbols-outlined text-[16px]">layers</span>
-<span>STACK</span>
-</a>
-<!-- BLOG -->
-<a data-target="view-blog" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
-<span class="material-symbols-outlined text-[16px]">history_edu</span>
-<span>BLOG</span>
-</a>
-<!-- MINDMAP -->
-<a data-target="view-mindmap" class="nav-btn nav-link text-on-surface-variant flex items-center gap-3 px-4 py-2 hover:bg-surface-container-highest/50 dark:hover:bg-surface-variant transition-all duration-75 font-label-caps text-label-caps uppercase border-r-4 border-transparent cursor-none" href="#">
-<span class="material-symbols-outlined text-[16px]">account_tree</span>
-<span>MINDMAP</span>
-</a>
-</div>
-<!-- CTA -->
-<div class="px-4 mt-auto">
-<button class="w-full bg-surface text-on-surface border border-on-surface font-label-caps text-label-caps uppercase py-3 hover:bg-primary hover:text-on-primary hover:border-primary transition-colors duration-100 relative">
-                CONTACT_NODE
-                <!-- Corner accent -->
-<div class="absolute top-0 right-0 w-1 h-1 bg-current"></div>
-</button>
-</div>
-</nav>
-<!-- Main Content Area -->
-<main class="flex-grow md:ml-64 flex flex-col min-h-screen relative">
-<!-- TopAppBar (Mobile Fallback & Desktop Utility) -->
-<header class="bg-surface/90 backdrop-blur-sm dark:bg-background/90 border-b border-outline dark:border-outline-variant flat no shadows w-full top-0 sticky flex justify-between items-center px-gutter-dense h-12 w-full max-w-container-max mx-auto z-40">
-<div class="flex items-center gap-4">
-<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary-fixed md:hidden">HERMAN HUNDAL</span>
-<!-- Desktop Breadcrumb/Path -->
-<div class="hidden md:flex items-center font-micro-feed text-micro-feed text-on-surface-variant uppercase tracking-widest gap-2">
-<span>ROOT</span>
-<span class="material-symbols-outlined text-[10px]">chevron_right</span>
-<span class="text-primary">PROJECTS</span>
-</div>
-</div>
-<!-- Global Search & Actions -->
-<div class="flex items-center gap-2 h-full">
-<!-- Search Input -->
-<div class="hidden md:flex items-center border-b-2 border-on-surface-variant focus-within:border-secondary-container transition-colors duration-100 pb-1 relative w-48 group">
-<span class="material-symbols-outlined text-[14px] text-on-surface-variant absolute left-0 bottom-1">search</span>
-<input class="bg-transparent border-none outline-none text-data-display font-data-display text-on-surface pl-5 w-full focus:ring-0 placeholder:text-on-surface-variant placeholder:opacity-50 h-5" placeholder="QUERY_DB..." type="text"/>
-<!-- Validation micro-feed (appears on focus) -->
-<div class="absolute top-full left-0 mt-1 font-micro-feed text-micro-feed text-secondary-container hidden group-focus-within:block w-max">
-                        &gt; SEARCHING_INDEX: ACTIVE...
-                    </div>
-</div>
-<div class="h-full w-px bg-surface-container-highest mx-2 hidden md:block"></div>
-<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors duration-100 cursor-crosshair active:opacity-80 h-full px-2 flex items-center justify-center">
-<span class="material-symbols-outlined text-[18px]">settings</span>
-</button>
-<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors duration-100 cursor-crosshair active:opacity-80 h-full px-2 flex items-center justify-center">
-<span class="material-symbols-outlined text-[18px]">terminal</span>
-</button>
-<!-- Mobile menu toggle -->
-<button id="open-mobile-nav" class="md:hidden text-on-surface-variant h-full px-2 flex items-center justify-center">
-<span class="material-symbols-outlined text-[18px]">menu</span>
-</button>
-</div>
-</header>
-<!-- Content Canvas -->
-<div id="spa-container" class="flex-grow p-4 md:p-8 max-w-container-max mx-auto w-full relative z-10">
+<div class="content-wrapper flex flex-col w-full min-h-screen">
 
-<!-- HOME VIEW -->
-<section id="view-home" class="view-section">
-    <div class="flex flex-col items-start justify-center min-h-[60vh] gap-6">
-        <div class="bg-on-surface text-surface px-4 py-1 font-label-caps text-label-caps uppercase tracking-widest">
-            INITIALIZING_USER_PROFILE // STATUS: OPTIMAL
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col min-h-screen relative w-full">
+
+<!-- TopAppBar (Cinematic Header) -->
+<header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-gradient-to-b from-[#080609]/90 to-transparent backdrop-blur-xs">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="document.querySelector('[data-target=\'view-home\']').click()">
+        <div class="w-9 h-9 border border-[#ff451a] flex items-center justify-center font-bold text-[#ff451a] text-sm font-mono clip-hexagon bg-[#ff451a]/10 hover:bg-[#ff451a] hover:text-black transition-all duration-300">
+            H
         </div>
-        <h2 class="font-headline-lg text-[36px] md:text-[72px] leading-none text-on-surface uppercase tracking-tighter glitch-hover" data-text="UX UNICORN">
-            UX UNICORN
-        </h2>
-        <p class="font-body-md text-[18px] md:text-[24px] text-on-surface-variant max-w-2xl border-l-4 border-primary pl-4">
-            I architect hyper-fluid, data-dense web interfaces by fusing cutting-edge front-end engineering with obsessive UI/UX precision—transforming complex systems into striking, immersive digital experiences.
-        </p>
-        <div class="flex gap-4 mt-4">
-            <button class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-3 hover:bg-surface hover:text-primary border border-primary transition-colors duration-300 relative">
-                DEPLOY_COMMUNICATION
-                <div class="absolute top-0 right-0 w-2 h-2 bg-on-surface"></div>
-            </button>
+        <div class="flex flex-col">
+            <span class="font-bold text-xs tracking-widest uppercase text-[#f4f0eb]">HERMAN HUNDAL</span>
+            <span class="text-[9px] font-mono text-[#8f868c] uppercase tracking-wider">DESIGNER & DEVELOPER</span>
         </div>
     </div>
     
-    <div class="w-full mt-12 md:mt-24 overflow-hidden border-y border-surface-container-highest py-3 flex items-center bg-surface/50 backdrop-blur-sm pointer-events-none">
-        <div class="whitespace-nowrap font-label-caps text-label-caps text-primary uppercase tracking-[0.2em] animate-marquee flex gap-8 select-none">
-            <span>AVAILABLE FOR HIRE // FRONT-END ARCHITECTURE // UI-UX DESIGN // CLIENT RELATIONS // GLOBAL REACH // WEBGL // GSAP // AGILE // CREATIVE CODING //</span>
-            <span>AVAILABLE FOR HIRE // FRONT-END ARCHITECTURE // UI-UX DESIGN // CLIENT RELATIONS // GLOBAL REACH // WEBGL // GSAP // AGILE // CREATIVE CODING //</span>
-            <span>AVAILABLE FOR HIRE // FRONT-END ARCHITECTURE // UI-UX DESIGN // CLIENT RELATIONS // GLOBAL REACH // WEBGL // GSAP // AGILE // CREATIVE CODING //</span>
-            <span>AVAILABLE FOR HIRE // FRONT-END ARCHITECTURE // UI-UX DESIGN // CLIENT RELATIONS // GLOBAL REACH // WEBGL // GSAP // AGILE // CREATIVE CODING //</span>
+    <div class="flex items-center gap-6">
+        <a data-target="view-projects" class="hidden md:inline-block text-xs font-mono tracking-widest text-[#8f868c] hover:text-[#ff451a] transition-colors uppercase cursor-pointer">PORTFOLIO</a>
+        <button id="open-mobile-nav" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
+            <span class="w-6 h-[2px] bg-current transition-all group-hover:w-8"></span>
+            <span class="w-4 h-[2px] bg-current transition-all group-hover:w-8"></span>
+        </button>
+    </div>
+</header>
+
+<!-- Content Canvas -->
+<div id="spa-container" class="flex-grow p-4 md:p-8 max-w-container-max mx-auto w-full relative z-10">
+
+
+<!-- HOME VIEW (Cinematic Dark Mode) -->
+<section id="view-home" class="view-section active flex flex-col justify-between min-h-screen pt-28 pb-8 px-6 md:px-16 relative overflow-hidden">
+    <!-- Top accent bar -->
+    <div class="w-8 h-[3px] bg-[#ff451a] mb-6"></div>
+    
+    <!-- Hero Main Typography -->
+    <div class="flex flex-col items-start z-10 my-auto">
+        <h1 class="cinematic-title text-[56px] sm:text-[90px] md:text-[120px] lg:text-[140px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight">
+            DESIGNING<br/>
+            DIGITAL<br/>
+            EXPERIENCES
+        </h1>
+        
+        <!-- Subtitles -->
+        <p class="cinematic-sub text-[10px] sm:text-xs md:text-sm text-[#8f868c] uppercase tracking-[0.2em] mt-4 mb-8 flex flex-wrap gap-2 items-center">
+            <span>UI/UX DESIGN</span>
+            <span class="text-[#ff451a]">•</span>
+            <span>FRONTEND DEVELOPMENT</span>
+            <span class="text-[#ff451a]">•</span>
+            <span>PRODUCT DESIGN</span>
+        </p>
+        
+        <!-- View Work CTA -->
+        <button onclick="document.querySelector('[data-target=\'view-projects\']').click()" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer">
+            <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
+            <span class="border-b border-transparent group-hover:border-[#ff451a] pb-0.5">VIEW WORK</span>
+        </button>
+    </div>
+    
+    <!-- Bottom Footer Meta Info -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-8 border-t border-[#f4f0eb]/10 font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
+        <div class="flex items-center gap-3">
+            <span class="text-[#ff451a] text-sm">⊕</span>
+            <div>
+                <p>AVAILABLE FOR REMOTE WORK</p>
+                <p class="text-[#f4f0eb]/60">BASED IN MOHALI, INDIA</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <span class="text-[#ff451a]">2026</span>
+            <span class="w-8 h-[1px] bg-[#f4f0eb]/20"></span>
+            <span>PORTFOLIO</span>
+            <span class="text-[#ff451a] text-sm ml-1">⊕</span>
         </div>
     </div>
 </section>
+
 
 <!-- ABOUT VIEW -->
 <section id="view-about" class="view-section">
@@ -1091,7 +925,7 @@
 </div>
 <!-- Filter Tabs -->
 <div class="flex flex-wrap gap-2">
-<button class="border border-on-surface bg-on-surface text-surface px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-primary hover:text-on-primary hover:border-primary transition-colors duration-100">ALL</button>
+<button class="border border-on-surface bg-on-surface text-surface px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-[#ff451a] hover:text-black hover:border-[#ff451a] transition-colors duration-100">ALL</button>
 <button class="border border-surface-container-highest bg-surface/80 text-on-surface px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-surface-container-highest transition-colors duration-100 border-dashed">UI/UX</button>
 <button class="border border-surface-container-highest bg-surface/80 text-on-surface px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-surface-container-highest transition-colors duration-100 border-dashed">Frontend</button>
 <button class="border border-surface-container-highest bg-surface/80 text-on-surface px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-surface-container-highest transition-colors duration-100 border-dashed">Creative Coding</button>
@@ -1114,162 +948,182 @@
 </footer>
 </main>
 </div>
-<!-- WebGL Background Script -->
+
+<!-- WebGL Background Shader (Cinematic Glow & Noise) -->
 <script>
     const canvas = document.getElementById('webgl-canvas');
     const gl = canvas.getContext('webgl');
-    let mouseX = 0;
-    let mouseY = 0;
+    let mouseX = 0.5;
+    let mouseY = 0.5;
 
     document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+        mouseX = e.clientX / window.innerWidth;
+        mouseY = 1.0 - (e.clientY / window.innerHeight);
     });
 
-    if (!gl) {
-        console.error('WebGL not supported');
-    } else {
-        // Vertex Shader
+    if (gl) {
         const vsSource = `
             attribute vec4 aVertexPosition;
-            varying vec2 v_texCoord;
+            varying vec2 v_uv;
             void main() {
                 gl_Position = aVertexPosition;
-                v_texCoord = aVertexPosition.xy * 0.5 + 0.5;
+                v_uv = aVertexPosition.xy * 0.5 + 0.5;
             }
         `;
 
-        // Fragment Shader (from ANIMATION_18)
         const fsSource = `
             precision highp float;
             uniform float u_time;
             uniform vec2 u_resolution;
             uniform vec2 u_mouse;
 
-            varying vec2 v_texCoord;
+            varying vec2 v_uv;
 
-            float grid(vec2 uv, float spacing) {
-                vec2 grid = abs(fract(uv * spacing - 0.5) - 0.5) / fwidth(uv * spacing);
-                return 1.0 - min(grid.x, grid.y);
+            // Pseudo-random noise
+            float random(vec2 st) {
+                return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
             }
 
             void main() {
-                vec2 uv = v_texCoord;
+                vec2 st = v_uv;
                 
-                // Mouse distortion
-                vec2 mouseNorm = u_mouse / u_resolution;
-                mouseNorm.y = 1.0 - mouseNorm.y;
-                float dist = distance(uv, mouseNorm);
-                vec2 distortion = (uv - mouseNorm) * smoothstep(0.5, 0.0, dist) * 0.1;
-                uv += distortion;
+                // Deep dark background base (#080609)
+                vec3 color = vec3(0.03, 0.024, 0.035);
                 
-                // Subtle pulsing background color
-                float pulse = (sin(u_time * 0.5) * 0.5 + 0.5) * 0.02;
-                vec3 baseColor = vec3(0.976, 0.976, 0.988); // #f9f9fc
+                // Light plume flare on right side
+                vec2 targetPos = vec2(0.75 + (u_mouse.x - 0.5) * 0.1, 0.4 + (u_mouse.y - 0.5) * 0.1);
                 
-                // Grid animation
-                float spacing = 20.0;
-                float g = grid(uv, spacing);
+                // Curve equation for light streak
+                float distY = abs(st.y - targetPos.y);
+                float curve = sin(st.y * 3.14159) * 0.25;
+                float dist = length(st - vec2(targetPos.x + curve, st.y));
                 
-                // Scan line
-                float scanline = sin(uv.y * 100.0 - u_time * 5.0) * 0.01;
+                // Orange / Red core glow
+                float coreGlow = smoothstep(0.45, 0.0, dist);
+                vec3 coreColor = vec3(1.0, 0.27, 0.1); // #ff451a
                 
-                // Cyber-cherry accent highlights (#ff003c)
-                vec3 accent = vec3(1.0, 0.0, 0.235);
-                float glow = smoothstep(0.4, 0.5, sin(u_time + uv.x * 2.0 + uv.y * 2.0));
+                // Deep purple ambient glow
+                float purpleDist = length(st - vec2(0.85, 0.2));
+                float purpleGlow = smoothstep(0.8, 0.0, purpleDist);
+                vec3 purpleColor = vec3(0.54, 0.11, 0.41); // #8a1c6a
                 
-                vec3 color = baseColor + (g * 0.03) + scanline;
-                color = mix(color, accent, glow * 0.01);
+                // Dynamic time wave animation
+                float wave = sin(st.y * 5.0 - u_time * 0.8) * 0.05;
+                coreGlow *= (0.85 + wave);
+                
+                // Combine colors
+                color += coreColor * pow(coreGlow, 2.2) * 1.4;
+                color += purpleColor * pow(purpleGlow, 1.8) * 0.8;
+                
+                // Fine film-grain noise overlay
+                float noise = (random(st * (u_time + 10.0)) - 0.5) * 0.045;
+                color += noise;
                 
                 gl_FragColor = vec4(color, 1.0);
             }
         `;
 
-        function loadShader(gl, type, source) {
+        function createShader(gl, type, source) {
             const shader = gl.createShader(type);
             gl.shaderSource(shader, source);
             gl.compileShader(shader);
-            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-                console.error('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
-                gl.deleteShader(shader);
-                return null;
-            }
             return shader;
         }
 
-        const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
-        const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
-
-        const shaderProgram = gl.createProgram();
-        gl.attachShader(shaderProgram, vertexShader);
-        gl.attachShader(shaderProgram, fragmentShader);
-        gl.linkProgram(shaderProgram);
-
-        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-            console.error('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
-        }
-
-        const programInfo = {
-            program: shaderProgram,
-            attribLocations: {
-                vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
-            },
-            uniformLocations: {
-                time: gl.getUniformLocation(shaderProgram, 'u_time'),
-                resolution: gl.getUniformLocation(shaderProgram, 'u_resolution'),
-                mouse: gl.getUniformLocation(shaderProgram, 'u_mouse'),
-            },
-        };
-
-        const positions = [
-            -1.0,  1.0,
-             1.0,  1.0,
-            -1.0, -1.0,
-             1.0, -1.0,
-        ];
+        const vertShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+        const fragShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+        const program = gl.createProgram();
+        gl.attachShader(program, vertShader);
+        gl.attachShader(program, fragShader);
+        gl.linkProgram(program);
+        gl.useProgram(program);
 
         const positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+            -1.0, -1.0,  1.0, -1.0, -1.0,  1.0,
+            -1.0,  1.0,  1.0, -1.0,  1.0,  1.0,
+        ]), gl.STATIC_DRAW);
 
-        function resizeCanvasToDisplaySize(canvas) {
-            const displayWidth  = canvas.clientWidth;
-            const displayHeight = canvas.clientHeight;
-            if (canvas.width  !== displayWidth || canvas.height !== displayHeight) {
-                canvas.width  = displayWidth;
-                canvas.height = displayHeight;
-            }
+        const positionAttributeLocation = gl.getAttribLocation(program, "aVertexPosition");
+        gl.enableVertexAttribArray(positionAttributeLocation);
+        gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+
+        const timeLocation = gl.getUniformLocation(program, "u_time");
+        const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
+        const mouseLocation = gl.getUniformLocation(program, "u_mouse");
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            gl.viewport(0, 0, canvas.width, canvas.height);
         }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-        let then = 0;
-        function render(now) {
-            now *= 0.001;
-            const deltaTime = now - then;
-            then = now;
-
-            resizeCanvasToDisplaySize(gl.canvas);
-            gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-
-            gl.clearColor(0.0, 0.0, 0.0, 1.0);
-            gl.clear(gl.COLOR_BUFFER_BIT);
-
-            gl.useProgram(programInfo.program);
-
-            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-            gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, 2, gl.FLOAT, false, 0, 0);
-            gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
-
-            gl.uniform1f(programInfo.uniformLocations.time, now);
-            gl.uniform2f(programInfo.uniformLocations.resolution, gl.canvas.width, gl.canvas.height);
-            gl.uniform2f(programInfo.uniformLocations.mouse, mouseX, mouseY);
-
-            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-
+        function render(time) {
+            time *= 0.001;
+            gl.uniform1f(timeLocation, time);
+            gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+            gl.uniform2f(mouseLocation, mouseX, mouseY);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
             requestAnimationFrame(render);
         }
         requestAnimationFrame(render);
     }
+
+    // Web Audio Synthesized SFX Effects
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) audioCtx = new AudioCtx();
+    }
+
+    function playHoverSFX() {
+        try {
+            initAudio();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.04);
+            gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.04);
+        } catch(e) {}
+    }
+
+    function playClickSFX() {
+        try {
+            initAudio();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.08);
+        } catch(e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a, button, [onclick]').forEach(el => {
+            el.addEventListener('mouseenter', playHoverSFX);
+            el.addEventListener('click', playClickSFX);
+        });
+    });
 </script>
+
 
 <!-- Max UI JS Enhancements -->
 <script>
@@ -1297,8 +1151,8 @@
             const fallbackDiv = encodeURIComponent(`<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-[0.5] transition-all duration-500 opacity-60 mix-blend-multiply" style="background-image: url('${specificImgUrl}'), url('${fallbackImgUrl}')"></div>`);
             
             const cardHTML = `
-            <article class="w-full bg-surface/95 border border-on-surface flex flex-col relative group transition-all duration-300 hover-glow opacity-0">
-                <div class="bg-on-surface text-surface h-5 flex items-center justify-between px-2 w-full">
+            <article class="w-full bg-[#120e14]/90 border border-[#f4f0eb]/10 hover:border-[#ff451a]/60 flex flex-col relative group transition-all duration-300 backdrop-blur-md opacity-0 hover:shadow-[0_0_20px_rgba(255,69,26,0.2)]">
+                <div class="bg-[#1c1620] text-[#f4f0eb] h-6 flex items-center justify-between px-3 w-full border-b border-[#f4f0eb]/10">
                     <span class="font-label-caps text-label-caps uppercase tracking-widest">ID_00${index + 1} // ${repo.name.substring(0, 15)}</span>
                     <div class="flex items-center gap-2">
                         <span class="font-micro-feed text-micro-feed uppercase">STATUS:</span>
