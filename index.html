@@ -50,6 +50,39 @@
         });
     }
 
+
+    // Synchronize Desktop Nav Tabs
+    const desktopBtns = document.querySelectorAll('.desktop-nav-btn');
+    desktopBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = btn.getAttribute('data-target');
+            
+            // Switch active styling
+            desktopBtns.forEach(b => {
+                b.classList.remove('text-[#f4f0eb]', 'bg-[#ff451a]/20', 'border', 'border-[#ff451a]/40');
+                b.classList.add('text-[#8f868c]');
+            });
+            btn.classList.remove('text-[#8f868c]');
+            btn.classList.add('text-[#f4f0eb]', 'bg-[#ff451a]/20', 'border', 'border-[#ff451a]/40');
+            
+            // Trigger section view toggle
+            document.querySelectorAll('.view-section').forEach(sec => {
+                sec.classList.remove('active');
+                sec.style.display = 'none';
+                sec.style.opacity = '0';
+            });
+            
+            const targetSec = document.getElementById(targetId);
+            if (targetSec) {
+                targetSec.style.display = 'flex';
+                targetSec.classList.add('active');
+                gsap.to(targetSec, { opacity: 1, duration: 0.3 });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    });
+
 </script>
 <!-- Adding Lenis and GSAP for max smooth animations -->
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
@@ -373,12 +406,7 @@
 <!-- Custom Cursor -->
 <div id="custom-cursor"></div>
 
-<!-- Boot Loader -->
-<div id="boot-loader">
-    <div class="boot-text" id="boot-text">INITIALIZING_SYSTEM...</div>
-    <div class="boot-bar-container">
-        <div class="boot-bar" id="boot-bar"></div>
-    </div>
+
 </div>
 
 <!-- WebGL Background -->
@@ -389,8 +417,9 @@
 <!-- Main Content Area -->
 <main class="flex-grow flex flex-col min-h-screen relative w-full">
 
-<!-- TopAppBar (Cinematic Header) -->
-<header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-gradient-to-b from-[#080609]/90 to-transparent backdrop-blur-xs">
+
+<!-- TopAppBar (Cinematic Header with Exposed Nav Tabs) -->
+<header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-5 bg-[#080609]/80 backdrop-blur-md border-b border-[#f4f0eb]/5">
     <div class="flex items-center gap-3 cursor-pointer" onclick="document.querySelector('[data-target=\'view-home\']').click()">
         <div class="w-9 h-9 border border-[#ff451a] flex items-center justify-center font-bold text-[#ff451a] text-sm font-mono clip-hexagon bg-[#ff451a]/10 hover:bg-[#ff451a] hover:text-black transition-all duration-300">
             H
@@ -401,14 +430,27 @@
         </div>
     </div>
     
-    <div class="flex items-center gap-6">
-        <a data-target="view-projects" class="hidden md:inline-block text-xs font-mono tracking-widest text-[#8f868c] hover:text-[#ff451a] transition-colors uppercase cursor-pointer">PORTFOLIO</a>
-        <button id="open-mobile-nav" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
+    <!-- Exposed Navigation Tabs (Desktop) -->
+    <nav class="hidden md:flex items-center gap-1 bg-[#120e14]/80 p-1.5 rounded-full border border-[#f4f0eb]/10" id="desktop-nav-tabs">
+        <a data-target="view-home" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#f4f0eb] bg-[#ff451a]/20 border border-[#ff451a]/40" href="#">HOME</a>
+        <a data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">PROJECTS</a>
+        <a data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">ABOUT</a>
+        <a data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">STACK</a>
+        <a data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">BLOG</a>
+        <a data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">MINDMAP</a>
+    </nav>
+    
+    <div class="flex items-center gap-4">
+        <button onclick="document.querySelector('[data-target=\'view-projects\']').click()" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-4 py-2 rounded-full hover:bg-white transition-all cursor-pointer">
+            VIEW WORK →
+        </button>
+        <button id="open-mobile-nav" class="md:hidden text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
             <span class="w-6 h-[2px] bg-current transition-all group-hover:w-8"></span>
             <span class="w-4 h-[2px] bg-current transition-all group-hover:w-8"></span>
         </button>
     </div>
 </header>
+
 
 <!-- Content Canvas -->
 <div id="spa-container" class="flex-grow p-4 md:p-8 max-w-container-max mx-auto w-full relative z-10">
@@ -467,11 +509,11 @@
 <section id="view-about" class="view-section">
     <div class="border-b border-surface-container-highest pb-6 node-enter-title">
         <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">Herman Hundal</h2>
-        <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">CLASSIFIED // EYES ONLY</p>
+        <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">ABOUT & BACKGROUND</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-surface/90 border border-on-surface p-6 halftone-bg hover-glow transition-all">
-            <h3 class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">SYSTEM_BIO</h3>
+            <h3 class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">PROFILE</h3>
             <p class="font-body-md text-on-surface-variant leading-relaxed">
                 I am a specialized front-end and UI/UX engineer with a proven track record of architecting complex solutions from the ground up. My deployed architecture includes high-traffic commercial platforms like premium gym interfaces, enterprise-grade waste management systems, and a fully custom property management dashboard complete with secure authentication and real-time notifications.
             </p>
@@ -480,7 +522,7 @@
             </p>
         </div>
         <div class="bg-surface/90 border border-on-surface p-6">
-            <h3 class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">DEPLOYMENT_LOG</h3>
+            <h3 class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">FEATURED EXPERIENCE</h3>
             <ul class="flex flex-col gap-4 font-micro-feed text-micro-feed uppercase">
                 <li class="border-b border-surface-container-highest pb-2 flex justify-between"><span class="text-primary">IN_DEV</span> <span>COOKCAN SAAS (AI/GEMINI INTEGRATION)</span></li>
                 <li class="border-b border-surface-container-highest pb-2 flex justify-between"><span class="text-primary">IN_DEV</span> <span>RENTCAN (WASTE MANAGEMENT PLATFORM)</span></li>
@@ -920,8 +962,8 @@
 <!-- Header Section -->
 <section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-surface-container-highest pb-6 node-enter-title">
 <div>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">Project Database</h2>
-<p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">Displaying 6 active nodes // Filtered by: All</p>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">Selected Projects</h2>
+<p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">A curated collection of digital products and web applications.</p>
 </div>
 <!-- Filter Tabs -->
 <div class="flex flex-wrap gap-2">
@@ -1206,32 +1248,7 @@
     }
 
     // 1. Boot Loader Sequence
-    const bootLoader = document.getElementById('boot-loader');
-    const bootBar = document.getElementById('boot-bar');
-    const bootText = document.getElementById('boot-text');
     
-    let progress = 0;
-    const bootInterval = setInterval(() => {
-        progress += Math.random() * 15;
-        if (progress > 100) progress = 100;
-        bootBar.style.width = progress + '%';
-        
-        if (progress > 30 && progress < 60) {
-            bootText.innerText = "LOADING_MODULES [||||......]";
-        } else if (progress >= 60 && progress < 90) {
-            bootText.innerText = "ESTABLISHING_CONNECTION [||||||||..]";
-        } else if (progress >= 100) {
-            bootText.innerText = "SYSTEM_ONLINE";
-            clearInterval(bootInterval);
-            setTimeout(() => {
-                bootLoader.style.transform = 'translateY(-100%)';
-                bootLoader.style.opacity = '0';
-                setTimeout(() => bootLoader.remove(), 800);
-                
-                githubPromise.then(repos => {
-                    renderProjects(repos);
-                    initAnimations(); // Start animations after boot and render
-                });
             }, 400);
         }
     }, 150);
