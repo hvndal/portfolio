@@ -122,7 +122,7 @@
     </script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@800;900&family=Hanken+Grotesk:wght@400;600&family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
         body {
@@ -400,7 +400,23 @@
             letter-spacing: 0.18em;
         }
 
+
+        /* Glassmorphism Panel Utilities */
+        .glass-panel {
+            background: rgba(18, 14, 20, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(244, 240, 235, 0.1);
+        }
+        .glass-panel-glow {
+            background: rgba(18, 14, 20, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 69, 26, 0.3);
+            box-shadow: 0 0 25px rgba(255, 69, 26, 0.15);
+        }
+
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body class="font-sans text-body-md antialiased min-h-screen flex flex-col bg-[#080609] text-[#f4f0eb] overflow-x-hidden selection:bg-cinematic-accent selection:text-black">
 <!-- Custom Cursor -->
@@ -456,37 +472,49 @@
 <div id="spa-container" class="flex-grow p-4 md:p-8 max-w-container-max mx-auto w-full relative z-10">
 
 
-<!-- HOME VIEW (Cinematic Dark Mode) -->
-<section id="view-home" class="view-section active flex flex-col justify-between min-h-screen pt-28 pb-8 px-6 md:px-16 relative overflow-hidden">
-    <!-- Top accent bar -->
-    <div class="w-8 h-[3px] bg-[#ff451a] mb-6"></div>
+
+<!-- HOME VIEW (Cinematic Dark Mode + Three.js 3D Core Visual) -->
+<section id="view-home" class="view-section active flex flex-col justify-between min-h-[calc(100vh-80px)] pt-24 pb-8 px-6 md:px-16 relative overflow-hidden">
     
-    <!-- Hero Main Typography -->
-    <div class="flex flex-col items-start z-10 my-auto">
-        <h1 class="cinematic-title text-[56px] sm:text-[90px] md:text-[120px] lg:text-[140px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight">
-            DESIGNING<br/>
-            DIGITAL<br/>
-            EXPERIENCES
-        </h1>
+    <!-- Hero Main Split Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto z-10 w-full">
         
-        <!-- Subtitles -->
-        <p class="cinematic-sub text-[10px] sm:text-xs md:text-sm text-[#8f868c] uppercase tracking-[0.2em] mt-4 mb-8 flex flex-wrap gap-2 items-center">
-            <span>UI/UX DESIGN</span>
-            <span class="text-[#ff451a]">•</span>
-            <span>FRONTEND DEVELOPMENT</span>
-            <span class="text-[#ff451a]">•</span>
-            <span>PRODUCT DESIGN</span>
-        </p>
+        <!-- Left Column: Typographic Cluster -->
+        <div class="lg:col-span-7 flex flex-col items-start">
+            <div class="w-8 h-[3px] bg-[#ff451a] mb-6"></div>
+            
+            <h1 class="cinematic-title text-[56px] sm:text-[80px] md:text-[100px] lg:text-[120px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight leading-none">
+                DESIGNING<br/>
+                DIGITAL<br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff451a] via-[#ff6b4a] to-[#e62e00]">EXPERIENCES</span>
+            </h1>
+            
+            <!-- Subtitles -->
+            <p class="cinematic-sub text-[10px] sm:text-xs text-[#8f868c] uppercase tracking-[0.2em] mt-4 mb-8 flex flex-wrap gap-2 items-center">
+                <span>UI/UX DESIGN</span>
+                <span class="text-[#ff451a]">•</span>
+                <span>FRONTEND DEVELOPMENT</span>
+                <span class="text-[#ff451a]">•</span>
+                <span>PRODUCT DESIGN</span>
+            </p>
+            
+            <!-- View Work CTA -->
+            <div class="flex gap-4 items-center">
+                <button onclick="document.querySelector('[data-target=\'view-projects\']').click()" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 rounded-full hover:border-[#ff451a]">
+                    <span>VIEW WORK</span>
+                    <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+            </div>
+        </div>
         
-        <!-- View Work CTA -->
-        <button onclick="document.querySelector('[data-target=\'view-projects\']').click()" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer">
-            <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
-            <span class="border-b border-transparent group-hover:border-[#ff451a] pb-0.5">VIEW WORK</span>
-        </button>
+        <!-- Right Column: Interactive 3D Core Visual -->
+        <div class="lg:col-span-5 relative h-[320px] sm:h-[400px] lg:h-[480px] w-full flex items-center justify-center">
+            <div id="hero-3d-container" class="w-full h-full absolute inset-0"></div>
+        </div>
     </div>
     
     <!-- Bottom Footer Meta Info -->
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-8 border-t border-[#f4f0eb]/10 font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-t border-[#f4f0eb]/10 font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
         <div class="flex items-center gap-3">
             <span class="text-[#ff451a] text-sm">⊕</span>
             <div>
@@ -503,6 +531,7 @@
         </div>
     </div>
 </section>
+
 
 
 <!-- ABOUT VIEW -->
@@ -1460,5 +1489,99 @@
         <a data-target="view-mindmap" class="mobile-nav-link text-on-surface-variant hover:text-primary transition-all duration-150 font-headline-md text-3xl uppercase border-b border-surface-container-highest pb-4" href="#">MINDMAP</a>
     </div>
 </div>
+
+
+<!-- Three.js 3D Core Visual Initialization Script -->
+<script>
+(function() {
+    const container = document.getElementById('hero-3d-container');
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    const width = container.clientWidth || 400;
+    const height = container.clientHeight || 400;
+    const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
+    
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+    
+    const pointLight = new THREE.PointLight(0xff451a, 2.5, 100);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+    const pointLight2 = new THREE.PointLight(0x8a1c6a, 2.0, 100);
+    pointLight2.position.set(-5, -5, -5);
+    scene.add(pointLight2);
+
+    // Geometric Group
+    const group = new THREE.Group();
+
+    // Outer Icosahedron Wireframe
+    const geometry = new THREE.IcosahedronGeometry(1.8, 0);
+    const material = new THREE.MeshPhongMaterial({ 
+        color: 0xff451a, 
+        wireframe: true,
+        transparent: true,
+        opacity: 0.65
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    group.add(mesh);
+
+    // Inner Glowing Core
+    const coreGeo = new THREE.SphereGeometry(0.85, 32, 32);
+    const coreMat = new THREE.MeshStandardMaterial({ 
+        color: 0xffffff, 
+        emissive: 0xff451a,
+        emissiveIntensity: 0.7,
+        roughness: 0.15,
+        metalness: 0.8,
+        transparent: true,
+        opacity: 0.9
+    });
+    const core = new THREE.Mesh(coreGeo, coreMat);
+    group.add(core);
+
+    scene.add(group);
+    camera.position.z = 4.8;
+
+    // Mouse Interaction
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.0008;
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.0008;
+    });
+
+    function animate(t) {
+        requestAnimationFrame(animate);
+        
+        group.rotation.x += 0.004 + (mouseY - group.rotation.x) * 0.03;
+        group.rotation.y += 0.008 + (mouseX - group.rotation.y) * 0.03;
+        
+        // Vertical floating motion
+        group.position.y = Math.sin(t * 0.0012) * 0.25;
+        
+        renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+        if (!container) return;
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+    });
+
+    animate(0);
+})();
+</script>
 
 </body></html>
