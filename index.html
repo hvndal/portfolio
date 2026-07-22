@@ -583,7 +583,7 @@
 
         <!-- Communications Matrix -->
         <div class="bg-surface/90 border border-on-surface p-6 halftone-bg hover-glow transition-all">
-            <h3 class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">COMMUNICATION_PROTOCOLS</h3>
+            <h3 class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">GET IN TOUCH</h3>
             <ul class="flex flex-col gap-6 font-micro-feed text-micro-feed uppercase mt-6">
                 <li class="flex justify-between items-center border-b border-surface-container-highest pb-2">
                     <span class="text-on-surface-variant">ENGLISH (FLUENT)</span>
@@ -606,7 +606,7 @@
 <section id="view-stack" class="view-section">
     <div class="border-b border-surface-container-highest pb-6 node-enter-title">
         <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">Technology Matrix</h2>
-        <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">ACTIVE MODULES // LOADED IN MEMORY</p>
+        <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">Core Technologies & Tools</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <!-- Tech Items -->
@@ -665,7 +665,7 @@
 <section id="view-blog" class="view-section">
     <div class="border-b border-surface-container-highest pb-6 node-enter-title">
         <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">Engineering Log</h2>
-        <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">TECHNICAL ARCHIVE // UI-UX PROTOCOLS</p>
+        <p class="font-micro-feed text-micro-feed text-on-surface-variant uppercase mt-2">Insights, Systems & Case Studies</p>
     </div>
     
     <div class="flex flex-col gap-6 w-full">
@@ -682,7 +682,7 @@
             <h3 class="font-headline-md text-2xl text-on-surface uppercase tracking-tight mb-3 relative z-10">The Architecture of Brutalism in Modern SaaS</h3>
             <p class="font-body-md text-on-surface-variant leading-relaxed max-w-3xl mb-6 relative z-10">Why high information density and unapologetic structural design lead to faster operator workflows and superior edge delivery.</p>
             <button class="read-article-btn font-label-caps text-label-caps text-primary flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-1">
-                READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                READ ESSAY <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
         </article>
 
@@ -699,7 +699,7 @@
             <h3 class="font-headline-md text-2xl text-on-surface uppercase tracking-tight mb-3 relative z-10">State Management for Data-Dense Dashboards</h3>
             <p class="font-body-md text-on-surface-variant leading-relaxed max-w-3xl mb-6 relative z-10">Implementing zero-latency fluid state structures using custom hook architectures in React, specifically for property management interfaces.</p>
             <button class="read-article-btn font-label-caps text-label-caps text-secondary flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-2">
-                READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                READ ESSAY <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
         </article>
         
@@ -1010,11 +1010,11 @@
 </div>
 <!-- Footer -->
 <footer class="bg-surface-container-highest/90 backdrop-blur-sm dark:bg-surface-dim/90 border-t border-grid-line flat no shadows w-full bottom-0 relative mt-auto z-40 flex flex-col md:flex-row justify-between items-center px-4 py-2 gap-2">
-<span class="font-label-caps text-label-caps text-on-surface">© 2024 DESIGN_OS // ALL RIGHTS RESERVED</span>
+<span class="font-label-caps text-label-caps text-on-surface">© 2024 HERMAN HUNDAL studio</span>
 <div class="flex flex-wrap gap-4 font-micro-feed text-micro-feed uppercase">
-<a class="text-primary font-bold" href="#">SYS_STATUS: OPTIMAL</a>
-<a id="dyn-latency" class="text-on-tertiary-fixed-variant hover:text-secondary transition-colors duration-100" href="#">LATENCY: 12MS</a>
-<a id="dyn-temp" class="text-on-tertiary-fixed-variant hover:text-secondary transition-colors duration-100 animate-pulse-slow" href="#">CORE_TEMP: 34C</a>
+<a class="text-primary font-bold" href="#">AVAILABLE FOR HIRE</a>
+<a id="dyn-latency" class="text-on-tertiary-fixed-variant hover:text-secondary transition-colors duration-100" href="#">GLOBAL REACH</a>
+<a id="dyn-temp" class="text-on-tertiary-fixed-variant hover:text-secondary transition-colors duration-100 animate-pulse-slow" href="#">MOHALI, INDIA</a>
 </div>
 </footer>
 </main>
@@ -1354,58 +1354,74 @@
     const tempEl = document.getElementById('dyn-temp');
     
     if (latencyEl && tempEl) {
-        setInterval(() => {
-            const lat = Math.floor(Math.random() * 20) + 5;
-            latencyEl.innerText = `LATENCY: ${lat}MS`;
-            
-            const temp = (30 + Math.random() * 10).toFixed(1);
-            tempEl.innerText = `CORE_TEMP: ${temp}C`;
-        }, 3000);
+        
     }
 
-    // 6. SPA Navigation
-    const navBtns = document.querySelectorAll('.nav-btn');
-    const views = document.querySelectorAll('.view-section');
-
-    navBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = btn.getAttribute('data-target');
-            
-            // Update Active Nav State
-            navBtns.forEach(b => {
-                b.classList.remove('bg-secondary', 'text-on-secondary', 'font-bold', 'border-primary');
-                b.classList.add('nav-link', 'text-on-surface-variant', 'border-transparent');
-                const ind = b.querySelector('.nav-indicator');
-                if (ind) ind.remove();
-            });
-            
-            btn.classList.add('bg-secondary', 'text-on-secondary', 'font-bold', 'border-primary');
-            btn.classList.remove('nav-link', 'text-on-surface-variant', 'border-transparent');
-            btn.insertAdjacentHTML('beforeend', '<div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-3 bg-primary glow-active mr-[-2px] nav-indicator"></div>');
-
-            // Switch Views
-            views.forEach(v => {
-                v.classList.remove('active');
-            });
-            
-            const targetView = document.getElementById(targetId);
-            targetView.classList.add('active');
-            
-            // GSAP Fluid Animation for view content
-            gsap.fromTo(targetView.children, 
-                { y: 30, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }
-            );
-
-            // Re-trigger GSAP animations if going back to projects
-            if (targetId === 'view-projects') {
-                initAnimations();
-            }
-            
-            lenis.scrollTo(0, { immediate: true });
+    
+    // Unified SPA Navigation Engine
+    function switchSection(targetId) {
+        if (!targetId) return;
+        
+        const views = document.querySelectorAll('.view-section');
+        views.forEach(v => {
+            v.classList.remove('active');
+            v.style.display = 'none';
+            v.style.opacity = '0';
         });
+
+        const targetSec = document.getElementById(targetId);
+        if (targetSec) {
+            targetSec.style.display = 'flex';
+            targetSec.classList.add('active');
+            targetSec.style.opacity = '1';
+
+            if (window.gsap) {
+                gsap.fromTo(targetSec.children, 
+                    { y: 20, opacity: 0 }, 
+                    { y: 0, opacity: 1, duration: 0.4, stagger: 0.08, ease: 'power2.out' }
+                );
+            }
+
+            if (targetId === 'view-projects') {
+                document.querySelectorAll('#projects-grid article').forEach(card => {
+                    card.style.opacity = '1';
+                    card.classList.remove('opacity-0');
+                });
+                if (typeof initAnimations === 'function') initAnimations();
+            }
+        }
+
+        // Update Desktop Nav Active Styles
+        document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
+            const btnTarget = btn.getAttribute('data-target');
+            if (btnTarget === targetId) {
+                btn.className = 'desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]';
+            } else {
+                btn.className = 'desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5';
+            }
+        });
+
+        if (window.lenis) lenis.scrollTo(0, { immediate: true });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Attach click listeners to all navigation triggers
+    document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('[data-target]');
+        if (trigger) {
+            e.preventDefault();
+            const targetId = trigger.getAttribute('data-target');
+            switchSection(targetId);
+
+            // Close mobile nav overlay if open
+            const mobileOverlay = document.getElementById('mobile-nav-overlay');
+            if (mobileOverlay && mobileOverlay.classList.contains('opacity-100')) {
+                mobileOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
     });
+
     const blogDatabase = {
         "article-1": {
             tags: '<span class="bg-primary text-on-primary px-2 py-0.5 font-label-caps text-label-caps uppercase">UI/UX</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">4 MIN READ</span>',
