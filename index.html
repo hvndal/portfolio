@@ -232,157 +232,8 @@
 
         /* --- MAX UI ENHANCEMENTS --- */
         /* Custom Cursor */
-        body {
-            cursor: none; /* Hide default cursor */
-        }
-        #custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            border: 1.5px solid theme('colors.primary');
-            border-radius: 0;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s, border-radius 0.2s;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-        }
-        #custom-cursor::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            background-color: theme('colors.primary');
-            transform: translate(-50%, -50%);
-        }
-        #custom-cursor.hovering {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 0, 60, 0.1);
-            backdrop-filter: blur(2px);
-            border-radius: 50%;
-        }
-
-        /* Boot Loader */
-        #boot-loader {
-            position: fixed;
-            inset: 0;
-            background-color: theme('colors.on-surface');
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: theme('colors.primary');
-            font-family: 'JetBrains Mono', monospace;
-            transition: opacity 0.8s ease-in-out, transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
-        }
-        .boot-text {
-            font-size: 14px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        .boot-bar-container {
-            width: 300px;
-            height: 2px;
-            background-color: theme('colors.surface-container-highest');
-            position: relative;
-            overflow: hidden;
-        }
-        .boot-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0%;
-            background-color: theme('colors.primary');
-            box-shadow: 0 0 10px theme('colors.primary');
-        }
-        
-        /* Glitch Effect on Hover */
-        .glitch-hover {
-            position: relative;
-        }
-        .glitch-hover:hover::before, .glitch-hover:hover::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-        }
-        .glitch-hover:hover::before {
-            left: 2px;
-            text-shadow: -1px 0 theme('colors.secondary-container');
-            animation: glitch-anim-1 2s infinite linear alternate-reverse;
-        }
-        .glitch-hover:hover::after {
-            left: -2px;
-            text-shadow: -1px 0 theme('colors.primary');
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-        @keyframes glitch-anim-1 {
-            0% { clip: rect(20px, 9999px, 15px, 0); }
-            20% { clip: rect(42px, 9999px, 6px, 0); }
-            40% { clip: rect(8px, 9999px, 70px, 0); }
-            60% { clip: rect(55px, 9999px, 45px, 0); }
-            80% { clip: rect(12px, 9999px, 30px, 0); }
-            100% { clip: rect(80px, 9999px, 5px, 0); }
-        }
-        @keyframes glitch-anim-2 {
-            0% { clip: rect(12px, 9999px, 50px, 0); }
-            20% { clip: rect(60px, 9999px, 10px, 0); }
-            40% { clip: rect(35px, 9999px, 20px, 0); }
-            60% { clip: rect(5px, 9999px, 80px, 0); }
-            80% { clip: rect(40px, 9999px, 25px, 0); }
-            100% { clip: rect(18px, 9999px, 60px, 0); }
-        }
-
-        /* Custom Animations */
-        @keyframes scan {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
-        }
-        .animate-scan-line {
-            animation: scan 3s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-33.3333%); }
-        }
-        .animate-marquee {
-            animation: marquee 15s linear infinite;
-        }
-
-        html.lenis { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        .lenis.lenis-stopped { overflow: hidden; }
-        .lenis.lenis-scrolling iframe { pointer-events: none; }
-
-        .view-section {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        .view-section.active {
-            display: flex;
-            opacity: 1;
-        }
-    
-        /* Hexagon Clip Path */
-        .clip-hexagon {
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        }
-        
+        body { cursor: auto; }
+                
         /* Dark Theme Default Overrides */
         body {
             background-color: #080609 !important;
@@ -420,7 +271,7 @@
 </head>
 <body class="font-sans text-body-md antialiased min-h-screen flex flex-col bg-[#080609] text-[#f4f0eb] overflow-x-hidden selection:bg-cinematic-accent selection:text-black">
 <!-- Custom Cursor -->
-<div id="custom-cursor"></div>
+
 
 
 </div>
@@ -975,7 +826,7 @@
 <!-- ARTICLE VIEW (DYNAMIC) -->
 <section id="view-article" class="view-section">
     <div class="border-b border-surface-container-highest pb-6 mb-6 node-enter-title">
-        <button id="btn-back-blog" class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-2 hover:text-primary transition-colors uppercase mb-8 cursor-none">
+        <button id="btn-back-blog" class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-2 hover:text-primary transition-colors uppercase mb-8 ">
             <span class="material-symbols-outlined text-[14px]">arrow_back</span> BACK TO LOG
         </button>
         <div class="flex gap-2 mb-4" id="article-tags"></div>
@@ -1254,7 +1105,7 @@
                                 <span class="font-micro-feed text-micro-feed text-primary uppercase font-mono">${repo.stargazers_count > 0 ? repo.stargazers_count + ' STARS' : 'ONLINE'}</span>
                             </div>
                             <div class="flex gap-2">
-                                <a href="${repo.html_url}" target="_blank" class="btn-view flex-1 bg-surface border border-on-surface text-on-surface font-label-caps text-label-caps uppercase py-2 text-center hover:bg-primary hover:text-on-primary hover:border-primary transition-all duration-300 block relative cursor-none" style="cursor: none;">
+                                <a href="${repo.html_url}" target="_blank" class="btn-view flex-1 bg-surface border border-on-surface text-on-surface font-label-caps text-label-caps uppercase py-2 text-center hover:bg-primary hover:text-on-primary hover:border-primary transition-all duration-300 block relative " style="">
                                     VIEW SOURCE
                                     <div class="absolute top-0 right-0 w-1 h-1 bg-current"></div>
                                 </a>
@@ -1269,11 +1120,7 @@
         
         // Re-attach cursor hover logic for new elements
         const interactables = document.querySelectorAll('a, button, input');
-        const cursor = document.getElementById('custom-cursor');
-        interactables.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-        });
+        
     }
 
     // 1. Boot Loader Sequence
@@ -1283,11 +1130,7 @@
     }, 150);
 
     // 2. Custom Cursor
-    const cursor = document.getElementById('custom-cursor');
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
+    
     
     // Add hover state to interactive elements
     const interactables = document.querySelectorAll('a, button, input');
@@ -1342,39 +1185,31 @@
 
     
     
-    // Bulletproof Section Switcher
+    
+    // Bulletproof Section Switcher (Pure & Instant)
     function switchSection(targetId) {
         if (!targetId) return;
-        
-        // Hide all view sections
+
+        // Hide all sections
         const views = document.querySelectorAll('.view-section');
         views.forEach(v => {
             v.classList.remove('active');
-            v.style.display = 'none';
+            v.style.setProperty('display', 'none', 'important');
             v.style.opacity = '0';
         });
 
         // Show target section
         const targetSec = document.getElementById(targetId);
         if (targetSec) {
-            targetSec.style.display = 'flex';
+            targetSec.style.setProperty('display', 'flex', 'important');
             targetSec.classList.add('active');
             targetSec.style.opacity = '1';
 
-            // Ensure all children inside section are 100% visible
-            const children = targetSec.querySelectorAll('h1, h2, h3, p, div, article, button');
-            children.forEach(el => {
-                el.style.opacity = '1';
+            // Clean up any lingering inline opacity overrides on child elements
+            targetSec.querySelectorAll('*').forEach(el => {
+                if (el.style.opacity === '0') el.style.opacity = '1';
                 el.classList.remove('opacity-0');
             });
-
-            // GSAP 1-shot reveal animation
-            if (window.gsap) {
-                gsap.fromTo(targetSec.children, 
-                    { y: 15, opacity: 0 }, 
-                    { y: 0, opacity: 1, duration: 0.35, stagger: 0.05, ease: 'power2.out' }
-                );
-            }
         }
 
         // Update Desktop Nav Active Styles
@@ -1388,10 +1223,10 @@
         });
 
         // Scroll to top
-        if (window.lenis) lenis.scrollTo(0, { immediate: true });
-        else window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
+    // Attach click listeners to all data-target triggers
     document.addEventListener('click', (e) => {
         const trigger = e.target.closest('[data-target]');
         if (trigger) {
