@@ -183,10 +183,10 @@
         
         /* Node staggered animations */
         @media (prefers-reduced-motion: no-preference) {
-            .node-enter-title { animation: fadeSlideUp 0.6s ease-out 0.3s forwards; opacity: 0; }
-            .node-enter-1 { animation: fadeSlideUp 0.6s ease-out 0.5s forwards; opacity: 0; }
-            .node-enter-2 { animation: fadeSlideUp 0.6s ease-out 0.7s forwards; opacity: 0; }
-            .node-enter-3 { animation: fadeSlideUp 0.6s ease-out 0.9s forwards; opacity: 0; }
+            .node-enter-title { opacity: 1; }
+            .node-enter-1 { opacity: 1; }
+            .node-enter-2 { opacity: 1; }
+            .node-enter-3 { opacity: 1; }
         }
         @media (prefers-reduced-motion: reduce) {
             .node-enter-title, .node-enter-1, .node-enter-2, .node-enter-3 { opacity: 1; }
@@ -1318,33 +1318,16 @@
     // 4. GSAP Scroll Animations
     gsap.registerPlugin(ScrollTrigger);
 
+    
     function initAnimations() {
-        // Fade in title section
-        gsap.fromTo('.node-enter-title', 
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
-        );
-
-        // Stagger project cards on scroll
-        const projectCards = document.querySelectorAll('article');
-        projectCards.forEach((card, i) => {
-            // Remove existing css animation delays
+        const projectCards = document.querySelectorAll('#projects-grid article');
+        projectCards.forEach((card) => {
             card.style.animation = 'none'; 
-            card.style.opacity = '0';
-            
-            gsap.fromTo(card,
-                { opacity: 0, y: 50 },
-                { 
-                    opacity: 1, 
-                    y: 0, 
-                    duration: 0.8, 
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 85%',
-                        toggleActions: 'play none none reverse'
-                    }
-                }
+            card.style.opacity = '1';
+            card.classList.remove('opacity-0');
+        });
+    }
+
             );
         });
     }
@@ -1358,10 +1341,12 @@
     }
 
     
-    // Unified SPA Navigation Engine
+    
+    // Bulletproof Section Switcher
     function switchSection(targetId) {
         if (!targetId) return;
         
+        // Hide all view sections
         const views = document.querySelectorAll('.view-section');
         views.forEach(v => {
             v.classList.remove('active');
@@ -1369,25 +1354,26 @@
             v.style.opacity = '0';
         });
 
+        // Show target section
         const targetSec = document.getElementById(targetId);
         if (targetSec) {
             targetSec.style.display = 'flex';
             targetSec.classList.add('active');
             targetSec.style.opacity = '1';
 
+            // Ensure all children inside section are 100% visible
+            const children = targetSec.querySelectorAll('h1, h2, h3, p, div, article, button');
+            children.forEach(el => {
+                el.style.opacity = '1';
+                el.classList.remove('opacity-0');
+            });
+
+            // GSAP 1-shot reveal animation
             if (window.gsap) {
                 gsap.fromTo(targetSec.children, 
-                    { y: 20, opacity: 0 }, 
-                    { y: 0, opacity: 1, duration: 0.4, stagger: 0.08, ease: 'power2.out' }
+                    { y: 15, opacity: 0 }, 
+                    { y: 0, opacity: 1, duration: 0.35, stagger: 0.05, ease: 'power2.out' }
                 );
-            }
-
-            if (targetId === 'view-projects') {
-                document.querySelectorAll('#projects-grid article').forEach(card => {
-                    card.style.opacity = '1';
-                    card.classList.remove('opacity-0');
-                });
-                if (typeof initAnimations === 'function') initAnimations();
             }
         }
 
@@ -1401,11 +1387,11 @@
             }
         });
 
+        // Scroll to top
         if (window.lenis) lenis.scrollTo(0, { immediate: true });
         else window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Attach click listeners to all navigation triggers
     document.addEventListener('click', (e) => {
         const trigger = e.target.closest('[data-target]');
         if (trigger) {
