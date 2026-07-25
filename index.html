@@ -237,7 +237,7 @@
     <div class="content-wrapper flex flex-col w-full min-h-screen">
 
         <!-- Top Header Navigation Bar -->
-        <header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 bg-[#080609]/85 backdrop-blur-md border-b border-white/5">
+        <header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 bg-[#080609]/85 backdrop-blur-md border-none">
             <!-- Logo -->
             <div class="flex items-center gap-3 cursor-pointer" onclick="switchSection('view-home')">
                 <div class="w-10 h-10 border-2 border-[#ff451a] rounded-full overflow-hidden relative shadow-[0_0_12px_rgba(255,69,26,0.5)] group transition-all duration-300">
@@ -250,11 +250,7 @@
             </div>
 
             <!-- Header Navigation Tabs (Desktop) -->
-            <div class="flex items-center gap-1.5 bg-[#120e14]/90 p-1 rounded-full border border-[#ff451a]/30 mr-2">
-                <button type="button" onclick="setShaderMode('orange')" id="shader-btn-orange" class="w-5 h-5 rounded-full bg-[#ff451a] border border-white/50 cursor-pointer shadow-[0_0_10px_rgba(255,69,26,0.8)]" title="Neon Orange Shader"></button>
-                <button type="button" onclick="setShaderMode('blue')" id="shader-btn-blue" class="w-5 h-5 rounded-full bg-[#54a0fe] border border-white/30 cursor-pointer hover:scale-110 transition-transform" title="Cyber Blue Shader"></button>
-                <button type="button" onclick="setShaderMode('green')" id="shader-btn-green" class="w-5 h-5 rounded-full bg-[#2ed573] border border-white/30 cursor-pointer hover:scale-110 transition-transform" title="Solarpunk Green Shader"></button>
-            </div>
+            
             <nav class="hidden md:flex items-center gap-1.5 bg-[#120e14]/90 p-1.5 rounded-full border border-white/5" id="desktop-nav-tabs">
                 <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]">HOME</button>
                 <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">PROJECTS</button>
@@ -321,7 +317,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-t border-white/5 font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-none font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
                     <div class="flex items-center gap-3">
                         <span class="text-[#ff451a] text-sm">⊕</span>
                         <div>
@@ -340,7 +336,7 @@
 
             <!-- 2. PROJECTS VIEW -->
             <section id="view-projects" class="view-section py-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-white/5 pb-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Projects & Products</h2>
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">A curated showcase of software products and web applications.</p>
@@ -363,7 +359,7 @@
 
             <!-- 3. ABOUT VIEW -->
             <section id="view-about" class="view-section py-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-white/5 pb-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6 mb-8">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Herman Hundal</h2>
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">UI/UX Designer & Front-End Web Developer // Professional Background</p>
@@ -390,7 +386,7 @@
                                 My background spans <strong class="text-[#f4f0eb]">Psychology (Trinity Western University, BC, Canada)</strong> and <strong class="text-[#f4f0eb]">Business Administration & Marketing (BBA)</strong>. Psychology shapes how I analyze human behavior, attention, information processing, and visual hierarchy; Marketing provides practical understanding of audience positioning, conversion calls to action, and commercial goals.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-6 flex flex-wrap gap-4 font-mono text-xs text-[#a398a0]">
+                        <div class="border-none pt-4 mt-6 flex flex-wrap gap-4 font-mono text-xs text-[#a398a0]">
                             <a href="mailto:harmanify@protonmail.com" class="text-[#ff451a] font-bold hover:underline flex items-center gap-1.5">
                                 ✉ harmanify@protonmail.com
                             </a>
@@ -418,7 +414,7 @@
                             </div>
                             
                             <!-- Hover-Reveal Popover Bio Drawer -->
-                            <div class="max-h-0 group-hover/avatar:max-h-60 opacity-0 group-hover/avatar:opacity-100 transition-all duration-500 ease-in-out overflow-hidden border-t border-white/5 mt-4 pt-4 text-xs font-mono text-[#a398a0] space-y-2">
+                            <div class="max-h-0 group-hover/avatar:max-h-60 opacity-0 group-hover/avatar:opacity-100 transition-all duration-500 ease-in-out overflow-hidden border-none mt-4 pt-4 text-xs font-mono text-[#a398a0] space-y-2">
                                 <p class="text-[#f4f0eb]"><strong class="text-[#ff451a]">LOCATION:</strong> International Remote (US & Worldwide)</p>
                                 <p><strong class="text-[#ff451a]">SPECIALTY:</strong> Information Architecture, React/TypeScript, Mobile UI</p>
                                 <p><strong class="text-[#ff451a]">LANGUAGES:</strong> English, French (DELF), Punjabi, Hindi, Spanish</p>
@@ -427,19 +423,19 @@
 
                         <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">DEPLOYMENT & PRODUCT LOG</h3>
                         <ul class="flex flex-col gap-3 font-mono text-xs uppercase">
-                            <li class="border-b border-white/5 pb-2.5 flex justify-between items-center">
+                            <li class="border-none pb-2.5 flex justify-between items-center">
                                 <span class="text-[#ff451a] font-bold">SHIPPED</span> 
                                 <span class="text-[#f4f0eb]">WASTE UNIVERSE (HARVARD, MA)</span>
                             </li>
-                            <li class="border-b border-white/5 pb-2.5 flex justify-between items-center">
+                            <li class="border-none pb-2.5 flex justify-between items-center">
                                 <span class="text-[#ff451a] font-bold">SHIPPED</span> 
                                 <span class="text-[#f4f0eb]">FITWAY GYM (100,000+ MEMBERS)</span>
                             </li>
-                            <li class="border-b border-white/5 pb-2.5 flex justify-between items-center">
+                            <li class="border-none pb-2.5 flex justify-between items-center">
                                 <span class="text-[#54a0fe] font-bold">IN DEV</span> 
                                 <span class="text-[#f4f0eb]">RENTCAN.IN (PROPERTY SAAS)</span>
                             </li>
-                            <li class="border-b border-white/5 pb-2.5 flex justify-between items-center">
+                            <li class="border-none pb-2.5 flex justify-between items-center">
                                 <span class="text-[#54a0fe] font-bold">IN DEV</span> 
                                 <span class="text-[#f4f0eb]">COOKCAN (AI VISION DISCOVERY)</span>
                             </li>
@@ -556,23 +552,23 @@
                     <div class="glass-panel p-6 rounded-2xl border border-white/5">
                         <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">MULTILINGUAL PROFICIENCY</h3>
                         <ul class="flex flex-col gap-3 font-mono text-xs uppercase">
-                            <li class="flex justify-between items-center border-b border-white/5 pb-2.5">
+                            <li class="flex justify-between items-center border-none pb-2.5">
                                 <span class="text-[#f4f0eb] flex items-center gap-2 font-bold"><span class="text-base">🇺🇸 / 🇬🇧</span> ENGLISH</span>
                                 <span class="text-[#ff451a] font-bold">NATIVE / BILINGUAL</span>
                             </li>
-                            <li class="flex justify-between items-center border-b border-white/5 pb-2.5">
+                            <li class="flex justify-between items-center border-none pb-2.5">
                                 <span class="text-[#f4f0eb] flex items-center gap-2 font-bold"><span class="text-base">🇫🇷</span> FRENCH</span>
                                 <span class="text-[#54a0fe] font-bold">B2 (TBJ / DELF B2)</span>
                             </li>
-                            <li class="flex justify-between items-center border-b border-white/5 pb-2.5">
+                            <li class="flex justify-between items-center border-none pb-2.5">
                                 <span class="text-[#f4f0eb] flex items-center gap-2 font-bold"><span class="text-base">🇪🇸</span> SPANISH</span>
                                 <span class="text-[#a398a0]">B1 LEVEL</span>
                             </li>
-                            <li class="flex justify-between items-center border-b border-white/5 pb-2.5">
+                            <li class="flex justify-between items-center border-none pb-2.5">
                                 <span class="text-[#f4f0eb] flex items-center gap-2 font-bold"><span class="text-base">🇩🇪</span> GERMAN</span>
                                 <span class="text-[#a398a0]">A1 LEVEL</span>
                             </li>
-                            <li class="flex justify-between items-center border-b border-white/5 pb-2.5">
+                            <li class="flex justify-between items-center border-none pb-2.5">
                                 <span class="text-[#f4f0eb] flex items-center gap-2 font-bold"><span class="text-base">🇮🇹</span> ITALIAN</span>
                                 <span class="text-[#a398a0]">A1 LEVEL</span>
                             </li>
@@ -583,7 +579,7 @@
 
             <!-- 4. STACK VIEW -->
             <section id="view-stack" class="view-section py-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-white/5 pb-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6 mb-8">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Tech Stack & Engineering Matrix</h2>
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Frosted-glass architectural tiles detailing languages, frameworks, and system capabilities.</p>
@@ -608,7 +604,7 @@
                                 Engineered strict type systems, custom generics, and enterprise-grade state interfaces for zero-runtime type errors across high-frequency SaaS applications.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Strict Types</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Generics</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">State Contracts</span>
@@ -627,7 +623,7 @@
                                 Architected high-density SPAs and server-rendered Next.js platforms utilizing server components, streaming SSR, atomic state selectors, and sub-16ms renders.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">App Router</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Streaming SSR</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Atomic Hooks</span>
@@ -646,7 +642,7 @@
                                 Built scalable REST API servers, real-time WebSocket telemetry feeds, and microservice middleware pipelines capable of handling continuous live data streams.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">REST APIs</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">WebSockets</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Middleware</span>
@@ -665,7 +661,7 @@
                                 Crafted custom GPU fragment shaders, 3D particle fields, and interactive WebGL background canvases optimized for 60FPS performance on mobile retina displays.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Fragment Shaders</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">3D Wireframes</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Mobile GPU Tuning</span>
@@ -684,7 +680,7 @@
                                 Developed modular Brutalist and Glassmorphic design tokens, custom utility plugins, and responsive CSS architectures for dark-mode enterprise SaaS platforms.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Design Tokens</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Glassmorphism</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Responsive Layouts</span>
@@ -703,7 +699,7 @@
                                 Designed relational database schemas, complex JSONB query indexes, and transaction pipelines optimized for data-heavy SaaS backends.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Relational Schemas</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">JSONB Indexing</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Query Tuning</span>
@@ -722,7 +718,7 @@
                                 Integrated multi-modal vision models into real-time web engines (e.g. CookCan), processing live camera feeds for instant structured JSON payload generation.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Multi-Modal Vision</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Prompt Engineering</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">JSON Hydration</span>
@@ -741,7 +737,7 @@
                                 Implemented staggered timeline animations, scroll-triggered GPU reveals, and zero-dependency Web Audio synthesizers for tactile UI pop feedback.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Stagger Timelines</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">ScrollTriggers</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Audio Oscillators</span>
@@ -760,7 +756,7 @@
                                 Created high-fidelity interactive wireframes, component libraries, and brutalist typographic systems focusing on high data-density and operator UX efficiency.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">High-Density UI</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Design Systems</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Interactive Prototypes</span>
@@ -779,7 +775,7 @@
                                 Explored memory-safe low-level systems architectures (e.g. KERN Engine) for real-time telemetry monitoring, thread synchronization, and raw binary parsing.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Memory Safety</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Concurrency</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Binary Telemetry</span>
@@ -798,7 +794,7 @@
                                 Managed automated GitHub Actions deployment pipelines, Vercel deployments, semantic versioning, and feature-branch workflows for enterprise codebases.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">GitHub Actions</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Vercel CI/CD</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Semantic Release</span>
@@ -818,7 +814,7 @@
                                 Bridged strategic business requirements with technical frontend architecture, leading product sprints, client communication, and code quality standards.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Sprint Leadership</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Client Relations</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">SaaS Architecture</span>
@@ -837,7 +833,7 @@
                                 Employed Google Stitch and Vertex AI cloud infrastructure for rapid generative UI prototyping, component synthesis, and automated frontend code generation.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Google Stitch</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Vertex AI</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Generative UI</span>
@@ -856,7 +852,7 @@
                                 Utilized Adobe Creative Cloud (Photoshop, Illustrator, Creative Cloud Services) for vector design, digital asset optimization, and brand identity architecture.
                             </p>
                         </div>
-                        <div class="border-t border-white/5 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                        <div class="border-none pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Adobe CC</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Photoshop</span>
                             <span class="bg-[#080609]/80 border border-white/5 px-2.5 py-1 rounded">Illustrator</span>
@@ -868,7 +864,7 @@
 
             <!-- 5. BLOG VIEW -->
             <section id="view-blog" class="view-section py-6">
-                <div class="border-b border-white/5 pb-6">
+                <div class="border-none pb-6">
                     <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Articles & Case Studies</h2>
                     <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Design systems, architecture, and engineering essays.</p>
                 </div>
@@ -926,7 +922,7 @@
 
             <!-- 6. ARTICLE READER VIEW (DYNAMIC) -->
             <section id="view-article" class="view-section py-6">
-                <div class="border-b border-white/5 pb-6 mb-6">
+                <div class="border-none pb-6 mb-6">
                     <button id="btn-back-blog" onclick="switchSection('view-blog')" class="font-mono text-xs text-[#a398a0] hover:text-[#ff451a] flex items-center gap-2 transition-colors uppercase mb-6 cursor-pointer">
                         ← BACK TO ARTICLES
                     </button>
@@ -940,7 +936,7 @@
 
             <!-- 7. MINDMAP VIEW (ART & AESTHETICS ONLY) -->
             <section id="view-mindmap" class="view-section py-6">
-                <div class="border-b border-white/5 pb-6 mb-8 flex justify-between items-end">
+                <div class="border-none pb-6 mb-8 flex justify-between items-end">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Art & Design Aesthetics</h2>
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Aesthetic design movements and visual inspirations.</p>
@@ -959,7 +955,7 @@
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Newspaper Brutalism</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">BRUTALISM</p>
-                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-white/5 pt-3">
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-none pt-3">
                                 Dense information architecture inspired by vintage broadsheets. High contrast, raw typography, and grid clarity.
                             </p>
                         </div>
@@ -975,7 +971,7 @@
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Acubi Y2K Minimalism</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">MINIMALISM</p>
-                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-white/5 pt-3">
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-none pt-3">
                                 Subdued neutrals, subtle structural cutouts, and Korean cyber-minimalist aesthetics from the early 2000s.
                             </p>
                         </div>
@@ -991,7 +987,7 @@
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Bauhausian Geometry</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">GEOMETRY</p>
-                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-white/5 pt-3">
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-none pt-3">
                                 Form follows function. Primary geometric shapes, asymmetric balance, and industrial design discipline.
                             </p>
                         </div>
@@ -1007,7 +1003,7 @@
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Showa Retroism</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">RETRO JAPAN</p>
-                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-white/5 pt-3">
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-none pt-3">
                                 Warm 1970s Japanese color palettes, analog print textures, and mid-century industrial typography.
                             </p>
                         </div>
@@ -1023,7 +1019,7 @@
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Vintage 90s Anime</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">CYBER ANIMATION</p>
-                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-white/5 pt-3">
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-none pt-3">
                                 Cel-painted animation frames, hand-drawn mech UI overlays, and dramatic cyber-noir lighting.
                             </p>
                         </div>
@@ -1039,7 +1035,7 @@
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Solarpunk / Tech Greenery</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">ECO TECH</p>
-                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-white/5 pt-3">
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-none pt-3">
                                 Organic nature seamlessly coexisting with high-tech UI structures and sustainable eco-data overlays.
                             </p>
                         </div>
@@ -1052,7 +1048,7 @@
 
             <!-- 8. ACTIVITY / GITHUB TELEMETRY VIEW -->
             <section id="view-activity" class="view-section py-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-white/5 pb-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6 mb-8">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">GitHub Activity & Telemetry</h2>
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Real-time public commit feeds, contribution heatmaps, and GitHub telemetry.</p>
@@ -1094,7 +1090,7 @@
 
                 <!-- GitHub Contribution Heatmap Card -->
                 <div class="glass-panel p-6 rounded-2xl border border-white/5 mb-8 overflow-hidden">
-                    <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
+                    <div class="flex items-center justify-between mb-4 border-none pb-3">
                         <h3 class="font-headline-md text-lg text-[#f4f0eb] uppercase tracking-wider flex items-center gap-2">
                             <span class="text-[#ff451a]">📊</span> CONTRIBUTION HEATMAP MATRIX
                         </h3>
@@ -1109,7 +1105,7 @@
 
                 <!-- Live Commit Feed Container -->
                 <div class="glass-panel p-6 rounded-2xl border border-white/5">
-                    <div class="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
+                    <div class="flex items-center justify-between mb-6 border-none pb-4">
                         <h3 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wider flex items-center gap-2">
                             <span class="text-[#ff451a]">⚡</span> RECENT PUBLIC COMMIT FEED
                         </h3>
@@ -1123,7 +1119,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-[#120e14]/90 backdrop-blur-md border-t border-white/5 w-full py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-[#a398a0] z-20 mt-auto">
+        <footer class="bg-[#120e14]/90 backdrop-blur-md border-none w-full py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-[#a398a0] z-20 mt-auto">
             <span>© 2026 HERMAN HUNDAL studio</span>
             <div class="flex flex-wrap items-center gap-6 uppercase mt-2 md:mt-0">
                 <a href="mailto:harmanify@protonmail.com" class="text-[#ff451a] font-bold hover:underline flex items-center gap-1">
@@ -1676,7 +1672,7 @@
 
                 const cardHTML = `
                 <article class="w-full glass-panel rounded-2xl border border-white/5 hover:border-[#ff451a]/60 flex flex-col relative group transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(255,69,26,0.2)]">
-                    <div class="bg-[#18131b]/90 text-[#f4f0eb] h-8 flex items-center justify-between px-4 w-full border-b border-white/5 text-xs font-mono">
+                    <div class="bg-[#18131b]/90 text-[#f4f0eb] h-8 flex items-center justify-between px-4 w-full border-none text-xs font-mono">
                         <span class="uppercase tracking-widest text-[#a398a0]">PROJECT // ${meta.name}</span>
                         <div class="flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-[#ff451a] animate-pulse"></span>
@@ -1710,7 +1706,7 @@
                                     ${tagsHtml}
                                 </div>
                             </div>
-                            <div class="border-t border-white/5 pt-4 mt-auto">
+                            <div class="border-none pt-4 mt-auto">
                                 <div class="flex justify-between items-center mb-3 text-xs font-mono text-[#a398a0]">
                                     <span>GITHUB REPOSITORY</span>
                                     <span class="text-[#ff451a] font-bold">${repo.stargazers_count > 0 ? repo.stargazers_count + ' STARS' : 'PUBLIC'}</span>
