@@ -255,15 +255,29 @@
                         </p>
                     </div>
 
-                    <div class="md:col-span-5 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between relative overflow-hidden">
-                        <!-- Avatar Portrait Badge -->
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-[#f4f0eb]/10">
-                            <div class="w-20 h-20 rounded-2xl border-2 border-[#ff451a] overflow-hidden shadow-[0_0_20px_rgba(255,69,26,0.3)] flex-shrink-0">
-                                <img src="assets/avatar.jpg" alt="Herman Hundal PFP" class="w-full h-full object-cover"/>
+                    <div class="md:col-span-5 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between relative overflow-hidden group">
+                        <!-- Interactive Hover Avatar Card -->
+                        <div class="relative w-full p-4 glass-panel rounded-xl border border-[#f4f0eb]/10 hover:border-[#ff451a] transition-all duration-500 overflow-hidden cursor-pointer mb-6 group/avatar">
+                            <div class="flex items-center gap-4 relative z-10">
+                                <div class="w-20 h-20 rounded-2xl border-2 border-[#ff451a] overflow-hidden shadow-[0_0_20px_rgba(255,69,26,0.4)] flex-shrink-0 relative">
+                                    <img src="assets/avatar.jpg" alt="Herman Hundal Raw Photo" class="w-full h-full object-cover group-hover/avatar:scale-115 transition-transform duration-500"/>
+                                    <div class="absolute inset-0 bg-[#ff451a]/10 opacity-0 group-hover/avatar:opacity-100 transition-opacity"></div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <h4 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide group-hover/avatar:text-[#ff451a] transition-colors">HERMAN HUNDAL</h4>
+                                    <span class="font-mono text-[10px] text-[#ff451a] uppercase font-bold tracking-wider mt-0.5">UI/UX UNICORN & ARCHITECT</span>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <span class="w-2 h-2 rounded-full bg-[#ff451a] animate-pulse"></span>
+                                        <span class="font-mono text-[9px] text-[#a398a0] uppercase tracking-widest">HOVER FOR BIO POP UP</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-headline-md text-lg text-[#f4f0eb] uppercase">HERMAN HUNDAL</h4>
-                                <span class="font-mono text-[10px] text-[#ff451a] uppercase font-bold tracking-wider">GLOBAL UI/UX & FRONTEND ARCHITECT</span>
+                            
+                            <!-- Hover-Reveal Popover Bio Drawer -->
+                            <div class="max-h-0 group-hover/avatar:max-h-60 opacity-0 group-hover/avatar:opacity-100 transition-all duration-500 ease-in-out overflow-hidden border-t border-[#f4f0eb]/10 mt-4 pt-4 text-xs font-mono text-[#a398a0] space-y-2">
+                                <p class="text-[#f4f0eb]"><strong class="text-[#ff451a]">FOCUS:</strong> High-density brutalist UI/UX, real-time React architectures & AI integrations.</p>
+                                <p><strong class="text-[#ff451a]">CURRENT:</strong> Architecting CookCan AI Vision SaaS & enterprise systems.</p>
+                                <p><strong class="text-[#ff451a]">REACH:</strong> International Remote Operator (US & Global).</p>
                             </div>
                         </div>
                         <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">DEPLOYMENT LOG</h3>
@@ -799,11 +813,12 @@
         } catch(e) {}
 
         
+        
         // Global Section Switcher Function
         function switchSection(targetId) {
             if (!targetId) return;
 
-            // Hide all view sections
+            // Hide all view sections cleanly
             const views = document.querySelectorAll('.view-section');
             views.forEach(v => {
                 v.classList.remove('active');
@@ -818,14 +833,12 @@
                 targetSec.style.display = 'flex';
                 targetSec.style.opacity = '1';
 
-                // Make sure inner elements are visible
                 targetSec.querySelectorAll('*').forEach(el => {
                     if (el.style.opacity === '0') el.style.opacity = '1';
-                    el.classList.remove('opacity-0');
                 });
             }
 
-            // Highlight Active Nav Buttons (Desktop)
+            // Update active desktop nav button highlights
             document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
                 const btnTarget = btn.getAttribute('data-target');
                 if (btnTarget === targetId) {
@@ -835,14 +848,13 @@
                 }
             });
 
-            // Scroll page to top
-            if (window.lenis) lenis.scrollTo(0, { immediate: true });
-            else window.scrollTo({ top: 0, behavior: 'instant' });
+            // Scroll window smooth to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         window.switchSection = switchSection;
 
-        // 3. Event Listener for Navigation Triggers
+        // Delegated Event Listener for Navigation & External Links
         document.addEventListener('click', (e) => {
             const trigger = e.target.closest('[data-target]');
             if (trigger) {
@@ -850,32 +862,15 @@
                 const targetId = trigger.getAttribute('data-target');
                 switchSection(targetId);
 
-                // Close mobile nav overlay if open
+                // Close mobile nav overlay if active
                 const mobileOverlay = document.getElementById('mobile-nav-overlay');
-                if (mobileOverlay && mobileOverlay.classList.contains('opacity-100')) {
+                if (mobileOverlay && (mobileOverlay.classList.contains('opacity-100') || mobileOverlay.style.opacity === '1')) {
                     mobileOverlay.classList.remove('opacity-100', 'pointer-events-auto');
                     mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
                 }
             }
         });
 
-        // Mobile Nav Overlay Toggle
-        const openMobileNav = document.getElementById('open-mobile-nav');
-        const closeMobileNav = document.getElementById('close-mobile-nav');
-        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-
-        if (openMobileNav && mobileNavOverlay) {
-            openMobileNav.addEventListener('click', () => {
-                mobileNavOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                mobileNavOverlay.classList.add('opacity-100', 'pointer-events-auto');
-            });
-        }
-        if (closeMobileNav && mobileNavOverlay) {
-            closeMobileNav.addEventListener('click', () => {
-                mobileNavOverlay.classList.remove('opacity-100', 'pointer-events-auto');
-                mobileNavOverlay.classList.add('opacity-0', 'pointer-events-none');
-            });
-        }
 
         // 4. GitHub Repos Fetch & Render
         let allReposData = [];
