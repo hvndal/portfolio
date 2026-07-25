@@ -173,14 +173,9 @@
                 <button data-target="view-projects" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
                     VIEW WORK →
                 </button>
-                <button id="open-mobile-nav" aria-label="Open Navigation Menu" class="md:hidden text-[#f4f0eb] hover:text-[#ff451a] transition-all p-2.5 flex items-center justify-center gap-1.5 glass-panel rounded-full border border-[#f4f0eb]/20 hover:border-[#ff451a] cursor-pointer group shadow-[0_0_15px_rgba(255,69,26,0.2)]">
-                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#ff451a] mr-1">MENU</span>
-                    <!-- 3 Dots Icon -->
-                    <div class="flex gap-1 items-center">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#ff451a] group-hover:scale-125 transition-transform"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#f4f0eb] group-hover:scale-125 transition-transform"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#ff451a] group-hover:scale-125 transition-transform"></span>
-                    </div>
+                <button id="open-mobile-nav" type="button" onclick="toggleMobileNav(true)" aria-label="Open Navigation Menu" class="md:hidden text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
+                    <span class="w-6 h-[2px] bg-current transition-all group-hover:w-8"></span>
+                    <span class="w-4 h-[2px] bg-current transition-all group-hover:w-8"></span>
                 </button>
             </div>
         </header>
@@ -627,7 +622,7 @@
 
     <!-- Mobile Navigation Overlay -->
     <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/98 backdrop-blur-2xl z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300 -translate-y-4 ease-[cubic-bezier(0.16,1,0.3,1)]">
-        <button id="close-mobile-nav" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-2xl p-2 font-mono">✕</button>
+        <button id="close-mobile-nav" type="button" onclick="toggleMobileNav(false)" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-2xl p-2 font-mono">✕</button>
         <div class="flex flex-col gap-6 text-center font-mono text-xl uppercase tracking-widest">
             <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">HOME</button>
             <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">PROJECTS</button>
