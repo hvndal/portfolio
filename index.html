@@ -145,12 +145,12 @@
 
             <!-- Header Navigation Tabs (Desktop) -->
             <nav class="hidden md:flex items-center gap-1.5 bg-[#120e14]/90 p-1.5 rounded-full border border-[#f4f0eb]/10" id="desktop-nav-tabs">
-                <button data-target="view-home" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]">HOME</button>
-                <button data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">PROJECTS</button>
-                <button data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ABOUT</button>
-                <button data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">STACK</button>
-                <button data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">BLOG</button>
-                <button data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">MINDMAP</button>
+                <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]">HOME</button>
+                <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">PROJECTS</button>
+                <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ABOUT</button>
+                <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">STACK</button>
+                <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">BLOG</button>
+                <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">MINDMAP</button>
             </nav>
 
             <!-- Action Button & Mobile Toggle -->
@@ -596,12 +596,12 @@
     <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/95 backdrop-blur-xl z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300">
         <button id="close-mobile-nav" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-2xl p-2 font-mono">✕</button>
         <div class="flex flex-col gap-6 text-center font-mono text-xl uppercase tracking-widest">
-            <button data-target="view-home" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">HOME</button>
-            <button data-target="view-projects" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">PROJECTS</button>
-            <button data-target="view-about" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">ABOUT</button>
-            <button data-target="view-stack" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">STACK</button>
-            <button data-target="view-blog" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">BLOG</button>
-            <button data-target="view-mindmap" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">MINDMAP</button>
+            <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">HOME</button>
+            <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">PROJECTS</button>
+            <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">ABOUT</button>
+            <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">STACK</button>
+            <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">BLOG</button>
+            <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">MINDMAP</button>
         </div>
     </div>
 
