@@ -1681,8 +1681,8 @@
             document.addEventListener(evt, initAudio, { once: true, passive: true });
         });
 
-        // Clean, Subtle Single Audio Pop Synthesizer
-        function playSinglePopSFX(baseFreq = 420) {
+        // Authentic iOS-Style Web Audio Pop & Boop Synthesizer Engine
+        function playiOSTapPopSFX() {
             try {
                 initAudio();
                 if (isSfxMuted || !audioCtx || audioCtx.state !== 'running') return;
@@ -1690,36 +1690,68 @@
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
 
+                // Crisp iOS Keyboard/Button Tap Pop (680Hz -> 220Hz over 14ms)
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(baseFreq, now);
-                osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.4, now + 0.025);
+                osc.frequency.setValueAtTime(680, now);
+                osc.frequency.exponentialRampToValueAtTime(220, now + 0.014);
 
                 gain.gain.setValueAtTime(0.022, now);
-                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.014);
 
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
 
                 osc.start(now);
-                osc.stop(now + 0.025);
+                osc.stop(now + 0.014);
+            } catch(e) {}
+        }
+
+        function playiOSBoopSFX() {
+            try {
+                initAudio();
+                if (isSfxMuted || !audioCtx || audioCtx.state !== 'running') return;
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                // Soft iOS Melodic Boop (480Hz -> 760Hz over 28ms)
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(480, now);
+                osc.frequency.exponentialRampToValueAtTime(760, now + 0.028);
+
+                gain.gain.setValueAtTime(0.018, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.028);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.028);
             } catch(e) {}
         }
 
         function playClickSFX() {
-            playSinglePopSFX(450);
+            playiOSTapPopSFX();
         }
 
         function playSectionSwitchSFX() {
-            playSinglePopSFX(380);
+            playiOSBoopSFX();
         }
 
-        window.playSinglePopSFX = playSinglePopSFX;
-        window.playJuicyPopSFX = playSinglePopSFX;
+        window.playiOSTapPopSFX = playiOSTapPopSFX;
+        window.playiOSBoopSFX = playiOSBoopSFX;
+        window.playSinglePopSFX = playiOSTapPopSFX;
+        window.playJuicyPopSFX = playiOSTapPopSFX;
 
-        // Delegated SFX Event Listener for Clean Click Pops Only
+        // Delegated SFX Event Listener for iOS-Style UI Taps & Boops
         document.addEventListener('click', (e) => {
-            const el = e.target.closest('a, button, [data-target], [data-filter]');
-            if (el) playClickSFX();
+            const navEl = e.target.closest('[data-target]');
+            const btnEl = e.target.closest('a, button, [data-filter]');
+            if (navEl) {
+                playiOSBoopSFX();
+            } else if (btnEl) {
+                playiOSTapPopSFX();
+            }
         });
     </script>
 </body>
