@@ -105,18 +105,21 @@
             z-index: 10;
         }
 
-        /* Section Display Rules */
+        
+        /* View Section Lifecycle */
         .view-section {
-            display: none !important;
+            display: none;
             opacity: 0;
             flex-direction: column;
             gap: 2rem;
             width: 100%;
+            transition: opacity 0.2s ease-in-out;
         }
         .view-section.active {
             display: flex !important;
             opacity: 1 !important;
         }
+
     </style>
 </head>
 <body class="bg-[#080609] text-[#f4f0eb] antialiased min-h-screen flex flex-col selection:bg-[#ff451a] selection:text-black">
@@ -795,7 +798,8 @@
             requestAnimationFrame(raf);
         } catch(e) {}
 
-        // 2. Global Section Switcher Function
+        
+        // Global Section Switcher Function
         function switchSection(targetId) {
             if (!targetId) return;
 
@@ -803,15 +807,15 @@
             const views = document.querySelectorAll('.view-section');
             views.forEach(v => {
                 v.classList.remove('active');
-                v.style.setProperty('display', 'none', 'important');
+                v.style.display = 'none';
                 v.style.opacity = '0';
             });
 
             // Show target view section
             const targetSec = document.getElementById(targetId);
             if (targetSec) {
-                targetSec.style.setProperty('display', 'flex', 'important');
                 targetSec.classList.add('active');
+                targetSec.style.display = 'flex';
                 targetSec.style.opacity = '1';
 
                 // Make sure inner elements are visible
@@ -832,11 +836,10 @@
             });
 
             // Scroll page to top
-            if (lenis) lenis.scrollTo(0, { immediate: true });
+            if (window.lenis) lenis.scrollTo(0, { immediate: true });
             else window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        // Make switchSection globally accessible
         window.switchSection = switchSection;
 
         // 3. Event Listener for Navigation Triggers
@@ -888,6 +891,52 @@
             .catch(err => console.error("GitHub fetch error:", err));
 
         
+        
+        const projectMetadata = {
+            'kern': {
+                name: 'KERN Systems Engine',
+                subtitle: 'Low-Level Systems & Telemetry Dashboard',
+                description: 'A brutalist low-level systems monitoring platform built for high-density telemetry visualization, real-time kernel tracking, and sub-millisecond data feeds.',
+                tags: ['Rust / C++', 'Systems Architecture', 'WebGL Shaders']
+            },
+            'wasteu': {
+                name: 'WasteU Eco Platform',
+                subtitle: 'Solarpunk Waste & Sustainability Analytics',
+                description: 'A solarpunk-inspired eco-management suite tracking municipal waste metrics, carbon footprint reduction, and community recycling networks.',
+                tags: ['React', 'Sustainability Tech', 'Data Vis']
+            },
+            'semrushalt': {
+                name: 'Semrush Alt Intelligence',
+                subtitle: 'Cyberpunk SEO & Market Analytics Suite',
+                description: 'A high-frequency SEO competitive intelligence dashboard featuring glowing real-time traffic graphs, domain authority metrics, and automated rank tracking.',
+                tags: ['Next.js', 'SEO Analytics', 'TypeScript']
+            },
+            'rentcanpropertyman': {
+                name: 'RentCan Property Manager',
+                subtitle: 'Enterprise Real Estate SaaS & Tenant Portal',
+                description: 'A Swiss-grid enterprise property management system handling real-time tenant communications, automated rent tracking, and maintenance dispatch.',
+                tags: ['Full-Stack', 'PostgreSQL', 'Enterprise SaaS']
+            },
+            'portfolio': {
+                name: 'Herman Hundal Studio',
+                subtitle: 'Cinematic Dark Mode Designer Portfolio',
+                description: 'A state-of-the-art cinematic dark mode portfolio showcasing Three.js 3D core visual, GLSL shader plumes, synthesized Web Audio SFX, and Lenis smooth scrolling.',
+                tags: ['Three.js', 'GLSL Shaders', 'UI/UX Architecture']
+            },
+            'fitway': {
+                name: 'FitWay Infrastructure',
+                subtitle: 'Biker Gothic Commercial Gym Operating System',
+                description: 'An aggressive tech-noir commercial gym management system providing member access logs, workout analytics, and equipment telemetry.',
+                tags: ['TailwindCSS', 'Node.js', 'Mobile UX']
+            },
+            'cookcan': {
+                name: 'CookCan AI SaaS',
+                subtitle: 'Multi-Modal Vision Recipe Engine',
+                description: 'An AI-driven pantry scanner leveraging Gemini multi-modal vision models to analyze raw camera streams and generate structured recipes on the fly.',
+                tags: ['Gemini API', 'AI Vision', 'React']
+            }
+        };
+
         const stockVideoLoops = [
             'https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-grid-network-animation-41552-large.mp4',
             'https://assets.mixkit.co/videos/preview/mixkit-glowing-digital-lines-in-motion-41553-large.mp4',
@@ -902,6 +951,14 @@
             grid.innerHTML = '';
 
             repos.forEach((repo, index) => {
+                const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                const meta = projectMetadata[rawName] || {
+                    name: repo.name.replace(/-/g, ' ').toUpperCase(),
+                    subtitle: 'Digital Application & Architecture',
+                    description: repo.description || 'Custom web application engineered with modern front-end architecture and responsive UI components.',
+                    tags: repo.language ? [repo.language, 'Web App'] : ['Web Engineering']
+                };
+
                 const specificImgUrl = `assets/${repo.name}.jpg`;
                 const fallbackImgUrl = `assets/fallback.jpg`;
                 const repoVideoUrl = `https://raw.githubusercontent.com/hvndal/${repo.name}/main/preview.mp4`;
@@ -909,13 +966,15 @@
 
                 const fallbackDiv = encodeURIComponent(`<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80" style="background-image: url('${specificImgUrl}'), url('${fallbackImgUrl}')"></div>`);
 
+                const tagsHtml = meta.tags.map(t => `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${t}</span>`).join('');
+
                 const cardHTML = `
                 <article class="w-full glass-panel rounded-2xl border border-[#f4f0eb]/10 hover:border-[#ff451a]/60 flex flex-col relative group transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(255,69,26,0.2)]">
                     <div class="bg-[#18131b]/90 text-[#f4f0eb] h-8 flex items-center justify-between px-4 w-full border-b border-[#f4f0eb]/10 text-xs font-mono">
-                        <span class="uppercase tracking-widest text-[#a398a0]">PROJECT // ${repo.name.substring(0, 20)}</span>
+                        <span class="uppercase tracking-widest text-[#a398a0]">PROJECT // ${meta.name}</span>
                         <div class="flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-[#ff451a] animate-pulse"></span>
-                            <span class="text-[10px] text-[#ff451a] font-bold">DYNAMIC PREVIEW</span>
+                            <span class="text-[10px] text-[#ff451a] font-bold">LIVE PREVIEW</span>
                         </div>
                     </div>
                     <div class="flex flex-col md:flex-row flex-grow relative">
@@ -932,15 +991,16 @@
                         </div>
                         <div class="flex-grow p-6 flex flex-col justify-between bg-[#120e14]/90">
                             <div>
-                                <h3 class="font-headline-md text-xl md:text-2xl text-[#f4f0eb] mb-2 uppercase tracking-wide break-words">${repo.name.replace(/-/g, ' ')}</h3>
-                                <p class="font-sans text-sm text-[#a398a0] mb-4 line-clamp-3 leading-relaxed">${repo.description || 'Custom web application built with modern front-end architecture.'}</p>
+                                <h3 class="font-headline-md text-xl md:text-2xl text-[#f4f0eb] mb-1 uppercase tracking-wide break-words">${meta.name}</h3>
+                                <p class="font-mono text-xs text-[#ff451a] uppercase tracking-wider mb-3 font-bold">${meta.subtitle}</p>
+                                <p class="font-sans text-sm text-[#a398a0] mb-4 leading-relaxed">${meta.description}</p>
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    ${repo.language ? `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${repo.language}</span>` : ''}
+                                    ${tagsHtml}
                                 </div>
                             </div>
                             <div class="border-t border-[#f4f0eb]/10 pt-4 mt-auto">
                                 <div class="flex justify-between items-center mb-3 text-xs font-mono text-[#a398a0]">
-                                    <span>REPOSITORY</span>
+                                    <span>GITHUB REPOSITORY</span>
                                     <span class="text-[#ff451a] font-bold">${repo.stargazers_count > 0 ? repo.stargazers_count + ' STARS' : 'PUBLIC'}</span>
                                 </div>
                                 <div class="flex gap-3">
@@ -957,8 +1017,7 @@
                 grid.insertAdjacentHTML('beforeend', cardHTML);
             });
         }
-
-        });
+);
 
         // 5. Article Database & Reader View
         const blogDatabase = {
