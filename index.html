@@ -1,100 +1,23 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>HERMAN HUNDAL // PORTFOLIO</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
-    // Mobile Nav Logic
-    const openMobileNav = document.getElementById('open-mobile-nav');
-    const closeMobileNav = document.getElementById('close-mobile-nav');
-    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-    if(openMobileNav && closeMobileNav && mobileNavOverlay) {
-        openMobileNav.addEventListener('click', () => {
-            mobileNavOverlay.classList.remove('opacity-0', 'pointer-events-none');
-            mobileNavOverlay.classList.add('opacity-100', 'pointer-events-auto');
-            // Stagger animation for links
-            gsap.fromTo(mobileNavLinks, 
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, ease: 'power2.out', delay: 0.1 }
-            );
-        });
-
-        closeMobileNav.addEventListener('click', () => {
-            mobileNavOverlay.classList.remove('opacity-100', 'pointer-events-auto');
-            mobileNavOverlay.classList.add('opacity-0', 'pointer-events-none');
-        });
-
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('data-target');
-                
-                // Update active styling
-                mobileNavLinks.forEach(l => {
-                    l.classList.remove('text-on-surface', 'text-primary');
-                    l.classList.add('text-on-surface-variant');
-                });
-                link.classList.remove('text-on-surface-variant');
-                link.classList.add('text-on-surface');
-
-                // Trigger main SPA switch logic
-                const desktopBtn = document.querySelector(`.nav-btn[data-target="${targetId}"]`);
-                if (desktopBtn) desktopBtn.click();
-                
-                // Close menu
-                closeMobileNav.click();
-            });
-        });
-    }
-
-
-    // Synchronize Desktop Nav Tabs
-    const desktopBtns = document.querySelectorAll('.desktop-nav-btn');
-    desktopBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = btn.getAttribute('data-target');
-            
-            // Switch active styling
-            desktopBtns.forEach(b => {
-                b.classList.remove('text-[#f4f0eb]', 'bg-[#ff451a]/20', 'border', 'border-[#ff451a]/40');
-                b.classList.add('text-[#8f868c]');
-            });
-            btn.classList.remove('text-[#8f868c]');
-            btn.classList.add('text-[#f4f0eb]', 'bg-[#ff451a]/20', 'border', 'border-[#ff451a]/40');
-            
-            // Trigger section view toggle
-            document.querySelectorAll('.view-section').forEach(sec => {
-                sec.classList.remove('active');
-                sec.style.display = 'none';
-                sec.style.opacity = '0';
-            });
-            
-            const targetSec = document.getElementById(targetId);
-            if (targetSec) {
-                targetSec.style.display = 'flex';
-                targetSec.classList.add('active');
-                gsap.to(targetSec, { opacity: 1, duration: 0.3 });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        });
-    });
-
-</script>
-<!-- Adding Lenis and GSAP for max smooth animations -->
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script id="tailwind-config">
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Herman Hundal - Digital Experience Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@800;900&family=Bebas+Neue&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
           theme: {
             extend: {
               colors: {
-                "cinematic-bg": "#09070a",
+                "cinematic-bg": "#080609",
                 "cinematic-card": "#120e14",
                 "cinematic-accent": "#ff451a",
                 "cinematic-glow": "#e62e00",
@@ -105,139 +28,40 @@
                 "on-surface": "#f4f0eb",
                 "on-surface-variant": "#a398a0",
                 "primary": "#ff451a",
-                "cyber-cherry": "#ff003c"
+                "secondary": "#54a0fe"
               },
               fontFamily: {
                 "cinematic": ["'Bebas Neue'", "sans-serif"],
-                "sans": ["'Syne'", "'Geist'", "sans-serif"],
+                "sans": ["'Hanken Grotesk'", "'Syne'", "sans-serif"],
                 "mono": ["'JetBrains Mono'", "monospace"],
-                "label-caps": ["'JetBrains Mono'"],
-                "headline-md": ["'Syne'"],
-                "body-md": ["'Syne'"],
-                "headline-lg": ["'Bebas Neue'"]
+                "headline-lg": ["'Anybody'", "'Bebas Neue'", "sans-serif"],
+                "headline-md": ["'Syne'", "sans-serif"]
               }
             }
           }
         }
     </script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@800;900&family=Hanken+Grotesk:wght@400;600&family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
-        body {
-            background-color: transparent; /* Allow canvas background to show */
-            color: theme('colors.on-background');
-        }
-        
-        #webgl-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-        }
 
-        @media (prefers-reduced-motion: no-preference) {
-            #webgl-canvas {
-                animation: fadeIn 1s ease-out forwards;
-            }
-        }
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
-        /* Content wrapper to keep it above canvas */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Halftone texture overlay for specific panels */
-        .halftone-bg {
-            background-image: radial-gradient(theme('colors.surface-container-highest') 1px, transparent 1px);
-            background-size: 8px 8px;
-            background-color: theme('colors.surface-container-low');
-        }
-
-        /* High-intensity outer glow for Cyber-Cherry active elements */
-        .glow-active {
-            box-shadow: 0 0 4px 1px theme('colors.primary');
-        }
-        
-        /* Custom scrollbar to fit aesthetic */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: theme('colors.surface-container');
-            border-left: 1px solid theme('colors.surface-container-highest');
-        }
-        ::-webkit-scrollbar-thumb {
-            background: theme('colors.on-surface');
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: theme('colors.primary');
-        }
-        
-        /* Node staggered animations */
-        @media (prefers-reduced-motion: no-preference) {
-            .node-enter-title { opacity: 1; }
-            .node-enter-1 { opacity: 1; }
-            .node-enter-2 { opacity: 1; }
-            .node-enter-3 { opacity: 1; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .node-enter-title, .node-enter-1, .node-enter-2, .node-enter-3 { opacity: 1; }
-        }
-        
-        /* Cyber-cherry glow on hover */
-        .hover-glow {
-            transition: all 300ms ease-out;
-        }
-        .hover-glow:hover {
-            border-color: theme('colors.cyber-cherry');
-            box-shadow: 0 0 12px 2px rgba(255, 0, 60, 0.5);
-            z-index: 20;
-        }
-
-        /* Nav link underline effect */
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: theme('colors.primary');
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
             width: 100%;
+            min-h: 100%;
+            background-color: #080609;
+            color: #f4f0eb;
+            font-family: 'Hanken Grotesk', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        .btn-view {
-            transition: all 300ms ease-out;
-        }
-        .hover-glow:hover .btn-view {
-            background-color: theme('colors.primary');
-            color: theme('colors.on-primary');
-            border-color: theme('colors.primary');
-            transform: scale(1.02);
-        }
-
-        /* --- MAX UI ENHANCEMENTS --- */
-        /* Custom Cursor */
-        body { cursor: auto; }
-                
-        /* Dark Theme Default Overrides */
-        body {
-            background-color: #080609 !important;
-            color: #f4f0eb !important;
+        /* Clip Path Hexagon */
+        .clip-hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
 
         .cinematic-title {
@@ -251,1174 +75,982 @@
             letter-spacing: 0.18em;
         }
 
-
-        /* Glassmorphism Panel Utilities */
+        /* Glassmorphism Utilities */
         .glass-panel {
-            background: rgba(18, 14, 20, 0.7);
+            background: rgba(18, 14, 20, 0.8);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(244, 240, 235, 0.1);
         }
         .glass-panel-glow {
-            background: rgba(18, 14, 20, 0.85);
+            background: rgba(18, 14, 20, 0.9);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 69, 26, 0.3);
-            box-shadow: 0 0 25px rgba(255, 69, 26, 0.15);
+            border: 1px solid rgba(255, 69, 26, 0.4);
+            box-shadow: 0 0 25px rgba(255, 69, 26, 0.2);
         }
 
-</style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        /* WebGL Background Canvas */
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Section Display Rules */
+        .view-section {
+            display: none !important;
+            opacity: 0;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+        .view-section.active {
+            display: flex !important;
+            opacity: 1 !important;
+        }
+    </style>
 </head>
-<body class="font-sans text-body-md antialiased min-h-screen flex flex-col bg-[#080609] text-[#f4f0eb] overflow-x-hidden selection:bg-cinematic-accent selection:text-black">
-<!-- Custom Cursor -->
+<body class="bg-[#080609] text-[#f4f0eb] antialiased min-h-screen flex flex-col selection:bg-[#ff451a] selection:text-black">
 
+    <!-- WebGL GLSL Shader Background Canvas -->
+    <canvas id="webgl-canvas"></canvas>
 
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper flex flex-col w-full min-h-screen">
 
-</div>
+        <!-- Top Header Navigation Bar -->
+        <header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 bg-[#080609]/85 backdrop-blur-md border-b border-[#f4f0eb]/10">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchSection('view-home')">
+                <div class="w-9 h-9 border border-[#ff451a] flex items-center justify-center font-bold text-[#ff451a] text-sm font-mono clip-hexagon bg-[#ff451a]/10 hover:bg-[#ff451a] hover:text-black transition-all duration-300">
+                    H
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-xs tracking-widest uppercase text-[#f4f0eb]">HERMAN HUNDAL</span>
+                    <span class="text-[9px] font-mono text-[#8f868c] uppercase tracking-wider">DESIGNER & DEVELOPER</span>
+                </div>
+            </div>
 
-<!-- WebGL Background -->
-<canvas id="webgl-canvas"></canvas>
-<!-- Main content wrapper to sit above background -->
-<div class="content-wrapper flex flex-col w-full min-h-screen">
+            <!-- Header Navigation Tabs (Desktop) -->
+            <nav class="hidden md:flex items-center gap-1.5 bg-[#120e14]/90 p-1.5 rounded-full border border-[#f4f0eb]/10" id="desktop-nav-tabs">
+                <button data-target="view-home" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]">HOME</button>
+                <button data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">PROJECTS</button>
+                <button data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ABOUT</button>
+                <button data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">STACK</button>
+                <button data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">BLOG</button>
+                <button data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">MINDMAP</button>
+            </nav>
 
-<!-- Main Content Area -->
-<main class="flex-grow flex flex-col min-h-screen relative w-full">
-
-
-<!-- TopAppBar (Cinematic Header with Exposed Nav Tabs) -->
-<header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-5 bg-[#080609]/80 backdrop-blur-md border-b border-[#f4f0eb]/5">
-    <div class="flex items-center gap-3 cursor-pointer" onclick="document.querySelector('[data-target=\'view-home\']').click()">
-        <div class="w-9 h-9 border border-[#ff451a] flex items-center justify-center font-bold text-[#ff451a] text-sm font-mono clip-hexagon bg-[#ff451a]/10 hover:bg-[#ff451a] hover:text-black transition-all duration-300">
-            H
-        </div>
-        <div class="flex flex-col">
-            <span class="font-bold text-xs tracking-widest uppercase text-[#f4f0eb]">HERMAN HUNDAL</span>
-            <span class="text-[9px] font-mono text-[#8f868c] uppercase tracking-wider">DESIGNER & DEVELOPER</span>
-        </div>
-    </div>
-    
-    <!-- Exposed Navigation Tabs (Desktop) -->
-    <nav class="hidden md:flex items-center gap-1 bg-[#120e14]/80 p-1.5 rounded-full border border-[#f4f0eb]/10" id="desktop-nav-tabs">
-        <a data-target="view-home" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#f4f0eb] bg-[#ff451a]/20 border border-[#ff451a]/40" href="#">HOME</a>
-        <a data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">PROJECTS</a>
-        <a data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">ABOUT</a>
-        <a data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">STACK</a>
-        <a data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">BLOG</a>
-        <a data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5" href="#">MINDMAP</a>
-    </nav>
-    
-    <div class="flex items-center gap-4">
-        <button onclick="document.querySelector('[data-target=\'view-projects\']').click()" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-4 py-2 rounded-full hover:bg-white transition-all cursor-pointer">
-            VIEW WORK →
-        </button>
-        <button id="open-mobile-nav" class="md:hidden text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
-            <span class="w-6 h-[2px] bg-current transition-all group-hover:w-8"></span>
-            <span class="w-4 h-[2px] bg-current transition-all group-hover:w-8"></span>
-        </button>
-    </div>
-</header>
-
-
-<!-- Content Canvas -->
-<div id="spa-container" class="flex-grow p-4 md:p-8 max-w-container-max mx-auto w-full relative z-10">
-
-
-
-<!-- HOME VIEW (Cinematic Dark Mode + Three.js 3D Core Visual) -->
-<section id="view-home" class="view-section active flex flex-col justify-between min-h-[calc(100vh-80px)] pt-24 pb-8 px-6 md:px-16 relative overflow-hidden">
-    
-    <!-- Hero Main Split Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto z-10 w-full">
-        
-        <!-- Left Column: Typographic Cluster -->
-        <div class="lg:col-span-7 flex flex-col items-start">
-            <div class="w-8 h-[3px] bg-[#ff451a] mb-6"></div>
-            
-            <h1 class="cinematic-title text-[56px] sm:text-[80px] md:text-[100px] lg:text-[120px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight leading-none">
-                DESIGNING<br/>
-                DIGITAL<br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff451a] via-[#ff6b4a] to-[#e62e00]">EXPERIENCES</span>
-            </h1>
-            
-            <!-- Subtitles -->
-            <p class="cinematic-sub text-[10px] sm:text-xs text-[#8f868c] uppercase tracking-[0.2em] mt-4 mb-8 flex flex-wrap gap-2 items-center">
-                <span>UI/UX DESIGN</span>
-                <span class="text-[#ff451a]">•</span>
-                <span>FRONTEND DEVELOPMENT</span>
-                <span class="text-[#ff451a]">•</span>
-                <span>PRODUCT DESIGN</span>
-            </p>
-            
-            <!-- View Work CTA -->
-            <div class="flex gap-4 items-center">
-                <button onclick="document.querySelector('[data-target=\'view-projects\']').click()" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 rounded-full hover:border-[#ff451a]">
-                    <span>VIEW WORK</span>
-                    <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
+            <!-- Action Button & Mobile Toggle -->
+            <div class="flex items-center gap-4">
+                <button data-target="view-projects" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
+                    VIEW WORK →
+                </button>
+                <button id="open-mobile-nav" class="md:hidden text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
+                    <span class="w-6 h-[2px] bg-current transition-all group-hover:w-8"></span>
+                    <span class="w-4 h-[2px] bg-current transition-all group-hover:w-8"></span>
                 </button>
             </div>
-        </div>
-        
-        <!-- Right Column: Interactive 3D Core Visual -->
-        <div class="lg:col-span-5 relative h-[320px] sm:h-[400px] lg:h-[480px] w-full flex items-center justify-center">
-            <div id="hero-3d-container" class="w-full h-full absolute inset-0"></div>
-        </div>
-    </div>
-    
-    <!-- Bottom Footer Meta Info -->
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-t border-[#f4f0eb]/10 font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
-        <div class="flex items-center gap-3">
-            <span class="text-[#ff451a] text-sm">⊕</span>
-            <div>
-                <p>AVAILABLE FOR REMOTE WORK</p>
-                <p class="text-[#f4f0eb]/60">BASED IN MOHALI, INDIA</p>
-            </div>
-        </div>
-        
-        <div class="flex items-center gap-3">
-            <span class="text-[#ff451a]">2026</span>
-            <span class="w-8 h-[1px] bg-[#f4f0eb]/20"></span>
-            <span>PORTFOLIO</span>
-            <span class="text-[#ff451a] text-sm ml-1">⊕</span>
-        </div>
-    </div>
-</section>
+        </header>
 
+        <!-- Main SPA Container -->
+        <main class="flex-grow flex flex-col min-h-screen relative w-full pt-24 px-4 md:px-12 max-w-[1440px] mx-auto z-10">
 
-
-<!-- ABOUT VIEW -->
-<section id="view-about" class="view-section">
-    <div class="border-b border-[#f4f0eb]/10 pb-6 node-enter-title">
-        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-[#f4f0eb] uppercase tracking-tight">Herman Hundal</h2>
-        <p class="font-micro-feed text-micro-feed text-[#a398a0] uppercase mt-2">Biography & Background</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="glass-panel border border-[#f4f0eb]/10 p-6 halftone-bg hover-glow transition-all">
-            <h3 class="font-label-caps text-label-caps text-[#ff451a] uppercase mb-4 tracking-widest">SYSTEM_BIO</h3>
-            <p class="font-body-md text-[#a398a0] leading-relaxed">
-                I am a specialized front-end and UI/UX engineer with a proven track record of architecting complex solutions from the ground up. My deployed architecture includes high-traffic commercial platforms like premium gym interfaces, enterprise-grade waste management systems, and a fully custom property management dashboard complete with secure authentication and real-time notifications.
-            </p>
-            <p class="font-body-md text-[#a398a0] leading-relaxed mt-4">
-                Currently, I am developing <strong class="text-[#ff451a]">CookCan</strong>—an AI-powered SaaS application integrated with the Gemini API. It leverages computer vision to analyze pantry images and dynamically generates customized, data-driven recipes in real-time. My workflow is heavily influenced by brutalist design systems and light tech-noir aesthetics, prioritizing high information density and stark, uncompromised utility.
-            </p>
-        </div>
-        <div class="glass-panel border border-[#f4f0eb]/10 p-6">
-            <h3 class="font-label-caps text-label-caps text-[#ff451a] uppercase mb-4 tracking-widest">DEPLOYMENT_LOG</h3>
-            <ul class="flex flex-col gap-4 font-micro-feed text-micro-feed uppercase">
-                <li class="border-b border-[#f4f0eb]/10 pb-2 flex justify-between"><span class="text-[#ff451a]">IN_DEV</span> <span>COOKCAN SAAS (AI/GEMINI INTEGRATION)</span></li>
-                <li class="border-b border-[#f4f0eb]/10 pb-2 flex justify-between"><span class="text-[#ff451a]">IN_DEV</span> <span>RENTCAN (WASTE MANAGEMENT PLATFORM)</span></li>
-                <li class="border-b border-[#f4f0eb]/10 pb-2 flex justify-between"><span class="text-[#a398a0]">SHIPPED</span> <span>FULL-STACK PROPERTY MANAGEMENT SYSTEM</span></li>
-                <li class="border-b border-[#f4f0eb]/10 pb-2 flex justify-between"><span class="text-[#a398a0]">SHIPPED</span> <span>COMMERCIAL GYM DIGITAL INFRASTRUCTURE</span></li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-        <!-- Operational Reach -->
-        <div class="glass-panel border border-[#f4f0eb]/10 p-6">
-            <h3 class="font-label-caps text-label-caps text-[#ff451a] uppercase mb-4 tracking-widest">OPERATIONAL_REACH</h3>
-            <div class="flex flex-col gap-4">
-                <div class="border-l-2 border-[#ff451a] pl-3">
-                    <span class="font-label-caps text-label-caps text-[#f4f0eb] uppercase block mb-1">GLOBAL CLIENTELE</span>
-                    <p class="font-body-md text-[#a398a0] text-sm">Managing infrastructure and delivering frontend architectures for international stakeholders, including dedicated US-based and India-based enterprise clients.</p>
+            <!-- 1. HOME VIEW -->
+            <section id="view-home" class="view-section active flex flex-col justify-between min-h-[calc(100vh-100px)] py-8 relative">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto z-10 w-full">
+                    <div class="lg:col-span-7 flex flex-col items-start">
+                        <div class="w-8 h-[3px] bg-[#ff451a] mb-6"></div>
+                        <h1 class="cinematic-title text-[56px] sm:text-[80px] md:text-[100px] lg:text-[120px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight leading-none">
+                            DESIGNING<br/>
+                            DIGITAL<br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff451a] via-[#ff6b4a] to-[#e62e00]">EXPERIENCES</span>
+                        </h1>
+                        <p class="cinematic-sub text-[10px] sm:text-xs text-[#8f868c] uppercase tracking-[0.2em] mt-4 mb-8 flex flex-wrap gap-2 items-center">
+                            <span>UI/UX DESIGN</span>
+                            <span class="text-[#ff451a]">•</span>
+                            <span>FRONTEND DEVELOPMENT</span>
+                            <span class="text-[#ff451a]">•</span>
+                            <span>PRODUCT DESIGN</span>
+                        </p>
+                        <div class="flex gap-4 items-center">
+                            <button data-target="view-projects" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 rounded-full hover:border-[#ff451a]">
+                                <span>VIEW WORK</span>
+                                <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 relative h-[320px] sm:h-[400px] lg:h-[480px] w-full flex items-center justify-center">
+                        <div id="hero-3d-container" class="w-full h-full absolute inset-0"></div>
+                    </div>
                 </div>
-                <div class="border-l-2 border-[#ff451a] pl-3">
-                    <span class="font-label-caps text-label-caps text-[#f4f0eb] uppercase block mb-1">CLIENT RELATIONS</span>
-                    <p class="font-body-md text-[#a398a0] text-sm">Dual-specialized as a Client Relation Specialist, bridging the critical gap between highly technical engineering processes and seamless business communication.</p>
+
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-t border-[#f4f0eb]/10 font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
+                    <div class="flex items-center gap-3">
+                        <span class="text-[#ff451a] text-sm">⊕</span>
+                        <div>
+                            <p>AVAILABLE FOR REMOTE WORK</p>
+                            <p class="text-[#f4f0eb]/60">BASED IN MOHALI, INDIA</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-[#ff451a]">2026</span>
+                        <span class="w-8 h-[1px] bg-[#f4f0eb]/20"></span>
+                        <span>PORTFOLIO</span>
+                        <span class="text-[#ff451a] text-sm ml-1">⊕</span>
+                    </div>
                 </div>
-                <div class="border-l-2 border-[#ff451a] pl-3">
-                    <span class="font-label-caps text-label-caps text-[#f4f0eb] uppercase block mb-1">UNIVERSAL SAAS</span>
-                    <p class="font-body-md text-[#a398a0] text-sm">Engineering globally accessible SaaS products designed for massive scale, edge delivery, and universal accessibility.</p>
+            </section>
+
+            <!-- 2. PROJECTS VIEW -->
+            <section id="view-projects" class="view-section py-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#f4f0eb]/10 pb-6">
+                    <div>
+                        <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Projects & Products</h2>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">A curated showcase of software products and web applications.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2" id="project-filter-btns">
+                        <button data-filter="ALL" class="filter-btn border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all">ALL</button>
+                        <button data-filter="UI/UX" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all">UI/UX</button>
+                        <button data-filter="Frontend" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all">Frontend</button>
+                        <button data-filter="Creative Coding" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all">Creative Coding</button>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Communications Matrix -->
-        <div class="glass-panel border border-[#f4f0eb]/10 p-6 halftone-bg hover-glow transition-all">
-            <h3 class="font-label-caps text-label-caps text-[#ff451a] uppercase mb-4 tracking-widest">COMMUNICATION_PROTOCOLS</h3>
-            <ul class="flex flex-col gap-6 font-micro-feed text-micro-feed uppercase mt-6">
-                <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
-                    <span class="text-[#a398a0]">ENGLISH (FLUENT)</span>
-                    <div class="flex gap-1"><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div></div>
-                </li>
-                <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
-                    <span class="text-[#a398a0]">FRENCH (FLUENT)</span>
-                    <div class="flex gap-1"><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div></div>
-                </li>
-                <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
-                    <span class="text-[#a398a0]">SPANISH (WORKING / LIMITED)</span>
-                    <div class="flex gap-1"><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#18131b]/80"></div><div class="w-2 h-4 bg-[#18131b]/80"></div><div class="w-2 h-4 bg-[#18131b]/80"></div></div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<!-- STACK VIEW -->
-<section id="view-stack" class="view-section">
-    <div class="border-b border-[#f4f0eb]/10 pb-6 node-enter-title">
-        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-[#f4f0eb] uppercase tracking-tight">Tech Stack & Skills</h2>
-        <p class="font-micro-feed text-micro-feed text-[#a398a0] uppercase mt-2">Tools, frameworks, and engineering capabilities.</p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <!-- Tech Items -->
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">TYPESCRIPT</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">v5.2.0</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">REACT / NEXT.JS</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">v14.0</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">NODE / EXPRESS</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">RUNTIME</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">POSTGRESQL</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">DB_CLUSTER</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">TAILWINDCSS</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">STYLING</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">GSAP / WEBGL</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">ANIMATION</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">AGILE / SCRUM</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">METHODOLOGY</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">CROSS-FUNCTIONAL</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">LEADERSHIP</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">PROBLEM SOLVING</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">ALGORITHMIC</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">FIGMA / UI</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">PROTOTYPING</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">GIT / GITHUB</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">VERSION_CTRL</span>
-        </div>
-        <div class="border border-[#f4f0eb]/10 p-4 flex flex-col items-center justify-center gap-2 hover:bg-[#18131b]/80 transition-colors">
-            <span class="font-label-caps text-label-caps uppercase text-[#ff451a]">VERCEL / CI-CD</span>
-            <span class="font-micro-feed text-micro-feed text-[#a398a0]">DEPLOYMENT</span>
-        </div>
-    </div>
-</section>
-
-<!-- BLOG VIEW -->
-<section id="view-blog" class="view-section">
-    <div class="border-b border-[#f4f0eb]/10 pb-6 node-enter-title">
-        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-[#f4f0eb] uppercase tracking-tight">Articles & Case Studies</h2>
-        <p class="font-micro-feed text-micro-feed text-[#a398a0] uppercase mt-2">Design, architecture, and engineering essays.</p>
-    </div>
-    
-    <div class="flex flex-col gap-6 w-full">
-        <!-- Article 1 -->
-        <article class="border border-[#f4f0eb]/10 glass-panel hover-glow group transition-all p-6 relative overflow-hidden">
-            <div class="absolute right-0 top-0 w-32 h-32 bg-[#ff451a]/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-150"></div>
-            <div class="flex justify-between items-start mb-4 relative z-10">
-                <div class="flex gap-2">
-                    <span class="bg-[#ff451a] text-on-primary px-2 py-0.5 font-label-caps text-label-caps uppercase">UI/UX</span>
-                    <span class="border border-[#f4f0eb]/10 px-2 py-0.5 font-label-caps text-label-caps uppercase text-[#a398a0]">4 MIN READ</span>
+                <div id="projects-grid" class="grid grid-cols-1 gap-8 mt-6">
+                    <!-- GitHub projects injected here via JS -->
                 </div>
-                <span class="font-micro-feed text-micro-feed text-[#a398a0] uppercase">JUL 10, 2026</span>
-            </div>
-            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-tight mb-3 relative z-10">The Architecture of Brutalism in Modern SaaS</h3>
-            <p class="font-body-md text-[#a398a0] leading-relaxed max-w-3xl mb-6 relative z-10">Why high information density and unapologetic structural design lead to faster operator workflows and superior edge delivery.</p>
-            <button class="read-article-btn font-label-caps text-label-caps text-[#ff451a] flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-1">
-                READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </button>
-        </article>
+            </section>
 
-        <!-- Article 2 -->
-        <article class="border border-[#f4f0eb]/10 glass-panel hover-glow group transition-all p-6 relative overflow-hidden">
-            <div class="absolute right-0 top-0 w-32 h-32 bg-secondary/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-150"></div>
-            <div class="flex justify-between items-start mb-4 relative z-10">
-                <div class="flex gap-2">
-                    <span class="bg-secondary text-on-secondary px-2 py-0.5 font-label-caps text-label-caps uppercase">FRONTEND</span>
-                    <span class="border border-[#f4f0eb]/10 px-2 py-0.5 font-label-caps text-label-caps uppercase text-[#a398a0]">7 MIN READ</span>
+            <!-- 3. ABOUT VIEW -->
+            <section id="view-about" class="view-section py-6">
+                <div class="border-b border-[#f4f0eb]/10 pb-6">
+                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Herman Hundal</h2>
+                    <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Biography & System Background</p>
                 </div>
-                <span class="font-micro-feed text-micro-feed text-[#a398a0] uppercase">JUN 28, 2026</span>
-            </div>
-            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-tight mb-3 relative z-10">State Management for Data-Dense Dashboards</h3>
-            <p class="font-body-md text-[#a398a0] leading-relaxed max-w-3xl mb-6 relative z-10">Implementing zero-latency fluid state structures using custom hook architectures in React, specifically for property management interfaces.</p>
-            <button class="read-article-btn font-label-caps text-label-caps text-secondary flex items-center gap-2 group-hover:gap-4 transition-all relative z-10 uppercase" data-article="article-2">
-                READ_PROTOCOL <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </button>
-        </article>
-        
-        <!-- Article 3 -->
-        <article class="border border-[#f4f0eb]/10 glass-panel hover-glow group transition-all p-6 relative overflow-hidden">
-            <div class="absolute right-0 top-0 w-32 h-32 bg-on-surface/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-150"></div>
-            <div class="flex justify-between items-start mb-4 relative z-10">
-                <div class="flex gap-2">
-                    <span class="bg-on-surface text-surface px-2 py-0.5 font-label-caps text-label-caps uppercase">AI / GEMINI</span>
-                    <span class="border border-[#f4f0eb]/10 px-2 py-0.5 font-label-caps text-label-caps uppercase text-[#a398a0]">5 MIN READ</span>
-                </div>
-                <span class="font-micro-feed text-micro-feed text-[#a398a0] uppercase">MAY 15, 2026</span>
-            </div>
-            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-tight mb-3 relative z-10">Building CookCan: Multi-modal Vision API Integration</h3>
-            <p class="font-body-md text-[#a398a0] leading-relaxed max-w-3xl mb-6 relative z-10">A deep dive into piping raw camera stream data through Gemini's vision models to generate structured JSON recipe payloads on the fly.</p>
-    </div>
-</section>
 
-<!-- MINDMAP VIEW -->
-<section id="view-mindmap" class="view-section">
-    <div class="border-b border-[#f4f0eb]/10 pb-6 mb-8 node-enter-title flex justify-between items-end">
-        <div>
-            <h2 class="font-headline-lg text-[32px] md:text-headline-lg text-[#f4f0eb] uppercase tracking-tight">Art & Design Aesthetics</h2>
-            <p class="font-micro-feed text-micro-feed text-[#a398a0] uppercase mt-2">Aesthetic design movements and visual inspirations.</p>
-        </div>
-    </div>
-    
-    <div class="relative w-full min-h-[600px] flex items-center justify-center py-12">
-        <!-- Connecting lines (Absolute) -->
-        <div class="absolute top-1/2 left-0 w-full h-px bg-[#18131b]/80 -translate-y-1/2 z-0 hidden md:block"></div>
-        <div class="absolute top-0 left-1/2 w-px h-full bg-[#18131b]/80 -translate-x-1/2 z-0 hidden md:block"></div>
-        <div class="absolute top-1/4 left-1/4 w-1/2 h-1/2 border border-[#f4f0eb]/10 z-0 hidden md:block"></div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 my-6">
+                    <div class="md:col-span-7 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-center">
+                        <h1 class="font-headline-lg text-4xl md:text-6xl text-[#f4f0eb] mb-4 uppercase leading-none">
+                            STRUCTURED <span class="text-[#ff451a]">CHAOS</span>
+                        </h1>
+                        <div class="w-16 h-1 bg-[#ff451a] mb-6"></div>
+                        <p class="font-sans text-base md:text-lg text-[#a398a0] leading-relaxed mb-6">
+                            I operate at the intersection of industrial precision and organic warmth. Combining Bauhaus logic with Nordic tactility and maximalist layering to build interfaces that feel engineered, not just drawn.
+                        </p>
+                        <p class="font-sans text-sm md:text-base text-[#a398a0] leading-relaxed">
+                            Currently developing <strong class="text-[#ff451a]">CookCan</strong>—an AI-powered SaaS application integrated with the Gemini vision API for real-time pantry inventory analysis and recipe generation. My work spans high-traffic commercial platforms, real-time property management dashboards, and gym digital infrastructure.
+                        </p>
+                    </div>
 
-        <!-- Node Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-24 relative z-10 w-full max-w-[1400px] mx-auto px-4 mt-12 place-items-center justify-items-center">
-
-            <!-- Node: Newspaper Brutalism -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="newspaper">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: var(--color-primary)"/>
-                </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(var(--color-primary),0.3); --hover-border: var(--color-primary);" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Newspaper Brutalism</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">BRUTALISM</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                This is the foundation of high-density information architecture. Just as vintage broadsheets packed columns of dense typography into rigid grids to maximize paper real estate, modern brutalist interfaces prioritize raw data delivery.
-                            </p>
+                    <div class="md:col-span-5 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between">
+                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">DEPLOYMENT LOG</h3>
+                        <ul class="flex flex-col gap-4 font-mono text-xs uppercase">
+                            <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
+                                <span class="text-[#ff451a] font-bold">IN DEV</span> 
+                                <span class="text-[#f4f0eb]">COOKCAN SAAS (AI VISION API)</span>
+                            </li>
+                            <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
+                                <span class="text-[#ff451a] font-bold">IN DEV</span> 
+                                <span class="text-[#f4f0eb]">RENTCAN (WASTE MANAGEMENT)</span>
+                            </li>
+                            <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
+                                <span class="text-[#a398a0]">SHIPPED</span> 
+                                <span class="text-[#f4f0eb]">PROPERTY MANAGEMENT SYSTEM</span>
+                            </li>
+                            <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
+                                <span class="text-[#a398a0]">SHIPPED</span> 
+                                <span class="text-[#f4f0eb]">COMMERCIAL GYM INFRASTRUCTURE</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 pt-4 border-t border-[#f4f0eb]/10 flex justify-between items-center text-xs font-mono text-[#a398a0]">
+                            <span>EST. 2024</span>
+                            <span class="text-[#ff451a]">MOHALI, INDIA</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Node: Acubi Y2K Minimalism -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="acubi">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: var(--color-secondary)"/>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10">
+                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">OPERATIONAL REACH</h3>
+                        <div class="flex flex-col gap-4 text-xs font-mono">
+                            <div class="border-l-2 border-[#ff451a] pl-3">
+                                <span class="text-[#f4f0eb] uppercase block mb-1 font-bold">GLOBAL CLIENTELE</span>
+                                <p class="text-[#a398a0]">Managing frontend architectures for international stakeholders across US and India-based enterprise clients.</p>
+                            </div>
+                            <div class="border-l-2 border-[#ff451a] pl-3">
+                                <span class="text-[#f4f0eb] uppercase block mb-1 font-bold">CLIENT RELATIONS</span>
+                                <p class="text-[#a398a0]">Bridging technical engineering execution with seamless business communication.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10">
+                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">LANGUAGES</h3>
+                        <ul class="flex flex-col gap-4 font-mono text-xs uppercase">
+                            <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
+                                <span class="text-[#a398a0]">ENGLISH (FLUENT)</span>
+                                <div class="flex gap-1"><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div></div>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
+                                <span class="text-[#a398a0]">FRENCH (FLUENT)</span>
+                                <div class="flex gap-1"><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div></div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(var(--color-secondary),0.3); --hover-border: var(--color-secondary);" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Acubi Y2K Minimalism</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">MINIMALISM</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                Born from the early digital era, this style relies on technical wireframes and highly structured, almost clinical layouts. It treats the interface as a machine blueprint.
+            </section>
+
+            <!-- 4. STACK VIEW -->
+            <section id="view-stack" class="view-section py-6">
+                <div class="border-b border-[#f4f0eb]/10 pb-6">
+                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Tech Stack & Skills</h2>
+                    <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Tools, frameworks, and engineering capabilities.</p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6">
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">TYPESCRIPT</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">LANGUAGE</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">REACT / NEXT.JS</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">FRAMEWORK</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">NODE / EXPRESS</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">BACKEND</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">POSTGRESQL</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">DATABASE</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">TAILWINDCSS</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">STYLING</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">THREE.JS / WEBGL</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">3D & GRAPHICS</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">GEMINI VISION API</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">AI INTEGRATION</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">GSAP / LENIS</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">MOTION & SCROLL</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">FIGMA / UI</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">PROTOTYPING</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">GIT / GITHUB</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">VERSION CONTROL</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">VERCEL / CI-CD</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">DEPLOYMENT</span>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
+                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">AGILE / SCRUM</span>
+                        <span class="font-mono text-[10px] text-[#a398a0]">METHODOLOGY</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. BLOG VIEW -->
+            <section id="view-blog" class="view-section py-6">
+                <div class="border-b border-[#f4f0eb]/10 pb-6">
+                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Articles & Case Studies</h2>
+                    <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Design systems, architecture, and engineering essays.</p>
+                </div>
+
+                <div class="flex flex-col gap-6 mt-6">
+                    <!-- Article 1 -->
+                    <article class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex gap-2">
+                                <span class="bg-[#ff451a] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">UI/UX</span>
+                                <span class="border border-[#f4f0eb]/10 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">4 MIN READ</span>
+                            </div>
+                            <span class="font-mono text-xs text-[#a398a0]">JUL 10, 2026</span>
+                        </div>
+                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">The Architecture of Brutalism in Modern SaaS</h3>
+                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">Why high information density and unapologetic structural design lead to faster operator workflows and superior edge delivery.</p>
+                        <button data-article="article-1" class="read-article-btn font-mono text-xs text-[#ff451a] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase cursor-pointer">
+                            READ ESSAY →
+                        </button>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex gap-2">
+                                <span class="bg-[#54a0fe] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">FRONTEND</span>
+                                <span class="border border-[#f4f0eb]/10 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">7 MIN READ</span>
+                            </div>
+                            <span class="font-mono text-xs text-[#a398a0]">JUN 28, 2026</span>
+                        </div>
+                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">State Management for Data-Dense Dashboards</h3>
+                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">Implementing zero-latency fluid state structures using custom hook architectures in React, specifically for property management interfaces.</p>
+                        <button data-article="article-2" class="read-article-btn font-mono text-xs text-[#54a0fe] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase cursor-pointer">
+                            READ ESSAY →
+                        </button>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex gap-2">
+                                <span class="bg-[#f4f0eb] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">AI / GEMINI</span>
+                                <span class="border border-[#f4f0eb]/10 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">5 MIN READ</span>
+                            </div>
+                            <span class="font-mono text-xs text-[#a398a0]">MAY 15, 2026</span>
+                        </div>
+                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">Building CookCan: Multi-modal Vision API Integration</h3>
+                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">A deep dive into piping raw camera stream data through Gemini's vision models to generate structured JSON recipe payloads on the fly.</p>
+                        <button data-article="article-3" class="read-article-btn font-mono text-xs text-[#f4f0eb] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase cursor-pointer">
+                            READ ESSAY →
+                        </button>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 6. ARTICLE READER VIEW (DYNAMIC) -->
+            <section id="view-article" class="view-section py-6">
+                <div class="border-b border-[#f4f0eb]/10 pb-6 mb-6">
+                    <button id="btn-back-blog" onclick="switchSection('view-blog')" class="font-mono text-xs text-[#a398a0] hover:text-[#ff451a] flex items-center gap-2 transition-colors uppercase mb-6 cursor-pointer">
+                        ← BACK TO ARTICLES
+                    </button>
+                    <div class="flex gap-2 mb-4" id="article-tags"></div>
+                    <h2 id="article-title" class="font-headline-lg text-3xl md:text-5xl leading-tight text-[#f4f0eb] uppercase tracking-tight"></h2>
+                    <p id="article-date" class="font-mono text-xs text-[#a398a0] uppercase mt-4"></p>
+                </div>
+                <div id="article-content" class="font-sans text-[#a398a0] leading-relaxed text-base md:text-lg max-w-4xl flex flex-col gap-6">
+                </div>
+            </section>
+
+            <!-- 7. MINDMAP VIEW (ART & AESTHETICS ONLY) -->
+            <section id="view-mindmap" class="view-section py-6">
+                <div class="border-b border-[#f4f0eb]/10 pb-6 mb-8 flex justify-between items-end">
+                    <div>
+                        <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Art & Design Aesthetics</h2>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Aesthetic design movements and visual inspirations.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 relative z-10 w-full max-w-[1400px] mx-auto px-4 mt-6 place-items-center">
+
+                    <!-- Deck 1: Newspaper Brutalism -->
+                    <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="newspaper">
+                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                            <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                        </div>
+                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                            <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Newspaper Brutalism</h4>
+                            <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">BRUTALISM</p>
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
+                                Dense information architecture inspired by vintage broadsheets. High contrast, raw typography, and grid clarity.
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Node: 1970s Swiss Grid -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="retro">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/retro.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/retro.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/retro.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ff5e00"/>
-                </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,94,0,0.3); --hover-border: #ff5e00;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">1970s Swiss Grid</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">GRID SYSTEMS</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                The bold, flat colors and halftone geometric shapes of the 70s introduced a visual hierarchy that didn't rely on drop shadows or skeuomorphism. It proved that flat design could be deeply engaging.
+                    <!-- Deck 2: Acubi Y2K -->
+                    <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="acubi">
+                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                            <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                        </div>
+                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                            <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Acubi Y2K Minimalism</h4>
+                            <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">MINIMALISM</p>
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
+                                Subdued neutrals, subtle structural cutouts, and Korean cyber-minimalist aesthetics from the early 2000s.
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Node: Gothic Biker Typography -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="biker">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/biker.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/biker.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/biker.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ffffff"/>
-                </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,255,255,0.3); --hover-border: #ffffff;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Gothic Biker Typography</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">TYPOGRAPHY</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                While seemingly out of place in SaaS, the aggressive, high-contrast nature of gothic and biker graphics heavily influences modern 'Tech Noir' aesthetics. It's about edge and impact.
+                    <!-- Deck 3: Bauhausian Geometry -->
+                    <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="bauhaus">
+                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                            <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                        </div>
+                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                            <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Bauhausian Geometry</h4>
+                            <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">GEOMETRY</p>
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
+                                Form follows function. Primary geometric shapes, asymmetric balance, and industrial design discipline.
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Node: Frosted Glassmorphism -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="glass">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/glassmorphism.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/glassmorphism.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/glassmorphism.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: rgba(255,255,255,0.5)"/>
-                </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,255,255,0.5); --hover-border: rgba(255,255,255,0.5);" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Frosted Glassmorphism</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">GLASSMORPHISM</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                Glassmorphism uses background blur and translucent layers to establish spatial hierarchy. It creates a sense of depth without the harshness of solid drop shadows.
+                    <!-- Deck 4: Showa Retroism -->
+                    <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="showa">
+                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                            <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                        </div>
+                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                            <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Showa Retroism</h4>
+                            <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">RETRO JAPAN</p>
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
+                                Warm 1970s Japanese color palettes, analog print textures, and mid-century industrial typography.
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Node: Cyberpunk Neon -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="cyberpunk">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/cyberpunk.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/cyberpunk.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/cyberpunk.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ff00ff"/>
-                </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,0,255,0.3); --hover-border: #ff00ff;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Cyberpunk Neon</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">NEON UI</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                Cyberpunk isn't just an aesthetic; it's a statement about technology. It relies on pitch-black backgrounds pierced by highly saturated neon vectors, typically pinks, cyans, and greens.
+                    <!-- Deck 5: Vintage Anime -->
+                    <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="anime">
+                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                            <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                        </div>
+                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                            <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Vintage 90s Anime</h4>
+                            <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">CYBER ANIMATION</p>
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
+                                Cel-painted animation frames, hand-drawn mech UI overlays, and dramatic cyber-noir lighting.
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Node: Showa Retroism -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="showa">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ff99cc"/>
-                </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,153,204,0.3); --hover-border: #ff99cc;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Showa Retroism</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">CITY POP UI</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                The Showa era brought us the booming optimism of 70s and 80s Tokyo—neon signs reflected in rain puddles, pastel color grading, and heavy reliance on nostalgic analog warmth.
+                    <!-- Deck 6: Solarpunk Tech Greenery -->
+                    <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="solarpunk">
+                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                            <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                        </div>
+                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                            <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Solarpunk / Tech Greenery</h4>
+                            <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">ECO TECH</p>
+                            <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
+                                Organic nature seamlessly coexisting with high-tech UI structures and sustainable eco-data overlays.
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Node: Vintage Anime -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="anime">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #a0c4ff"/>
                 </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(160,196,255,0.3); --hover-border: #a0c4ff;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Vintage Anime</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">CEL SHADED</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                90s Cel Shaded animation was defined by hyper-detailed mechanical environments contrasted with soft, flat-colored character designs. It is the ultimate intersection of humanity and machinery.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </section>
 
-            <!-- Node: Bauhausian Modernism -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="bauhaus">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #ff0000"/>
-                </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(255,0,0,0.3); --hover-border: #ff0000;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Bauhausian Modernism</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">MODERNIST</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                The Bauhaus movement stripped design down to its most functional elements: primary colors (red, blue, yellow) and basic geometric shapes (circle, square, triangle). It argued that utility is inherently beautiful.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </main>
 
-            <!-- Node: Tech Greenery -->
-            <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="solarpunk">
-                <div class="relative w-32 md:w-48 aspect-[3/4] mb-4">
-                    <!-- Card 3 (Bottom) -->
-                    <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 md:group-hover:-translate-x-6 shadow-lg z-10"/>
-                    <!-- Card 2 (Middle) -->
-                    <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 md:group-hover:translate-x-6 shadow-lg z-20"/>
-                    <!-- Card 1 (Top) -->
-                    <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover border-2 transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30 grayscale-0" style="border-color: #00ff99"/>
-                </div>
-                <div class="text-center w-[120%] md:w-full max-w-[320px] transition-all duration-500 glass-panel backdrop-blur-md p-4 border border-transparent" style="--hover-shadow: rgba(0,255,153,0.3); --hover-border: #00ff99;" onmouseover="this.style.borderColor='var(--hover-border)'; this.style.boxShadow='0 0 20px var(--hover-shadow)';" onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
-                    <h4 class="font-headline-md text-sm md:text-xl uppercase tracking-tighter text-[#f4f0eb]">Tech Greenery</h4>
-                    <p class="font-label-caps text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">SOLARPUNK</p>
-                    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                        <div class="overflow-hidden">
-                            <p class="font-body-md text-xs md:text-sm text-[#a398a0] leading-relaxed mt-4 text-left border-t border-[#f4f0eb]/10 pt-4">
-                                Tech Greenery, or Solarpunk, envisions a future where advanced technology and organic nature seamlessly coexist. Visually, it blends harsh technological UI elements with lush green organic motifs.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Footer -->
+        <footer class="bg-[#120e14]/90 backdrop-blur-md border-t border-[#f4f0eb]/10 w-full py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-[#a398a0] z-20 mt-auto">
+            <span>© 2026 HERMAN HUNDAL studio</span>
+            <div class="flex items-center gap-6 uppercase mt-2 md:mt-0">
+                <span class="text-[#ff451a] font-bold">AVAILABLE FOR HIRE</span>
+                <span>GLOBAL REACH</span>
+                <span>MOHALI, INDIA</span>
             </div>
+        </footer>
+
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/95 backdrop-blur-xl z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300">
+        <button id="close-mobile-nav" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-2xl p-2 font-mono">✕</button>
+        <div class="flex flex-col gap-6 text-center font-mono text-xl uppercase tracking-widest">
+            <button data-target="view-home" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">HOME</button>
+            <button data-target="view-projects" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">PROJECTS</button>
+            <button data-target="view-about" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">ABOUT</button>
+            <button data-target="view-stack" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">STACK</button>
+            <button data-target="view-blog" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">BLOG</button>
+            <button data-target="view-mindmap" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">MINDMAP</button>
         </div>
     </div>
-</section>
 
+    <!-- WebGL Background Shader Script -->
+    <script>
+        const canvas = document.getElementById('webgl-canvas');
+        const gl = canvas.getContext('webgl');
+        let mouseX = 0.5;
+        let mouseY = 0.5;
 
-</div>
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth;
+            mouseY = 1.0 - (e.clientY / window.innerHeight);
+        });
 
-<!-- ARTICLE VIEW (DYNAMIC) -->
-<section id="view-article" class="view-section">
-    <div class="border-b border-[#f4f0eb]/10 pb-6 mb-6 node-enter-title">
-        <button id="btn-back-blog" class="font-label-caps text-label-caps text-[#a398a0] flex items-center gap-2 hover:text-[#ff451a] transition-colors uppercase mb-8 cursor-none">
-            <span class="material-symbols-outlined text-[14px]">arrow_back</span> BACK TO LOG
-        </button>
-        <div class="flex gap-2 mb-4" id="article-tags"></div>
-        <h2 id="article-title" class="font-headline-lg text-[32px] md:text-[48px] leading-tight text-[#f4f0eb] uppercase tracking-tighter"></h2>
-        <p id="article-date" class="font-micro-feed text-micro-feed text-[#a398a0] uppercase mt-4"></p>
-    </div>
-    <div id="article-content" class="font-body-md text-[#a398a0] leading-relaxed text-[16px] md:text-[18px] max-w-4xl flex flex-col gap-6">
-    </div>
-</section>
+        if (gl) {
+            const vsSource = `
+                attribute vec4 aVertexPosition;
+                varying vec2 v_uv;
+                void main() {
+                    gl_Position = aVertexPosition;
+                    v_uv = aVertexPosition.xy * 0.5 + 0.5;
+                }
+            `;
 
-<!-- PROJECTS VIEW -->
-<section id="view-projects" class="view-section">
-<!-- Header Section -->
-<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#f4f0eb]/10 pb-6 node-enter-title">
-<div>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-[#f4f0eb] uppercase tracking-tight">Projects & Products</h2>
-<p class="font-micro-feed text-micro-feed text-[#a398a0] uppercase mt-2">A curated showcase of software products and web applications.</p>
-</div>
-<!-- Filter Tabs -->
-<div class="flex flex-wrap gap-2">
-<button class="border border-on-surface bg-[#ff451a] text-black px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-primary hover:text-on-primary hover:border-primary transition-colors duration-100">ALL</button>
-<button class="border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-surface-container-highest transition-colors duration-100 border-dashed">UI/UX</button>
-<button class="border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-surface-container-highest transition-colors duration-100 border-dashed">Frontend</button>
-<button class="border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1 font-label-caps text-label-caps uppercase hover:bg-surface-container-highest transition-colors duration-100 border-dashed">Creative Coding</button>
-</div>
-</section>
+            const fsSource = `
+                precision highp float;
+                uniform float u_time;
+                uniform vec2 u_resolution;
+                uniform vec2 u_mouse;
+                varying vec2 v_uv;
 
-<!-- Grid Layout (Row style) -->
-<section id="projects-grid" class="flex flex-col gap-6">
-<!-- Projects will be injected here via GitHub API -->
-</section>
-</div>
-<!-- Footer -->
-<footer class="bg-surface-container-highest/90 backdrop-blur-sm dark:bg-surface-dim/90 border-t border-grid-line flat no shadows w-full bottom-0 relative mt-auto z-40 flex flex-col md:flex-row justify-between items-center px-4 py-2 gap-2">
-<span class="font-label-caps text-label-caps text-on-surface">© 2024 HERMAN HUNDAL studio</span>
-<div class="flex flex-wrap gap-4 font-micro-feed text-micro-feed uppercase">
-<a class="text-primary font-bold" href="#">AVAILABLE FOR HIRE</a>
-<a id="dyn-latency" class="text-on-tertiary-fixed-variant hover:text-secondary transition-colors duration-100" href="#">GLOBAL REACH</a>
-<a id="dyn-temp" class="text-on-tertiary-fixed-variant hover:text-secondary transition-colors duration-100 animate-pulse-slow" href="#">MOHALI, INDIA</a>
-</div>
-</footer>
-</main>
-</div>
+                float random(vec2 st) {
+                    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+                }
 
-<!-- WebGL Background Shader (Cinematic Glow & Noise) -->
-<script>
-    const canvas = document.getElementById('webgl-canvas');
-    const gl = canvas.getContext('webgl');
-    let mouseX = 0.5;
-    let mouseY = 0.5;
+                void main() {
+                    vec2 st = v_uv;
+                    vec3 color = vec3(0.03, 0.024, 0.035);
+                    vec2 targetPos = vec2(0.75 + (u_mouse.x - 0.5) * 0.1, 0.4 + (u_mouse.y - 0.5) * 0.1);
+                    float distY = abs(st.y - targetPos.y);
+                    float curve = sin(st.y * 3.14159) * 0.25;
+                    float dist = length(st - vec2(targetPos.x + curve, st.y));
+                    
+                    float coreGlow = smoothstep(0.45, 0.0, dist);
+                    vec3 coreColor = vec3(1.0, 0.27, 0.1); // #ff451a
+                    
+                    float purpleDist = length(st - vec2(0.85, 0.2));
+                    float purpleGlow = smoothstep(0.8, 0.0, purpleDist);
+                    vec3 purpleColor = vec3(0.54, 0.11, 0.41); // #8a1c6a
+                    
+                    float wave = sin(st.y * 5.0 - u_time * 0.8) * 0.05;
+                    coreGlow *= (0.85 + wave);
+                    
+                    color += coreColor * pow(coreGlow, 2.2) * 1.4;
+                    color += purpleColor * pow(purpleGlow, 1.8) * 0.8;
+                    
+                    float noise = (random(st * (u_time + 10.0)) - 0.5) * 0.045;
+                    color += noise;
+                    
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX / window.innerWidth;
-        mouseY = 1.0 - (e.clientY / window.innerHeight);
-    });
-
-    if (gl) {
-        const vsSource = `
-            attribute vec4 aVertexPosition;
-            varying vec2 v_uv;
-            void main() {
-                gl_Position = aVertexPosition;
-                v_uv = aVertexPosition.xy * 0.5 + 0.5;
-            }
-        `;
-
-        const fsSource = `
-            precision highp float;
-            uniform float u_time;
-            uniform vec2 u_resolution;
-            uniform vec2 u_mouse;
-
-            varying vec2 v_uv;
-
-            // Pseudo-random noise
-            float random(vec2 st) {
-                return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+            function createShader(gl, type, source) {
+                const shader = gl.createShader(type);
+                gl.shaderSource(shader, source);
+                gl.compileShader(shader);
+                return shader;
             }
 
-            void main() {
-                vec2 st = v_uv;
-                
-                // Deep dark background base (#080609)
-                vec3 color = vec3(0.03, 0.024, 0.035);
-                
-                // Light plume flare on right side
-                vec2 targetPos = vec2(0.75 + (u_mouse.x - 0.5) * 0.1, 0.4 + (u_mouse.y - 0.5) * 0.1);
-                
-                // Curve equation for light streak
-                float distY = abs(st.y - targetPos.y);
-                float curve = sin(st.y * 3.14159) * 0.25;
-                float dist = length(st - vec2(targetPos.x + curve, st.y));
-                
-                // Orange / Red core glow
-                float coreGlow = smoothstep(0.45, 0.0, dist);
-                vec3 coreColor = vec3(1.0, 0.27, 0.1); // #ff451a
-                
-                // Deep purple ambient glow
-                float purpleDist = length(st - vec2(0.85, 0.2));
-                float purpleGlow = smoothstep(0.8, 0.0, purpleDist);
-                vec3 purpleColor = vec3(0.54, 0.11, 0.41); // #8a1c6a
-                
-                // Dynamic time wave animation
-                float wave = sin(st.y * 5.0 - u_time * 0.8) * 0.05;
-                coreGlow *= (0.85 + wave);
-                
-                // Combine colors
-                color += coreColor * pow(coreGlow, 2.2) * 1.4;
-                color += purpleColor * pow(purpleGlow, 1.8) * 0.8;
-                
-                // Fine film-grain noise overlay
-                float noise = (random(st * (u_time + 10.0)) - 0.5) * 0.045;
-                color += noise;
-                
-                gl_FragColor = vec4(color, 1.0);
+            const vertShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+            const fragShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+            const program = gl.createProgram();
+            gl.attachShader(program, vertShader);
+            gl.attachShader(program, fragShader);
+            gl.linkProgram(program);
+            gl.useProgram(program);
+
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+                -1.0, -1.0,  1.0, -1.0, -1.0,  1.0,
+                -1.0,  1.0,  1.0, -1.0,  1.0,  1.0,
+            ]), gl.STATIC_DRAW);
+
+            const positionAttributeLocation = gl.getAttribLocation(program, "aVertexPosition");
+            gl.enableVertexAttribArray(positionAttributeLocation);
+            gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+
+            const timeLocation = gl.getUniformLocation(program, "u_time");
+            const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
+            const mouseLocation = gl.getUniformLocation(program, "u_mouse");
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
             }
-        `;
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
 
-        function createShader(gl, type, source) {
-            const shader = gl.createShader(type);
-            gl.shaderSource(shader, source);
-            gl.compileShader(shader);
-            return shader;
-        }
-
-        const vertShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
-        const fragShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
-        const program = gl.createProgram();
-        gl.attachShader(program, vertShader);
-        gl.attachShader(program, fragShader);
-        gl.linkProgram(program);
-        gl.useProgram(program);
-
-        const positionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-            -1.0, -1.0,  1.0, -1.0, -1.0,  1.0,
-            -1.0,  1.0,  1.0, -1.0,  1.0,  1.0,
-        ]), gl.STATIC_DRAW);
-
-        const positionAttributeLocation = gl.getAttribLocation(program, "aVertexPosition");
-        gl.enableVertexAttribArray(positionAttributeLocation);
-        gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
-
-        const timeLocation = gl.getUniformLocation(program, "u_time");
-        const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
-        const mouseLocation = gl.getUniformLocation(program, "u_mouse");
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            gl.viewport(0, 0, canvas.width, canvas.height);
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        function render(time) {
-            time *= 0.001;
-            gl.uniform1f(timeLocation, time);
-            gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-            gl.uniform2f(mouseLocation, mouseX, mouseY);
-            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            function render(time) {
+                time *= 0.001;
+                gl.uniform1f(timeLocation, time);
+                gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+                gl.uniform2f(mouseLocation, mouseX, mouseY);
+                gl.drawArrays(gl.TRIANGLES, 0, 6);
+                requestAnimationFrame(render);
+            }
             requestAnimationFrame(render);
         }
-        requestAnimationFrame(render);
-    }
+    </script>
 
-    // Web Audio Synthesized SFX Effects
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    let audioCtx = null;
+    <!-- Three.js 3D Core Visual Script -->
+    <script>
+    (function() {
+        const container = document.getElementById('hero-3d-container');
+        if (!container) return;
 
-    function initAudio() {
-        if (!audioCtx) audioCtx = new AudioCtx();
-    }
+        const scene = new THREE.Scene();
+        const width = container.clientWidth || 400;
+        const height = container.clientHeight || 400;
+        const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
+        
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
 
-    function playHoverSFX() {
-        try {
-            initAudio();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.04);
-            gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.04);
-        } catch(e) {}
-    }
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const pointLight = new THREE.PointLight(0xff451a, 2.5, 100);
+        pointLight.position.set(5, 5, 5);
+        scene.add(pointLight);
 
-    function playClickSFX() {
-        try {
-            initAudio();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.08);
-            gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.08);
-        } catch(e) {}
-    }
+        const pointLight2 = new THREE.PointLight(0x8a1c6a, 2.0, 100);
+        pointLight2.position.set(-5, -5, -5);
+        scene.add(pointLight2);
 
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('a, button, [onclick]').forEach(el => {
-            el.addEventListener('mouseenter', playHoverSFX);
-            el.addEventListener('click', playClickSFX);
+        const group = new THREE.Group();
+        const geometry = new THREE.IcosahedronGeometry(1.8, 0);
+        const material = new THREE.MeshPhongMaterial({ 
+            color: 0xff451a, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.65
         });
-    });
-</script>
+        const mesh = new THREE.Mesh(geometry, material);
+        group.add(mesh);
 
+        const coreGeo = new THREE.SphereGeometry(0.85, 32, 32);
+        const coreMat = new THREE.MeshStandardMaterial({ 
+            color: 0xffffff, 
+            emissive: 0xff451a,
+            emissiveIntensity: 0.7,
+            roughness: 0.15,
+            metalness: 0.8,
+            transparent: true,
+            opacity: 0.9
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
 
-<!-- Max UI JS Enhancements -->
-<script>
-    // 0. GitHub API Fetch
-    const githubPromise = fetch('https://api.github.com/users/hvndal/repos?sort=updated&per_page=100')
-        .then(res => res.json())
-        .catch(err => {
-            console.error("Failed to fetch repos", err);
-            return null; // fallback to hardcoded
+        scene.add(group);
+        camera.position.z = 4.8;
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) * 0.0008;
+            mouseY = (e.clientY - window.innerHeight / 2) * 0.0008;
         });
 
-    function renderProjects(repos) {
-        if (!repos || repos.length === 0) return; // Keep hardcoded if error
-        
-        const grid = document.getElementById('projects-grid');
-        grid.innerHTML = ''; // Clear fallback skeleton
-        
-        repos.forEach((repo, index) => {
-            const isFeatured = index === 0;
-            const colSpan = isFeatured ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1';
-            const specificImgUrl = `assets/${repo.name}.jpg`;
-            const fallbackImgUrl = `assets/fallback.jpg`;
-            const videoUrl = `https://raw.githubusercontent.com/hvndal/${repo.name}/main/preview.mp4`;
-            
-            const fallbackDiv = encodeURIComponent(`<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-[0.5] transition-all duration-500 opacity-60 mix-blend-multiply" style="background-image: url('${specificImgUrl}'), url('${fallbackImgUrl}')"></div>`);
-            
-            const cardHTML = `
-            <article class="w-full bg-[#120e14]/90 border border-[#f4f0eb]/10 hover:border-[#ff451a]/60 flex flex-col relative group transition-all duration-300 backdrop-blur-md opacity-0 hover:shadow-[0_0_20px_rgba(255,69,26,0.2)]">
-                <div class="bg-[#1c1620] text-[#f4f0eb] h-6 flex items-center justify-between px-3 w-full border-b border-[#f4f0eb]/10">
-                    <span class="font-label-caps text-label-caps uppercase tracking-widest">ID_00${index + 1} // ${repo.name.substring(0, 15)}</span>
-                    <div class="flex items-center gap-2">
-                        <span class="font-micro-feed text-micro-feed uppercase">STATUS:</span>
-                        <div class="w-2 h-2 bg-secondary-container animate-pulse-fast"></div>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row flex-grow relative">
-                    <div class="w-full md:w-1/3 aspect-video border-b md:border-b-0 md:border-r border-on-surface relative p-1 bg-surface-container overflow-hidden bg-black flex-shrink-0">
-                        <video class="w-full h-full object-cover filter grayscale group-hover:grayscale-[0.2] transition-all duration-500 opacity-80" 
-                               autoplay loop muted playsinline 
-                               src="${videoUrl}" 
-                               onerror="this.onerror=null; this.outerHTML=decodeURIComponent('${fallbackDiv}');">
-                        </video>
-                        <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
-                        <div class="absolute left-0 right-0 h-[2px] bg-cyber-cherry opacity-0 group-hover:opacity-100 group-hover:animate-scan-line shadow-[0_0_10px_rgba(255,0,60,0.8)] pointer-events-none"></div>
-                    </div>
-                    <div class="flex-grow p-6 flex flex-col justify-between bg-surface/90 halftone-bg">
-                        <div>
-                            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 uppercase break-words">${repo.name.replace(/-/g, ' ')}</h3>
-                            <p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-3">${repo.description || 'No description available.'}</p>
-                            <div class="flex flex-wrap gap-1 mb-4">
-                                ${repo.language ? `<span class="bg-surface-container-highest px-2 py-0.5 font-micro-feed text-micro-feed text-on-surface uppercase border border-surface-container-highest">${repo.language}</span>` : ''}
-                            </div>
-                        </div>
-                        <div class="border-t border-surface-container-highest pt-3 mt-auto">
-                            <div class="flex justify-between items-center mb-3">
-                                <span class="font-micro-feed text-micro-feed text-on-surface-variant uppercase">REPO: ACTIVE</span>
-                                <span class="font-micro-feed text-micro-feed text-primary uppercase font-mono">${repo.stargazers_count > 0 ? repo.stargazers_count + ' STARS' : 'ONLINE'}</span>
-                            </div>
-                            <div class="flex gap-2">
-                                <a href="${repo.html_url}" target="_blank" class="btn-view flex-1 bg-surface border border-on-surface text-on-surface font-label-caps text-label-caps uppercase py-2 text-center hover:bg-primary hover:text-on-primary hover:border-primary transition-all duration-300 block relative " style="">
-                                    VIEW SOURCE
-                                    <div class="absolute top-0 right-0 w-1 h-1 bg-current"></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            `;
-            grid.insertAdjacentHTML('beforeend', cardHTML);
-        });
-        
-        // Re-attach cursor hover logic for new elements
-        const interactables = document.querySelectorAll('a, button, input');
-        
-    }
-
-    // 1. Boot Loader Sequence
-    
-            }, 400);
+        function animate(t) {
+            requestAnimationFrame(animate);
+            group.rotation.x += 0.004 + (mouseY - group.rotation.x) * 0.03;
+            group.rotation.y += 0.008 + (mouseX - group.rotation.y) * 0.03;
+            group.position.y = Math.sin(t * 0.0012) * 0.25;
+            renderer.render(scene, camera);
         }
-    }, 150);
 
-    // 2. Custom Cursor
-    
-    
-    // Add hover state to interactive elements
-    const interactables = document.querySelectorAll('a, button, input');
-    interactables.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-    });
-
-    // 3. Lenis Smooth Scrolling
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    });
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // 4. GSAP Scroll Animations
-    gsap.registerPlugin(ScrollTrigger);
-
-    
-    function initAnimations() {
-        const projectCards = document.querySelectorAll('#projects-grid article');
-        projectCards.forEach((card) => {
-            card.style.animation = 'none'; 
-            card.style.opacity = '1';
-            card.classList.remove('opacity-0');
-        });
-    }
-
-            );
-        });
-    }
-
-    // 5. Dynamic Telemetry in Footer
-    const latencyEl = document.getElementById('dyn-latency');
-    const tempEl = document.getElementById('dyn-temp');
-    
-    if (latencyEl && tempEl) {
-        
-    }
-
-    
-    
-    
-    // Bulletproof Section Switcher (Pure & Instant)
-    function switchSection(targetId) {
-        if (!targetId) return;
-
-        // Hide all sections
-        const views = document.querySelectorAll('.view-section');
-        views.forEach(v => {
-            v.classList.remove('active');
-            v.style.setProperty('display', 'none', 'important');
-            v.style.opacity = '0';
+        window.addEventListener('resize', () => {
+            if (!container) return;
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
         });
 
-        // Show target section
-        const targetSec = document.getElementById(targetId);
-        if (targetSec) {
-            targetSec.style.setProperty('display', 'flex', 'important');
-            targetSec.classList.add('active');
-            targetSec.style.opacity = '1';
+        animate(0);
+    })();
+    </script>
 
-            // Clean up any lingering inline opacity overrides on child elements
-            targetSec.querySelectorAll('*').forEach(el => {
-                if (el.style.opacity === '0') el.style.opacity = '1';
-                el.classList.remove('opacity-0');
+    <!-- Main Navigation & Application Logic Script -->
+    <script>
+        // 1. Lenis Smooth Scroll
+        let lenis;
+        try {
+            lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        } catch(e) {}
+
+        // 2. Global Section Switcher Function
+        function switchSection(targetId) {
+            if (!targetId) return;
+
+            // Hide all view sections
+            const views = document.querySelectorAll('.view-section');
+            views.forEach(v => {
+                v.classList.remove('active');
+                v.style.setProperty('display', 'none', 'important');
+                v.style.opacity = '0';
+            });
+
+            // Show target view section
+            const targetSec = document.getElementById(targetId);
+            if (targetSec) {
+                targetSec.style.setProperty('display', 'flex', 'important');
+                targetSec.classList.add('active');
+                targetSec.style.opacity = '1';
+
+                // Make sure inner elements are visible
+                targetSec.querySelectorAll('*').forEach(el => {
+                    if (el.style.opacity === '0') el.style.opacity = '1';
+                    el.classList.remove('opacity-0');
+                });
+            }
+
+            // Highlight Active Nav Buttons (Desktop)
+            document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
+                const btnTarget = btn.getAttribute('data-target');
+                if (btnTarget === targetId) {
+                    btn.className = 'desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]';
+                } else {
+                    btn.className = 'desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5';
+                }
+            });
+
+            // Scroll page to top
+            if (lenis) lenis.scrollTo(0, { immediate: true });
+            else window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        // Make switchSection globally accessible
+        window.switchSection = switchSection;
+
+        // 3. Event Listener for Navigation Triggers
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('[data-target]');
+            if (trigger) {
+                e.preventDefault();
+                const targetId = trigger.getAttribute('data-target');
+                switchSection(targetId);
+
+                // Close mobile nav overlay if open
+                const mobileOverlay = document.getElementById('mobile-nav-overlay');
+                if (mobileOverlay && mobileOverlay.classList.contains('opacity-100')) {
+                    mobileOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                    mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
+                }
+            }
+        });
+
+        // Mobile Nav Overlay Toggle
+        const openMobileNav = document.getElementById('open-mobile-nav');
+        const closeMobileNav = document.getElementById('close-mobile-nav');
+        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+        if (openMobileNav && mobileNavOverlay) {
+            openMobileNav.addEventListener('click', () => {
+                mobileNavOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                mobileNavOverlay.classList.add('opacity-100', 'pointer-events-auto');
+            });
+        }
+        if (closeMobileNav && mobileNavOverlay) {
+            closeMobileNav.addEventListener('click', () => {
+                mobileNavOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileNavOverlay.classList.add('opacity-0', 'pointer-events-none');
             });
         }
 
-        // Update Desktop Nav Active Styles
-        document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
-            const btnTarget = btn.getAttribute('data-target');
-            if (btnTarget === targetId) {
-                btn.className = 'desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]';
-            } else {
-                btn.className = 'desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5';
+        // 4. GitHub Repos Fetch & Render
+        let allReposData = [];
+
+        fetch('https://api.github.com/users/hvndal/repos?sort=updated&per_page=100')
+            .then(res => res.json())
+            .then(repos => {
+                if (Array.isArray(repos) && repos.length > 0) {
+                    allReposData = repos;
+                    renderProjectsGrid(repos);
+                }
+            })
+            .catch(err => console.error("GitHub fetch error:", err));
+
+        function renderProjectsGrid(repos) {
+            const grid = document.getElementById('projects-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            repos.forEach((repo, index) => {
+                const specificImgUrl = `assets/${repo.name}.jpg`;
+                const fallbackImgUrl = `assets/fallback.jpg`;
+                const videoUrl = `https://raw.githubusercontent.com/hvndal/${repo.name}/main/preview.mp4`;
+
+                const fallbackDiv = encodeURIComponent(`<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 mix-blend-multiply" style="background-image: url('${specificImgUrl}'), url('${fallbackImgUrl}')"></div>`);
+
+                const cardHTML = `
+                <article class="w-full glass-panel rounded-2xl border border-[#f4f0eb]/10 hover:border-[#ff451a]/60 flex flex-col relative group transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(255,69,26,0.2)]">
+                    <div class="bg-[#18131b]/90 text-[#f4f0eb] h-8 flex items-center justify-between px-4 w-full border-b border-[#f4f0eb]/10 text-xs font-mono">
+                        <span class="uppercase tracking-widest text-[#a398a0]">PROJECT // ${repo.name.substring(0, 20)}</span>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-[#ff451a] animate-pulse"></span>
+                            <span class="text-[10px] text-[#ff451a] font-bold">ONLINE</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row flex-grow relative">
+                        <div class="w-full md:w-1/3 aspect-video border-b md:border-b-0 md:border-r border-[#f4f0eb]/10 relative p-1 bg-[#0a080c] overflow-hidden flex-shrink-0">
+                            <video class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-90 group-hover:scale-105" 
+                                   autoplay loop muted playsinline 
+                                   src="${videoUrl}" 
+                                   onerror="this.onerror=null; this.outerHTML=decodeURIComponent('${fallbackDiv}');">
+                            </video>
+                        </div>
+                        <div class="flex-grow p-6 flex flex-col justify-between bg-[#120e14]/90">
+                            <div>
+                                <h3 class="font-headline-md text-xl md:text-2xl text-[#f4f0eb] mb-2 uppercase tracking-wide break-words">${repo.name.replace(/-/g, ' ')}</h3>
+                                <p class="font-sans text-sm text-[#a398a0] mb-4 line-clamp-3 leading-relaxed">${repo.description || 'Custom web application built with modern front-end architecture.'}</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    ${repo.language ? `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${repo.language}</span>` : ''}
+                                </div>
+                            </div>
+                            <div class="border-t border-[#f4f0eb]/10 pt-4 mt-auto">
+                                <div class="flex justify-between items-center mb-3 text-xs font-mono text-[#a398a0]">
+                                    <span>REPOSITORY</span>
+                                    <span class="text-[#ff451a] font-bold">${repo.stargazers_count > 0 ? repo.stargazers_count + ' STARS' : 'PUBLIC'}</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="${repo.html_url}" target="_blank" class="flex-1 bg-[#ff451a] text-black font-bold font-mono text-xs uppercase py-2.5 rounded-full text-center hover:bg-white transition-all duration-300 block">
+                                        VIEW SOURCE →
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                `;
+
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // Project Filter Logic
+        document.addEventListener('click', (e) => {
+            const filterBtn = e.target.closest('[data-filter]');
+            if (filterBtn) {
+                const category = filterBtn.getAttribute('data-filter');
+                document.querySelectorAll('[data-filter]').forEach(b => {
+                    b.className = 'filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all';
+                });
+                filterBtn.className = 'filter-btn border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all';
+
+                if (category === 'ALL' || !allReposData.length) {
+                    renderProjectsGrid(allReposData);
+                } else {
+                    const filtered = allReposData.filter(repo => {
+                        const lang = (repo.language || '').toLowerCase();
+                        const name = (repo.name || '').toLowerCase();
+                        if (category === 'UI/UX') return name.includes('portfolio') || name.includes('ui') || name.includes('design');
+                        if (category === 'Frontend') return lang.includes('script') || lang.includes('html') || lang.includes('css');
+                        if (category === 'Creative Coding') return name.includes('kern') || name.includes('cook');
+                        return true;
+                    });
+                    renderProjectsGrid(filtered);
+                }
             }
         });
 
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-
-    // Attach click listeners to all data-target triggers
-    document.addEventListener('click', (e) => {
-        const trigger = e.target.closest('[data-target]');
-        if (trigger) {
-            e.preventDefault();
-            const targetId = trigger.getAttribute('data-target');
-            switchSection(targetId);
-
-            // Close mobile nav overlay if open
-            const mobileOverlay = document.getElementById('mobile-nav-overlay');
-            if (mobileOverlay && mobileOverlay.classList.contains('opacity-100')) {
-                mobileOverlay.classList.remove('opacity-100', 'pointer-events-auto');
-                mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
+        // 5. Article Database & Reader View
+        const blogDatabase = {
+            "article-1": {
+                tags: '<span class="bg-[#ff451a] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">UI/UX</span><span class="border border-[#f4f0eb]/10 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">4 MIN READ</span>',
+                date: "JUL 10, 2026",
+                title: "The Architecture of Brutalism in Modern SaaS",
+                content: `
+                    <p>When engineering interfaces for high-frequency operators, the standard 'clean' aesthetic often fails. It hides necessary data behind dropdowns and smooth animations that waste precious milliseconds. Brutalist design solves this.</p>
+                    <p>In my recent architecture for commercial gym software, I stripped away the fluff. We exposed raw data tables, utilized stark monochromatic contrast with high-visibility accent colors, and minimized padding to maximize data density. The result? Operators could process information 40% faster.</p>
+                    <p>Brutalism isn't about making things ugly; it's about unapologetic utility. It forces the engineer to focus entirely on state, layout, and hierarchy, stripping away the psychological safety net of soft shadows and rounded corners. It is the purest form of UI/UX engineering.</p>
+                `
+            },
+            "article-2": {
+                tags: '<span class="bg-[#54a0fe] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">FRONTEND</span><span class="border border-[#f4f0eb]/10 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">7 MIN READ</span>',
+                date: "JUN 28, 2026",
+                title: "State Management for Data-Dense Dashboards",
+                content: `
+                    <p>Building the full-stack property management system presented a unique challenge: rendering thousands of dynamic property states (occupied, vacant, maintenance required, rent overdue) without choking the browser's main thread.</p>
+                    <p>Relying on out-of-the-box Redux or Context API led to massive re-render cascades. The solution required a custom hook architecture leveraging atomic state patterns and highly memoized selectors. We broke the global state into granular, independent 'nodes'.</p>
+                    <p>By implementing a pub/sub model directly within the React layer, components only subscribed to the exact atomic slice they needed. When a rent payment came through the websocket, only the specific property card re-rendered, taking the interaction latency down to under 16ms (a perfect 60fps).</p>
+                `
+            },
+            "article-3": {
+                tags: '<span class="bg-[#f4f0eb] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">AI / GEMINI</span><span class="border border-[#f4f0eb]/10 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">5 MIN READ</span>',
+                date: "MAY 15, 2026",
+                title: "Building CookCan: Multi-modal Vision API Integration",
+                content: `
+                    <p>CookCan started as a simple hypothesis: Can we eliminate the friction of meal planning by just pointing a camera at a fridge? The answer is yes, but the execution requires extremely tight API orchestration.</p>
+                    <p>The magic happens on the frontend. While the Gemini API processes the image, the UI enters a 'scan state', using GSAP animations to mask the 2-3 second latency. Once the JSON payload hits the client, it dynamically hydrates the UI. It's a masterclass in blending AI power with seamless user experience.</p>
+                `
             }
-        }
-    });
+        };
 
-    const blogDatabase = {
-        "article-1": {
-            tags: '<span class="bg-primary text-on-primary px-2 py-0.5 font-label-caps text-label-caps uppercase">UI/UX</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">4 MIN READ</span>',
-            date: "JUL 10, 2026",
-            title: "The Architecture of Brutalism in Modern SaaS",
-            content: `
-                <p>When engineering interfaces for high-frequency operators, the standard 'clean' aesthetic often fails. It hides necessary data behind dropdowns and smooth animations that waste precious milliseconds. Brutalist design solves this.</p>
-                <p>In my recent architecture for commercial gym software, I stripped away the fluff. We exposed raw data tables, utilized stark monochromatic contrast with high-visibility accent colors, and minimized padding to maximize data density. The result? Operators could process information 40% faster.</p>
-                <p>Brutalism isn't about making things ugly; it's about unapologetic utility. It forces the engineer to focus entirely on state, layout, and hierarchy, stripping away the psychological safety net of soft shadows and rounded corners. It is the purest form of UI/UX engineering.</p>
-            `
-        },
-        "article-2": {
-            tags: '<span class="bg-secondary text-on-secondary px-2 py-0.5 font-label-caps text-label-caps uppercase">FRONTEND</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">7 MIN READ</span>',
-            date: "JUN 28, 2026",
-            title: "State Management for Data-Dense Dashboards",
-            content: `
-                <p>Building the full-stack property management system presented a unique challenge: rendering thousands of dynamic property states (occupied, vacant, maintenance required, rent overdue) without choking the browser's main thread.</p>
-                <p>Relying on out-of-the-box Redux or Context API led to massive re-render cascades. The solution required a custom hook architecture leveraging atomic state patterns and highly memoized selectors. We broke the global state into granular, independent 'nodes'.</p>
-                <p>By implementing a pub/sub model directly within the React layer, components only subscribed to the exact atomic slice they needed. When a rent payment came through the websocket, only the specific property card re-rendered, taking the interaction latency down to under 16ms (a perfect 60fps). This is what it takes to build truly fluid enterprise dashboards.</p>
-            `
-        },
-        "article-3": {
-            tags: '<span class="bg-on-surface text-surface px-2 py-0.5 font-label-caps text-label-caps uppercase">AI / GEMINI</span><span class="border border-surface-container-highest px-2 py-0.5 font-label-caps text-label-caps uppercase text-on-surface-variant">5 MIN READ</span>',
-            date: "MAY 15, 2026",
-            title: "Building CookCan: Multi-modal Vision API Integration",
-            content: `
-                <p>CookCan started as a simple hypothesis: Can we eliminate the friction of meal planning by just pointing a camera at a fridge? The answer is yes, but the execution requires extremely tight API orchestration.</p>
-                <p>The magic happens on the frontend. While the Gemini API processes the image, the UI enters a 'scan state', using GSAP animations to mask the 2-3 second latency. Once the JSON payload hits the client, it dynamically hydrates the UI. It's a masterclass in blending AI power with seamless user experience.</p>
-            `
-        }
-    };
-
-    // Blog Dynamic Logic
-    document.querySelectorAll('.read-article-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const articleId = e.currentTarget.getAttribute('data-article');
-            const data = blogDatabase[articleId];
-            
-            document.getElementById('article-tags').innerHTML = data.tags;
-            document.getElementById('article-date').innerText = data.date;
-            document.getElementById('article-title').innerText = data.title;
-            document.getElementById('article-content').innerHTML = data.content;
-
-            // Switch to view-article
-            views.forEach(v => v.classList.remove('active'));
-            const targetView = document.getElementById('view-article');
-            targetView.classList.add('active');
-            
-            gsap.fromTo(targetView.children, 
-                { y: 30, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }
-            );
-            lenis.scrollTo(0, { immediate: true });
+        document.addEventListener('click', (e) => {
+            const articleBtn = e.target.closest('[data-article]');
+            if (articleBtn) {
+                const articleId = articleBtn.getAttribute('data-article');
+                const articleData = blogDatabase[articleId];
+                if (articleData) {
+                    document.getElementById('article-tags').innerHTML = articleData.tags;
+                    document.getElementById('article-title').innerText = articleData.title;
+                    document.getElementById('article-date').innerText = articleData.date;
+                    document.getElementById('article-content').innerHTML = articleData.content;
+                    switchSection('view-article');
+                }
+            }
         });
-    });
 
-    document.getElementById('btn-back-blog').addEventListener('click', () => {
-        views.forEach(v => v.classList.remove('active'));
-        const targetView = document.getElementById('view-blog');
-        targetView.classList.add('active');
-        
-        gsap.fromTo(targetView.children, 
-            { y: 30, opacity: 0 }, 
-            { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }
-        );
-        lenis.scrollTo(0, { immediate: true });
-    });
-</script>
+        // 6. Web Audio Synthesized SFX Feedback
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+        function initAudio() { if (!audioCtx) audioCtx = new AudioCtx(); }
 
-<!-- Mobile Navigation Overlay (HUD) -->
-<div id="mobile-nav-overlay" class="fixed inset-0 bg-background/95 backdrop-blur-md z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300 md:hidden">
-    <button id="close-mobile-nav" class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors cursor-pointer p-4">
-        <span class="material-symbols-outlined text-[32px]">close</span>
-    </button>
-    <div class="flex flex-col gap-6 w-full max-w-xs text-center" id="mobile-nav-container">
-        <a data-target="view-home" class="mobile-nav-link text-on-surface hover:text-primary transition-all duration-150 font-headline-md text-3xl uppercase border-b border-surface-container-highest pb-4" href="#">HOME</a>
-        <a data-target="view-projects" class="mobile-nav-link text-on-surface-variant hover:text-primary transition-all duration-150 font-headline-md text-3xl uppercase border-b border-surface-container-highest pb-4" href="#">PROJECTS</a>
-        <a data-target="view-about" class="mobile-nav-link text-on-surface-variant hover:text-primary transition-all duration-150 font-headline-md text-3xl uppercase border-b border-surface-container-highest pb-4" href="#">ABOUT</a>
-        <a data-target="view-stack" class="mobile-nav-link text-on-surface-variant hover:text-primary transition-all duration-150 font-headline-md text-3xl uppercase border-b border-surface-container-highest pb-4" href="#">STACK</a>
-        <a data-target="view-blog" class="mobile-nav-link text-on-surface-variant hover:text-primary transition-all duration-150 font-headline-md text-3xl uppercase border-b border-surface-container-highest pb-4" href="#">BLOG</a>
-        <a data-target="view-mindmap" class="mobile-nav-link text-on-surface-variant hover:text-primary transition-all duration-150 font-headline-md text-3xl uppercase border-b border-surface-container-highest pb-4" href="#">MINDMAP</a>
-    </div>
-</div>
+        function playHoverSFX() {
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.04);
+                gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.04);
+            } catch(e) {}
+        }
 
+        function playClickSFX() {
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.08);
+            } catch(e) {}
+        }
 
-<!-- Three.js 3D Core Visual Initialization Script -->
-<script>
-(function() {
-    const container = document.getElementById('hero-3d-container');
-    if (!container) return;
-
-    const scene = new THREE.Scene();
-    const width = container.clientWidth || 400;
-    const height = container.clientHeight || 400;
-    const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
-    
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
-
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-    scene.add(ambientLight);
-    
-    const pointLight = new THREE.PointLight(0xff451a, 2.5, 100);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
-
-    const pointLight2 = new THREE.PointLight(0x8a1c6a, 2.0, 100);
-    pointLight2.position.set(-5, -5, -5);
-    scene.add(pointLight2);
-
-    // Geometric Group
-    const group = new THREE.Group();
-
-    // Outer Icosahedron Wireframe
-    const geometry = new THREE.IcosahedronGeometry(1.8, 0);
-    const material = new THREE.MeshPhongMaterial({ 
-        color: 0xff451a, 
-        wireframe: true,
-        transparent: true,
-        opacity: 0.65
-    });
-    const mesh = new THREE.Mesh(geometry, material);
-    group.add(mesh);
-
-    // Inner Glowing Core
-    const coreGeo = new THREE.SphereGeometry(0.85, 32, 32);
-    const coreMat = new THREE.MeshStandardMaterial({ 
-        color: 0xffffff, 
-        emissive: 0xff451a,
-        emissiveIntensity: 0.7,
-        roughness: 0.15,
-        metalness: 0.8,
-        transparent: true,
-        opacity: 0.9
-    });
-    const core = new THREE.Mesh(coreGeo, coreMat);
-    group.add(core);
-
-    scene.add(group);
-    camera.position.z = 4.8;
-
-    // Mouse Interaction
-    let mouseX = 0;
-    let mouseY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX - window.innerWidth / 2) * 0.0008;
-        mouseY = (e.clientY - window.innerHeight / 2) * 0.0008;
-    });
-
-    function animate(t) {
-        requestAnimationFrame(animate);
-        
-        group.rotation.x += 0.004 + (mouseY - group.rotation.x) * 0.03;
-        group.rotation.y += 0.008 + (mouseX - group.rotation.y) * 0.03;
-        
-        // Vertical floating motion
-        group.position.y = Math.sin(t * 0.0012) * 0.25;
-        
-        renderer.render(scene, camera);
-    }
-
-    window.addEventListener('resize', () => {
-        if (!container) return;
-        const w = container.clientWidth;
-        const h = container.clientHeight;
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h);
-    });
-
-    animate(0);
-})();
-</script>
-
-</body></html>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a, button, [data-target], [data-filter]').forEach(el => {
+                el.addEventListener('mouseenter', playHoverSFX);
+                el.addEventListener('click', playClickSFX);
+            });
+        });
+    </script>
+</body>
+</html>
