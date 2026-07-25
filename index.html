@@ -386,60 +386,247 @@
 
             <!-- 4. STACK VIEW -->
             <section id="view-stack" class="view-section py-6">
-                <div class="border-b border-[#f4f0eb]/10 pb-6">
-                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Tech Stack & Skills</h2>
-                    <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Tools, frameworks, and engineering capabilities.</p>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#f4f0eb]/10 pb-6 mb-8">
+                    <div>
+                        <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Tech Stack & Engineering Matrix</h2>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Frosted-glass architectural tiles detailing languages, frameworks, and system capabilities.</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-4 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider">
+                        <span>⚡ 12 CORE ENGINEERING TILES</span>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6">
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">TYPESCRIPT</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">LANGUAGE</span>
+                <!-- Rich Frosted-Glass Stack Tiles Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Tile 1: TypeScript -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#ff451a] hover:shadow-[0_0_25px_rgba(255,69,26,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">CORE LANGUAGE // 98% MASTERY</span>
+                                <span class="text-xs font-mono text-[#a398a0]">TS v5.x</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#ff451a] transition-colors">TypeScript</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Engineered strict type systems, custom generics, and enterprise-grade state interfaces for zero-runtime type errors across high-frequency SaaS applications.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Strict Types</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Generics</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">State Contracts</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">REACT / NEXT.JS</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">FRAMEWORK</span>
+
+                    <!-- Tile 2: React & Next.js -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#54a0fe] hover:shadow-[0_0_25px_rgba(84,160,254,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#54a0fe] font-bold uppercase tracking-widest bg-[#54a0fe]/15 px-2.5 py-1 rounded-full border border-[#54a0fe]/30">FRONTEND ARCHITECTURE // EXPERT</span>
+                                <span class="text-xs font-mono text-[#a398a0]">NEXT 15</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#54a0fe] transition-colors">React 19 & Next.js</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Architected high-density SPAs and server-rendered Next.js platforms utilizing server components, streaming SSR, atomic state selectors, and sub-16ms renders.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">App Router</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Streaming SSR</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Atomic Hooks</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">NODE / EXPRESS</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">BACKEND</span>
+
+                    <!-- Tile 3: Node.js & Microservices -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#ff451a] hover:shadow-[0_0_25px_rgba(255,69,26,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">BACKEND & TELEMETRY // SENIOR</span>
+                                <span class="text-xs font-mono text-[#a398a0]">NODE v22</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#ff451a] transition-colors">Node.js & Express</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Built scalable REST API servers, real-time WebSocket telemetry feeds, and microservice middleware pipelines capable of handling continuous live data streams.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">REST APIs</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">WebSockets</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Middleware</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">POSTGRESQL</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">DATABASE</span>
+
+                    <!-- Tile 4: Three.js & WebGL -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#ff451a] hover:shadow-[0_0_25px_rgba(255,69,26,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">3D GRAPHICS // ADVANCED</span>
+                                <span class="text-xs font-mono text-[#a398a0]">GLSL / WEBGL</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#ff451a] transition-colors">Three.js & GLSL Shaders</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Crafted custom GPU fragment shaders, 3D particle fields, and interactive WebGL background canvases optimized for 60FPS performance on mobile retina displays.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Fragment Shaders</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">3D Wireframes</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Mobile GPU Tuning</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">TAILWINDCSS</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">STYLING</span>
+
+                    <!-- Tile 5: TailwindCSS & Design Tokens -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#54a0fe] hover:shadow-[0_0_25px_rgba(84,160,254,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#54a0fe] font-bold uppercase tracking-widest bg-[#54a0fe]/15 px-2.5 py-1 rounded-full border border-[#54a0fe]/30">STYLING ENGINE // EXPERT</span>
+                                <span class="text-xs font-mono text-[#a398a0]">TAILWIND v3</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#54a0fe] transition-colors">TailwindCSS & Design Systems</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Developed modular Brutalist and Glassmorphic design tokens, custom utility plugins, and responsive CSS architectures for dark-mode enterprise SaaS platforms.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Design Tokens</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Glassmorphism</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Responsive Layouts</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">THREE.JS / WEBGL</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">3D & GRAPHICS</span>
+
+                    <!-- Tile 6: PostgreSQL & Database Schemas -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#ff451a] hover:shadow-[0_0_25px_rgba(255,69,26,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">DATABASE & PERSISTENCE // SENIOR</span>
+                                <span class="text-xs font-mono text-[#a398a0]">POSTGRES v16</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#ff451a] transition-colors">PostgreSQL & DB Architecture</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Designed relational database schemas, complex JSONB query indexes, and transaction pipelines optimized for data-heavy SaaS backends.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Relational Schemas</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">JSONB Indexing</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Query Tuning</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">GEMINI VISION API</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">AI INTEGRATION</span>
+
+                    <!-- Tile 7: Gemini Vision AI API -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#54a0fe] hover:shadow-[0_0_25px_rgba(84,160,254,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#54a0fe] font-bold uppercase tracking-widest bg-[#54a0fe]/15 px-2.5 py-1 rounded-full border border-[#54a0fe]/30">AI INTEGRATION // CUTTING-EDGE</span>
+                                <span class="text-xs font-mono text-[#a398a0]">GEMINI 1.5</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#54a0fe] transition-colors">Gemini Multi-Modal AI API</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Integrated multi-modal vision models into real-time web engines (e.g. CookCan), processing live camera feeds for instant structured JSON payload generation.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Multi-Modal Vision</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Prompt Engineering</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">JSON Hydration</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">GSAP / LENIS</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">MOTION & SCROLL</span>
+
+                    <!-- Tile 8: GSAP & Web Audio Synthesizer -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#ff451a] hover:shadow-[0_0_25px_rgba(255,69,26,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">MOTION & SOUND ENGINE // ADVANCED</span>
+                                <span class="text-xs font-mono text-[#a398a0]">GSAP 3</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#ff451a] transition-colors">GSAP & Web Audio Synthesizer</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Implemented staggered timeline animations, scroll-triggered GPU reveals, and zero-dependency Web Audio synthesizers for tactile UI pop feedback.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Stagger Timelines</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">ScrollTriggers</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Audio Oscillators</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">FIGMA / UI</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">PROTOTYPING</span>
+
+                    <!-- Tile 9: Figma & Brutalist UI/UX Prototyping -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#54a0fe] hover:shadow-[0_0_25px_rgba(84,160,254,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#54a0fe] font-bold uppercase tracking-widest bg-[#54a0fe]/15 px-2.5 py-1 rounded-full border border-[#54a0fe]/30">UI/UX & PRODUCT DESIGN // MASTER</span>
+                                <span class="text-xs font-mono text-[#a398a0]">FIGMA</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#54a0fe] transition-colors">Figma & Brutalist UI/UX</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Created high-fidelity interactive wireframes, component libraries, and brutalist typographic systems focusing on high data-density and operator UX efficiency.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">High-Density UI</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Design Systems</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Interactive Prototypes</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">GIT / GITHUB</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">VERSION CONTROL</span>
+
+                    <!-- Tile 10: Rust & Low-Level Systems -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#ff451a] hover:shadow-[0_0_25px_rgba(255,69,26,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">SYSTEMS ENGINE // INTERMEDIATE</span>
+                                <span class="text-xs font-mono text-[#a398a0]">RUST / C++</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#ff451a] transition-colors">Rust & Low-Level Systems</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Explored memory-safe low-level systems architectures (e.g. KERN Engine) for real-time telemetry monitoring, thread synchronization, and raw binary parsing.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Memory Safety</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Concurrency</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Binary Telemetry</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">VERCEL / CI-CD</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">DEPLOYMENT</span>
+
+                    <!-- Tile 11: Git / GitHub & DevOps -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#54a0fe] hover:shadow-[0_0_25px_rgba(84,160,254,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#54a0fe] font-bold uppercase tracking-widest bg-[#54a0fe]/15 px-2.5 py-1 rounded-full border border-[#54a0fe]/30">DEVOPS & WORKFLOWS // ADVANCED</span>
+                                <span class="text-xs font-mono text-[#a398a0]">GIT / GITHUB</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#54a0fe] transition-colors">Git, GitHub & CI/CD Pipelines</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Managed automated GitHub Actions deployment pipelines, Vercel deployments, semantic versioning, and feature-branch workflows for enterprise codebases.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">GitHub Actions</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Vercel CI/CD</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Semantic Release</span>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 flex flex-col items-center justify-center gap-2 hover:border-[#ff451a] hover:shadow-[0_0_15px_rgba(255,69,26,0.2)] transition-all">
-                        <span class="font-mono text-sm uppercase text-[#ff451a] font-bold">AGILE / SCRUM</span>
-                        <span class="font-mono text-[10px] text-[#a398a0]">METHODOLOGY</span>
+
+                    <!-- Tile 12: Agile Product Leadership -->
+                    <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/15 hover:border-[#ff451a] hover:shadow-[0_0_25px_rgba(255,69,26,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">PRODUCT ARCHITECTURE // LEAD</span>
+                                <span class="text-xs font-mono text-[#a398a0]">AGILE / SCRUM</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide group-hover:text-[#ff451a] transition-colors">Product Architecture & Leadership</h3>
+                            <p class="font-sans text-xs text-[#a398a0] mt-3 leading-relaxed">
+                                Bridged strategic business requirements with technical frontend architecture, leading product sprints, client communication, and code quality standards.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-5 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#f4f0eb]/80 uppercase">
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Sprint Leadership</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">Client Relations</span>
+                            <span class="bg-[#080609]/80 border border-[#f4f0eb]/10 px-2.5 py-1 rounded">SaaS Architecture</span>
+                        </div>
                     </div>
+
                 </div>
             </section>
 
