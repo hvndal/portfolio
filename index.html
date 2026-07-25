@@ -932,7 +932,10 @@
             const mindmapObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('active-scroll');
+                        if (!entry.target.classList.contains('active-scroll')) {
+                            entry.target.classList.add('active-scroll');
+                            if (typeof playJuicyPopSFX === 'function') playJuicyPopSFX(620);
+                        }
                     } else {
                         entry.target.classList.remove('active-scroll');
                     }
@@ -1216,53 +1219,45 @@
             document.addEventListener(evt, initAudio, { once: true, passive: true });
         });
 
-        function playHoverSFX() {
+        // Juicy Web Audio Pop Synthesizer
+        function playJuicyPopSFX(baseFreq = 540) {
             try {
                 initAudio();
                 if (isSfxMuted || !audioCtx || audioCtx.state !== 'running') return;
+                const now = audioCtx.currentTime;
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
+
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(520, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1040, audioCtx.currentTime + 0.04);
-                gain.gain.setValueAtTime(0.012, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
-                osc.connect(gain); gain.connect(audioCtx.destination);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.04);
+                osc.frequency.setValueAtTime(baseFreq, now);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 2.2, now + 0.015);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.35, now + 0.038);
+
+                gain.gain.setValueAtTime(0.045, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.038);
             } catch(e) {}
+        }
+
+        function playHoverSFX() {
+            playJuicyPopSFX(820);
         }
 
         function playClickSFX() {
-            try {
-                initAudio();
-                if (!audioCtx || audioCtx.state !== 'running') return;
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(180, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(45, audioCtx.currentTime + 0.07);
-                gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.07);
-                osc.connect(gain); gain.connect(audioCtx.destination);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.07);
-            } catch(e) {}
+            playJuicyPopSFX(480);
         }
 
         function playSectionSwitchSFX() {
-            try {
-                initAudio();
-                if (!audioCtx || audioCtx.state !== 'running') return;
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(260, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(520, audioCtx.currentTime + 0.12);
-                gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.12);
-                osc.connect(gain); gain.connect(audioCtx.destination);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.12);
-            } catch(e) {}
+            playJuicyPopSFX(360);
+            setTimeout(() => playJuicyPopSFX(640), 50);
         }
+
+        window.playJuicyPopSFX = playJuicyPopSFX;
 
         // Delegated SFX Event Listener
         document.addEventListener('mouseover', (e) => {
