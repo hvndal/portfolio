@@ -852,6 +852,59 @@
 
         
         
+        // 0. Global Mobile Nav, SFX, and Filter Helpers
+        let isSfxMuted = false;
+
+        function toggleSfxMute() {
+            isSfxMuted = !isSfxMuted;
+            const icon = document.getElementById('sfx-icon');
+            const label = document.getElementById('sfx-label');
+            if (icon) icon.innerText = isSfxMuted ? '🔇' : '🔊';
+            if (label) label.innerText = isSfxMuted ? 'SFX MUTED' : 'SFX ON';
+        }
+        window.toggleSfxMute = toggleSfxMute;
+
+        function toggleMobileNav(show) {
+            const overlay = document.getElementById('mobile-nav-overlay');
+            if (!overlay) return;
+            if (show) {
+                overlay.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+                overlay.classList.add('flex', 'opacity-100', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.classList.remove('flex', 'opacity-100', 'pointer-events-auto');
+                overlay.classList.add('hidden', 'opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+        }
+        window.toggleMobileNav = toggleMobileNav;
+
+        function filterProjects(tag) {
+            const grid = document.getElementById('projects-grid');
+            if (!grid) return;
+            const articles = grid.querySelectorAll('article');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            filterBtns.forEach(btn => {
+                const btnTag = btn.getAttribute('data-filter');
+                if (btnTag === tag) {
+                    btn.className = 'filter-btn border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer';
+                } else {
+                    btn.className = 'filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer';
+                }
+            });
+
+            articles.forEach(art => {
+                const tagsText = art.innerText.toUpperCase();
+                if (tag === 'ALL' || tagsText.includes(tag)) {
+                    art.style.display = 'flex';
+                } else {
+                    art.style.display = 'none';
+                }
+            });
+        }
+        window.filterProjects = filterProjects;
+
         // Global Section Switcher Function
         function switchSection(targetId) {
             if (!targetId) return;
