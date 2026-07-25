@@ -48,15 +48,30 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
         html, body {
             width: 100%;
-            min-h: 100%;
+            min-height: 100%;
             background-color: #080609;
             color: #f4f0eb;
             font-family: 'Hanken Grotesk', sans-serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: none;
+        }
+
+        /* GPU Acceleration for Mobile Smoothness */
+        .glass-panel, .view-section, header, #mobile-nav-overlay {
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         /* Clip Path Hexagon */
@@ -604,7 +619,7 @@
     </div>
 
     <!-- Mobile Navigation Overlay -->
-    <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/95 backdrop-blur-xl z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300">
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/98 backdrop-blur-2xl z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300 -translate-y-4 ease-[cubic-bezier(0.16,1,0.3,1)]">
         <button id="close-mobile-nav" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-2xl p-2 font-mono">✕</button>
         <div class="flex flex-col gap-6 text-center font-mono text-xl uppercase tracking-widest">
             <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">HOME</button>
@@ -619,14 +634,21 @@
     <!-- WebGL Background Shader Script -->
     <script>
         const canvas = document.getElementById('webgl-canvas');
-        const gl = canvas.getContext('webgl');
+        const gl = canvas.getContext('webgl', { powerPreference: "high-performance", alpha: true, antialias: false });
         let mouseX = 0.5;
         let mouseY = 0.5;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth;
-            mouseY = 1.0 - (e.clientY / window.innerHeight);
-        });
+        function updatePointer(x, y) {
+            mouseX = x / window.innerWidth;
+            mouseY = 1.0 - (y / window.innerHeight);
+        }
+
+        document.addEventListener('mousemove', (e) => updatePointer(e.clientX, e.clientY), { passive: true });
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
 
         if (gl) {
             const vsSource = `
@@ -639,7 +661,7 @@
             `;
 
             const fsSource = `
-                precision highp float;
+                precision mediump float;
                 uniform float u_time;
                 uniform vec2 u_resolution;
                 uniform vec2 u_mouse;
@@ -708,8 +730,9 @@
             const mouseLocation = gl.getUniformLocation(program, "u_mouse");
 
             function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+                const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+                canvas.width = window.innerWidth * dpr;
+                canvas.height = window.innerHeight * dpr;
                 gl.viewport(0, 0, canvas.width, canvas.height);
             }
             window.addEventListener('resize', resizeCanvas);
@@ -784,10 +807,14 @@
         let mouseX = 0;
         let mouseY = 0;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - window.innerWidth / 2) * 0.0008;
-            mouseY = (e.clientY - window.innerHeight / 2) * 0.0008;
-        });
+        function set3DPointer(x, y) {
+            mouseX = (x - window.innerWidth / 2) * 0.0008;
+            mouseY = (y - window.innerHeight / 2) * 0.0008;
+        }
+        document.addEventListener('mousemove', (e) => set3DPointer(e.clientX, e.clientY), { passive: true });
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) set3DPointer(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
 
         function animate(t) {
             requestAnimationFrame(animate);
@@ -815,7 +842,12 @@
         // 1. Lenis Smooth Scroll
         let lenis;
         try {
-            lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+            lenis = new Lenis({ 
+                duration: 1.2, 
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothTouch: true,
+                touchMultiplier: 1.5
+            });
             function raf(time) {
                 lenis.raf(time);
                 requestAnimationFrame(raf);
