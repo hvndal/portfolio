@@ -131,8 +131,8 @@
         <header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 bg-[#080609]/85 backdrop-blur-md border-b border-[#f4f0eb]/10">
             <!-- Logo -->
             <div class="flex items-center gap-3 cursor-pointer" onclick="switchSection('view-home')">
-                <div class="w-9 h-9 border border-[#ff451a] flex items-center justify-center font-bold text-[#ff451a] text-sm font-mono clip-hexagon bg-[#ff451a]/10 hover:bg-[#ff451a] hover:text-black transition-all duration-300">
-                    H
+                <div class="w-10 h-10 border-2 border-[#ff451a] rounded-full overflow-hidden relative shadow-[0_0_12px_rgba(255,69,26,0.5)] group transition-all duration-300">
+                    <img src="assets/avatar.jpg" alt="Herman Hundal Avatar" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"/>
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-xs tracking-widest uppercase text-[#f4f0eb]">HERMAN HUNDAL</span>
@@ -199,7 +199,7 @@
                         <span class="text-[#ff451a] text-sm">⊕</span>
                         <div>
                             <p>AVAILABLE FOR REMOTE WORK</p>
-                            <p class="text-[#f4f0eb]/60">BASED IN MOHALI, INDIA</p>
+                            <p class="text-[#f4f0eb]/60">AVAILABLE WORLDWIDE (REMOTE)</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
@@ -252,7 +252,17 @@
                         </p>
                     </div>
 
-                    <div class="md:col-span-5 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between">
+                    <div class="md:col-span-5 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between relative overflow-hidden">
+                        <!-- Avatar Portrait Badge -->
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-[#f4f0eb]/10">
+                            <div class="w-20 h-20 rounded-2xl border-2 border-[#ff451a] overflow-hidden shadow-[0_0_20px_rgba(255,69,26,0.3)] flex-shrink-0">
+                                <img src="assets/avatar.jpg" alt="Herman Hundal PFP" class="w-full h-full object-cover"/>
+                            </div>
+                            <div>
+                                <h4 class="font-headline-md text-lg text-[#f4f0eb] uppercase">HERMAN HUNDAL</h4>
+                                <span class="font-mono text-[10px] text-[#ff451a] uppercase font-bold tracking-wider">GLOBAL UI/UX & FRONTEND ARCHITECT</span>
+                            </div>
+                        </div>
                         <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">DEPLOYMENT LOG</h3>
                         <ul class="flex flex-col gap-4 font-mono text-xs uppercase">
                             <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
@@ -274,7 +284,7 @@
                         </ul>
                         <div class="mt-8 pt-4 border-t border-[#f4f0eb]/10 flex justify-between items-center text-xs font-mono text-[#a398a0]">
                             <span>EST. 2024</span>
-                            <span class="text-[#ff451a]">MOHALI, INDIA</span>
+                            <span class="text-[#ff451a]">WORLDWIDE / REMOTE</span>
                         </div>
                     </div>
                 </div>
@@ -559,7 +569,7 @@
             <div class="flex items-center gap-6 uppercase mt-2 md:mt-0">
                 <span class="text-[#ff451a] font-bold">AVAILABLE FOR HIRE</span>
                 <span>GLOBAL REACH</span>
-                <span>MOHALI, INDIA</span>
+                <span>WORLDWIDE / REMOTE</span>
             </div>
         </footer>
 
