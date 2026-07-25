@@ -1111,21 +1111,34 @@
             }
         });
 
-        // 6. Web Audio Synthesized SFX Feedback
+        // 6. Rich Web Audio Synthesized Cyber SFX System
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         let audioCtx = null;
-        function initAudio() { if (!audioCtx) audioCtx = new AudioCtx(); }
+
+        function initAudio() {
+            if (!audioCtx) {
+                try { audioCtx = new AudioCtx(); } catch(e) {}
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Auto-unlock Web Audio on first gesture
+        ['pointerdown', 'touchstart', 'keydown'].forEach(evt => {
+            document.addEventListener(evt, initAudio, { once: true, passive: true });
+        });
 
         function playHoverSFX() {
             try {
                 initAudio();
-                if (audioCtx.state === 'suspended') audioCtx.resume();
+                if (!audioCtx || audioCtx.state !== 'running') return;
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.04);
-                gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(520, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1040, audioCtx.currentTime + 0.04);
+                gain.gain.setValueAtTime(0.012, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
                 osc.connect(gain); gain.connect(audioCtx.destination);
                 osc.start(); osc.stop(audioCtx.currentTime + 0.04);
@@ -1135,24 +1148,44 @@
         function playClickSFX() {
             try {
                 initAudio();
-                if (audioCtx.state === 'suspended') audioCtx.resume();
+                if (!audioCtx || audioCtx.state !== 'running') return;
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 osc.type = 'triangle';
-                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.08);
-                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+                osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(45, audioCtx.currentTime + 0.07);
+                gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.07);
                 osc.connect(gain); gain.connect(audioCtx.destination);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.08);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.07);
             } catch(e) {}
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('a, button, [data-target], [data-filter]').forEach(el => {
-                el.addEventListener('mouseenter', playHoverSFX);
-                el.addEventListener('click', playClickSFX);
-            });
+        function playSectionSwitchSFX() {
+            try {
+                initAudio();
+                if (!audioCtx || audioCtx.state !== 'running') return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(260, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(520, audioCtx.currentTime + 0.12);
+                gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.12);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.12);
+            } catch(e) {}
+        }
+
+        // Delegated SFX Event Listener
+        document.addEventListener('mouseover', (e) => {
+            const el = e.target.closest('a, button, [data-target], [data-filter], .glass-panel, .mindmap-deck');
+            if (el) playHoverSFX();
+        }, { passive: true });
+
+        document.addEventListener('click', (e) => {
+            const el = e.target.closest('a, button, [data-target], [data-filter]');
+            if (el) playClickSFX();
         });
     </script>
 </body>
