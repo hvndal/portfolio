@@ -135,6 +135,22 @@
             opacity: 1 !important;
         }
 
+    
+        /* Mindmap Mobile & Scroll Auto-Expansion Styles */
+        .mindmap-deck.active-scroll img:nth-child(1) {
+            transform: rotate(-10deg) translateX(-20px) scale(1.06) !important;
+        }
+        .mindmap-deck.active-scroll img:nth-child(2) {
+            transform: rotate(10deg) translateX(20px) scale(1.06) !important;
+        }
+        .mindmap-deck.active-scroll img:nth-child(3) {
+            transform: translateY(-24px) scale(1.1) !important;
+            box-shadow: 0 0 35px rgba(255, 69, 26, 0.7) !important;
+        }
+        .mindmap-deck.active-scroll .glass-panel {
+            border-color: rgba(255, 69, 26, 0.6) !important;
+            box-shadow: 0 0 25px rgba(255, 69, 26, 0.25) !important;
+        }
     </style>
 </head>
 <body class="bg-[#080609] text-[#f4f0eb] antialiased min-h-screen flex flex-col selection:bg-[#ff451a] selection:text-black">
@@ -511,12 +527,12 @@
 
                     <!-- Deck 1: Newspaper Brutalism -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="newspaper">
-                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                        <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
                             <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
                             <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
                             <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
-                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                        <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Newspaper Brutalism</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">BRUTALISM</p>
                             <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
@@ -527,12 +543,12 @@
 
                     <!-- Deck 2: Acubi Y2K -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="acubi">
-                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                        <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
                             <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
                             <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
                             <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
-                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                        <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Acubi Y2K Minimalism</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">MINIMALISM</p>
                             <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
@@ -543,12 +559,12 @@
 
                     <!-- Deck 3: Bauhausian Geometry -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="bauhaus">
-                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                        <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
                             <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
                             <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
                             <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
-                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                        <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Bauhausian Geometry</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">GEOMETRY</p>
                             <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
@@ -559,12 +575,12 @@
 
                     <!-- Deck 4: Showa Retroism -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="showa">
-                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                        <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
                             <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
                             <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
                             <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
-                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                        <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Showa Retroism</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">RETRO JAPAN</p>
                             <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
@@ -575,12 +591,12 @@
 
                     <!-- Deck 5: Vintage Anime -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="anime">
-                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                        <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
                             <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
                             <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
                             <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
-                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                        <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Vintage 90s Anime</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">CYBER ANIMATION</p>
                             <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
@@ -591,12 +607,12 @@
 
                     <!-- Deck 6: Solarpunk Tech Greenery -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="solarpunk">
-                        <div class="relative w-36 md:w-48 aspect-[3/4] mb-4">
+                        <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
                             <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
                             <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-[#f4f0eb]/10 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
                             <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
-                        <div class="text-center w-full max-w-[320px] glass-panel p-4 rounded-xl border border-[#f4f0eb]/10">
+                        <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-[#f4f0eb]/10 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Solarpunk / Tech Greenery</h4>
                             <p class="font-mono text-[10px] uppercase tracking-widest text-[#a398a0] mt-1">ECO TECH</p>
                             <p class="font-sans text-xs text-[#a398a0] leading-relaxed mt-3 border-t border-[#f4f0eb]/10 pt-3">
@@ -904,6 +920,29 @@
             });
         }
         window.filterProjects = filterProjects;
+
+        // Automatic Mobile & Scroll Expansion Observer for Mindmap Decks
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -15% 0px',
+                threshold: 0.35
+            };
+
+            const mindmapObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active-scroll');
+                    } else {
+                        entry.target.classList.remove('active-scroll');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.mindmap-deck').forEach(deck => {
+                mindmapObserver.observe(deck);
+            });
+        });
 
         // Global Section Switcher Function
         function switchSection(targetId) {
