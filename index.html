@@ -1334,8 +1334,8 @@
             document.addEventListener(evt, initAudio, { once: true, passive: true });
         });
 
-        // Juicy Web Audio Pop Synthesizer
-        function playJuicyPopSFX(baseFreq = 540) {
+        // Clean, Subtle Single Audio Pop Synthesizer
+        function playSinglePopSFX(baseFreq = 420) {
             try {
                 initAudio();
                 if (isSfxMuted || !audioCtx || audioCtx.state !== 'running') return;
@@ -1345,41 +1345,31 @@
 
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(baseFreq, now);
-                osc.frequency.exponentialRampToValueAtTime(baseFreq * 2.2, now + 0.015);
-                osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.35, now + 0.038);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.4, now + 0.025);
 
-                gain.gain.setValueAtTime(0.045, now);
-                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
+                gain.gain.setValueAtTime(0.022, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
 
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
 
                 osc.start(now);
-                osc.stop(now + 0.038);
+                osc.stop(now + 0.025);
             } catch(e) {}
         }
 
-        function playHoverSFX() {
-            playJuicyPopSFX(820);
-        }
-
         function playClickSFX() {
-            playJuicyPopSFX(480);
+            playSinglePopSFX(450);
         }
 
         function playSectionSwitchSFX() {
-            playJuicyPopSFX(360);
-            setTimeout(() => playJuicyPopSFX(640), 50);
+            playSinglePopSFX(380);
         }
 
-        window.playJuicyPopSFX = playJuicyPopSFX;
+        window.playSinglePopSFX = playSinglePopSFX;
+        window.playJuicyPopSFX = playSinglePopSFX;
 
-        // Delegated SFX Event Listener
-        document.addEventListener('mouseover', (e) => {
-            const el = e.target.closest('a, button, [data-target], [data-filter], .glass-panel, .mindmap-deck');
-            if (el) playHoverSFX();
-        }, { passive: true });
-
+        // Delegated SFX Event Listener for Clean Click Pops Only
         document.addEventListener('click', (e) => {
             const el = e.target.closest('a, button, [data-target], [data-filter]');
             if (el) playClickSFX();
