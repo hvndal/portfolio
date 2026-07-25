@@ -182,7 +182,7 @@
                 <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">STACK</button>
                 <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">BLOG</button>
                 <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">MINDMAP</button>
-                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ACTIVITY</button>
+                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">GITHUB ACTIVITY</button>
             </nav>
 
             <!-- Action Button & Mobile Toggle -->
@@ -283,28 +283,47 @@
 
             <!-- 3. ABOUT VIEW -->
             <section id="view-about" class="view-section py-6">
-                <div class="border-b border-[#f4f0eb]/10 pb-6">
-                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Herman Hundal</h2>
-                    <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Biography & System Background</p>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#f4f0eb]/10 pb-6 mb-8">
+                    <div>
+                        <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Herman Hundal</h2>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">UI/UX Designer & Front-End Web Developer // Professional Background</p>
+                    </div>
+                    <div class="flex items-center gap-3 bg-[#54a0fe]/15 border border-[#54a0fe]/30 px-4 py-2 rounded-full font-mono text-xs font-bold text-[#54a0fe] uppercase tracking-wider">
+                        <span>🌐 INTERNATIONAL REMOTE</span>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 my-6">
-                    <div class="md:col-span-7 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-center">
-                        <h1 class="font-headline-lg text-4xl md:text-6xl text-[#f4f0eb] mb-4 uppercase leading-none">
-                            STRUCTURED <span class="text-[#ff451a]">CHAOS</span>
-                        </h1>
-                        <div class="w-16 h-1 bg-[#ff451a] mb-6"></div>
-                        <p class="font-sans text-base md:text-lg text-[#a398a0] leading-relaxed mb-6">
-                            I operate at the intersection of industrial precision and organic warmth. Combining Bauhaus logic with Nordic tactility and maximalist layering to build interfaces that feel engineered, not just drawn.
-                        </p>
-                        <p class="font-sans text-sm md:text-base text-[#a398a0] leading-relaxed">
-                            Currently developing <strong class="text-[#ff451a]">CookCan</strong>—an AI-powered SaaS application integrated with the Gemini vision API for real-time pantry inventory analysis and recipe generation. My work spans high-traffic commercial platforms, real-time property management dashboards, and gym digital infrastructure.
-                        </p>
+                <!-- Main Profile Hero Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
+                    <!-- Left Column: Biography & Dual Discipline -->
+                    <div class="md:col-span-7 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between">
+                        <div>
+                            <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-3 py-1 rounded-full border border-[#ff451a]/30 inline-block mb-4">PROFILE PHILOSOPHY</span>
+                            <h1 class="font-headline-lg text-4xl md:text-5xl text-[#f4f0eb] mb-4 uppercase leading-tight">
+                                PSYCHOLOGY-INFORMED <span class="text-[#ff451a]">UI/UX & FRONTEND ARCHITECTURE</span>
+                            </h1>
+                            <div class="w-16 h-1 bg-[#ff451a] mb-6"></div>
+                            <p class="font-sans text-base text-[#a398a0] leading-relaxed mb-4">
+                                I take web products from business requirements and information architecture through interface design, responsive front-end implementation, Git/GitHub workflows, and Vercel deployment.
+                            </p>
+                            <p class="font-sans text-sm text-[#a398a0] leading-relaxed mb-4">
+                                My background spans <strong class="text-[#f4f0eb]">Psychology (Trinity Western University, BC, Canada)</strong> and <strong class="text-[#f4f0eb]">Business Administration & Marketing (BBA)</strong>. Psychology shapes how I analyze human behavior, attention, information processing, and visual hierarchy; Marketing provides practical understanding of audience positioning, conversion calls to action, and commercial goals.
+                            </p>
+                        </div>
+                        <div class="border-t border-[#f4f0eb]/10 pt-4 mt-6 flex flex-wrap gap-4 font-mono text-xs text-[#a398a0]">
+                            <a href="mailto:harmanify@protonmail.com" class="text-[#ff451a] font-bold hover:underline flex items-center gap-1.5">
+                                ✉ harmanify@protonmail.com
+                            </a>
+                            <a href="tel:+19785961431" class="text-[#54a0fe] font-bold hover:underline flex items-center gap-1.5">
+                                📞 US +1 978 596 1431
+                            </a>
+                        </div>
                     </div>
 
+                    <!-- Right Column: Interactive Profile Avatar & Deployment Log -->
                     <div class="md:col-span-5 glass-panel p-8 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between relative overflow-hidden group">
                         <!-- Interactive Hover Avatar Card -->
-                        <div class="relative w-full p-4 glass-panel rounded-xl border border-[#f4f0eb]/10 hover:border-[#ff451a] transition-all duration-500 overflow-hidden cursor-pointer mb-6 group/avatar">
+                        <div class="relative w-full p-4 glass-panel rounded-xl border border-[#f4f0eb]/10 hover:border-[#ff451a] transition-all duration-500 overflow-hidden cursor-pointer mb-6 group/avatar shadow-lg">
                             <div class="flex items-center gap-4 relative z-10">
                                 <div class="w-20 h-20 rounded-2xl border-2 border-[#ff451a] overflow-hidden shadow-[0_0_20px_rgba(255,69,26,0.4)] flex-shrink-0 relative">
                                     <img src="assets/avatar.jpg" alt="Herman Hundal Raw Photo" class="w-full h-full object-cover group-hover/avatar:scale-115 transition-transform duration-500"/>
@@ -312,72 +331,148 @@
                                 </div>
                                 <div class="flex flex-col">
                                     <h4 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide group-hover/avatar:text-[#ff451a] transition-colors">HERMAN HUNDAL</h4>
-                                    <span class="font-mono text-[10px] text-[#ff451a] uppercase font-bold tracking-wider mt-0.5">UI/UX UNICORN & ARCHITECT</span>
+                                    <span class="font-mono text-[10px] text-[#ff451a] uppercase font-bold tracking-wider mt-0.5">UI/UX UNICORN & FRONTEND DEVELOPER</span>
                                     <div class="flex items-center gap-2 mt-2">
                                         <span class="w-2 h-2 rounded-full bg-[#ff451a] animate-pulse"></span>
-                                        <span class="font-mono text-[9px] text-[#a398a0] uppercase tracking-widest">HOVER FOR BIO POP UP</span>
+                                        <span class="font-mono text-[9px] text-[#a398a0] uppercase tracking-widest">HOVER FOR PROFILE DETAILS</span>
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- Hover-Reveal Popover Bio Drawer -->
                             <div class="max-h-0 group-hover/avatar:max-h-60 opacity-0 group-hover/avatar:opacity-100 transition-all duration-500 ease-in-out overflow-hidden border-t border-[#f4f0eb]/10 mt-4 pt-4 text-xs font-mono text-[#a398a0] space-y-2">
-                                <p class="text-[#f4f0eb]"><strong class="text-[#ff451a]">FOCUS:</strong> High-density brutalist UI/UX, real-time React architectures & AI integrations.</p>
-                                <p><strong class="text-[#ff451a]">CURRENT:</strong> Architecting CookCan AI Vision SaaS & enterprise systems.</p>
-                                <p><strong class="text-[#ff451a]">REACH:</strong> International Remote Operator (US & Global).</p>
+                                <p class="text-[#f4f0eb]"><strong class="text-[#ff451a]">LOCATION:</strong> International Remote (US & Worldwide)</p>
+                                <p><strong class="text-[#ff451a]">SPECIALTY:</strong> Information Architecture, React/TypeScript, Mobile UI</p>
+                                <p><strong class="text-[#ff451a]">LANGUAGES:</strong> English, French (DELF), Punjabi, Hindi, Spanish</p>
                             </div>
                         </div>
-                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">DEPLOYMENT LOG</h3>
-                        <ul class="flex flex-col gap-4 font-mono text-xs uppercase">
-                            <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
-                                <span class="text-[#ff451a] font-bold">IN DEV</span> 
-                                <span class="text-[#f4f0eb]">COOKCAN SAAS (AI VISION API)</span>
+
+                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">DEPLOYMENT & PRODUCT LOG</h3>
+                        <ul class="flex flex-col gap-3 font-mono text-xs uppercase">
+                            <li class="border-b border-[#f4f0eb]/10 pb-2.5 flex justify-between items-center">
+                                <span class="text-[#ff451a] font-bold">SHIPPED</span> 
+                                <span class="text-[#f4f0eb]">WASTE UNIVERSE (HARVARD, MA)</span>
                             </li>
-                            <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
-                                <span class="text-[#ff451a] font-bold">IN DEV</span> 
-                                <span class="text-[#f4f0eb]">RENTCAN (WASTE MANAGEMENT)</span>
+                            <li class="border-b border-[#f4f0eb]/10 pb-2.5 flex justify-between items-center">
+                                <span class="text-[#ff451a] font-bold">SHIPPED</span> 
+                                <span class="text-[#f4f0eb]">FITWAY GYM (100,000+ MEMBERS)</span>
                             </li>
-                            <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
-                                <span class="text-[#a398a0]">SHIPPED</span> 
-                                <span class="text-[#f4f0eb]">PROPERTY MANAGEMENT SYSTEM</span>
+                            <li class="border-b border-[#f4f0eb]/10 pb-2.5 flex justify-between items-center">
+                                <span class="text-[#54a0fe] font-bold">IN DEV</span> 
+                                <span class="text-[#f4f0eb]">RENTCAN.IN (PROPERTY SAAS)</span>
                             </li>
-                            <li class="border-b border-[#f4f0eb]/10 pb-3 flex justify-between">
-                                <span class="text-[#a398a0]">SHIPPED</span> 
-                                <span class="text-[#f4f0eb]">COMMERCIAL GYM INFRASTRUCTURE</span>
+                            <li class="border-b border-[#f4f0eb]/10 pb-2.5 flex justify-between items-center">
+                                <span class="text-[#54a0fe] font-bold">IN DEV</span> 
+                                <span class="text-[#f4f0eb]">COOKCAN (AI VISION DISCOVERY)</span>
                             </li>
                         </ul>
-                        <div class="mt-8 pt-4 border-t border-[#f4f0eb]/10 flex justify-between items-center text-xs font-mono text-[#a398a0]">
-                            <span>EST. 2024</span>
-                            <span class="text-[#ff451a]">WORLDWIDE / REMOTE</span>
-                        </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                <!-- Professional Experience & Work History Grid -->
+                <div class="mb-8">
+                    <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wider mb-6 flex items-center gap-2">
+                        <span class="text-[#ff451a]">💼</span> PROFESSIONAL EXPERIENCE & CAREER HISTORY
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- Role 1: HermanCan -->
+                        <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10 hover:border-[#ff451a] transition-all">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-headline-md text-xl text-[#f4f0eb] uppercase">HermanCan / Freelance Web Developer & UI/UX Designer</h4>
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">AUG 2025 – PRESENT</span>
+                            </div>
+                            <p class="font-mono text-xs text-[#54a0fe] uppercase mb-4">INTERNATIONAL REMOTE</p>
+                            <ul class="font-sans text-xs text-[#a398a0] space-y-2 leading-relaxed list-disc list-inside">
+                                <li>Design, build, and deploy complete responsive web applications across information architecture, interface design, front-end implementation, and Vercel workflows.</li>
+                                <li>Develop with React, TypeScript, JavaScript, Tailwind CSS, Supabase APIs, and Git/GitHub.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 2: RentCan.in Founder -->
+                        <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10 hover:border-[#54a0fe] transition-all">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-headline-md text-xl text-[#f4f0eb] uppercase">RentCan.in / Founder & Product Designer</h4>
+                                <span class="font-mono text-[10px] text-[#54a0fe] font-bold bg-[#54a0fe]/15 px-2.5 py-1 rounded-full border border-[#54a0fe]/30">MAY 2026 – PRESENT</span>
+                            </div>
+                            <p class="font-mono text-xs text-[#ff451a] uppercase mb-4">IN DEVELOPMENT · PROPERTY SAAS</p>
+                            <ul class="font-sans text-xs text-[#a398a0] space-y-2 leading-relaxed list-disc list-inside">
+                                <li>Founded and designed a role-based property management interface for landlords and tenants covering rent tracking, maintenance, inspections, and documents.</li>
+                                <li>Mapped operational processes into task-oriented dashboard structures using React/Expo and Supabase.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 3: Waste Universe -->
+                        <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10 hover:border-[#ff451a] transition-all">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-headline-md text-xl text-[#f4f0eb] uppercase">Waste Universe / Client Relations & Web Architecture</h4>
+                                <span class="font-mono text-[10px] text-[#ff451a] font-bold bg-[#ff451a]/15 px-2.5 py-1 rounded-full border border-[#ff451a]/30">JAN 2026 – PRESENT</span>
+                            </div>
+                            <p class="font-mono text-xs text-[#54a0fe] uppercase mb-4">HARVARD, MASSACHUSETTS / REMOTE</p>
+                            <ul class="font-sans text-xs text-[#a398a0] space-y-2 leading-relaxed list-disc list-inside">
+                                <li>Designed and built the complete production website for a US waste-management company serving Massachusetts & Rhode Island.</li>
+                                <li>Supported sales outreach, client relations, and commercial positioning in a North American business context.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 4: FitWay Gym -->
+                        <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10 hover:border-[#54a0fe] transition-all">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-headline-md text-xl text-[#f4f0eb] uppercase">FitWay Gym / Fitness Digital Experience</h4>
+                                <span class="font-mono text-[10px] text-[#54a0fe] font-bold bg-[#54a0fe]/15 px-2.5 py-1 rounded-full border border-[#54a0fe]/30">SHIPPED PROJECT</span>
+                            </div>
+                            <p class="font-mono text-xs text-[#ff451a] uppercase mb-4">COMMERCIAL GYM CHAIN · 100,000+ MEMBERS</p>
+                            <ul class="font-sans text-xs text-[#a398a0] space-y-2 leading-relaxed list-disc list-inside">
+                                <li>Designed website architecture for an established multi-location gym chain serving 100,000+ members with high-energy visual direction.</li>
+                                <li>Focused on bold typography, responsive composition, visual hierarchy, and membership-focused calls to action.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Education & Multilingual Matrix -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Academic Education Card -->
                     <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10">
-                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">OPERATIONAL REACH</h3>
+                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">ACADEMIC BACKGROUND</h3>
                         <div class="flex flex-col gap-4 text-xs font-mono">
                             <div class="border-l-2 border-[#ff451a] pl-3">
-                                <span class="text-[#f4f0eb] uppercase block mb-1 font-bold">GLOBAL CLIENTELE</span>
-                                <p class="text-[#a398a0]">Managing frontend architectures for international stakeholders across US and international enterprise clients.</p>
+                                <span class="text-[#f4f0eb] uppercase block mb-1 font-bold">BACHELOR OF BUSINESS ADMINISTRATION (BBA)</span>
+                                <p class="text-[#54a0fe] font-bold">CU UNIVERSITY — MARKETING SPECIALIZATION</p>
+                                <p class="text-[#a398a0] mt-1">Focus on audience positioning, customer communication, brand presentation, and commercial goals in digital products.</p>
                             </div>
-                            <div class="border-l-2 border-[#ff451a] pl-3">
-                                <span class="text-[#f4f0eb] uppercase block mb-1 font-bold">CLIENT RELATIONS</span>
-                                <p class="text-[#a398a0]">Bridging technical engineering execution with seamless business communication.</p>
+                            <div class="border-l-2 border-[#54a0fe] pl-3">
+                                <span class="text-[#f4f0eb] uppercase block mb-1 font-bold">PSYCHOLOGY & FRENCH STUDIES</span>
+                                <p class="text-[#54a0fe] font-bold">TRINITY WESTERN UNIVERSITY — LANGLEY, BC, CANADA</p>
+                                <p class="text-[#a398a0] mt-1">Studied cognitive psychology and human behavior to inform visual attention, navigation, and interface interaction design.</p>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Multilingual Matrix Card -->
                     <div class="glass-panel p-6 rounded-2xl border border-[#f4f0eb]/10">
-                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">LANGUAGES</h3>
-                        <ul class="flex flex-col gap-4 font-mono text-xs uppercase">
+                        <h3 class="font-mono text-xs text-[#ff451a] uppercase tracking-widest mb-4">MULTILINGUAL PROFICIENCY</h3>
+                        <ul class="flex flex-col gap-3 font-mono text-xs uppercase">
                             <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
-                                <span class="text-[#a398a0]">ENGLISH (FLUENT)</span>
-                                <div class="flex gap-1"><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div></div>
+                                <span class="text-[#f4f0eb]">ENGLISH</span>
+                                <span class="text-[#ff451a] font-bold">NATIVE / BILINGUAL</span>
                             </li>
                             <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
-                                <span class="text-[#a398a0]">FRENCH (FLUENT)</span>
-                                <div class="flex gap-1"><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div><div class="w-2 h-4 bg-[#ff451a]"></div></div>
+                                <span class="text-[#f4f0eb]">FRENCH</span>
+                                <span class="text-[#54a0fe] font-bold">FULL PROFESSIONAL (DELF A1–B2)</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
+                                <span class="text-[#f4f0eb]">PUNJABI</span>
+                                <span class="text-[#a398a0]">NATIVE / BILINGUAL</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
+                                <span class="text-[#f4f0eb]">HINDI</span>
+                                <span class="text-[#a398a0]">NATIVE / BILINGUAL</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-[#f4f0eb]/10 pb-2">
+                                <span class="text-[#f4f0eb]">SPANISH</span>
+                                <span class="text-[#a398a0]">PROFESSIONAL WORKING</span>
                             </li>
                         </ul>
                     </div>
@@ -857,7 +952,7 @@
             <section id="view-activity" class="view-section py-6">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#f4f0eb]/10 pb-6 mb-8">
                     <div>
-                        <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Live Activity & Telemetry</h2>
+                        <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">GitHub Activity & Telemetry</h2>
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Real-time public commit feeds, contribution heatmaps, and GitHub telemetry.</p>
                     </div>
                     <div class="flex items-center gap-3 bg-[#ff451a]/10 border border-[#ff451a]/30 px-4 py-2 rounded-full">
@@ -868,22 +963,27 @@
 
                 <!-- Stat Badges Row -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <div class="glass-panel p-5 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between">
+                    <div class="glass-panel p-5 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between hover:border-[#ff451a] transition-all">
                         <span class="font-mono text-[10px] text-[#a398a0] uppercase tracking-widest">GITHUB DEVELOPER</span>
-                        <p class="font-headline-md text-2xl text-[#f4f0eb] mt-1 font-bold">@hvndal</p>
-                        <span class="text-xs font-mono text-[#ff451a] mt-2">HERMAN HUNDAL</span>
+                        <div class="flex items-center gap-3 mt-2">
+                            <img id="github-user-avatar" src="https://github.com/hvndal.png" alt="hvndal GitHub Avatar" class="w-10 h-10 rounded-full border border-[#ff451a]"/>
+                            <div>
+                                <p class="font-headline-md text-xl text-[#f4f0eb] font-bold">@hvndal</p>
+                                <span class="text-[10px] font-mono text-[#ff451a] font-bold uppercase">HERMAN HUNDAL</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between">
+                    <div class="glass-panel p-5 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between hover:border-[#54a0fe] transition-all">
                         <span class="font-mono text-[10px] text-[#a398a0] uppercase tracking-widest">PUBLIC REPOSITORIES</span>
                         <p id="github-repo-count" class="font-headline-md text-2xl text-[#f4f0eb] mt-1 font-bold">-- REPOS</p>
-                        <span class="text-xs font-mono text-[#54a0fe] mt-2">OPEN SOURCE PORTFOLIO</span>
+                        <span id="github-followers-count" class="text-xs font-mono text-[#54a0fe] mt-2">FETCHING PROFILE STATS...</span>
                     </div>
-                    <div class="glass-panel p-5 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between">
+                    <div class="glass-panel p-5 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between hover:border-[#ff451a] transition-all">
                         <span class="font-mono text-[10px] text-[#a398a0] uppercase tracking-widest">PRIMARY TECH STACK</span>
                         <p class="font-headline-md text-2xl text-[#f4f0eb] mt-1 font-bold">TS / REACT / RUST</p>
-                        <span class="text-xs font-mono text-[#ff451a] mt-2">HIGH DENSITY ARCHITECTURE</span>
+                        <span id="github-created-at" class="text-xs font-mono text-[#ff451a] mt-2">OPEN SOURCE CONTRIBUTOR</span>
                     </div>
-                    <div class="glass-panel p-5 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between">
+                    <div class="glass-panel p-5 rounded-2xl border border-[#f4f0eb]/10 flex flex-col justify-between hover:border-[#54a0fe] transition-all">
                         <span class="font-mono text-[10px] text-[#a398a0] uppercase tracking-widest">AVAILABILITY</span>
                         <p class="font-headline-md text-2xl text-[#ff451a] mt-1 font-bold">AVAILABLE FOR HIRE</p>
                         <span class="text-xs font-mono text-[#54a0fe] mt-2">OPEN TO FULL-TIME & CONTRACT ROLES</span>
@@ -947,7 +1047,7 @@
             <button type="button" onclick="switchSection('view-stack'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">STACK</button>
             <button type="button" onclick="switchSection('view-blog'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">BLOG</button>
             <button type="button" onclick="switchSection('view-mindmap'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">MINDMAP</button>
-            <button type="button" onclick="switchSection('view-activity'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">ACTIVITY</button>
+            <button type="button" onclick="switchSection('view-activity'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">GITHUB ACTIVITY</button>
         </div>
     </div>
 
