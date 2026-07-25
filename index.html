@@ -169,8 +169,12 @@
             </nav>
 
             <!-- Action Button & Mobile Toggle -->
-            <div class="flex items-center gap-4">
-                <button data-target="view-projects" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
+            <div class="flex items-center gap-3">
+                <button id="sfx-toggle-btn" type="button" onclick="toggleSfxMute()" class="flex items-center gap-1.5 glass-panel border border-[#f4f0eb]/20 hover:border-[#ff451a] text-[#f4f0eb] hover:text-[#ff451a] px-3.5 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer">
+                    <span id="sfx-icon">🔊</span>
+                    <span id="sfx-label" class="font-bold">SFX ON</span>
+                </button>
+                <button data-target="view-projects" onclick="switchSection('view-projects')" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
                     VIEW WORK →
                 </button>
                 <button id="open-mobile-nav" type="button" onclick="toggleMobileNav(true)" aria-label="Open Navigation Menu" class="md:hidden text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
@@ -245,10 +249,13 @@
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">A curated showcase of software products and web applications.</p>
                     </div>
                     <div class="flex flex-wrap gap-2" id="project-filter-btns">
-                        <button data-filter="ALL" class="filter-btn border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all">ALL</button>
-                        <button data-filter="UI/UX" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all">UI/UX</button>
-                        <button data-filter="Frontend" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all">Frontend</button>
-                        <button data-filter="Creative Coding" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all">Creative Coding</button>
+                        <button data-filter="ALL" onclick="filterProjects('ALL')" class="filter-btn border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer">ALL</button>
+                        <button data-filter="REACT" onclick="filterProjects('REACT')" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">REACT</button>
+                        <button data-filter="THREE.JS" onclick="filterProjects('THREE.JS')" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">THREE.JS</button>
+                        <button data-filter="RUST" onclick="filterProjects('RUST')" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">RUST / C++</button>
+                        <button data-filter="NEXT.JS" onclick="filterProjects('NEXT.JS')" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">NEXT.JS</button>
+                        <button data-filter="TAILWINDCSS" onclick="filterProjects('TAILWINDCSS')" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">TAILWINDCSS</button>
+                        <button data-filter="AI VISION" onclick="filterProjects('AI VISION')" class="filter-btn border border-[#f4f0eb]/10 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">AI VISION</button>
                     </div>
                 </div>
 
@@ -621,15 +628,15 @@
     </div>
 
     <!-- Mobile Navigation Overlay -->
-    <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/98 backdrop-blur-2xl z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300 -translate-y-4 ease-[cubic-bezier(0.16,1,0.3,1)]">
-        <button id="close-mobile-nav" type="button" onclick="toggleMobileNav(false)" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-2xl p-2 font-mono">✕</button>
-        <div class="flex flex-col gap-6 text-center font-mono text-xl uppercase tracking-widest">
-            <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">HOME</button>
-            <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">PROJECTS</button>
-            <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">ABOUT</button>
-            <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">STACK</button>
-            <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">BLOG</button>
-            <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a]">MINDMAP</button>
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/98 backdrop-blur-2xl z-[100] hidden flex-col justify-center items-center opacity-0 transition-all duration-300">
+        <button id="close-mobile-nav" type="button" onclick="toggleMobileNav(false)" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-3xl p-3 font-mono cursor-pointer">✕</button>
+        <div class="flex flex-col gap-6 text-center font-mono text-2xl uppercase tracking-widest">
+            <button type="button" onclick="switchSection('view-home'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">HOME</button>
+            <button type="button" onclick="switchSection('view-projects'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">PROJECTS</button>
+            <button type="button" onclick="switchSection('view-about'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">ABOUT</button>
+            <button type="button" onclick="switchSection('view-stack'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">STACK</button>
+            <button type="button" onclick="switchSection('view-blog'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">BLOG</button>
+            <button type="button" onclick="switchSection('view-mindmap'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">MINDMAP</button>
         </div>
     </div>
 
@@ -1120,7 +1127,7 @@
         function playHoverSFX() {
             try {
                 initAudio();
-                if (!audioCtx || audioCtx.state !== 'running') return;
+                if (isSfxMuted || !audioCtx || audioCtx.state !== 'running') return;
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 osc.type = 'sine';
