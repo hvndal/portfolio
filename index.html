@@ -409,82 +409,27 @@
             border-color: rgba(255, 69, 26, 0.7);
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
         }
-        .project-media {
-            position: relative;
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            overflow: hidden;
-            background: #0c0a0e;
-            border: 0;
-            padding: 0;
-            text-align: left;
-        }
-        button.project-media { cursor: pointer; }
-        .project-media img,
-        .project-fallback {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .project-media img {
-            filter: grayscale(1);
-            transform: scale(1.01);
-            transition: filter 400ms ease, transform 500ms ease;
-        }
-        .project-fallback {
-            display: flex;
-            align-items: flex-end;
-            padding: 18px;
-            background:
-                linear-gradient(155deg, rgba(255, 69, 26, 0.22), transparent 46%),
-                repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(244, 240, 235, 0.045) 11px),
-                #141216;
-            color: #f4f0eb;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 72px;
-            line-height: 0.8;
-            letter-spacing: 0.02em;
-        }
-        @media (min-width: 1100px) {
-            .project-card { flex-direction: row; }
-            .project-media {
-                width: 42%;
-                flex: 0 0 42%;
-                aspect-ratio: auto;
-                min-height: 230px;
-            }
-            .project-media img,
-            .project-fallback {
-                position: absolute;
-                inset: 0;
-            }
-        }
-        .project-card:hover .project-media img {
-            filter: none;
-            transform: scale(1.04);
-        }
-        .project-media-label {
-            position: absolute;
-            left: 12px;
-            bottom: 12px;
+        .project-index {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(8, 6, 9, 0.88);
-            border: 1px solid rgba(255, 69, 26, 0.55);
+            justify-content: center;
+            min-width: 2.5rem;
+            height: 2.5rem;
+            padding: 0 10px;
+            border: 1px solid rgba(255, 69, 26, 0.45);
+            background: rgba(255, 69, 26, 0.1);
             color: #ff451a;
             border-radius: 999px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            padding: 6px 12px;
+            letter-spacing: 0.08em;
         }
-        .project-media-label.is-offline {
-            border-color: rgba(244, 240, 235, 0.2);
-            color: #a398a0;
+        .project-topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
         }
         .project-body {
             display: flex;
@@ -541,112 +486,6 @@
             border-color: rgba(84, 160, 254, 0.35);
         }
         .btn-studio:hover { background: #54a0fe; color: #080609; }
-        .preview-modal[hidden] { display: none !important; }
-        .preview-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 400;
-            background: rgba(8, 6, 9, 0.82);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            display: flex;
-            align-items: stretch;
-            justify-content: center;
-            padding: 16px;
-        }
-        .preview-dialog {
-            width: min(920px, 100%);
-            max-height: min(100%, 880px);
-            margin: auto;
-            background: #0c0a0e;
-            border: 1px solid rgba(244, 240, 235, 0.16);
-            border-radius: 1rem;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-        }
-        .preview-toolbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 12px 14px;
-            border-bottom: 1px solid rgba(244, 240, 235, 0.1);
-            background: rgba(18, 14, 20, 0.95);
-        }
-        .preview-toolbar h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 14px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #f4f0eb;
-            min-width: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .project-detail-body {
-            overflow: auto;
-            display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-            gap: 0;
-            min-height: 0;
-        }
-        .project-detail-shot {
-            min-height: 280px;
-            background: #100d12;
-            border-right: 1px solid rgba(244, 240, 235, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .project-detail-shot img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .project-detail-shot .project-fallback {
-            width: 100%;
-            height: 100%;
-            min-height: 280px;
-        }
-        .project-detail-copy {
-            padding: 22px 22px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .project-detail-copy p {
-            color: #c8bfb8;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .project-detail-meta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #8f868c;
-        }
-        .project-detail-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: auto;
-            padding-top: 8px;
-        }
-        @media (max-width: 720px) {
-            .project-detail-body { grid-template-columns: 1fr; }
-            .project-detail-shot {
-                border-right: 0;
-                border-bottom: 1px solid rgba(244, 240, 235, 0.08);
-                min-height: 200px;
-                max-height: 240px;
-            }
-        }
         .substack-card {
             display: grid;
             grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
@@ -676,8 +515,6 @@
             gap: 12px;
         }
         @media (max-width: 720px) {
-            .preview-modal { padding: 0; }
-            .preview-dialog { width: 100%; height: 100%; max-height: 100%; border-radius: 0; }
             .substack-card { grid-template-columns: 1fr; }
             .substack-cover { min-height: 160px; }
         }
@@ -808,12 +645,11 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Projects & Products</h2>
-                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Projects with screenshots first. Open details for what shipped.</p>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Shipped work from GitHub — open a live site or the source.</p>
                         <p id="live-preview-count" class="font-mono text-[10px] text-[#ff451a] uppercase tracking-widest mt-2">Loading projects…</p>
                     </div>
                     <div class="flex flex-wrap gap-2" id="project-filter-btns">
                         <button data-filter="ALL" onclick="filterProjects('ALL')" class="filter-btn is-active border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer">ALL</button>
-                        <button data-filter="SHOT" onclick="filterProjects('SHOT')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">SHOTS</button>
                         <button data-filter="REACT" onclick="filterProjects('REACT')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">REACT</button>
                         <button data-filter="THREE.JS" onclick="filterProjects('THREE.JS')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">THREE.JS</button>
                         <button data-filter="RUST" onclick="filterProjects('RUST')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">RUST / C++</button>
@@ -1634,27 +1470,6 @@
 
     </div>
 
-    <div id="project-detail-modal" class="preview-modal" hidden>
-        <div class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="project-detail-title">
-            <div class="preview-toolbar">
-                <h3 id="project-detail-title">Project details</h3>
-                <div class="flex items-center gap-2 shrink-0 flex-wrap justify-end">
-                    <button type="button" id="project-detail-close" class="btn-preview">Close</button>
-                </div>
-            </div>
-            <div class="project-detail-body">
-                <div id="project-detail-shot" class="project-detail-shot"></div>
-                <div class="project-detail-copy">
-                    <p id="project-detail-meta" class="project-detail-meta"></p>
-                    <p id="project-detail-subtitle" class="font-mono text-[11px] text-[#ff451a] uppercase tracking-wider font-bold"></p>
-                    <p id="project-detail-desc"></p>
-                    <div id="project-detail-tags" class="flex flex-wrap gap-2"></div>
-                    <div id="project-detail-actions" class="project-detail-actions"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Mobile Navigation Overlay -->
     <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/98 backdrop-blur-2xl z-[100] hidden flex-col justify-center items-center opacity-0 transition-all duration-300">
         <button id="close-mobile-nav" type="button" onclick="toggleMobileNav(false)" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-3xl p-3 font-mono cursor-pointer">✕</button>
@@ -1939,8 +1754,7 @@
 
             articles.forEach(art => {
                 const tagsText = art.innerText.toUpperCase();
-                const hasShot = art.getAttribute('data-shot') === '1';
-                const show = tag === 'ALL' || (tag === 'SHOT' && hasShot) || (tag !== 'SHOT' && tagsText.includes(tag));
+                const show = tag === 'ALL' || tagsText.includes(tag);
                 art.style.display = show ? 'flex' : 'none';
             });
         }
@@ -2344,28 +2158,9 @@
                 .replace(/\b[a-z]/g, (ch) => ch.toUpperCase());
         }
 
-        const LOCAL_SHOTS = new Set([
-            'wasteu',
-            'semrushalt',
-            'rentcanpropertyman',
-            'portfolio',
-            'meena',
-            'fitway',
-            'KERN',
-            'CookCan'
-        ]);
-
-        function hasLocalShot(repoName) {
-            return LOCAL_SHOTS.has(repoName);
-        }
-
-        function shotPath(repoName) {
-            return 'assets/' + encodeURIComponent(repoName) + '.jpg';
-        }
-
         function resolveProjectLinks(repo) {
             const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-            const empty = { embed: '', visit: '' };
+            const empty = { visit: '' };
             if (rawName === 'portfolio') return empty;
             let homepage = (repo.homepage || '').trim();
             if (homepage && !/^https?:\/\//i.test(homepage)) homepage = 'https://' + homepage;
@@ -2373,11 +2168,10 @@
             try { host = homepage ? new URL(homepage).hostname : ''; } catch (err) { homepage = ''; }
             const safeHome = homepage && isSafeHttpUrl(homepage) && !DEAD_PREVIEW_HOSTS.has(host);
             const genericHome = GENERIC_PREVIEW_HOSTS.has(host);
-            if (safeHome && !genericHome) return { embed: homepage, visit: homepage };
-            if (safeHome && genericHome && rawName === 'manderlabs') return { embed: '', visit: homepage };
+            if (safeHome && !genericHome) return { visit: homepage };
+            if (safeHome && genericHome && rawName === 'manderlabs') return { visit: homepage };
             if (repo.has_pages && repo.name && repo.name !== 'PulsePulse-') {
-                const pagesUrl = 'https://hvndal.github.io/' + encodeURIComponent(repo.name) + '/';
-                return { embed: pagesUrl, visit: pagesUrl };
+                return { visit: 'https://hvndal.github.io/' + encodeURIComponent(repo.name) + '/' };
             }
             return empty;
         }
@@ -2389,17 +2183,15 @@
                 .filter(repo => repo && !repo.fork && repo.name)
                 .slice()
                 .sort((a, b) => {
-                    const shotDelta = (hasLocalShot(b.name) ? 1 : 0) - (hasLocalShot(a.name) ? 1 : 0);
-                    if (shotDelta !== 0) return shotDelta;
                     const visitDelta = (resolveProjectLinks(b).visit ? 1 : 0) - (resolveProjectLinks(a).visit ? 1 : 0);
                     if (visitDelta !== 0) return visitDelta;
                     return new Date(b.pushed_at || 0) - new Date(a.pushed_at || 0);
                 });
 
             grid.innerHTML = '';
-            let shotCount = 0;
+            let liveCount = 0;
 
-            visible.forEach(repo => {
+            visible.forEach((repo, index) => {
                 const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
                 const apiDescription = cleanDescription(repo.description);
                 const meta = projectMetadata[rawName] || {
@@ -2414,9 +2206,8 @@
                     tags.unshift(repo.language);
                 }
                 const links = resolveProjectLinks(repo);
-                const visitUrl = links.visit || links.embed;
-                const shot = hasLocalShot(repo.name);
-                if (shot) shotCount += 1;
+                const visitUrl = links.visit;
+                if (visitUrl) liveCount += 1;
                 const updated = repo.pushed_at
                     ? new Date(repo.pushed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
                     : 'Public';
@@ -2424,40 +2215,25 @@
                 const safeVisit = escapeHtml(visitUrl);
                 const tagsHtml = tags.map(tag => `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`).join('');
                 const sourceHref = isSafeHttpUrl(repo.html_url) ? repo.html_url : 'https://github.com/hvndal/' + encodeURIComponent(repo.name);
-                const initials = escapeHtml(meta.name.replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(word => word[0]).join('').toUpperCase() || 'PR');
-                const mediaVisual = shot
-                    ? `<img src="${escapeHtml(shotPath(repo.name))}" alt="${safeName} screenshot" loading="lazy"/>`
-                    : `<div class="project-fallback" aria-hidden="true">${initials}</div>`;
-                const mediaLabel = shot
-                    ? '<span class="project-media-label">Screenshot</span>'
-                    : '<span class="project-media-label is-offline">Details</span>';
-                const detailPayload = escapeHtml(JSON.stringify({
-                    name: meta.name,
-                    subtitle: meta.subtitle,
-                    description,
-                    tags,
-                    updated,
-                    shot: shot ? shotPath(repo.name) : '',
-                    visit: visitUrl || '',
-                    source: sourceHref,
-                    repo: repo.name
-                }));
+                const num = String(index + 1).padStart(2, '0');
+                const status = visitUrl
+                    ? '<span class="font-mono text-[10px] uppercase tracking-widest text-[#ff451a]">Live site</span>'
+                    : '<span class="font-mono text-[10px] uppercase tracking-widest text-[#8f868c]">Source</span>';
 
                 grid.insertAdjacentHTML('beforeend', `
-                <article class="project-card" data-shot="${shot ? '1' : '0'}">
-                    <button type="button" class="project-media" data-project-detail="${detailPayload}">
-                        ${mediaVisual}
-                        ${mediaLabel}
-                    </button>
+                <article class="project-card">
                     <div class="project-body">
+                        <div class="project-topline">
+                            <span class="project-index">${num}</span>
+                            ${status}
+                        </div>
                         <p class="font-mono text-[10px] uppercase tracking-widest text-[#8f868c]">${escapeHtml(updated)}${repo.stargazers_count > 0 ? ' · ' + repo.stargazers_count + ' stars' : ''}</p>
                         <h3 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide break-words">${safeName}</h3>
                         <p class="font-mono text-[11px] text-[#ff451a] uppercase tracking-wider font-bold">${escapeHtml(meta.subtitle)}</p>
-                        <p class="font-sans text-sm text-[#c8bfb8] leading-relaxed line-clamp-3">${escapeHtml(description)}</p>
+                        <p class="font-sans text-sm text-[#c8bfb8] leading-relaxed">${escapeHtml(description)}</p>
                         <div class="flex flex-wrap gap-2">${tagsHtml}</div>
                         <div class="project-actions">
-                            <button type="button" class="btn-preview" data-project-detail="${detailPayload}">Details</button>
-                            ${visitUrl ? `<a class="btn-ghost" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site</a>` : ''}
+                            ${visitUrl ? `<a class="btn-preview" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site</a>` : ''}
                             <a class="btn-source" href="${escapeHtml(sourceHref)}" target="_blank" rel="noopener noreferrer">View source</a>
                             <a class="btn-studio" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Studio</a>
                         </div>
@@ -2467,80 +2243,10 @@
 
             const countEl = document.getElementById('live-preview-count');
             if (countEl) {
-                countEl.textContent = shotCount + ' with screenshots · ' + visible.length + ' projects';
+                countEl.textContent = liveCount + ' with live links · ' + visible.length + ' projects';
             }
         }
 
-        function openProjectDetail(raw) {
-            let data;
-            try { data = JSON.parse(raw); } catch (err) { return; }
-            const modal = document.getElementById('project-detail-modal');
-            const title = document.getElementById('project-detail-title');
-            const shot = document.getElementById('project-detail-shot');
-            const meta = document.getElementById('project-detail-meta');
-            const subtitle = document.getElementById('project-detail-subtitle');
-            const desc = document.getElementById('project-detail-desc');
-            const tags = document.getElementById('project-detail-tags');
-            const actions = document.getElementById('project-detail-actions');
-            if (!modal || !shot) return;
-
-            if (title) title.textContent = data.name || 'Project details';
-            if (meta) meta.textContent = [data.updated, data.repo].filter(Boolean).join(' · ');
-            if (subtitle) subtitle.textContent = data.subtitle || '';
-            if (desc) desc.textContent = data.description || '';
-            if (tags) {
-                tags.innerHTML = (data.tags || []).map(tag =>
-                    `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`
-                ).join('');
-            }
-            if (data.shot) {
-                shot.innerHTML = `<img src="${escapeHtml(data.shot)}" alt="${escapeHtml(data.name || 'Project')} screenshot"/>`;
-            } else {
-                const initials = escapeHtml(String(data.name || 'PR').replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'PR');
-                shot.innerHTML = `<div class="project-fallback" aria-hidden="true">${initials}</div>`;
-            }
-            if (actions) {
-                const bits = [];
-                if (data.visit && isSafeHttpUrl(data.visit)) {
-                    bits.push(`<a class="btn-ghost" href="${escapeHtml(data.visit)}" target="_blank" rel="noopener noreferrer">Open site</a>`);
-                }
-                if (data.source && isSafeHttpUrl(data.source)) {
-                    bits.push(`<a class="btn-source" href="${escapeHtml(data.source)}" target="_blank" rel="noopener noreferrer">View source</a>`);
-                }
-                bits.push(`<a class="btn-studio" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Studio</a>`);
-                actions.innerHTML = bits.join('');
-            }
-
-            modal.hidden = false;
-            document.body.style.overflow = 'hidden';
-            document.getElementById('project-detail-close')?.focus();
-        }
-
-        function closeProjectDetail() {
-            const modal = document.getElementById('project-detail-modal');
-            if (modal) modal.hidden = true;
-            document.body.style.overflow = '';
-        }
-
-        document.addEventListener('click', (event) => {
-            const trigger = event.target.closest('[data-project-detail]');
-            if (!trigger) return;
-            event.preventDefault();
-            openProjectDetail(trigger.getAttribute('data-project-detail'));
-        });
-
-        document.addEventListener('click', (event) => {
-            const modal = document.getElementById('project-detail-modal');
-            if (!modal || modal.hidden) return;
-            if (event.target === modal) closeProjectDetail();
-        });
-
-        document.getElementById('project-detail-close')?.addEventListener('click', closeProjectDetail);
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') closeProjectDetail();
-        });
-        window.openProjectDetail = openProjectDetail;
-        window.closeProjectDetail = closeProjectDetail;
 
         // Substack sync — every published post, any topic
         const SUBSTACK_PUBLICATION = 'hermanify';
