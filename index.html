@@ -345,19 +345,6 @@
             box-shadow: 0 0 25px rgba(255, 69, 26, 0.25) !important;
         }
 
-        .hire-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: #ff451a;
-            box-shadow: 0 0 0 0 rgba(255, 69, 26, 0.7);
-            animation: hirePulse 1.8s ease-out infinite;
-            flex-shrink: 0;
-        }
-        @keyframes hirePulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 69, 26, 0.65); }
-            100% { box-shadow: 0 0 0 8px rgba(255, 69, 26, 0); }
-        }
         .hire-banner {
             display: inline-flex;
             align-items: center;
@@ -384,8 +371,17 @@
             padding-left: 0.75rem;
             padding-right: 0.75rem;
             white-space: nowrap;
+            color: #8f868c;
+            background: transparent;
+            font-weight: 500;
+            box-shadow: none;
         }
-        .desktop-nav-btn.is-active {
+        .desktop-nav-btn:hover {
+            color: #f4f0eb;
+            background: rgba(244, 240, 235, 0.05);
+        }
+        .desktop-nav-btn.is-active,
+        .desktop-nav-btn.is-active:hover {
             color: #000 !important;
             background: #ff451a !important;
             font-weight: 700;
@@ -559,8 +555,8 @@
             padding: 16px;
         }
         .preview-dialog {
-            width: min(1200px, 100%);
-            height: min(100%, 900px);
+            width: min(920px, 100%);
+            max-height: min(100%, 880px);
             margin: auto;
             background: #0c0a0e;
             border: 1px solid rgba(244, 240, 235, 0.16);
@@ -569,10 +565,6 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-            transition: width 240ms ease;
-        }
-        .preview-dialog.is-mobile {
-            width: min(430px, 100%);
         }
         .preview-toolbar {
             display: flex;
@@ -594,88 +586,66 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        .preview-chrome {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border-bottom: 1px solid rgba(244, 240, 235, 0.08);
-            background: #100d12;
-        }
-        .preview-dots {
-            display: flex;
-            gap: 6px;
-            flex-shrink: 0;
-        }
-        .preview-dots span {
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: rgba(244, 240, 235, 0.18);
-        }
-        .preview-dots span:nth-child(1) { background: #ff451a; }
-        .preview-dots span:nth-child(2) { background: #54a0fe; }
-        .preview-url {
-            flex: 1;
-            min-width: 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: #a398a0;
-            background: rgba(8, 6, 9, 0.8);
-            border: 1px solid rgba(244, 240, 235, 0.1);
-            border-radius: 999px;
-            padding: 8px 14px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .preview-stage {
-            position: relative;
-            flex: 1;
+        .project-detail-body {
+            overflow: auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 0;
             min-height: 0;
-            background: #0a080c;
         }
-        .preview-frame {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            background: #fff;
-        }
-        .preview-loading,
-        .preview-fallback {
-            position: absolute;
-            inset: 0;
+        .project-detail-shot {
+            min-height: 280px;
+            background: #100d12;
+            border-right: 1px solid rgba(244, 240, 235, 0.08);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+        .project-detail-shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .project-detail-shot .project-fallback {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+        }
+        .project-detail-copy {
+            padding: 22px 22px 24px;
+            display: flex;
+            flex-direction: column;
             gap: 14px;
-            padding: 24px;
-            text-align: center;
-            background: rgba(8, 6, 9, 0.92);
-            color: #f4f0eb;
+        }
+        .project-detail-copy p {
+            color: #c8bfb8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .project-detail-meta {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            letter-spacing: 0.08em;
+            font-size: 11px;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            color: #8f868c;
         }
-        .preview-loading[hidden],
-        .preview-fallback[hidden] { display: none !important; }
-        .preview-spinner {
-            width: 28px;
-            height: 28px;
-            border-radius: 999px;
-            border: 2px solid rgba(255, 69, 26, 0.25);
-            border-top-color: #ff451a;
-            animation: previewSpin 0.8s linear infinite;
+        .project-detail-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 8px;
         }
-        @keyframes previewSpin {
-            to { transform: rotate(360deg); }
-        }
-        .preview-mode-btn.is-active {
-            background: #ff451a !important;
-            color: #080609 !important;
-            border-color: #ff451a !important;
+        @media (max-width: 720px) {
+            .project-detail-body { grid-template-columns: 1fr; }
+            .project-detail-shot {
+                border-right: 0;
+                border-bottom: 1px solid rgba(244, 240, 235, 0.08);
+                min-height: 200px;
+                max-height: 240px;
+            }
         }
         .substack-card {
             display: grid;
@@ -707,8 +677,7 @@
         }
         @media (max-width: 720px) {
             .preview-modal { padding: 0; }
-            .preview-dialog,
-            .preview-dialog.is-mobile { width: 100%; height: 100%; border-radius: 0; }
+            .preview-dialog { width: 100%; height: 100%; max-height: 100%; border-radius: 0; }
             .substack-card { grid-template-columns: 1fr; }
             .substack-cover { min-height: 160px; }
         }
@@ -731,20 +700,20 @@
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-xs tracking-widest uppercase text-[#f4f0eb]">HERMAN HUNDAL</span>
-                    <span class="text-[9px] font-mono text-[#ff451a] uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap"><span class="hire-dot"></span>Available for hire</span>
+                    <span class="text-[9px] font-mono text-[#ff451a] uppercase tracking-wider whitespace-nowrap">Available for hire</span>
                 </div>
             </div>
 
             <!-- Header Navigation Tabs (Desktop) -->
             
             <nav class="hidden md:flex items-center gap-1.5 bg-[#120e14]/90 p-1.5 rounded-full border border-white/5" id="desktop-nav-tabs">
-                <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn is-active px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]">HOME</button>
-                <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">PROJECTS</button>
-                <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ABOUT</button>
-                <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">STACK</button>
-                <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">BLOG</button>
-                <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">MINDMAP</button>
-                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ACTIVITY</button>
+                <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn is-active px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">HOME</button>
+                <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">PROJECTS</button>
+                <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ABOUT</button>
+                <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">STACK</button>
+                <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">BLOG</button>
+                <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">MINDMAP</button>
+                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ACTIVITY</button>
             </nav>
 
             <!-- Action Button & Mobile Toggle -->
@@ -753,7 +722,6 @@
                     Studio
                 </a>
                 <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="hidden xl:inline-flex items-center gap-2 border border-[#ff451a]/45 bg-[#ff451a]/10 text-[#ff451a] px-3.5 py-1.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
-                    <span class="hire-dot" aria-hidden="true"></span>
                     Hire me
                 </a>
                 <button id="sfx-toggle-btn" type="button" onclick="toggleSfxMute()" class="flex items-center gap-1.5 glass-panel border border-[#f4f0eb]/20 hover:border-[#ff451a] text-[#f4f0eb] hover:text-[#ff451a] px-3.5 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer">
@@ -778,7 +746,6 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto z-10 w-full">
                     <div class="lg:col-span-7 flex flex-col items-start">
                         <div class="hire-banner mb-6" role="status">
-                            <span class="hire-dot" aria-hidden="true"></span>
                             <span>Available for hire</span>
                         </div>
                         <h1 class="cinematic-title text-[64px] sm:text-[88px] md:text-[104px] lg:text-[112px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight leading-none">
@@ -814,8 +781,7 @@
                     </div>
                     <div class="lg:col-span-5 relative h-[320px] sm:h-[400px] lg:h-[480px] w-full flex items-center justify-center">
                         <div id="hero-3d-container" class="w-full h-full absolute inset-0"></div>
-                        <div class="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 z-10 flex items-center gap-3 bg-[#080609]/80 border border-[#ff451a]/35 px-3 py-2 rounded-2xl backdrop-blur-md">
-                            <img src="assets/avatar.jpg" alt="" class="w-12 h-12 object-cover rounded-full border border-[#ff451a]"/>
+                        <div class="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 z-10 bg-[#080609]/80 border border-[#ff451a]/35 px-4 py-3 rounded-2xl backdrop-blur-md">
                             <div class="font-mono text-[10px] uppercase tracking-wider">
                                 <p class="text-[#f4f0eb] font-bold">Open for new work</p>
                                 <p class="text-[#ff451a]">Full-time and contract · Remote</p>
@@ -825,12 +791,9 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-none font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
-                    <div class="flex items-center gap-3">
-                        <span class="hire-dot" aria-hidden="true"></span>
-                        <div>
-                            <p class="text-[#ff451a]">Available for hire</p>
-                            <p class="text-[#f4f0eb]/70">Vancouver & Langley, BC · Remote worldwide</p>
-                        </div>
+                    <div>
+                        <p class="text-[#ff451a]">Available for hire</p>
+                        <p class="text-[#f4f0eb]/70">Vancouver & Langley, BC · Remote worldwide</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="text-[#ff451a]">2026</span>
@@ -845,12 +808,12 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Projects & Products</h2>
-                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Open a live preview for shipped sites. The rest link straight to source.</p>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Projects with screenshots first. Open details for what shipped.</p>
                         <p id="live-preview-count" class="font-mono text-[10px] text-[#ff451a] uppercase tracking-widest mt-2">Loading projects…</p>
                     </div>
                     <div class="flex flex-wrap gap-2" id="project-filter-btns">
                         <button data-filter="ALL" onclick="filterProjects('ALL')" class="filter-btn is-active border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer">ALL</button>
-                        <button data-filter="LIVE" onclick="filterProjects('LIVE')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">LIVE</button>
+                        <button data-filter="SHOT" onclick="filterProjects('SHOT')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">SHOTS</button>
                         <button data-filter="REACT" onclick="filterProjects('REACT')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">REACT</button>
                         <button data-filter="THREE.JS" onclick="filterProjects('THREE.JS')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">THREE.JS</button>
                         <button data-filter="RUST" onclick="filterProjects('RUST')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">RUST / C++</button>
@@ -1671,32 +1634,23 @@
 
     </div>
 
-    <div id="live-preview-modal" class="preview-modal" hidden>
-        <div class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+    <div id="project-detail-modal" class="preview-modal" hidden>
+        <div class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="project-detail-title">
             <div class="preview-toolbar">
-                <h3 id="preview-title">Live preview</h3>
+                <h3 id="project-detail-title">Project details</h3>
                 <div class="flex items-center gap-2 shrink-0 flex-wrap justify-end">
-                    <button type="button" id="preview-mode-desktop" class="btn-ghost preview-mode-btn is-active" aria-pressed="true">Desktop</button>
-                    <button type="button" id="preview-mode-mobile" class="btn-ghost preview-mode-btn" aria-pressed="false">Mobile</button>
-                    <a id="preview-open" href="#" target="_blank" rel="noopener noreferrer" class="btn-ghost">Open site</a>
-                    <button type="button" id="preview-close" class="btn-preview">Close</button>
+                    <button type="button" id="project-detail-close" class="btn-preview">Close</button>
                 </div>
             </div>
-            <div class="preview-chrome">
-                <div class="preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-                <div id="preview-url" class="preview-url">https://</div>
-            </div>
-            <div class="preview-stage">
-                <div id="preview-loading" class="preview-loading">
-                    <div class="preview-spinner" aria-hidden="true"></div>
-                    <p>Loading live preview…</p>
+            <div class="project-detail-body">
+                <div id="project-detail-shot" class="project-detail-shot"></div>
+                <div class="project-detail-copy">
+                    <p id="project-detail-meta" class="project-detail-meta"></p>
+                    <p id="project-detail-subtitle" class="font-mono text-[11px] text-[#ff451a] uppercase tracking-wider font-bold"></p>
+                    <p id="project-detail-desc"></p>
+                    <div id="project-detail-tags" class="flex flex-wrap gap-2"></div>
+                    <div id="project-detail-actions" class="project-detail-actions"></div>
                 </div>
-                <div id="preview-fallback" class="preview-fallback" hidden>
-                    <p>This site blocks embedded preview.</p>
-                    <p class="text-[#a398a0] normal-case tracking-normal">Open it in a new tab instead.</p>
-                    <a id="preview-fallback-open" href="#" target="_blank" rel="noopener noreferrer" class="btn-preview">Open site</a>
-                </div>
-                <iframe id="preview-frame" class="preview-frame" title="Project live preview" referrerpolicy="no-referrer"></iframe>
             </div>
         </div>
     </div>
@@ -1985,8 +1939,8 @@
 
             articles.forEach(art => {
                 const tagsText = art.innerText.toUpperCase();
-                const isLive = art.getAttribute('data-live') === '1';
-                const show = tag === 'ALL' || (tag === 'LIVE' && isLive) || (tag !== 'LIVE' && tagsText.includes(tag));
+                const hasShot = art.getAttribute('data-shot') === '1';
+                const show = tag === 'ALL' || (tag === 'SHOT' && hasShot) || (tag !== 'SHOT' && tagsText.includes(tag));
                 art.style.display = show ? 'flex' : 'none';
             });
         }
@@ -2032,11 +1986,26 @@
         });
 
         // Global Section Switcher Function with Seamless Cross-Fade
+        function syncDesktopNav(targetId) {
+            document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
+                const on = btn.getAttribute('data-target') === targetId;
+                btn.classList.toggle('is-active', on);
+                btn.setAttribute('aria-current', on ? 'page' : 'false');
+            });
+        }
+
         function switchSection(targetId) {
             if (!targetId) return;
             const currentActive = document.querySelector('.view-section.active');
             const targetSec = document.getElementById(targetId);
-            if (!targetSec || targetSec === currentActive) return;
+            if (!targetSec) return;
+
+            syncDesktopNav(targetId);
+
+            if (targetSec === currentActive) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
 
             if (currentActive) {
                 currentActive.style.opacity = '0';
@@ -2061,11 +2030,6 @@
                 targetSec.style.transform = 'translateY(0)';
             }
 
-            document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
-                btn.classList.toggle('is-active', btn.getAttribute('data-target') === targetId);
-            });
-
-            // Scroll window smooth to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -2391,6 +2355,14 @@
             'CookCan'
         ]);
 
+        function hasLocalShot(repoName) {
+            return LOCAL_SHOTS.has(repoName);
+        }
+
+        function shotPath(repoName) {
+            return 'assets/' + encodeURIComponent(repoName) + '.jpg';
+        }
+
         function resolveProjectLinks(repo) {
             const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
             const empty = { embed: '', visit: '' };
@@ -2402,7 +2374,6 @@
             const safeHome = homepage && isSafeHttpUrl(homepage) && !DEAD_PREVIEW_HOSTS.has(host);
             const genericHome = GENERIC_PREVIEW_HOSTS.has(host);
             if (safeHome && !genericHome) return { embed: homepage, visit: homepage };
-            // Studio URL is the real deploy for Mander Labs, but that site refuses to be embedded.
             if (safeHome && genericHome && rawName === 'manderlabs') return { embed: '', visit: homepage };
             if (repo.has_pages && repo.name && repo.name !== 'PulsePulse-') {
                 const pagesUrl = 'https://hvndal.github.io/' + encodeURIComponent(repo.name) + '/';
@@ -2418,13 +2389,15 @@
                 .filter(repo => repo && !repo.fork && repo.name)
                 .slice()
                 .sort((a, b) => {
-                    const liveDelta = (resolveProjectLinks(b).embed ? 1 : 0) - (resolveProjectLinks(a).embed ? 1 : 0);
-                    if (liveDelta !== 0) return liveDelta;
+                    const shotDelta = (hasLocalShot(b.name) ? 1 : 0) - (hasLocalShot(a.name) ? 1 : 0);
+                    if (shotDelta !== 0) return shotDelta;
+                    const visitDelta = (resolveProjectLinks(b).visit ? 1 : 0) - (resolveProjectLinks(a).visit ? 1 : 0);
+                    if (visitDelta !== 0) return visitDelta;
                     return new Date(b.pushed_at || 0) - new Date(a.pushed_at || 0);
                 });
 
             grid.innerHTML = '';
-            let liveCount = 0;
+            let shotCount = 0;
 
             visible.forEach(repo => {
                 const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -2441,40 +2414,41 @@
                     tags.unshift(repo.language);
                 }
                 const links = resolveProjectLinks(repo);
-                const liveUrl = links.embed;
                 const visitUrl = links.visit || links.embed;
-                if (liveUrl) liveCount += 1;
+                const shot = hasLocalShot(repo.name);
+                if (shot) shotCount += 1;
                 const updated = repo.pushed_at
                     ? new Date(repo.pushed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
                     : 'Public';
                 const safeName = escapeHtml(meta.name);
-                const safeLive = escapeHtml(liveUrl);
                 const safeVisit = escapeHtml(visitUrl);
                 const tagsHtml = tags.map(tag => `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`).join('');
-                const mediaLabel = liveUrl
-                    ? '<span class="project-media-label"><span class="hire-dot"></span>Live preview</span>'
-                    : '<span class="project-media-label is-offline">Source only</span>';
-                const mediaOpen = liveUrl
-                    ? `<button type="button" class="project-media" data-preview-url="${safeLive}" data-preview-title="${safeName}">`
-                    : '<div class="project-media">';
-                const mediaClose = liveUrl ? '</button>' : '</div>';
-                const previewButtons = [
-                    liveUrl ? `<button type="button" class="btn-preview" data-preview-url="${safeLive}" data-preview-title="${safeName}">Live preview</button>` : '',
-                    visitUrl ? `<a class="btn-ghost" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site</a>` : '',
-                    `<a class="btn-studio" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Studio</a>`
-                ].join('');
                 const sourceHref = isSafeHttpUrl(repo.html_url) ? repo.html_url : 'https://github.com/hvndal/' + encodeURIComponent(repo.name);
                 const initials = escapeHtml(meta.name.replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(word => word[0]).join('').toUpperCase() || 'PR');
-                const mediaVisual = LOCAL_SHOTS.has(repo.name)
-                    ? `<img src="assets/${repo.name}.jpg" alt="${safeName} thumbnail" loading="lazy"/>`
+                const mediaVisual = shot
+                    ? `<img src="${escapeHtml(shotPath(repo.name))}" alt="${safeName} screenshot" loading="lazy"/>`
                     : `<div class="project-fallback" aria-hidden="true">${initials}</div>`;
+                const mediaLabel = shot
+                    ? '<span class="project-media-label">Screenshot</span>'
+                    : '<span class="project-media-label is-offline">Details</span>';
+                const detailPayload = escapeHtml(JSON.stringify({
+                    name: meta.name,
+                    subtitle: meta.subtitle,
+                    description,
+                    tags,
+                    updated,
+                    shot: shot ? shotPath(repo.name) : '',
+                    visit: visitUrl || '',
+                    source: sourceHref,
+                    repo: repo.name
+                }));
 
                 grid.insertAdjacentHTML('beforeend', `
-                <article class="project-card" data-live="${liveUrl ? '1' : '0'}">
-                    ${mediaOpen}
+                <article class="project-card" data-shot="${shot ? '1' : '0'}">
+                    <button type="button" class="project-media" data-project-detail="${detailPayload}">
                         ${mediaVisual}
                         ${mediaLabel}
-                    ${mediaClose}
+                    </button>
                     <div class="project-body">
                         <p class="font-mono text-[10px] uppercase tracking-widest text-[#8f868c]">${escapeHtml(updated)}${repo.stargazers_count > 0 ? ' · ' + repo.stargazers_count + ' stars' : ''}</p>
                         <h3 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide break-words">${safeName}</h3>
@@ -2482,8 +2456,10 @@
                         <p class="font-sans text-sm text-[#c8bfb8] leading-relaxed line-clamp-3">${escapeHtml(description)}</p>
                         <div class="flex flex-wrap gap-2">${tagsHtml}</div>
                         <div class="project-actions">
-                            ${previewButtons}
+                            <button type="button" class="btn-preview" data-project-detail="${detailPayload}">Details</button>
+                            ${visitUrl ? `<a class="btn-ghost" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site</a>` : ''}
                             <a class="btn-source" href="${escapeHtml(sourceHref)}" target="_blank" rel="noopener noreferrer">View source</a>
+                            <a class="btn-studio" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Studio</a>
                         </div>
                     </div>
                 </article>`);
@@ -2491,118 +2467,80 @@
 
             const countEl = document.getElementById('live-preview-count');
             if (countEl) {
-                countEl.textContent = liveCount + ' live preview' + (liveCount === 1 ? '' : 's') + ' · ' + visible.length + ' projects';
+                countEl.textContent = shotCount + ' with screenshots · ' + visible.length + ' projects';
             }
         }
 
-        let previewLoadTimer = null;
-        const PREVIEW_BLOCKED_HOSTS = new Set([
-            'www.mander.tech',
-            'mander.tech',
-            'portfolio-rentcan.vercel.app'
-        ]);
+        function openProjectDetail(raw) {
+            let data;
+            try { data = JSON.parse(raw); } catch (err) { return; }
+            const modal = document.getElementById('project-detail-modal');
+            const title = document.getElementById('project-detail-title');
+            const shot = document.getElementById('project-detail-shot');
+            const meta = document.getElementById('project-detail-meta');
+            const subtitle = document.getElementById('project-detail-subtitle');
+            const desc = document.getElementById('project-detail-desc');
+            const tags = document.getElementById('project-detail-tags');
+            const actions = document.getElementById('project-detail-actions');
+            if (!modal || !shot) return;
 
-        function setPreviewMode(mode) {
-            const dialog = document.querySelector('.preview-dialog');
-            const desktopBtn = document.getElementById('preview-mode-desktop');
-            const mobileBtn = document.getElementById('preview-mode-mobile');
-            if (!dialog) return;
-            const isMobile = mode === 'mobile';
-            dialog.classList.toggle('is-mobile', isMobile);
-            if (desktopBtn) {
-                desktopBtn.classList.toggle('is-active', !isMobile);
-                desktopBtn.setAttribute('aria-pressed', String(!isMobile));
+            if (title) title.textContent = data.name || 'Project details';
+            if (meta) meta.textContent = [data.updated, data.repo].filter(Boolean).join(' · ');
+            if (subtitle) subtitle.textContent = data.subtitle || '';
+            if (desc) desc.textContent = data.description || '';
+            if (tags) {
+                tags.innerHTML = (data.tags || []).map(tag =>
+                    `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`
+                ).join('');
             }
-            if (mobileBtn) {
-                mobileBtn.classList.toggle('is-active', isMobile);
-                mobileBtn.setAttribute('aria-pressed', String(isMobile));
-            }
-        }
-
-        function showPreviewFallback(url) {
-            const loading = document.getElementById('preview-loading');
-            const fallback = document.getElementById('preview-fallback');
-            const fallbackOpen = document.getElementById('preview-fallback-open');
-            if (loading) loading.hidden = true;
-            if (fallback) fallback.hidden = false;
-            if (fallbackOpen) fallbackOpen.href = url;
-        }
-
-        function openLivePreview(url, title) {
-            if (!isSafeHttpUrl(url)) return;
-            const modal = document.getElementById('live-preview-modal');
-            const frame = document.getElementById('preview-frame');
-            const heading = document.getElementById('preview-title');
-            const openLink = document.getElementById('preview-open');
-            const urlChip = document.getElementById('preview-url');
-            const loading = document.getElementById('preview-loading');
-            const fallback = document.getElementById('preview-fallback');
-            if (!modal || !frame) return;
-            if (heading) heading.textContent = title || 'Live preview';
-            if (openLink) openLink.href = url;
-            if (urlChip) urlChip.textContent = url;
-            if (loading) loading.hidden = false;
-            if (fallback) fallback.hidden = true;
-            setPreviewMode('desktop');
-            if (previewLoadTimer) clearTimeout(previewLoadTimer);
-            let host = '';
-            try { host = new URL(url).hostname; } catch (err) { host = ''; }
-            if (PREVIEW_BLOCKED_HOSTS.has(host)) {
-                frame.src = 'about:blank';
-                showPreviewFallback(url);
+            if (data.shot) {
+                shot.innerHTML = `<img src="${escapeHtml(data.shot)}" alt="${escapeHtml(data.name || 'Project')} screenshot"/>`;
             } else {
-                frame.onload = () => {
-                    if (loading) loading.hidden = true;
-                    if (previewLoadTimer) clearTimeout(previewLoadTimer);
-                };
-                frame.src = url;
-                previewLoadTimer = setTimeout(() => {
-                    if (loading && !loading.hidden) loading.hidden = true;
-                }, 9000);
+                const initials = escapeHtml(String(data.name || 'PR').replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'PR');
+                shot.innerHTML = `<div class="project-fallback" aria-hidden="true">${initials}</div>`;
             }
+            if (actions) {
+                const bits = [];
+                if (data.visit && isSafeHttpUrl(data.visit)) {
+                    bits.push(`<a class="btn-ghost" href="${escapeHtml(data.visit)}" target="_blank" rel="noopener noreferrer">Open site</a>`);
+                }
+                if (data.source && isSafeHttpUrl(data.source)) {
+                    bits.push(`<a class="btn-source" href="${escapeHtml(data.source)}" target="_blank" rel="noopener noreferrer">View source</a>`);
+                }
+                bits.push(`<a class="btn-studio" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Studio</a>`);
+                actions.innerHTML = bits.join('');
+            }
+
             modal.hidden = false;
             document.body.style.overflow = 'hidden';
-            const closeBtn = document.getElementById('preview-close');
-            if (closeBtn) closeBtn.focus();
+            document.getElementById('project-detail-close')?.focus();
         }
 
-        function closeLivePreview() {
-            const modal = document.getElementById('live-preview-modal');
-            const frame = document.getElementById('preview-frame');
-            const loading = document.getElementById('preview-loading');
-            const fallback = document.getElementById('preview-fallback');
-            if (previewLoadTimer) clearTimeout(previewLoadTimer);
-            if (frame) {
-                frame.onload = null;
-                frame.src = 'about:blank';
-            }
-            if (loading) loading.hidden = false;
-            if (fallback) fallback.hidden = true;
+        function closeProjectDetail() {
+            const modal = document.getElementById('project-detail-modal');
             if (modal) modal.hidden = true;
             document.body.style.overflow = '';
         }
 
         document.addEventListener('click', (event) => {
-            const trigger = event.target.closest('[data-preview-url]');
+            const trigger = event.target.closest('[data-project-detail]');
             if (!trigger) return;
             event.preventDefault();
-            openLivePreview(trigger.getAttribute('data-preview-url'), trigger.getAttribute('data-preview-title'));
+            openProjectDetail(trigger.getAttribute('data-project-detail'));
         });
 
         document.addEventListener('click', (event) => {
-            const modal = document.getElementById('live-preview-modal');
+            const modal = document.getElementById('project-detail-modal');
             if (!modal || modal.hidden) return;
-            if (event.target === modal) closeLivePreview();
+            if (event.target === modal) closeProjectDetail();
         });
 
-        document.getElementById('preview-close')?.addEventListener('click', closeLivePreview);
-        document.getElementById('preview-mode-desktop')?.addEventListener('click', () => setPreviewMode('desktop'));
-        document.getElementById('preview-mode-mobile')?.addEventListener('click', () => setPreviewMode('mobile'));
+        document.getElementById('project-detail-close')?.addEventListener('click', closeProjectDetail);
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') closeLivePreview();
+            if (event.key === 'Escape') closeProjectDetail();
         });
-        window.openLivePreview = openLivePreview;
-        window.closeLivePreview = closeLivePreview;
+        window.openProjectDetail = openProjectDetail;
+        window.closeProjectDetail = closeProjectDetail;
 
         // Substack sync — every published post, any topic
         const SUBSTACK_PUBLICATION = 'hermanify';
