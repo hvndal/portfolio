@@ -2,7 +2,7 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <title>Herman Hundal | UI/UX Designer & Web Engineer — Available for Hire</title>
     <meta name="description" content="Herman Hundal is a UI/UX designer and front-end engineer in Vancouver and Langley, BC, available for hire. Websites, product interfaces, and shipped web apps with live previews."/>
     <meta name="keywords" content="Herman Hundal, UI UX designer Vancouver, web developer Langley BC, frontend engineer Vancouver, best website design BC, Mander Labs, React Three.js Next.js developer, web application architecture"/>
@@ -23,6 +23,8 @@
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
     <link rel="manifest" href="site.webmanifest"/>
     <link rel="alternate" type="application/rss+xml" title="Herman on Substack" href="https://hermanify.substack.com/feed"/>
+    <link rel="preload" as="image" href="assets/cursors/Pointer.png"/>
+    <link rel="preload" as="image" href="assets/cursors/Link.png"/>
 
     <!-- OpenGraph / Social Meta Tags -->
     <meta property="og:site_name" content="Herman Hundal"/>
@@ -170,6 +172,9 @@
             box-sizing: border-box; 
             -webkit-tap-highlight-color: transparent;
         }
+        a, button, [role="button"] {
+            touch-action: manipulation;
+        }
         html, body {
             width: 100%;
             min-height: 100%;
@@ -183,18 +188,88 @@
         }
         @media (pointer: fine) {
             html, body {
-                cursor: url("assets/cursors/Pointer.cur") 4 2, auto;
+                cursor: url("assets/cursors/Pointer.png") 4 1, url("assets/cursors/Pointer.cur") 4 1, auto;
             }
-            a, button, [role="button"], [data-target], [data-filter], .desktop-nav-btn, .filter-btn, .project-card, label, summary {
-                cursor: url("assets/cursors/Link.cur") 8 1, pointer;
+            a, button, [role="button"], [data-target], [data-filter], [data-article], .desktop-nav-btn, .filter-btn, .project-card, label, summary {
+                cursor: url("assets/cursors/Link.png") 9 1, url("assets/cursors/Link.cur") 9 1, pointer;
             }
             input, textarea, [contenteditable="true"] {
-                cursor: url("assets/cursors/Text.cur") 12 12, text;
+                cursor: url("assets/cursors/Text.png") 11 11, url("assets/cursors/Text.cur") 11 11, text;
             }
+        }
+        html.has-site-cursor,
+        html.has-site-cursor * {
+            cursor: none !important;
+        }
+        #site-cursor {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            margin: 0;
+            pointer-events: none;
+            z-index: 100000;
+            opacity: 0;
+            will-change: transform, opacity;
+            transform: translate3d(-64px, -64px, 0);
+        }
+        #site-cursor img {
+            width: 32px;
+            height: 32px;
+            display: block;
+            filter: drop-shadow(0 0 8px rgba(186, 232, 255, 0.45));
+        }
+        #site-cursor.is-on {
+            opacity: 1;
+        }
+        #site-cursor.is-tap {
+            opacity: 1;
+            animation: siteCursorTap 320ms ease-out forwards;
+        }
+        @keyframes siteCursorTap {
+            0% { opacity: 1; transform: translate3d(var(--tap-x, 0px), var(--tap-y, 0px), 0) scale(0.82); }
+            70% { opacity: 1; transform: translate3d(var(--tap-x, 0px), var(--tap-y, 0px), 0) scale(1); }
+            100% { opacity: 0; transform: translate3d(var(--tap-x, 0px), var(--tap-y, 0px), 0) scale(1.08); }
         }
 
         header, #mobile-nav-overlay {
             transform: translateZ(0);
+        }
+        header {
+            padding-top: max(1rem, env(safe-area-inset-top));
+        }
+        main {
+            padding-top: calc(6rem + env(safe-area-inset-top));
+        }
+        .mobile-nav-btn {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #mobile-nav-overlay {
+            padding: max(1.5rem, env(safe-area-inset-top)) 1.5rem max(2rem, env(safe-area-inset-bottom));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        @media (max-width: 767px) {
+            .cinematic-title {
+                font-size: clamp(3rem, 18vw, 4.5rem) !important;
+            }
+            .hero-lead {
+                font-size: 1rem;
+            }
+            .btn-preview,
+            .btn-source,
+            .btn-ghost,
+            .btn-studio {
+                min-height: 44px;
+                padding: 12px 16px;
+            }
+            .project-preview {
+                min-height: 132px;
+            }
         }
 
         /* Clip Path Hexagon */
@@ -565,6 +640,7 @@
     </style>
 </head>
 <body class="bg-[#080609] text-[#f4f0eb] antialiased min-h-screen flex flex-col selection:bg-[#ff451a] selection:text-black">
+    <div id="site-cursor" aria-hidden="true"><img src="assets/cursors/Pointer.png" width="32" height="32" alt=""/></div>
 
     <!-- WebGL GLSL Shader Background Canvas -->
     <canvas id="webgl-canvas"></canvas>
@@ -602,12 +678,12 @@
                 <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="hidden xl:inline-flex items-center gap-2 border border-[#54a0fe]/40 bg-[#54a0fe]/10 text-[#54a0fe] px-3.5 py-1.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#54a0fe] hover:text-black transition-colors">
                     Studio
                 </a>
-                <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="hidden xl:inline-flex items-center gap-2 border border-[#ff451a]/45 bg-[#ff451a]/10 text-[#ff451a] px-3.5 py-1.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
-                    Hire me
+                <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="inline-flex items-center gap-2 border border-[#ff451a]/45 bg-[#ff451a]/10 text-[#ff451a] px-3 py-1.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
+                    <span class="sm:hidden">Hire</span><span class="hidden sm:inline">Hire me</span>
                 </a>
-                <button id="sfx-toggle-btn" type="button" onclick="toggleSfxMute()" class="flex items-center gap-1.5 glass-panel border border-[#f4f0eb]/20 hover:border-[#ff451a] text-[#f4f0eb] hover:text-[#ff451a] px-3.5 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer">
+                <button id="sfx-toggle-btn" type="button" onclick="toggleSfxMute()" class="flex items-center gap-1.5 glass-panel border border-[#f4f0eb]/20 hover:border-[#ff451a] text-[#f4f0eb] hover:text-[#ff451a] px-3 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer">
                     <span id="sfx-icon">🔇</span>
-                    <span id="sfx-label" class="font-bold">SFX MUTED</span>
+                    <span id="sfx-label" class="font-bold hidden sm:inline">SFX MUTED</span>
                 </button>
                 <button data-target="view-projects" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
                     VIEW WORK →
@@ -620,7 +696,7 @@
         </header>
 
         <!-- Main SPA Container -->
-        <main class="flex-grow flex flex-col min-h-screen relative w-full pt-24 px-4 md:px-12 max-w-[1440px] mx-auto z-10">
+        <main class="flex-grow flex flex-col min-h-screen relative w-full px-4 md:px-12 max-w-[1440px] mx-auto z-10">
 
             <!-- 1. HOME VIEW -->
             <section id="view-home" class="view-section active flex flex-col justify-between min-h-[calc(100vh-100px)] py-8 relative">
@@ -1275,18 +1351,70 @@
 
             <!-- 5. BLOG VIEW -->
             <section id="view-blog" class="view-section py-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6">
+                <div class="border-none pb-6">
+                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Articles & Case Studies</h2>
+                    <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Design systems, architecture, and engineering essays.</p>
+                </div>
+
+                <div class="flex flex-col gap-6 mt-6">
+                    <article class="glass-panel p-5 md:p-6 rounded-2xl border border-white/5 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4 gap-3">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-[#ff451a] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">UI/UX</span>
+                                <span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">4 MIN READ</span>
+                            </div>
+                            <span class="font-mono text-xs text-[#a398a0] shrink-0">JUL 10, 2026</span>
+                        </div>
+                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">The Architecture of Brutalism in Modern SaaS</h3>
+                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">Why high information density and unapologetic structural design lead to faster operator workflows and superior edge delivery.</p>
+                        <button type="button" data-article="article-1" class="read-article-btn font-mono text-xs text-[#ff451a] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase min-h-11">
+                            READ ESSAY →
+                        </button>
+                    </article>
+
+                    <article class="glass-panel p-5 md:p-6 rounded-2xl border border-white/5 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4 gap-3">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-[#54a0fe] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">FRONTEND</span>
+                                <span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">7 MIN READ</span>
+                            </div>
+                            <span class="font-mono text-xs text-[#a398a0] shrink-0">JUN 28, 2026</span>
+                        </div>
+                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">State Management for Data-Dense Dashboards</h3>
+                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">Implementing zero-latency fluid state structures using custom hook architectures in React, specifically for property management interfaces.</p>
+                        <button type="button" data-article="article-2" class="read-article-btn font-mono text-xs text-[#54a0fe] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase min-h-11">
+                            READ ESSAY →
+                        </button>
+                    </article>
+
+                    <article class="glass-panel p-5 md:p-6 rounded-2xl border border-white/5 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4 gap-3">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-[#f4f0eb] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">AI / GEMINI</span>
+                                <span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">5 MIN READ</span>
+                            </div>
+                            <span class="font-mono text-xs text-[#a398a0] shrink-0">MAY 15, 2026</span>
+                        </div>
+                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">Building CookCan: Multi-modal Vision API Integration</h3>
+                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">A deep dive into piping raw camera stream data through Gemini's vision models to generate structured JSON recipe payloads on the fly.</p>
+                        <button type="button" data-article="article-3" class="read-article-btn font-mono text-xs text-[#f4f0eb] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase min-h-11">
+                            READ ESSAY →
+                        </button>
+                    </article>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pt-12 pb-4">
                     <div>
-                        <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Writing & Notes</h2>
-                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Live sync from Substack — tech, philosophy, and everything else I publish.</p>
+                        <h3 class="font-headline-md text-2xl md:text-3xl text-[#f4f0eb] uppercase tracking-tight">From Substack</h3>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Live sync from hermanify — new posts land here automatically.</p>
                         <p id="substack-sync-status" class="font-mono text-[10px] text-[#ff451a] uppercase tracking-widest mt-2">Syncing Substack…</p>
                     </div>
-                    <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="inline-flex items-center gap-2 border border-[#ff451a]/40 bg-[#ff451a]/10 text-[#ff451a] px-4 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
+                    <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="inline-flex items-center gap-2 border border-[#ff451a]/40 bg-[#ff451a]/10 text-[#ff451a] px-4 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors min-h-11">
                         Open Substack ↗
                     </a>
                 </div>
 
-                <div id="substack-feed" class="flex flex-col gap-5 mt-6">
+                <div id="substack-feed" class="flex flex-col gap-5 mt-2">
                     <p class="font-mono text-xs text-[#a398a0] uppercase tracking-widest">Loading posts from Substack…</p>
                 </div>
             </section>
@@ -1525,9 +1653,7 @@
             <button type="button" onclick="switchSection('view-blog'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">BLOG</button>
             <button type="button" onclick="switchSection('view-mindmap'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">MINDMAP</button>
             <button type="button" onclick="switchSection('view-activity'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">GITHUB ACTIVITY</button>
-            <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="text-[#ff451a] py-2">Hire me</a>
-            <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="text-[#54a0fe] py-2">Mander Labs</a>
-            <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] py-2">Substack</a>
+            <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="mobile-nav-btn text-[#54a0fe] py-2">Studio</a>
         </div>
     </div>
 
@@ -1920,15 +2046,59 @@
 
         window.switchSection = switchSection;
 
+        const blogDatabase = {
+            "article-1": {
+                tags: '<span class="bg-[#ff451a] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">UI/UX</span><span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">4 MIN READ</span>',
+                date: "JUL 10, 2026",
+                title: "The Architecture of Brutalism in Modern SaaS",
+                content: `
+                    <p>When engineering interfaces for high-frequency operators, the standard 'clean' aesthetic often fails. It hides necessary data behind dropdowns and smooth animations that waste precious milliseconds. Brutalist design solves this.</p>
+                    <p>In my recent architecture for commercial gym software, I stripped away the fluff. We exposed raw data tables, utilized stark monochromatic contrast with high-visibility accent colors, and minimized padding to maximize data density. The result? Operators could process information 40% faster.</p>
+                    <p>Brutalism isn't about making things ugly; it's about unapologetic utility. It forces the engineer to focus entirely on state, layout, and hierarchy, stripping away the psychological safety net of soft shadows and rounded corners. It is the purest form of UI/UX engineering.</p>
+                `
+            },
+            "article-2": {
+                tags: '<span class="bg-[#54a0fe] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">FRONTEND</span><span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">7 MIN READ</span>',
+                date: "JUN 28, 2026",
+                title: "State Management for Data-Dense Dashboards",
+                content: `
+                    <p>Building the full-stack property management system presented a unique challenge: rendering thousands of dynamic property states (occupied, vacant, maintenance required, rent overdue) without choking the browser's main thread.</p>
+                    <p>Relying on out-of-the-box Redux or Context API led to massive re-render cascades. The solution required a custom hook architecture leveraging atomic state patterns and highly memoized selectors. We broke the global state into granular, independent 'nodes'.</p>
+                    <p>By implementing a pub/sub model directly within the React layer, components only subscribed to the exact atomic slice they needed. When a rent payment came through the websocket, only the specific property card re-rendered, taking the interaction latency down to under 16ms (a perfect 60fps).</p>
+                `
+            },
+            "article-3": {
+                tags: '<span class="bg-[#f4f0eb] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">AI / GEMINI</span><span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">5 MIN READ</span>',
+                date: "MAY 15, 2026",
+                title: "Building CookCan: Multi-modal Vision API Integration",
+                content: `
+                    <p>CookCan started as a simple hypothesis: Can we eliminate the friction of meal planning by just pointing a camera at a fridge? The answer is yes, but the execution requires extremely tight API orchestration.</p>
+                    <p>The magic happens on the frontend. While the Gemini API processes the image, the UI enters a 'scan state', using GSAP animations to mask the 2-3 second latency. Once the JSON payload hits the client, it dynamically hydrates the UI. It's a masterclass in blending AI power with seamless user experience.</p>
+                `
+            }
+        };
+
         // Delegated Event Listener for Navigation & External Links
         document.addEventListener('click', (e) => {
+            const articleBtn = e.target.closest('[data-article]');
+            if (articleBtn) {
+                const articleId = articleBtn.getAttribute('data-article');
+                const articleData = blogDatabase[articleId];
+                if (articleData) {
+                    document.getElementById('article-tags').innerHTML = articleData.tags;
+                    document.getElementById('article-title').innerText = articleData.title;
+                    document.getElementById('article-date').innerText = articleData.date;
+                    document.getElementById('article-content').innerHTML = articleData.content;
+                    switchSection('view-article');
+                }
+                return;
+            }
             const trigger = e.target.closest('[data-target]');
             if (trigger) {
                 e.preventDefault();
                 const targetId = trigger.getAttribute('data-target');
                 switchSection(targetId);
 
-                // Close mobile nav overlay if active
                 const mobileOverlay = document.getElementById('mobile-nav-overlay');
                 if (mobileOverlay && (mobileOverlay.classList.contains('opacity-100') || mobileOverlay.style.opacity === '1')) {
                     mobileOverlay.classList.remove('opacity-100', 'pointer-events-auto');
@@ -2535,19 +2705,81 @@
         window.playSinglePopSFX = playiOSTapPopSFX;
         window.playJuicyPopSFX = playiOSTapPopSFX;
 
-        // Tactile Glass Screen Touch Imprint Spawner
-        if (window.matchMedia('(pointer: coarse)').matches) {
-            document.addEventListener('pointerdown', (e) => {
-                try {
-                    const imprint = document.createElement('div');
-                    imprint.className = 'click-touch-imprint';
-                    imprint.style.left = `${e.clientX}px`;
-                    imprint.style.top = `${e.clientY}px`;
-                    document.body.appendChild(imprint);
-                    setTimeout(() => imprint.remove(), 380);
-                } catch(err) {}
+        (function initSiteCursor() {
+            const cursorEl = document.getElementById('site-cursor');
+            if (!cursorEl) return;
+            const img = cursorEl.querySelector('img');
+            const POINTER = { src: 'assets/cursors/Pointer.png', x: 4, y: 1 };
+            const LINK = { src: 'assets/cursors/Link.png', x: 9, y: 1 };
+            const TEXT = { src: 'assets/cursors/Text.png', x: 11, y: 11 };
+            const linkSel = 'a, button, [role="button"], [data-target], [data-filter], [data-article], .desktop-nav-btn, .filter-btn, .project-card, .substack-card, label, summary';
+            const textSel = 'input, textarea, [contenteditable="true"]';
+            let mode = POINTER;
+            const fine = window.matchMedia('(pointer: fine)').matches;
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function setMode(next) {
+                if (mode === next) return;
+                mode = next;
+                if (img) img.src = next.src;
+            }
+
+            function hotspotTransform(x, y) {
+                return `translate3d(${x - mode.x}px, ${y - mode.y}px, 0)`;
+            }
+
+            if (fine) {
+                document.documentElement.classList.add('has-site-cursor');
+                let x = window.innerWidth / 2;
+                let y = window.innerHeight / 2;
+                let tx = x;
+                let ty = y;
+                window.addEventListener('pointermove', (e) => {
+                    if (e.pointerType === 'touch') return;
+                    tx = e.clientX;
+                    ty = e.clientY;
+                    cursorEl.classList.add('is-on');
+                    const node = e.target;
+                    if (node && node.closest && node.closest(textSel)) setMode(TEXT);
+                    else if (node && node.closest && node.closest(linkSel)) setMode(LINK);
+                    else setMode(POINTER);
+                    if (reduce) cursorEl.style.transform = hotspotTransform(tx, ty);
+                }, { passive: true });
+                document.addEventListener('mouseleave', () => cursorEl.classList.remove('is-on'));
+                document.addEventListener('mouseenter', () => cursorEl.classList.add('is-on'));
+                if (!reduce) {
+                    const tick = () => {
+                        x += (tx - x) * 0.38;
+                        y += (ty - y) * 0.38;
+                        cursorEl.style.transform = hotspotTransform(x, y);
+                        requestAnimationFrame(tick);
+                    };
+                    requestAnimationFrame(tick);
+                }
+            }
+
+            window.addEventListener('pointerdown', (e) => {
+                const isTouch = e.pointerType === 'touch' || window.matchMedia('(pointer: coarse)').matches;
+                if (!isTouch) return;
+                const node = e.target;
+                if (node && node.closest && node.closest(linkSel)) setMode(LINK);
+                else setMode(POINTER);
+                const x = e.clientX - mode.x;
+                const y = e.clientY - mode.y;
+                cursorEl.style.setProperty('--tap-x', x + 'px');
+                cursorEl.style.setProperty('--tap-y', y + 'px');
+                cursorEl.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                cursorEl.classList.remove('is-tap');
+                void cursorEl.offsetWidth;
+                cursorEl.classList.add('is-tap');
+                const imprint = document.createElement('div');
+                imprint.className = 'click-touch-imprint';
+                imprint.style.left = `${e.clientX}px`;
+                imprint.style.top = `${e.clientY}px`;
+                document.body.appendChild(imprint);
+                setTimeout(() => imprint.remove(), 380);
             }, { passive: true });
-        }
+        })();
 
         // Delegated SFX Event Listener for iOS-Style UI Taps & Boops
         document.addEventListener('click', (e) => {
