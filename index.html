@@ -14,6 +14,7 @@
     <link rel="canonical" href="https://hermanify.online/"/>
     <link rel="author" href="https://www.mander.tech"/>
     <link rel="me" href="https://www.mander.tech"/>
+    <link rel="me" href="https://substack.com/@hermanify"/>
     <link rel="me" href="https://hermanify.substack.com"/>
     <link rel="me" href="https://linkedin.com/in/hermanify"/>
     <link rel="me" href="https://github.com/hvndal"/>
@@ -79,6 +80,7 @@
           },
           "sameAs": [
             "https://www.mander.tech",
+            "https://substack.com/@hermanify",
             "https://hermanify.substack.com",
             "https://linkedin.com/in/hermanify",
             "https://github.com/hvndal"
@@ -904,7 +906,7 @@
                             <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="text-[#54a0fe] font-bold hover:underline">
                                 mander.tech ↗
                             </a>
-                            <a href="https://hermanify.substack.com" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] font-bold hover:underline">
+                            <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] font-bold hover:underline">
                                 Substack ↗
                             </a>
                         </div>
@@ -1436,7 +1438,7 @@
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Live sync from Substack — tech, philosophy, and everything else I publish.</p>
                         <p id="substack-sync-status" class="font-mono text-[10px] text-[#ff451a] uppercase tracking-widest mt-2">Syncing Substack…</p>
                     </div>
-                    <a href="https://hermanify.substack.com" target="_blank" rel="me noopener noreferrer" class="inline-flex items-center gap-2 border border-[#ff451a]/40 bg-[#ff451a]/10 text-[#ff451a] px-4 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
+                    <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="inline-flex items-center gap-2 border border-[#ff451a]/40 bg-[#ff451a]/10 text-[#ff451a] px-4 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
                         Open Substack ↗
                     </a>
                 </div>
@@ -1652,7 +1654,7 @@
                 <span class="text-[#a398a0]">ENGINEERING & DESIGN IN <a href="https://www.mander.tech/locations/metro-vancouver/vancouver" target="_blank" rel="noopener" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">VANCOUVER</a> & <a href="https://www.mander.tech/locations/metro-vancouver/langley" target="_blank" rel="noopener" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">LANGLEY, BC</a></span>
                 <span class="hidden sm:inline text-white/10">•</span>
                 <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="text-[#ff451a] hover:underline font-bold transition-colors">MANDER LABS ↗</a>
-                <a href="https://hermanify.substack.com" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">SUBSTACK ↗</a>
+                <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">SUBSTACK ↗</a>
             </div>
             <div class="flex flex-wrap items-center gap-6 uppercase">
                 <a href="mailto:harmanify@protonmail.com" class="text-[#ff451a] font-bold hover:underline">
@@ -1712,7 +1714,7 @@
             <button type="button" onclick="switchSection('view-activity'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">GITHUB ACTIVITY</button>
             <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="text-[#ff451a] py-2">Hire me</a>
             <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="text-[#54a0fe] py-2">Mander Labs</a>
-            <a href="https://hermanify.substack.com" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] py-2">Substack</a>
+            <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] py-2">Substack</a>
         </div>
     </div>
 
@@ -2604,6 +2606,7 @@
 
         // Substack sync — every published post, any topic
         const SUBSTACK_PUBLICATION = 'hermanify';
+        const SUBSTACK_PROFILE = 'https://substack.com/@hermanify';
         const SUBSTACK_HOME = 'https://hermanify.substack.com';
         const SUBSTACK_FALLBACK = 'data/substack-fallback.json';
 
@@ -2666,7 +2669,7 @@
             const status = document.getElementById('substack-sync-status');
             if (!feed) return;
             if (!posts.length) {
-                feed.innerHTML = `<p class="font-mono text-xs text-[#a398a0]">No Substack posts yet. <a class="text-[#ff451a] underline" href="${SUBSTACK_HOME}" target="_blank" rel="noopener noreferrer">Open Substack</a>.</p>`;
+                feed.innerHTML = `<p class="font-mono text-xs text-[#a398a0]">No Substack posts yet. <a class="text-[#ff451a] underline" href="${SUBSTACK_PROFILE}" target="_blank" rel="noopener noreferrer">Open Substack</a>.</p>`;
                 if (status) status.textContent = 'Synced · 0 posts';
                 return;
             }
@@ -2693,7 +2696,7 @@
                         ${subtitle}
                         <div class="flex flex-wrap gap-2 mt-auto pt-2">
                             <a class="btn-preview" href="${escapeHtml(post.url)}" target="_blank" rel="noopener noreferrer">Read on Substack</a>
-                            <a class="btn-ghost" href="${SUBSTACK_HOME}" target="_blank" rel="me noopener noreferrer">All posts</a>
+                            <a class="btn-ghost" href="${SUBSTACK_PROFILE}" target="_blank" rel="me noopener noreferrer">All posts</a>
                         </div>
                     </div>
                 </article>`;
@@ -2722,7 +2725,7 @@
                 console.error('Substack fallback failed:', err);
                 const feed = document.getElementById('substack-feed');
                 if (feed) {
-                    feed.innerHTML = `<p class="font-mono text-xs text-[#a398a0]">Could not sync Substack right now. <a class="text-[#ff451a] underline" href="${SUBSTACK_HOME}" target="_blank" rel="noopener noreferrer">Read on Substack</a>.</p>`;
+                    feed.innerHTML = `<p class="font-mono text-xs text-[#a398a0]">Could not sync Substack right now. <a class="text-[#ff451a] underline" href="${SUBSTACK_PROFILE}" target="_blank" rel="noopener noreferrer">Read on Substack</a>.</p>`;
                 }
                 if (status) status.textContent = 'Sync unavailable · open Substack';
             }

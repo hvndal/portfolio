@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Refresh data/substack-fallback.json from the live hermanify Substack archive."""
+"""Refresh data/substack-fallback.json from the live hermanify Substack archive.
+
+Public profile: https://substack.com/@hermanify
+Publication API/feed: https://hermanify.substack.com
+"""
 
 from __future__ import annotations
 
@@ -10,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "substack-fallback.json"
 PUBLICATION = "hermanify"
+PROFILE = "https://substack.com/@hermanify"
 
 
 def fetch_json(url: str):
@@ -52,8 +57,10 @@ def main() -> None:
     OUT.parent.mkdir(exist_ok=True)
     payload = {
         "publication": PUBLICATION,
+        "profile": PROFILE,
         "url": f"https://{PUBLICATION}.substack.com",
         "feed": f"https://{PUBLICATION}.substack.com/feed",
+        "synced_at": __import__("datetime").date.today().isoformat(),
         "posts": slim,
     }
     OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
