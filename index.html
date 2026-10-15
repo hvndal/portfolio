@@ -7,16 +7,43 @@
     <meta name="description" content="Herman Hundal is a UI/UX designer and front-end engineer in Vancouver and Langley, BC, available for hire. Websites, product interfaces, and shipped web apps with live previews."/>
     <meta name="keywords" content="Herman Hundal, UI UX designer Vancouver, web developer Langley BC, frontend engineer Vancouver, best website design BC, Mander Labs, React Three.js Next.js developer, web application architecture"/>
     <meta name="author" content="Herman Hundal"/>
-    <link rel="canonical" href="https://hermanify.online"/>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+    <meta name="theme-color" content="#080609"/>
+    <meta name="geo.region" content="CA-BC"/>
+    <meta name="geo.placename" content="Vancouver and Langley"/>
+    <link rel="canonical" href="https://hermanify.online/"/>
+    <link rel="author" href="https://www.mander.tech"/>
+    <link rel="me" href="https://www.mander.tech"/>
+    <link rel="me" href="https://substack.com/@hermanify"/>
+    <link rel="me" href="https://hermanify.substack.com"/>
+    <link rel="me" href="https://linkedin.com/in/hermanify"/>
+    <link rel="me" href="https://github.com/hvndal"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"/>
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png"/>
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
+    <link rel="manifest" href="site.webmanifest"/>
+    <link rel="alternate" type="application/rss+xml" title="Herman on Substack" href="https://hermanify.substack.com/feed"/>
 
     <!-- OpenGraph / Social Meta Tags -->
+    <meta property="og:site_name" content="Herman Hundal"/>
     <meta property="og:title" content="Herman Hundal | UI/UX Designer & Web Engineer — Available for Hire"/>
-    <meta property="og:description" content="Herman Hundal is available for hire. UI/UX and front-end work in Vancouver and Langley, BC, with live previews of shipped projects."/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://hermanify.online"/>
+    <meta property="og:description" content="Herman Hundal is available for hire. UI/UX and front-end work in Vancouver and Langley, BC, with live project previews. Studio: Mander Labs. Writing on Substack."/>
+    <meta property="og:type" content="profile"/>
+    <meta property="og:url" content="https://hermanify.online/"/>
     <meta property="og:locale" content="en_CA"/>
+    <meta property="og:image" content="https://hermanify.online/assets/og-image.png"/>
+    <meta property="og:image:secure_url" content="https://hermanify.online/assets/og-image.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Herman Hundal, UI/UX designer and web engineer, available for hire. Studio mander.tech."/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Herman Hundal | UI/UX Designer & Web Engineer — Available for Hire"/>
+    <meta name="twitter:description" content="Available for hire. UI/UX and front-end work in Vancouver and Langley, BC. Studio: mander.tech."/>
+    <meta name="twitter:image" content="https://hermanify.online/assets/og-image.png"/>
+    <meta name="twitter:image:alt" content="Herman Hundal, available for hire. Studio mander.tech."/>
 
-    <!-- Schema.org Person & WebSite Structured Data -->
+    <!-- Schema.org Person, studio, Substack, profile -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,33 +53,71 @@
           "@id": "https://hermanify.online/#person",
           "name": "Herman Hundal",
           "jobTitle": "UI/UX Designer & Full-Stack Engineer",
-          "url": "https://hermanify.online",
+          "description": "UI/UX designer and front-end engineer in Vancouver and Langley, BC, available for hire. Studio: Mander Labs.",
+          "url": "https://hermanify.online/",
+          "image": "https://hermanify.online/assets/og-image.png",
           "email": "harmanify@protonmail.com",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Langley",
-            "addressRegion": "BC",
-            "addressCountry": "CA"
-          },
+          "address": [
+            {
+              "@type": "PostalAddress",
+              "addressLocality": "Vancouver",
+              "addressRegion": "BC",
+              "addressCountry": "CA"
+            },
+            {
+              "@type": "PostalAddress",
+              "addressLocality": "Langley",
+              "addressRegion": "BC",
+              "addressCountry": "CA"
+            }
+          ],
           "worksFor": {
-            "@type": "Organization",
-            "name": "MANDER",
-            "url": "https://www.mander.tech"
+            "@id": "https://www.mander.tech/#organization"
           },
-          "alumniOf": "Trinity Western University",
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Trinity Western University"
+          },
           "sameAs": [
+            "https://www.mander.tech",
+            "https://substack.com/@hermanify",
+            "https://hermanify.substack.com",
             "https://linkedin.com/in/hermanify",
-            "https://github.com/hvndal",
-            "https://www.mander.tech"
+            "https://github.com/hvndal"
           ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.mander.tech/#organization",
+          "name": "Mander Labs",
+          "alternateName": "MANDER",
+          "url": "https://www.mander.tech",
+          "founder": { "@id": "https://hermanify.online/#person" }
         },
         {
           "@type": "WebSite",
           "@id": "https://hermanify.online/#website",
-          "url": "https://hermanify.online",
+          "url": "https://hermanify.online/",
           "name": "Herman Hundal Portfolio",
-          "description": "Portfolio of Herman Hundal — Web developer and UI/UX designer based in Vancouver and Langley, BC.",
-          "inLanguage": "en-CA"
+          "description": "Portfolio of Herman Hundal — UI/UX designer and front-end engineer in Vancouver and Langley, BC.",
+          "inLanguage": "en-CA",
+          "author": { "@id": "https://hermanify.online/#person" },
+          "publisher": { "@id": "https://www.mander.tech/#organization" }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://hermanify.online/#profile",
+          "url": "https://hermanify.online/",
+          "name": "Herman Hundal — Available for Hire",
+          "isPartOf": { "@id": "https://hermanify.online/#website" },
+          "about": { "@id": "https://hermanify.online/#person" },
+          "mainEntity": { "@id": "https://hermanify.online/#person" },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://hermanify.online/assets/og-image.png",
+            "width": 1200,
+            "height": 630
+          }
         }
       ]
     }
@@ -280,27 +345,15 @@
             box-shadow: 0 0 25px rgba(255, 69, 26, 0.25) !important;
         }
 
-        .hire-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: #d6f25c;
-            box-shadow: 0 0 0 0 rgba(214, 242, 92, 0.7);
-            animation: hirePulse 1.8s ease-out infinite;
-            flex-shrink: 0;
-        }
-        @keyframes hirePulse {
-            0% { box-shadow: 0 0 0 0 rgba(214, 242, 92, 0.65); }
-            100% { box-shadow: 0 0 0 8px rgba(214, 242, 92, 0); }
-        }
         .hire-banner {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid rgba(214, 242, 92, 0.55);
-            background: rgba(214, 242, 92, 0.08);
-            color: #d6f25c;
-            padding: 8px 14px;
+            border: 1px solid rgba(255, 69, 26, 0.45);
+            background: rgba(255, 69, 26, 0.1);
+            color: #ff451a;
+            border-radius: 999px;
+            padding: 8px 16px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             font-weight: 700;
@@ -318,8 +371,17 @@
             padding-left: 0.75rem;
             padding-right: 0.75rem;
             white-space: nowrap;
+            color: #8f868c;
+            background: transparent;
+            font-weight: 500;
+            box-shadow: none;
         }
-        .desktop-nav-btn.is-active {
+        .desktop-nav-btn:hover {
+            color: #f4f0eb;
+            background: rgba(244, 240, 235, 0.05);
+        }
+        .desktop-nav-btn.is-active,
+        .desktop-nav-btn.is-active:hover {
             color: #000 !important;
             background: #ff451a !important;
             font-weight: 700;
@@ -334,13 +396,18 @@
         .project-card {
             display: flex;
             flex-direction: column;
-            background: rgba(14, 12, 16, 0.9);
+            background: rgba(18, 14, 20, 0.8);
             border: 1px solid rgba(244, 240, 235, 0.1);
+            border-radius: 1rem;
+            overflow: hidden;
             min-width: 0;
-            transition: border-color 200ms ease, transform 200ms ease;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
         }
         .project-card:hover {
             border-color: rgba(255, 69, 26, 0.7);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
         }
         .project-media {
             position: relative;
@@ -405,14 +472,15 @@
             align-items: center;
             gap: 8px;
             background: rgba(8, 6, 9, 0.88);
-            border: 1px solid rgba(214, 242, 92, 0.45);
-            color: #d6f25c;
+            border: 1px solid rgba(255, 69, 26, 0.55);
+            color: #ff451a;
+            border-radius: 999px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            padding: 6px 10px;
+            padding: 6px 12px;
         }
         .project-media-label.is-offline {
             border-color: rgba(244, 240, 235, 0.2);
@@ -434,53 +502,66 @@
         }
         .btn-preview,
         .btn-source,
-        .btn-ghost {
+        .btn-ghost,
+        .btn-studio {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
+            gap: 6px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            padding: 10px 14px;
+            padding: 10px 16px;
             border: 1px solid transparent;
+            border-radius: 999px;
             cursor: pointer;
             text-decoration: none;
             line-height: 1;
+            transition: background 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
         }
         .btn-preview {
-            background: #d6f25c;
-            color: #111;
-        }
-        .btn-preview:hover { background: #fff; }
-        .btn-source {
             background: #ff451a;
-            color: #111;
+            color: #080609;
+            box-shadow: 0 0 15px rgba(255, 69, 26, 0.28);
         }
-        .btn-source:hover { background: #fff; }
+        .btn-preview:hover { background: #fff; color: #080609; }
+        .btn-source,
         .btn-ghost {
-            background: transparent;
+            background: rgba(18, 14, 20, 0.8);
             color: #f4f0eb;
-            border-color: rgba(244, 240, 235, 0.2);
+            border-color: rgba(244, 240, 235, 0.18);
         }
+        .btn-source:hover { border-color: #ff451a; color: #ff451a; }
         .btn-ghost:hover { border-color: #54a0fe; color: #54a0fe; }
+        .btn-studio {
+            background: rgba(84, 160, 254, 0.1);
+            color: #54a0fe;
+            border-color: rgba(84, 160, 254, 0.35);
+        }
+        .btn-studio:hover { background: #54a0fe; color: #080609; }
         .preview-modal[hidden] { display: none !important; }
         .preview-modal {
             position: fixed;
             inset: 0;
             z-index: 400;
-            background: rgba(8, 6, 9, 0.78);
+            background: rgba(8, 6, 9, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
             align-items: stretch;
             justify-content: center;
             padding: 16px;
         }
         .preview-dialog {
-            width: min(1200px, 100%);
-            height: min(100%, 900px);
+            width: min(920px, 100%);
+            max-height: min(100%, 880px);
             margin: auto;
             background: #0c0a0e;
             border: 1px solid rgba(244, 240, 235, 0.16);
+            border-radius: 1rem;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
@@ -490,9 +571,9 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            padding: 10px 12px;
+            padding: 12px 14px;
             border-bottom: 1px solid rgba(244, 240, 235, 0.1);
-            background: #120e14;
+            background: rgba(18, 14, 20, 0.95);
         }
         .preview-toolbar h3 {
             font-family: 'Syne', sans-serif;
@@ -505,15 +586,100 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        .preview-frame {
-            flex: 1;
+        .project-detail-body {
+            overflow: auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 0;
+            min-height: 0;
+        }
+        .project-detail-shot {
+            min-height: 280px;
+            background: #100d12;
+            border-right: 1px solid rgba(244, 240, 235, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-detail-shot img {
             width: 100%;
-            border: 0;
-            background: #fff;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .project-detail-shot .project-fallback {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+        }
+        .project-detail-copy {
+            padding: 22px 22px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .project-detail-copy p {
+            color: #c8bfb8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .project-detail-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #8f868c;
+        }
+        .project-detail-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+        @media (max-width: 720px) {
+            .project-detail-body { grid-template-columns: 1fr; }
+            .project-detail-shot {
+                border-right: 0;
+                border-bottom: 1px solid rgba(244, 240, 235, 0.08);
+                min-height: 200px;
+                max-height: 240px;
+            }
+        }
+        .substack-card {
+            display: grid;
+            grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
+            gap: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: rgba(18, 14, 20, 0.8);
+            border: 1px solid rgba(244, 240, 235, 0.1);
+            transition: border-color 200ms ease, box-shadow 200ms ease;
+        }
+        .substack-card:hover {
+            border-color: rgba(255, 69, 26, 0.55);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        }
+        .substack-cover {
+            min-height: 140px;
+            background:
+                linear-gradient(155deg, rgba(255, 69, 26, 0.28), transparent 50%),
+                #141216;
+            background-size: cover;
+            background-position: center;
+        }
+        .substack-body {
+            padding: 22px 22px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
         @media (max-width: 720px) {
             .preview-modal { padding: 0; }
-            .preview-dialog { width: 100%; height: 100%; }
+            .preview-dialog { width: 100%; height: 100%; max-height: 100%; border-radius: 0; }
+            .substack-card { grid-template-columns: 1fr; }
+            .substack-cover { min-height: 160px; }
         }
     </style>
 </head>
@@ -534,25 +700,28 @@
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-xs tracking-widest uppercase text-[#f4f0eb]">HERMAN HUNDAL</span>
-                    <span class="text-[9px] font-mono text-[#d6f25c] uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap"><span class="hire-dot"></span>Available for hire</span>
+                    <span class="text-[9px] font-mono text-[#ff451a] uppercase tracking-wider whitespace-nowrap">Available for hire</span>
                 </div>
             </div>
 
             <!-- Header Navigation Tabs (Desktop) -->
             
             <nav class="hidden md:flex items-center gap-1.5 bg-[#120e14]/90 p-1.5 rounded-full border border-white/5" id="desktop-nav-tabs">
-                <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn is-active px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]">HOME</button>
-                <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">PROJECTS</button>
-                <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ABOUT</button>
-                <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">STACK</button>
-                <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">BLOG</button>
-                <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">MINDMAP</button>
-                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ACTIVITY</button>
+                <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn is-active px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">HOME</button>
+                <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">PROJECTS</button>
+                <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ABOUT</button>
+                <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">STACK</button>
+                <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">BLOG</button>
+                <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">MINDMAP</button>
+                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ACTIVITY</button>
             </nav>
 
             <!-- Action Button & Mobile Toggle -->
             <div class="flex items-center gap-3">
-                <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="hidden xl:inline-flex items-center gap-2 border border-[#d6f25c]/50 bg-[#d6f25c]/10 text-[#d6f25c] px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#d6f25c] hover:text-black transition-colors">
+                <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="hidden xl:inline-flex items-center gap-2 border border-[#54a0fe]/40 bg-[#54a0fe]/10 text-[#54a0fe] px-3.5 py-1.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#54a0fe] hover:text-black transition-colors">
+                    Studio
+                </a>
+                <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="hidden xl:inline-flex items-center gap-2 border border-[#ff451a]/45 bg-[#ff451a]/10 text-[#ff451a] px-3.5 py-1.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
                     Hire me
                 </a>
                 <button id="sfx-toggle-btn" type="button" onclick="toggleSfxMute()" class="flex items-center gap-1.5 glass-panel border border-[#f4f0eb]/20 hover:border-[#ff451a] text-[#f4f0eb] hover:text-[#ff451a] px-3.5 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer">
@@ -577,7 +746,6 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto z-10 w-full">
                     <div class="lg:col-span-7 flex flex-col items-start">
                         <div class="hire-banner mb-6" role="status">
-                            <span class="hire-dot" aria-hidden="true"></span>
                             <span>Available for hire</span>
                         </div>
                         <h1 class="cinematic-title text-[64px] sm:text-[88px] md:text-[104px] lg:text-[112px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight leading-none">
@@ -594,14 +762,17 @@
                             <span>Product design</span>
                         </p>
                         <div class="flex flex-wrap gap-3 items-center">
-                            <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="inline-flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest font-bold uppercase bg-[#d6f25c] text-black hover:bg-white transition-all px-6 py-3">
+                            <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="inline-flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest font-bold uppercase bg-[#ff451a] text-black hover:bg-white transition-all px-6 py-3 rounded-full shadow-[0_0_15px_rgba(255,69,26,0.3)]">
                                 Hire me
                             </a>
-                            <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest uppercase text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 hover:border-[#ff451a]">
+                            <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest uppercase text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 rounded-full hover:border-[#ff451a]">
                                 <span>View work</span>
                                 <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
                             </button>
-                            <a href="https://linkedin.com/in/hermanify" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2.5 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] glass-panel border border-[#f4f0eb]/20 hover:border-[#54a0fe] hover:text-[#54a0fe] transition-all px-5 py-3">
+                            <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="inline-flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest uppercase text-[#54a0fe] glass-panel border border-[#54a0fe]/35 hover:bg-[#54a0fe] hover:text-black transition-all px-5 py-3 rounded-full">
+                                Mander Labs
+                            </a>
+                            <a href="https://linkedin.com/in/hermanify" target="_blank" rel="me noopener noreferrer" class="group flex items-center gap-2.5 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] glass-panel border border-[#f4f0eb]/20 hover:border-[#54a0fe] hover:text-[#54a0fe] transition-all px-5 py-3 rounded-full">
                                 <svg class="w-4 h-4 fill-current text-[#54a0fe]" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                                 <span>in/hermanify</span>
                             </a>
@@ -610,23 +781,19 @@
                     </div>
                     <div class="lg:col-span-5 relative h-[320px] sm:h-[400px] lg:h-[480px] w-full flex items-center justify-center">
                         <div id="hero-3d-container" class="w-full h-full absolute inset-0"></div>
-                        <div class="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 z-10 flex items-center gap-3 bg-[#080609]/80 border border-[#d6f25c]/30 px-3 py-2 backdrop-blur-md">
-                            <img src="assets/avatar.jpg" alt="" class="w-12 h-12 object-cover border border-[#ff451a]"/>
+                        <div class="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 z-10 bg-[#080609]/80 border border-[#ff451a]/35 px-4 py-3 rounded-2xl backdrop-blur-md">
                             <div class="font-mono text-[10px] uppercase tracking-wider">
                                 <p class="text-[#f4f0eb] font-bold">Open for new work</p>
-                                <p class="text-[#d6f25c]">Full-time and contract · Remote</p>
+                                <p class="text-[#ff451a]">Full-time and contract · Remote</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-none font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
-                    <div class="flex items-center gap-3">
-                        <span class="hire-dot" aria-hidden="true"></span>
-                        <div>
-                            <p class="text-[#d6f25c]">Available for hire</p>
-                            <p class="text-[#f4f0eb]/70">Vancouver & Langley, BC · Remote worldwide</p>
-                        </div>
+                    <div>
+                        <p class="text-[#ff451a]">Available for hire</p>
+                        <p class="text-[#f4f0eb]/70">Vancouver & Langley, BC · Remote worldwide</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="text-[#ff451a]">2026</span>
@@ -641,12 +808,12 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Projects & Products</h2>
-                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Open a live preview for shipped sites. The rest link straight to source.</p>
-                        <p id="live-preview-count" class="font-mono text-[10px] text-[#d6f25c] uppercase tracking-widest mt-2">Loading projects…</p>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Projects with screenshots first. Open details for what shipped.</p>
+                        <p id="live-preview-count" class="font-mono text-[10px] text-[#ff451a] uppercase tracking-widest mt-2">Loading projects…</p>
                     </div>
                     <div class="flex flex-wrap gap-2" id="project-filter-btns">
                         <button data-filter="ALL" onclick="filterProjects('ALL')" class="filter-btn is-active border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer">ALL</button>
-                        <button data-filter="LIVE" onclick="filterProjects('LIVE')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#d6f25c] transition-all cursor-pointer">LIVE</button>
+                        <button data-filter="SHOT" onclick="filterProjects('SHOT')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">SHOTS</button>
                         <button data-filter="REACT" onclick="filterProjects('REACT')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">REACT</button>
                         <button data-filter="THREE.JS" onclick="filterProjects('THREE.JS')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">THREE.JS</button>
                         <button data-filter="RUST" onclick="filterProjects('RUST')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">RUST / C++</button>
@@ -668,8 +835,13 @@
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Herman Hundal</h2>
                         <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">UI/UX Designer & Front-End Web Developer // Professional Background</p>
                     </div>
-                    <div class="flex items-center gap-3 bg-[#54a0fe]/15 border border-[#54a0fe]/30 px-4 py-2 rounded-full font-mono text-xs font-bold text-[#54a0fe] uppercase tracking-wider">
-                        <span>🌐 INTERNATIONAL REMOTE</span>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <div class="flex items-center gap-3 bg-[#54a0fe]/15 border border-[#54a0fe]/30 px-4 py-2 rounded-full font-mono text-xs font-bold text-[#54a0fe] uppercase tracking-wider">
+                            <span>🌐 INTERNATIONAL REMOTE</span>
+                        </div>
+                        <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="inline-flex items-center gap-2 bg-[#ff451a]/15 border border-[#ff451a]/30 px-4 py-2 rounded-full font-mono text-xs font-bold text-[#ff451a] uppercase tracking-wider hover:bg-[#ff451a] hover:text-black transition-colors">
+                            Studio · Mander Labs
+                        </a>
                     </div>
                 </div>
 
@@ -694,7 +866,12 @@
                             <a href="mailto:harmanify@protonmail.com" class="text-[#ff451a] font-bold hover:underline flex items-center gap-1.5">
                                 ✉ harmanify@protonmail.com
                             </a>
-                            
+                            <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="text-[#54a0fe] font-bold hover:underline">
+                                mander.tech ↗
+                            </a>
+                            <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] font-bold hover:underline">
+                                Substack ↗
+                            </a>
                         </div>
                     </div>
 
@@ -1218,59 +1395,19 @@
 
             <!-- 5. BLOG VIEW -->
             <section id="view-blog" class="view-section py-6">
-                <div class="border-none pb-6">
-                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Articles & Case Studies</h2>
-                    <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Design systems, architecture, and engineering essays.</p>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6">
+                    <div>
+                        <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Writing & Notes</h2>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Live sync from Substack — tech, philosophy, and everything else I publish.</p>
+                        <p id="substack-sync-status" class="font-mono text-[10px] text-[#ff451a] uppercase tracking-widest mt-2">Syncing Substack…</p>
+                    </div>
+                    <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="inline-flex items-center gap-2 border border-[#ff451a]/40 bg-[#ff451a]/10 text-[#ff451a] px-4 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
+                        Open Substack ↗
+                    </a>
                 </div>
 
-                <div class="flex flex-col gap-6 mt-6">
-                    <!-- Article 1 -->
-                    <article class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex gap-2">
-                                <span class="bg-[#ff451a] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">UI/UX</span>
-                                <span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">4 MIN READ</span>
-                            </div>
-                            <span class="font-mono text-xs text-[#a398a0]">JUL 10, 2026</span>
-                        </div>
-                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">The Architecture of Brutalism in Modern SaaS</h3>
-                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">Why high information density and unapologetic structural design lead to faster operator workflows and superior edge delivery.</p>
-                        <button data-article="article-1" class="read-article-btn font-mono text-xs text-[#ff451a] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase cursor-pointer">
-                            READ ESSAY →
-                        </button>
-                    </article>
-
-                    <!-- Article 2 -->
-                    <article class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex gap-2">
-                                <span class="bg-[#54a0fe] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">FRONTEND</span>
-                                <span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">7 MIN READ</span>
-                            </div>
-                            <span class="font-mono text-xs text-[#a398a0]">JUN 28, 2026</span>
-                        </div>
-                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">State Management for Data-Dense Dashboards</h3>
-                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">Implementing zero-latency fluid state structures using custom hook architectures in React, specifically for property management interfaces.</p>
-                        <button data-article="article-2" class="read-article-btn font-mono text-xs text-[#54a0fe] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase cursor-pointer">
-                            READ ESSAY →
-                        </button>
-                    </article>
-
-                    <!-- Article 3 -->
-                    <article class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex gap-2">
-                                <span class="bg-[#f4f0eb] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">AI / GEMINI</span>
-                                <span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">5 MIN READ</span>
-                            </div>
-                            <span class="font-mono text-xs text-[#a398a0]">MAY 15, 2026</span>
-                        </div>
-                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">Building CookCan: Multi-modal Vision API Integration</h3>
-                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">A deep dive into piping raw camera stream data through Gemini's vision models to generate structured JSON recipe payloads on the fly.</p>
-                        <button data-article="article-3" class="read-article-btn font-mono text-xs text-[#f4f0eb] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase cursor-pointer">
-                            READ ESSAY →
-                        </button>
-                    </article>
+                <div id="substack-feed" class="flex flex-col gap-5 mt-6">
+                    <p class="font-mono text-xs text-[#a398a0] uppercase tracking-widest">Loading posts from Substack…</p>
                 </div>
             </section>
 
@@ -1479,7 +1616,8 @@
                 <span class="hidden sm:inline text-white/10">•</span>
                 <span class="text-[#a398a0]">ENGINEERING & DESIGN IN <a href="https://www.mander.tech/locations/metro-vancouver/vancouver" target="_blank" rel="noopener" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">VANCOUVER</a> & <a href="https://www.mander.tech/locations/metro-vancouver/langley" target="_blank" rel="noopener" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">LANGLEY, BC</a></span>
                 <span class="hidden sm:inline text-white/10">•</span>
-                <a href="https://www.mander.tech" target="_blank" rel="noopener" class="text-[#ff451a] hover:underline font-bold transition-colors">MANDER LABS ↗</a>
+                <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="text-[#ff451a] hover:underline font-bold transition-colors">MANDER LABS ↗</a>
+                <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">SUBSTACK ↗</a>
             </div>
             <div class="flex flex-wrap items-center gap-6 uppercase">
                 <a href="mailto:harmanify@protonmail.com" class="text-[#ff451a] font-bold hover:underline">
@@ -1496,16 +1634,24 @@
 
     </div>
 
-    <div id="live-preview-modal" class="preview-modal" hidden>
-        <div class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+    <div id="project-detail-modal" class="preview-modal" hidden>
+        <div class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="project-detail-title">
             <div class="preview-toolbar">
-                <h3 id="preview-title">Live preview</h3>
-                <div class="flex items-center gap-2 shrink-0">
-                    <a id="preview-open" href="#" target="_blank" rel="noopener noreferrer" class="btn-ghost">Open site</a>
-                    <button type="button" id="preview-close" class="btn-source">Close</button>
+                <h3 id="project-detail-title">Project details</h3>
+                <div class="flex items-center gap-2 shrink-0 flex-wrap justify-end">
+                    <button type="button" id="project-detail-close" class="btn-preview">Close</button>
                 </div>
             </div>
-            <iframe id="preview-frame" class="preview-frame" title="Project live preview" referrerpolicy="no-referrer"></iframe>
+            <div class="project-detail-body">
+                <div id="project-detail-shot" class="project-detail-shot"></div>
+                <div class="project-detail-copy">
+                    <p id="project-detail-meta" class="project-detail-meta"></p>
+                    <p id="project-detail-subtitle" class="font-mono text-[11px] text-[#ff451a] uppercase tracking-wider font-bold"></p>
+                    <p id="project-detail-desc"></p>
+                    <div id="project-detail-tags" class="flex flex-wrap gap-2"></div>
+                    <div id="project-detail-actions" class="project-detail-actions"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1520,6 +1666,9 @@
             <button type="button" onclick="switchSection('view-blog'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">BLOG</button>
             <button type="button" onclick="switchSection('view-mindmap'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">MINDMAP</button>
             <button type="button" onclick="switchSection('view-activity'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">GITHUB ACTIVITY</button>
+            <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="text-[#ff451a] py-2">Hire me</a>
+            <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="text-[#54a0fe] py-2">Mander Labs</a>
+            <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] py-2">Substack</a>
         </div>
     </div>
 
@@ -1790,8 +1939,8 @@
 
             articles.forEach(art => {
                 const tagsText = art.innerText.toUpperCase();
-                const isLive = art.getAttribute('data-live') === '1';
-                const show = tag === 'ALL' || (tag === 'LIVE' && isLive) || (tag !== 'LIVE' && tagsText.includes(tag));
+                const hasShot = art.getAttribute('data-shot') === '1';
+                const show = tag === 'ALL' || (tag === 'SHOT' && hasShot) || (tag !== 'SHOT' && tagsText.includes(tag));
                 art.style.display = show ? 'flex' : 'none';
             });
         }
@@ -1837,11 +1986,26 @@
         });
 
         // Global Section Switcher Function with Seamless Cross-Fade
+        function syncDesktopNav(targetId) {
+            document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
+                const on = btn.getAttribute('data-target') === targetId;
+                btn.classList.toggle('is-active', on);
+                btn.setAttribute('aria-current', on ? 'page' : 'false');
+            });
+        }
+
         function switchSection(targetId) {
             if (!targetId) return;
             const currentActive = document.querySelector('.view-section.active');
             const targetSec = document.getElementById(targetId);
-            if (!targetSec || targetSec === currentActive) return;
+            if (!targetSec) return;
+
+            syncDesktopNav(targetId);
+
+            if (targetSec === currentActive) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
 
             if (currentActive) {
                 currentActive.style.opacity = '0';
@@ -1866,11 +2030,6 @@
                 targetSec.style.transform = 'translateY(0)';
             }
 
-            document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
-                btn.classList.toggle('is-active', btn.getAttribute('data-target') === targetId);
-            });
-
-            // Scroll window smooth to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -2196,6 +2355,14 @@
             'CookCan'
         ]);
 
+        function hasLocalShot(repoName) {
+            return LOCAL_SHOTS.has(repoName);
+        }
+
+        function shotPath(repoName) {
+            return 'assets/' + encodeURIComponent(repoName) + '.jpg';
+        }
+
         function resolveProjectLinks(repo) {
             const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
             const empty = { embed: '', visit: '' };
@@ -2207,7 +2374,6 @@
             const safeHome = homepage && isSafeHttpUrl(homepage) && !DEAD_PREVIEW_HOSTS.has(host);
             const genericHome = GENERIC_PREVIEW_HOSTS.has(host);
             if (safeHome && !genericHome) return { embed: homepage, visit: homepage };
-            // Studio URL is the real deploy for Mander Labs, but that site refuses to be embedded.
             if (safeHome && genericHome && rawName === 'manderlabs') return { embed: '', visit: homepage };
             if (repo.has_pages && repo.name && repo.name !== 'PulsePulse-') {
                 const pagesUrl = 'https://hvndal.github.io/' + encodeURIComponent(repo.name) + '/';
@@ -2223,13 +2389,15 @@
                 .filter(repo => repo && !repo.fork && repo.name)
                 .slice()
                 .sort((a, b) => {
-                    const liveDelta = (resolveProjectLinks(b).embed ? 1 : 0) - (resolveProjectLinks(a).embed ? 1 : 0);
-                    if (liveDelta !== 0) return liveDelta;
+                    const shotDelta = (hasLocalShot(b.name) ? 1 : 0) - (hasLocalShot(a.name) ? 1 : 0);
+                    if (shotDelta !== 0) return shotDelta;
+                    const visitDelta = (resolveProjectLinks(b).visit ? 1 : 0) - (resolveProjectLinks(a).visit ? 1 : 0);
+                    if (visitDelta !== 0) return visitDelta;
                     return new Date(b.pushed_at || 0) - new Date(a.pushed_at || 0);
                 });
 
             grid.innerHTML = '';
-            let liveCount = 0;
+            let shotCount = 0;
 
             visible.forEach(repo => {
                 const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -2246,39 +2414,41 @@
                     tags.unshift(repo.language);
                 }
                 const links = resolveProjectLinks(repo);
-                const liveUrl = links.embed;
                 const visitUrl = links.visit || links.embed;
-                if (liveUrl) liveCount += 1;
+                const shot = hasLocalShot(repo.name);
+                if (shot) shotCount += 1;
                 const updated = repo.pushed_at
                     ? new Date(repo.pushed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
                     : 'Public';
                 const safeName = escapeHtml(meta.name);
-                const safeLive = escapeHtml(liveUrl);
                 const safeVisit = escapeHtml(visitUrl);
-                const tagsHtml = tags.map(tag => `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`).join('');
-                const mediaLabel = liveUrl
-                    ? '<span class="project-media-label"><span class="hire-dot"></span>Live preview</span>'
-                    : '<span class="project-media-label is-offline">Source only</span>';
-                const mediaOpen = liveUrl
-                    ? `<button type="button" class="project-media" data-preview-url="${safeLive}" data-preview-title="${safeName}">`
-                    : '<div class="project-media">';
-                const mediaClose = liveUrl ? '</button>' : '</div>';
-                const previewButtons = [
-                    liveUrl ? `<button type="button" class="btn-preview" data-preview-url="${safeLive}" data-preview-title="${safeName}">Live preview</button>` : '',
-                    visitUrl ? `<a class="btn-ghost" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site</a>` : ''
-                ].join('');
+                const tagsHtml = tags.map(tag => `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`).join('');
                 const sourceHref = isSafeHttpUrl(repo.html_url) ? repo.html_url : 'https://github.com/hvndal/' + encodeURIComponent(repo.name);
                 const initials = escapeHtml(meta.name.replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(word => word[0]).join('').toUpperCase() || 'PR');
-                const mediaVisual = LOCAL_SHOTS.has(repo.name)
-                    ? `<img src="assets/${repo.name}.jpg" alt="${safeName} thumbnail" loading="lazy"/>`
+                const mediaVisual = shot
+                    ? `<img src="${escapeHtml(shotPath(repo.name))}" alt="${safeName} screenshot" loading="lazy"/>`
                     : `<div class="project-fallback" aria-hidden="true">${initials}</div>`;
+                const mediaLabel = shot
+                    ? '<span class="project-media-label">Screenshot</span>'
+                    : '<span class="project-media-label is-offline">Details</span>';
+                const detailPayload = escapeHtml(JSON.stringify({
+                    name: meta.name,
+                    subtitle: meta.subtitle,
+                    description,
+                    tags,
+                    updated,
+                    shot: shot ? shotPath(repo.name) : '',
+                    visit: visitUrl || '',
+                    source: sourceHref,
+                    repo: repo.name
+                }));
 
                 grid.insertAdjacentHTML('beforeend', `
-                <article class="project-card" data-live="${liveUrl ? '1' : '0'}">
-                    ${mediaOpen}
+                <article class="project-card" data-shot="${shot ? '1' : '0'}">
+                    <button type="button" class="project-media" data-project-detail="${detailPayload}">
                         ${mediaVisual}
                         ${mediaLabel}
-                    ${mediaClose}
+                    </button>
                     <div class="project-body">
                         <p class="font-mono text-[10px] uppercase tracking-widest text-[#8f868c]">${escapeHtml(updated)}${repo.stargazers_count > 0 ? ' · ' + repo.stargazers_count + ' stars' : ''}</p>
                         <h3 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide break-words">${safeName}</h3>
@@ -2286,8 +2456,10 @@
                         <p class="font-sans text-sm text-[#c8bfb8] leading-relaxed line-clamp-3">${escapeHtml(description)}</p>
                         <div class="flex flex-wrap gap-2">${tagsHtml}</div>
                         <div class="project-actions">
-                            ${previewButtons}
+                            <button type="button" class="btn-preview" data-project-detail="${detailPayload}">Details</button>
+                            ${visitUrl ? `<a class="btn-ghost" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site</a>` : ''}
                             <a class="btn-source" href="${escapeHtml(sourceHref)}" target="_blank" rel="noopener noreferrer">View source</a>
+                            <a class="btn-studio" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Studio</a>
                         </div>
                     </div>
                 </article>`);
@@ -2295,101 +2467,209 @@
 
             const countEl = document.getElementById('live-preview-count');
             if (countEl) {
-                countEl.textContent = liveCount + ' live preview' + (liveCount === 1 ? '' : 's') + ' · ' + visible.length + ' projects';
+                countEl.textContent = shotCount + ' with screenshots · ' + visible.length + ' projects';
             }
         }
 
-        function openLivePreview(url, title) {
-            if (!isSafeHttpUrl(url)) return;
-            const modal = document.getElementById('live-preview-modal');
-            const frame = document.getElementById('preview-frame');
-            const heading = document.getElementById('preview-title');
-            const openLink = document.getElementById('preview-open');
-            if (!modal || !frame) return;
-            if (heading) heading.textContent = title || 'Live preview';
-            if (openLink) openLink.href = url;
-            frame.src = url;
+        function openProjectDetail(raw) {
+            let data;
+            try { data = JSON.parse(raw); } catch (err) { return; }
+            const modal = document.getElementById('project-detail-modal');
+            const title = document.getElementById('project-detail-title');
+            const shot = document.getElementById('project-detail-shot');
+            const meta = document.getElementById('project-detail-meta');
+            const subtitle = document.getElementById('project-detail-subtitle');
+            const desc = document.getElementById('project-detail-desc');
+            const tags = document.getElementById('project-detail-tags');
+            const actions = document.getElementById('project-detail-actions');
+            if (!modal || !shot) return;
+
+            if (title) title.textContent = data.name || 'Project details';
+            if (meta) meta.textContent = [data.updated, data.repo].filter(Boolean).join(' · ');
+            if (subtitle) subtitle.textContent = data.subtitle || '';
+            if (desc) desc.textContent = data.description || '';
+            if (tags) {
+                tags.innerHTML = (data.tags || []).map(tag =>
+                    `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`
+                ).join('');
+            }
+            if (data.shot) {
+                shot.innerHTML = `<img src="${escapeHtml(data.shot)}" alt="${escapeHtml(data.name || 'Project')} screenshot"/>`;
+            } else {
+                const initials = escapeHtml(String(data.name || 'PR').replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'PR');
+                shot.innerHTML = `<div class="project-fallback" aria-hidden="true">${initials}</div>`;
+            }
+            if (actions) {
+                const bits = [];
+                if (data.visit && isSafeHttpUrl(data.visit)) {
+                    bits.push(`<a class="btn-ghost" href="${escapeHtml(data.visit)}" target="_blank" rel="noopener noreferrer">Open site</a>`);
+                }
+                if (data.source && isSafeHttpUrl(data.source)) {
+                    bits.push(`<a class="btn-source" href="${escapeHtml(data.source)}" target="_blank" rel="noopener noreferrer">View source</a>`);
+                }
+                bits.push(`<a class="btn-studio" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Studio</a>`);
+                actions.innerHTML = bits.join('');
+            }
+
             modal.hidden = false;
             document.body.style.overflow = 'hidden';
-            const closeBtn = document.getElementById('preview-close');
-            if (closeBtn) closeBtn.focus();
+            document.getElementById('project-detail-close')?.focus();
         }
 
-        function closeLivePreview() {
-            const modal = document.getElementById('live-preview-modal');
-            const frame = document.getElementById('preview-frame');
-            if (frame) frame.src = 'about:blank';
+        function closeProjectDetail() {
+            const modal = document.getElementById('project-detail-modal');
             if (modal) modal.hidden = true;
             document.body.style.overflow = '';
         }
 
         document.addEventListener('click', (event) => {
-            const trigger = event.target.closest('[data-preview-url]');
+            const trigger = event.target.closest('[data-project-detail]');
             if (!trigger) return;
             event.preventDefault();
-            openLivePreview(trigger.getAttribute('data-preview-url'), trigger.getAttribute('data-preview-title'));
+            openProjectDetail(trigger.getAttribute('data-project-detail'));
         });
 
         document.addEventListener('click', (event) => {
-            const modal = document.getElementById('live-preview-modal');
+            const modal = document.getElementById('project-detail-modal');
             if (!modal || modal.hidden) return;
-            if (event.target === modal) closeLivePreview();
+            if (event.target === modal) closeProjectDetail();
         });
 
-        document.getElementById('preview-close')?.addEventListener('click', closeLivePreview);
+        document.getElementById('project-detail-close')?.addEventListener('click', closeProjectDetail);
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') closeLivePreview();
+            if (event.key === 'Escape') closeProjectDetail();
         });
-        window.openLivePreview = openLivePreview;
-        window.closeLivePreview = closeLivePreview;
+        window.openProjectDetail = openProjectDetail;
+        window.closeProjectDetail = closeProjectDetail;
 
-        // 5. Article Database & Reader View
-        const blogDatabase = {
-            "article-1": {
-                tags: '<span class="bg-[#ff451a] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">UI/UX</span><span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">4 MIN READ</span>',
-                date: "JUL 10, 2026",
-                title: "The Architecture of Brutalism in Modern SaaS",
-                content: `
-                    <p>When engineering interfaces for high-frequency operators, the standard 'clean' aesthetic often fails. It hides necessary data behind dropdowns and smooth animations that waste precious milliseconds. Brutalist design solves this.</p>
-                    <p>In my recent architecture for commercial gym software, I stripped away the fluff. We exposed raw data tables, utilized stark monochromatic contrast with high-visibility accent colors, and minimized padding to maximize data density. The result? Operators could process information 40% faster.</p>
-                    <p>Brutalism isn't about making things ugly; it's about unapologetic utility. It forces the engineer to focus entirely on state, layout, and hierarchy, stripping away the psychological safety net of soft shadows and rounded corners. It is the purest form of UI/UX engineering.</p>
-                `
-            },
-            "article-2": {
-                tags: '<span class="bg-[#54a0fe] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">FRONTEND</span><span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">7 MIN READ</span>',
-                date: "JUN 28, 2026",
-                title: "State Management for Data-Dense Dashboards",
-                content: `
-                    <p>Building the full-stack property management system presented a unique challenge: rendering thousands of dynamic property states (occupied, vacant, maintenance required, rent overdue) without choking the browser's main thread.</p>
-                    <p>Relying on out-of-the-box Redux or Context API led to massive re-render cascades. The solution required a custom hook architecture leveraging atomic state patterns and highly memoized selectors. We broke the global state into granular, independent 'nodes'.</p>
-                    <p>By implementing a pub/sub model directly within the React layer, components only subscribed to the exact atomic slice they needed. When a rent payment came through the websocket, only the specific property card re-rendered, taking the interaction latency down to under 16ms (a perfect 60fps).</p>
-                `
-            },
-            "article-3": {
-                tags: '<span class="bg-[#f4f0eb] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">AI / GEMINI</span><span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">5 MIN READ</span>',
-                date: "MAY 15, 2026",
-                title: "Building CookCan: Multi-modal Vision API Integration",
-                content: `
-                    <p>CookCan started as a simple hypothesis: Can we eliminate the friction of meal planning by just pointing a camera at a fridge? The answer is yes, but the execution requires extremely tight API orchestration.</p>
-                    <p>The magic happens on the frontend. While the Gemini API processes the image, the UI enters a 'scan state', using GSAP animations to mask the 2-3 second latency. Once the JSON payload hits the client, it dynamically hydrates the UI. It's a masterclass in blending AI power with seamless user experience.</p>
-                `
+        // Substack sync — every published post, any topic
+        const SUBSTACK_PUBLICATION = 'hermanify';
+        const SUBSTACK_PROFILE = 'https://substack.com/@hermanify';
+        const SUBSTACK_HOME = 'https://hermanify.substack.com';
+        const SUBSTACK_FALLBACK = 'data/substack-fallback.json';
+
+        function estimateReadMinutes(wordcount) {
+            const words = Number(wordcount) || 0;
+            if (words <= 0) return null;
+            return Math.max(1, Math.round(words / 220));
+        }
+
+        function formatSubstackDate(value) {
+            if (!value) return 'Published';
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) return 'Published';
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
+        }
+
+        function normalizeSubstackPosts(rawPosts) {
+            return (Array.isArray(rawPosts) ? rawPosts : [])
+                .map((post) => {
+                    const title = String(post.title || '').trim();
+                    const slug = String(post.slug || '').trim();
+                    const url = post.canonical_url || (slug ? `${SUBSTACK_HOME}/p/${slug}` : '');
+                    if (!title || !isSafeHttpUrl(url)) return null;
+                    return {
+                        id: post.id || slug || url,
+                        title,
+                        subtitle: String(post.subtitle || post.description || '').trim(),
+                        url,
+                        date: post.post_date || post.publishedBylines?.[0]?.created_at || '',
+                        cover: isSafeHttpUrl(post.cover_image) ? post.cover_image : '',
+                        type: post.type || 'newsletter',
+                        minutes: estimateReadMinutes(post.wordcount)
+                    };
+                })
+                .filter(Boolean);
+        }
+
+        async function fetchSubstackArchivePage(offset) {
+            const endpoint = `https://${SUBSTACK_PUBLICATION}.substack.com/api/v1/archive?sort=new&limit=50&offset=${offset}`;
+            const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
+            if (!response.ok) throw new Error('Substack archive ' + response.status);
+            return await response.json();
+        }
+
+        async function fetchAllSubstackPosts() {
+            const all = [];
+            let offset = 0;
+            for (let page = 0; page < 20; page += 1) {
+                const batch = await fetchSubstackArchivePage(offset);
+                if (!Array.isArray(batch) || batch.length === 0) break;
+                all.push(...batch);
+                if (batch.length < 50) break;
+                offset += 50;
             }
-        };
+            return normalizeSubstackPosts(all);
+        }
 
-        document.addEventListener('click', (e) => {
-            const articleBtn = e.target.closest('[data-article]');
-            if (articleBtn) {
-                const articleId = articleBtn.getAttribute('data-article');
-                const articleData = blogDatabase[articleId];
-                if (articleData) {
-                    document.getElementById('article-tags').innerHTML = articleData.tags;
-                    document.getElementById('article-title').innerText = articleData.title;
-                    document.getElementById('article-date').innerText = articleData.date;
-                    document.getElementById('article-content').innerHTML = articleData.content;
-                    switchSection('view-article');
+        function renderSubstackFeed(posts, sourceLabel) {
+            const feed = document.getElementById('substack-feed');
+            const status = document.getElementById('substack-sync-status');
+            if (!feed) return;
+            if (!posts.length) {
+                feed.innerHTML = `<p class="font-mono text-xs text-[#a398a0]">No Substack posts yet. <a class="text-[#ff451a] underline" href="${SUBSTACK_PROFILE}" target="_blank" rel="noopener noreferrer">Open Substack</a>.</p>`;
+                if (status) status.textContent = 'Synced · 0 posts';
+                return;
+            }
+            feed.innerHTML = posts.map((post) => {
+                const minutes = post.minutes ? `${post.minutes} min read` : 'Essay';
+                const coverStyle = post.cover
+                    ? `style="background-image:linear-gradient(180deg, rgba(8,6,9,0.15), rgba(8,6,9,0.55)), url('${escapeHtml(post.cover)}')"`
+                    : '';
+                const subtitle = post.subtitle
+                    ? `<p class="font-sans text-sm text-[#c8bfb8] leading-relaxed line-clamp-3">${escapeHtml(post.subtitle)}</p>`
+                    : `<p class="font-sans text-sm text-[#a398a0] leading-relaxed">Published on Substack · open to read the full piece.</p>`;
+                return `
+                <article class="substack-card">
+                    <div class="substack-cover" ${coverStyle} aria-hidden="true"></div>
+                    <div class="substack-body">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">Substack</span>
+                                <span class="border border-white/10 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">${escapeHtml(minutes)}</span>
+                            </div>
+                            <span class="font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">${escapeHtml(formatSubstackDate(post.date))}</span>
+                        </div>
+                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide">${escapeHtml(post.title)}</h3>
+                        ${subtitle}
+                        <div class="flex flex-wrap gap-2 mt-auto pt-2">
+                            <a class="btn-preview" href="${escapeHtml(post.url)}" target="_blank" rel="noopener noreferrer">Read on Substack</a>
+                            <a class="btn-ghost" href="${SUBSTACK_PROFILE}" target="_blank" rel="me noopener noreferrer">All posts</a>
+                        </div>
+                    </div>
+                </article>`;
+            }).join('');
+            if (status) {
+                status.textContent = `Synced · ${posts.length} post${posts.length === 1 ? '' : 's'} · ${sourceLabel}`;
+            }
+        }
+
+        async function loadSubstackPosts() {
+            const status = document.getElementById('substack-sync-status');
+            try {
+                const live = await fetchAllSubstackPosts();
+                if (live.length) {
+                    renderSubstackFeed(live, 'live API');
+                    return;
                 }
+            } catch (err) {
+                console.error('Substack live sync failed:', err);
             }
-        });
+            try {
+                const fallback = await fetchJson(SUBSTACK_FALLBACK);
+                const posts = normalizeSubstackPosts(fallback.posts || fallback);
+                renderSubstackFeed(posts, 'cached snapshot');
+            } catch (err) {
+                console.error('Substack fallback failed:', err);
+                const feed = document.getElementById('substack-feed');
+                if (feed) {
+                    feed.innerHTML = `<p class="font-mono text-xs text-[#a398a0]">Could not sync Substack right now. <a class="text-[#ff451a] underline" href="${SUBSTACK_PROFILE}" target="_blank" rel="noopener noreferrer">Read on Substack</a>.</p>`;
+                }
+                if (status) status.textContent = 'Sync unavailable · open Substack';
+            }
+        }
+
+        loadSubstackPosts();
 
         // 6. Rich Web Audio Synthesized Cyber SFX System
         const AudioCtx = window.AudioContext || window.webkitAudioContext;

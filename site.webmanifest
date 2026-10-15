@@ -1,0 +1,24 @@
+{
+  "name": "Herman Hundal",
+  "short_name": "Herman Hundal",
+  "description": "UI/UX designer and front-end engineer in Vancouver and Langley, BC. Available for hire. Studio: Mander Labs.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080609",
+  "theme_color": "#080609",
+  "lang": "en-CA",
+  "icons": [
+    {
+      "src": "/assets/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
