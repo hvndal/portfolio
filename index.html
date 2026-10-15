@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Herman Hundal | Full-Stack UI/UX Designer & Web Engineer — Vancouver & Langley, BC</title>
-    <meta name="description" content="Personal portfolio of Herman Hundal — UI/UX designer and full-stack front-end engineer building high-performance websites, web applications, and digital products in Vancouver and Langley, BC. Lead at MANDER."/>
+    <title>Herman Hundal | UI/UX Designer & Web Engineer — Available for Hire</title>
+    <meta name="description" content="Herman Hundal is a UI/UX designer and front-end engineer in Vancouver and Langley, BC, available for hire. Websites, product interfaces, and shipped web apps with live previews."/>
     <meta name="keywords" content="Herman Hundal, UI UX designer Vancouver, web developer Langley BC, frontend engineer Vancouver, best website design BC, Mander Labs, React Three.js Next.js developer, web application architecture"/>
     <meta name="author" content="Herman Hundal"/>
     <link rel="canonical" href="https://hermanify.online"/>
 
     <!-- OpenGraph / Social Meta Tags -->
-    <meta property="og:title" content="Herman Hundal | UI/UX Designer & Web Engineer — Vancouver & Langley, BC"/>
-    <meta property="og:description" content="Cinematic portfolio of Herman Hundal — UI/UX architecture, Three.js shaders, and high-performance digital products in Metro Vancouver."/>
+    <meta property="og:title" content="Herman Hundal | UI/UX Designer & Web Engineer — Available for Hire"/>
+    <meta property="og:description" content="Herman Hundal is available for hire. UI/UX and front-end work in Vancouver and Langley, BC, with live previews of shipped projects."/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://hermanify.online"/>
     <meta property="og:locale" content="en_CA"/>
@@ -279,6 +279,242 @@
             border-color: rgba(255, 69, 26, 0.6) !important;
             box-shadow: 0 0 25px rgba(255, 69, 26, 0.25) !important;
         }
+
+        .hire-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #d6f25c;
+            box-shadow: 0 0 0 0 rgba(214, 242, 92, 0.7);
+            animation: hirePulse 1.8s ease-out infinite;
+            flex-shrink: 0;
+        }
+        @keyframes hirePulse {
+            0% { box-shadow: 0 0 0 0 rgba(214, 242, 92, 0.65); }
+            100% { box-shadow: 0 0 0 8px rgba(214, 242, 92, 0); }
+        }
+        .hire-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(214, 242, 92, 0.55);
+            background: rgba(214, 242, 92, 0.08);
+            color: #d6f25c;
+            padding: 8px 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        .hero-lead {
+            max-width: 38rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #c8bfb8;
+        }
+        .desktop-nav-btn {
+            letter-spacing: 0.12em;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            white-space: nowrap;
+        }
+        .desktop-nav-btn.is-active {
+            color: #000 !important;
+            background: #ff451a !important;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(255, 69, 26, 0.4);
+        }
+        .filter-btn.is-active {
+            background: #ff451a !important;
+            color: #000 !important;
+            border-color: #ff451a !important;
+            font-weight: 700;
+        }
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            background: rgba(14, 12, 16, 0.9);
+            border: 1px solid rgba(244, 240, 235, 0.1);
+            min-width: 0;
+            transition: border-color 200ms ease, transform 200ms ease;
+        }
+        .project-card:hover {
+            border-color: rgba(255, 69, 26, 0.7);
+        }
+        .project-media {
+            position: relative;
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: #0c0a0e;
+            border: 0;
+            padding: 0;
+            text-align: left;
+        }
+        button.project-media { cursor: pointer; }
+        .project-media img,
+        .project-fallback {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-media img {
+            filter: grayscale(1);
+            transform: scale(1.01);
+            transition: filter 400ms ease, transform 500ms ease;
+        }
+        .project-fallback {
+            display: flex;
+            align-items: flex-end;
+            padding: 18px;
+            background:
+                linear-gradient(155deg, rgba(255, 69, 26, 0.22), transparent 46%),
+                repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(244, 240, 235, 0.045) 11px),
+                #141216;
+            color: #f4f0eb;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 72px;
+            line-height: 0.8;
+            letter-spacing: 0.02em;
+        }
+        @media (min-width: 1100px) {
+            .project-card { flex-direction: row; }
+            .project-media {
+                width: 42%;
+                flex: 0 0 42%;
+                aspect-ratio: auto;
+                min-height: 230px;
+            }
+            .project-media img,
+            .project-fallback {
+                position: absolute;
+                inset: 0;
+            }
+        }
+        .project-card:hover .project-media img {
+            filter: none;
+            transform: scale(1.04);
+        }
+        .project-media-label {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(8, 6, 9, 0.88);
+            border: 1px solid rgba(214, 242, 92, 0.45);
+            color: #d6f25c;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 6px 10px;
+        }
+        .project-media-label.is-offline {
+            border-color: rgba(244, 240, 235, 0.2);
+            color: #a398a0;
+        }
+        .project-body {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 18px 18px 16px;
+            flex: 1;
+        }
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+        .btn-preview,
+        .btn-source,
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 10px 14px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            line-height: 1;
+        }
+        .btn-preview {
+            background: #d6f25c;
+            color: #111;
+        }
+        .btn-preview:hover { background: #fff; }
+        .btn-source {
+            background: #ff451a;
+            color: #111;
+        }
+        .btn-source:hover { background: #fff; }
+        .btn-ghost {
+            background: transparent;
+            color: #f4f0eb;
+            border-color: rgba(244, 240, 235, 0.2);
+        }
+        .btn-ghost:hover { border-color: #54a0fe; color: #54a0fe; }
+        .preview-modal[hidden] { display: none !important; }
+        .preview-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 400;
+            background: rgba(8, 6, 9, 0.78);
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            padding: 16px;
+        }
+        .preview-dialog {
+            width: min(1200px, 100%);
+            height: min(100%, 900px);
+            margin: auto;
+            background: #0c0a0e;
+            border: 1px solid rgba(244, 240, 235, 0.16);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+        }
+        .preview-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(244, 240, 235, 0.1);
+            background: #120e14;
+        }
+        .preview-toolbar h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #f4f0eb;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .preview-frame {
+            flex: 1;
+            width: 100%;
+            border: 0;
+            background: #fff;
+        }
+        @media (max-width: 720px) {
+            .preview-modal { padding: 0; }
+            .preview-dialog { width: 100%; height: 100%; }
+        }
     </style>
 </head>
 <body class="bg-[#080609] text-[#f4f0eb] antialiased min-h-screen flex flex-col selection:bg-[#ff451a] selection:text-black">
@@ -298,27 +534,30 @@
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-xs tracking-widest uppercase text-[#f4f0eb]">HERMAN HUNDAL</span>
-                    <span class="text-[9px] font-mono text-[#8f868c] uppercase tracking-wider">DESIGNER & DEVELOPER</span>
+                    <span class="text-[9px] font-mono text-[#d6f25c] uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap"><span class="hire-dot"></span>Available for hire</span>
                 </div>
             </div>
 
             <!-- Header Navigation Tabs (Desktop) -->
             
             <nav class="hidden md:flex items-center gap-1.5 bg-[#120e14]/90 p-1.5 rounded-full border border-white/5" id="desktop-nav-tabs">
-                <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]">HOME</button>
+                <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn is-active px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]">HOME</button>
                 <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">PROJECTS</button>
                 <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ABOUT</button>
                 <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">STACK</button>
                 <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">BLOG</button>
                 <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">MINDMAP</button>
-                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">GITHUB ACTIVITY</button>
+                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5">ACTIVITY</button>
             </nav>
 
             <!-- Action Button & Mobile Toggle -->
             <div class="flex items-center gap-3">
+                <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="hidden xl:inline-flex items-center gap-2 border border-[#d6f25c]/50 bg-[#d6f25c]/10 text-[#d6f25c] px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#d6f25c] hover:text-black transition-colors">
+                    Hire me
+                </a>
                 <button id="sfx-toggle-btn" type="button" onclick="toggleSfxMute()" class="flex items-center gap-1.5 glass-panel border border-[#f4f0eb]/20 hover:border-[#ff451a] text-[#f4f0eb] hover:text-[#ff451a] px-3.5 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer">
-                    <span id="sfx-icon">🔊</span>
-                    <span id="sfx-label" class="font-bold">SFX ON</span>
+                    <span id="sfx-icon">🔇</span>
+                    <span id="sfx-label" class="font-bold">SFX MUTED</span>
                 </button>
                 <button data-target="view-projects" onclick="switchSection('view-projects')" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
                     VIEW WORK →
@@ -337,52 +576,62 @@
             <section id="view-home" class="view-section active flex flex-col justify-between min-h-[calc(100vh-100px)] py-8 relative">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto z-10 w-full">
                     <div class="lg:col-span-7 flex flex-col items-start">
-                        <div class="w-8 h-[3px] bg-[#ff451a] mb-6"></div>
-                        <h1 class="cinematic-title text-[56px] sm:text-[80px] md:text-[100px] lg:text-[120px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight leading-none">
-                            DESIGNING<br/>
-                            DIGITAL<br/>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff451a] via-[#ff6b4a] to-[#e62e00]">EXPERIENCES</span>
+                        <div class="hire-banner mb-6" role="status">
+                            <span class="hire-dot" aria-hidden="true"></span>
+                            <span>Available for hire</span>
+                        </div>
+                        <h1 class="cinematic-title text-[64px] sm:text-[88px] md:text-[104px] lg:text-[112px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight leading-none">
+                            HERMAN<br/>HUNDAL
                         </h1>
-                        <p class="cinematic-sub text-[10px] sm:text-xs text-[#8f868c] uppercase tracking-[0.2em] mt-4 mb-8 flex flex-wrap gap-2 items-center">
-                            <span>UI/UX DESIGN</span>
-                            <span class="text-[#ff451a]">•</span>
-                            <span>FRONTEND DEVELOPMENT</span>
-                            <span class="text-[#ff451a]">•</span>
-                            <span>PRODUCT DESIGN</span>
+                        <p class="hero-lead mt-5 mb-4">
+                            UI/UX designer and front-end engineer in Vancouver and Langley, BC. I take products from interface design through a working website you can open.
                         </p>
-                        <div class="flex flex-wrap gap-4 items-center">
-                            <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 rounded-full hover:border-[#ff451a] shadow-[0_0_15px_rgba(255,69,26,0.2)]">
-                                <span>VIEW WORK</span>
+                        <p class="cinematic-sub text-[10px] sm:text-xs text-[#8f868c] uppercase tracking-[0.18em] mb-8 flex flex-wrap gap-2 items-center">
+                            <span>UI/UX design</span>
+                            <span class="text-[#ff451a]">•</span>
+                            <span>Front-end development</span>
+                            <span class="text-[#ff451a]">•</span>
+                            <span>Product design</span>
+                        </p>
+                        <div class="flex flex-wrap gap-3 items-center">
+                            <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="inline-flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest font-bold uppercase bg-[#d6f25c] text-black hover:bg-white transition-all px-6 py-3">
+                                Hire me
+                            </a>
+                            <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest uppercase text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 hover:border-[#ff451a]">
+                                <span>View work</span>
                                 <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
                             </button>
-                            <a href="mailto:harmanify@protonmail.com" class="group flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest text-[#ff451a] bg-[#ff451a]/10 border border-[#ff451a]/40 hover:bg-[#ff451a] hover:text-black transition-all px-6 py-3 rounded-full shadow-[0_0_20px_rgba(255,69,26,0.3)]">
-                                <span>✉ harmanify@protonmail.com</span>
-                            </a>
-                            <a href="https://linkedin.com/in/hermanify" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2.5 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] glass-panel border border-[#f4f0eb]/20 hover:border-[#54a0fe] hover:text-[#54a0fe] transition-all px-5 py-3 rounded-full shadow-[0_0_15px_rgba(84,160,254,0.15)]">
-                                <svg class="w-4 h-4 fill-current text-[#54a0fe]" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                            <a href="https://linkedin.com/in/hermanify" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2.5 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] glass-panel border border-[#f4f0eb]/20 hover:border-[#54a0fe] hover:text-[#54a0fe] transition-all px-5 py-3">
+                                <svg class="w-4 h-4 fill-current text-[#54a0fe]" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                                 <span>in/hermanify</span>
-                                <span class="text-xs group-hover:translate-x-0.5 transition-transform">↗</span>
                             </a>
                         </div>
+                        <p id="home-github-stats" class="font-mono text-[10px] uppercase tracking-[0.16em] text-[#8f868c] mt-6">Loading GitHub profile…</p>
                     </div>
                     <div class="lg:col-span-5 relative h-[320px] sm:h-[400px] lg:h-[480px] w-full flex items-center justify-center">
                         <div id="hero-3d-container" class="w-full h-full absolute inset-0"></div>
+                        <div class="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 z-10 flex items-center gap-3 bg-[#080609]/80 border border-[#d6f25c]/30 px-3 py-2 backdrop-blur-md">
+                            <img src="assets/avatar.jpg" alt="" class="w-12 h-12 object-cover border border-[#ff451a]"/>
+                            <div class="font-mono text-[10px] uppercase tracking-wider">
+                                <p class="text-[#f4f0eb] font-bold">Open for new work</p>
+                                <p class="text-[#d6f25c]">Full-time and contract · Remote</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-none font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
                     <div class="flex items-center gap-3">
-                        <span class="text-[#ff451a] text-sm">⊕</span>
+                        <span class="hire-dot" aria-hidden="true"></span>
                         <div>
-                            <p>BASED IN VANCOUVER & LANGLEY, BC</p>
-                            <p class="text-[#f4f0eb]/60">AVAILABLE WORLDWIDE (REMOTE)</p>
+                            <p class="text-[#d6f25c]">Available for hire</p>
+                            <p class="text-[#f4f0eb]/70">Vancouver & Langley, BC · Remote worldwide</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="text-[#ff451a]">2026</span>
                         <span class="w-8 h-[1px] bg-[#f4f0eb]/20"></span>
-                        <span>PORTFOLIO</span>
-                        <span class="text-[#ff451a] text-sm ml-1">⊕</span>
+                        <span>Portfolio</span>
                     </div>
                 </div>
             </section>
@@ -392,10 +641,12 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Projects & Products</h2>
-                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">A curated showcase of software products and web applications.</p>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Open a live preview for shipped sites. The rest link straight to source.</p>
+                        <p id="live-preview-count" class="font-mono text-[10px] text-[#d6f25c] uppercase tracking-widest mt-2">Loading projects…</p>
                     </div>
                     <div class="flex flex-wrap gap-2" id="project-filter-btns">
-                        <button data-filter="ALL" onclick="filterProjects('ALL')" class="filter-btn border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer">ALL</button>
+                        <button data-filter="ALL" onclick="filterProjects('ALL')" class="filter-btn is-active border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer">ALL</button>
+                        <button data-filter="LIVE" onclick="filterProjects('LIVE')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#d6f25c] transition-all cursor-pointer">LIVE</button>
                         <button data-filter="REACT" onclick="filterProjects('REACT')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">REACT</button>
                         <button data-filter="THREE.JS" onclick="filterProjects('THREE.JS')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">THREE.JS</button>
                         <button data-filter="RUST" onclick="filterProjects('RUST')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">RUST / C++</button>
@@ -405,8 +656,8 @@
                     </div>
                 </div>
 
-                <div id="projects-grid" class="grid grid-cols-1 gap-8 mt-6">
-                    <!-- GitHub projects injected here via JS -->
+                <div id="projects-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-6">
+                    <p class="font-mono text-xs text-[#a398a0] uppercase tracking-widest xl:col-span-2">Loading projects from GitHub…</p>
                 </div>
             </section>
 
@@ -1180,8 +1431,8 @@
                         <span id="github-followers-count" class="text-xs font-mono text-[#54a0fe] mt-2">FETCHING PROFILE STATS...</span>
                     </div>
                     <div class="glass-panel p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-[#ff451a] transition-all">
-                        <span class="font-mono text-[10px] text-[#a398a0] uppercase tracking-widest">PRIMARY TECH STACK</span>
-                        <p class="font-headline-md text-2xl text-[#f4f0eb] mt-1 font-bold">TS / REACT / RUST</p>
+                        <span class="font-mono text-[10px] text-[#a398a0] uppercase tracking-widest">LANGUAGES ON GITHUB</span>
+                        <p id="github-language-summary" class="font-headline-md text-xl text-[#f4f0eb] mt-1 font-bold">LOADING…</p>
                         <span id="github-created-at" class="text-xs font-mono text-[#ff451a] mt-2">OPEN SOURCE CONTRIBUTOR</span>
                     </div>
                     <div class="glass-panel p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-[#54a0fe] transition-all">
@@ -1243,6 +1494,19 @@
             </div>
         </footer>
 
+    </div>
+
+    <div id="live-preview-modal" class="preview-modal" hidden>
+        <div class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+            <div class="preview-toolbar">
+                <h3 id="preview-title">Live preview</h3>
+                <div class="flex items-center gap-2 shrink-0">
+                    <a id="preview-open" href="#" target="_blank" rel="noopener noreferrer" class="btn-ghost">Open site</a>
+                    <button type="button" id="preview-close" class="btn-source">Close</button>
+                </div>
+            </div>
+            <iframe id="preview-frame" class="preview-frame" title="Project live preview" referrerpolicy="no-referrer"></iframe>
+        </div>
     </div>
 
     <!-- Mobile Navigation Overlay -->
@@ -1333,8 +1597,8 @@
                     float wave = sin(st.y * 3.0 - u_time * 0.4) * 0.03;
                     coreGlow *= (0.9 + wave);
                     
-                    color += coreColor * pow(coreGlow, 2.5) * 0.55;
-                    color += purpleColor * pow(purpleGlow, 2.2) * 0.45;
+                    color += coreColor * pow(coreGlow, 2.5) * 0.28;
+                    color += purpleColor * pow(purpleGlow, 2.2) * 0.18;
                     
                     float noise = (random(st * (u_time + 10.0)) - 0.5) * 0.025;
                     color += noise;
@@ -1521,21 +1785,14 @@
             const filterBtns = document.querySelectorAll('.filter-btn');
 
             filterBtns.forEach(btn => {
-                const btnTag = btn.getAttribute('data-filter');
-                if (btnTag === tag) {
-                    btn.className = 'filter-btn border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer';
-                } else {
-                    btn.className = 'filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer';
-                }
+                btn.classList.toggle('is-active', btn.getAttribute('data-filter') === tag);
             });
 
             articles.forEach(art => {
                 const tagsText = art.innerText.toUpperCase();
-                if (tag === 'ALL' || tagsText.includes(tag)) {
-                    art.style.display = 'flex';
-                } else {
-                    art.style.display = 'none';
-                }
+                const isLive = art.getAttribute('data-live') === '1';
+                const show = tag === 'ALL' || (tag === 'LIVE' && isLive) || (tag !== 'LIVE' && tagsText.includes(tag));
+                art.style.display = show ? 'flex' : 'none';
             });
         }
         window.filterProjects = filterProjects;
@@ -1609,14 +1866,8 @@
                 targetSec.style.transform = 'translateY(0)';
             }
 
-            // Update active desktop nav button highlights
             document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
-                const btnTarget = btn.getAttribute('data-target');
-                if (btnTarget === targetId) {
-                    btn.className = 'desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-black bg-[#ff451a] font-bold shadow-[0_0_15px_rgba(255,69,26,0.4)]';
-                } else {
-                    btn.className = 'desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200 text-[#8f868c] hover:text-[#f4f0eb] hover:bg-[#f4f0eb]/5';
-                }
+                btn.classList.toggle('is-active', btn.getAttribute('data-target') === targetId);
             });
 
             // Scroll window smooth to top
@@ -1643,64 +1894,158 @@
         });
 
 
-        // 4. GitHub Repos Fetch & Render
+        // 4. GitHub profile, repos, and public events
         let allReposData = [];
 
-        fetch('https://api.github.com/users/hvndal/repos?sort=updated&per_page=100')
-            .then(res => res.json())
-            .then(repos => {
-                if (Array.isArray(repos) && repos.length > 0) {
-                    allReposData = repos;
-                    renderProjectsGrid(repos);
-                    const repoCountEl = document.getElementById('github-repo-count');
-                    if (repoCountEl) repoCountEl.innerText = repos.length + ' REPOS';
-                }
-            })
-            .catch(err => console.error("GitHub fetch error:", err));
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[ch]));
+        }
 
-        // Fetch Live Public Commits Feed
-        fetch('https://api.github.com/users/hvndal/events/public')
-            .then(res => res.json())
-            .then(events => {
-                const container = document.getElementById('commit-feed-container');
-                if (!container) return;
-                if (!Array.isArray(events)) {
-                    container.innerHTML = '<div class="font-mono text-xs text-[#a398a0] p-4 text-center">Commit feed available directly on GitHub profile.</div>';
-                    return;
-                }
-                const pushEvents = events.filter(e => e.type === 'PushEvent' && e.payload && e.payload.commits && e.payload.commits.length > 0);
-                if (pushEvents.length === 0) {
-                    container.innerHTML = '<div class="font-mono text-xs text-[#a398a0] p-4 text-center">Recent public commits logged on GitHub.</div>';
-                    return;
-                }
-                let commitsHtml = '';
-                pushEvents.slice(0, 8).forEach(event => {
-                    const repoName = (event.repo ? event.repo.name : 'portfolio').replace('hvndal/', '');
-                    const dateStr = new Date(event.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-                    event.payload.commits.forEach(commit => {
-                        const sha = (commit.sha || '').substring(0, 7);
-                        commitsHtml += `
-                        <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-[#ff451a]/50 transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-                            <div class="flex flex-col">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase">${repoName}</span>
-                                    <span class="font-mono text-[10px] text-[#a398a0]">${sha}</span>
-                                </div>
-                                <p class="font-mono text-xs text-[#f4f0eb] leading-snug">${commit.message}</p>
+        function isSafeHttpUrl(url) {
+            try {
+                const parsed = new URL(url);
+                return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+            } catch (err) {
+                return false;
+            }
+        }
+
+        async function fetchJson(url) {
+            const response = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+            if (!response.ok) throw new Error('Request failed: ' + response.status);
+            return response.json();
+        }
+
+        function renderCommitFeed(events) {
+            const container = document.getElementById('commit-feed-container');
+            if (!container) return;
+            if (!Array.isArray(events)) {
+                container.innerHTML = '<div class="font-mono text-xs text-[#a398a0] p-4 text-center">Commit feed available directly on GitHub profile.</div>';
+                return;
+            }
+            const pushEvents = events.filter(e => e.type === 'PushEvent' && e.payload && e.payload.commits && e.payload.commits.length > 0);
+            if (pushEvents.length === 0) {
+                container.innerHTML = '<div class="font-mono text-xs text-[#a398a0] p-4 text-center">Recent public commits logged on GitHub.</div>';
+                return;
+            }
+            let commitsHtml = '';
+            pushEvents.slice(0, 8).forEach(event => {
+                const repoFull = event.repo && event.repo.name ? event.repo.name : 'hvndal/portfolio';
+                const repoName = repoFull.replace('hvndal/', '');
+                const dateStr = new Date(event.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                event.payload.commits.forEach(commit => {
+                    const sha = (commit.sha || '').substring(0, 7);
+                    const message = escapeHtml((commit.message || '').split('\n')[0]);
+                    commitsHtml += `
+                    <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-[#ff451a]/50 transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase">${escapeHtml(repoName)}</span>
+                                <span class="font-mono text-[10px] text-[#a398a0]">${escapeHtml(sha)}</span>
                             </div>
-                            <div class="flex items-center gap-4 text-xs font-mono text-[#a398a0] w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 border-[#f4f0eb]/10 pt-2 md:pt-0">
-                                <span>${dateStr}</span>
-                                <a href="https://github.com/${event.repo ? event.repo.name : 'hvndal/portfolio'}" target="_blank" rel="noopener noreferrer" class="text-[#54a0fe] hover:underline font-bold">
-                                    VIEW ↗
-                                </a>
-                            </div>
+                            <p class="font-mono text-xs text-[#f4f0eb] leading-snug">${message}</p>
                         </div>
-                        `;
-                    });
+                        <div class="flex items-center gap-4 text-xs font-mono text-[#a398a0] w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 border-[#f4f0eb]/10 pt-2 md:pt-0">
+                            <span>${escapeHtml(dateStr)}</span>
+                            <a href="https://github.com/${encodeURI(repoFull)}" target="_blank" rel="noopener noreferrer" class="text-[#54a0fe] hover:underline font-bold">
+                                VIEW ↗
+                            </a>
+                        </div>
+                    </div>
+                    `;
                 });
-                container.innerHTML = commitsHtml;
-            })
-            .catch(err => console.error("Commit feed fetch error:", err));
+            });
+            container.innerHTML = commitsHtml;
+        }
+
+        function applyGithubProfile(user, repos) {
+            if (!user) return;
+            const repoCount = Array.isArray(repos) ? repos.filter(repo => !repo.fork).length : user.public_repos;
+            const repoCountEl = document.getElementById('github-repo-count');
+            if (repoCountEl) repoCountEl.textContent = (user.public_repos || repoCount || 0) + ' REPOS';
+            const followersEl = document.getElementById('github-followers-count');
+            if (followersEl && Number.isFinite(user.followers)) {
+                followersEl.textContent = user.followers + ' FOLLOWERS · ' + user.following + ' FOLLOWING';
+            }
+            const createdEl = document.getElementById('github-created-at');
+            if (createdEl && user.created_at) {
+                createdEl.textContent = 'GITHUB SINCE ' + new Date(user.created_at).getFullYear();
+            }
+            const avatarEl = document.getElementById('github-user-avatar');
+            if (avatarEl && user.avatar_url && isSafeHttpUrl(user.avatar_url)) {
+                avatarEl.src = user.avatar_url;
+            }
+            const homeStats = document.getElementById('home-github-stats');
+            if (homeStats) {
+                const bits = [];
+                if (user.public_repos) bits.push(user.public_repos + ' public repos');
+                if (Number.isFinite(user.followers)) bits.push(user.followers + ' followers');
+                if (user.created_at) bits.push('GitHub since ' + new Date(user.created_at).getFullYear());
+                homeStats.textContent = bits.join('  ·  ');
+            }
+            const langEl = document.getElementById('github-language-summary');
+            if (langEl && Array.isArray(repos)) {
+                const counts = {};
+                repos.forEach(repo => {
+                    if (repo.fork || !repo.language) return;
+                    counts[repo.language] = (counts[repo.language] || 0) + 1;
+                });
+                const top = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 3);
+                langEl.textContent = top.length ? top.map(([name]) => name.toUpperCase()).join(' / ') : 'MIXED';
+            }
+        }
+
+        async function loadGithubData() {
+            let user = null;
+            let repos = null;
+            let events = null;
+            try {
+                const results = await Promise.allSettled([
+                    fetchJson('https://api.github.com/users/hvndal'),
+                    fetchJson('https://api.github.com/users/hvndal/repos?sort=pushed&per_page=100'),
+                    fetchJson('https://api.github.com/users/hvndal/events/public')
+                ]);
+                if (results[0].status === 'fulfilled') user = results[0].value;
+                if (results[1].status === 'fulfilled' && Array.isArray(results[1].value)) repos = results[1].value;
+                if (results[2].status === 'fulfilled' && Array.isArray(results[2].value)) events = results[2].value;
+            } catch (err) {
+                console.error('GitHub fetch error:', err);
+            }
+
+            if (!user || !Array.isArray(repos)) {
+                try {
+                    const fallback = await fetchJson('data/github-fallback.json');
+                    user = user || fallback.user;
+                    if (!Array.isArray(repos) && Array.isArray(fallback.repos)) repos = fallback.repos;
+                } catch (err) {
+                    console.error('GitHub fallback error:', err);
+                }
+            }
+
+            if (Array.isArray(repos)) {
+                allReposData = repos;
+                renderProjectsGrid(repos);
+            } else {
+                const grid = document.getElementById('projects-grid');
+                if (grid) {
+                    grid.innerHTML = '<p class="font-mono text-xs text-[#a398a0] xl:col-span-2">Projects could not be loaded. <a class="text-[#ff451a] underline" href="https://github.com/hvndal" target="_blank" rel="noopener noreferrer">Open GitHub</a>.</p>';
+                }
+            }
+            applyGithubProfile(user, repos);
+            if (events) renderCommitFeed(events);
+            else {
+                const container = document.getElementById('commit-feed-container');
+                if (container) container.innerHTML = '<div class="font-mono text-xs text-[#a398a0] p-4 text-center">Live commit feed is on the <a class="text-[#54a0fe] underline" href="https://github.com/hvndal" target="_blank" rel="noopener noreferrer">GitHub profile</a>.</div>';
+            }
+        }
+
+        loadGithubData();
 
         
         
@@ -1746,95 +2091,257 @@
                 subtitle: 'Multi-Modal Vision Recipe Engine',
                 description: 'An AI-driven pantry scanner leveraging Gemini multi-modal vision models to analyze raw camera streams and generate structured recipes on the fly.',
                 tags: ['Gemini API', 'AI Vision', 'React']
+            },
+            'mnema': {
+                name: 'Mnema',
+                subtitle: 'Gamepad reaction benchmark',
+                description: 'A browser tool for measuring gamepad reaction time.',
+                tags: ['TypeScript']
+            },
+            'cafenexusdemo': {
+                name: 'Cafe Nexus',
+                subtitle: 'Concept cafe website',
+                description: 'A concept site for Cafe Nexus.',
+                tags: ['HTML']
+            },
+            'alyonatutoring': {
+                name: 'Alyona Tutoring',
+                subtitle: 'Langley tutoring site',
+                description: 'Tutoring site for science, chemistry, and math in Langley, BC.',
+                tags: ['HTML']
+            },
+            'bccredesign': {
+                name: 'Berkshire Custom Cleaning',
+                subtitle: 'Cleaning company redesign',
+                description: 'Redesign for a cleaning company in Pittsfield and the Berkshires.',
+                tags: ['HTML']
+            },
+            'bostonb': {
+                name: 'Boston Bluestone',
+                subtitle: 'Site audit',
+                description: 'Before-and-after site audit for Boston Bluestone.',
+                tags: ['HTML']
+            },
+            'unapologeticfoods': {
+                name: 'Adda',
+                subtitle: 'Restaurant website',
+                description: 'Restaurant website for Adda in Fishtown, Philadelphia.',
+                tags: ['HTML']
+            },
+            'projectisabela': {
+                name: 'Project Isabela',
+                subtitle: 'Retro games',
+                description: 'A retro arcade page for custom 8-bit games.',
+                tags: ['JavaScript']
+            },
+            'auto': {
+                name: 'Auto-Esthetica',
+                subtitle: 'Auto detailing site',
+                description: 'Detailing site for paint protection film and ceramic coating in Quebec.',
+                tags: ['HTML']
+            },
+            'kineticroast': {
+                name: 'Kinetic Roast',
+                subtitle: 'Coffee brand page',
+                description: 'A page for a coffee brand.',
+                tags: ['TypeScript']
             }
         };
 
-        const stockVideoLoops = [
-            'https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-grid-network-animation-41552-large.mp4',
-            'https://assets.mixkit.co/videos/preview/mixkit-glowing-digital-lines-in-motion-41553-large.mp4',
-            'https://assets.mixkit.co/videos/preview/mixkit-tech-and-future-binary-code-data-visualization-41550-large.mp4',
-            'https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-data-41538-large.mp4',
-            'https://assets.mixkit.co/videos/preview/mixkit-cyber-punk-futuristic-city-40713-large.mp4'
-        ];
+        const GENERIC_PREVIEW_HOSTS = new Set([
+            'mander.tech',
+            'www.mander.tech',
+            'changedetection.io',
+            'www.changedetection.io',
+            'iptv-org.github.io',
+            'hermanify.online',
+            'www.hermanify.online',
+            'portfolio-rentcan.vercel.app'
+        ]);
+        // Hosts that answered 404 on 15 Oct 2026. GitHub Pages is used instead when it exists.
+        const DEAD_PREVIEW_HOSTS = new Set([
+            'herhomesco.vercel.app',
+            'rentcanpropertyman.vercel.app',
+            'kern-rouge.vercel.app',
+            'rinc-n-austral.vercel.app',
+            'nouveau-dossier-3-ruby.vercel.app',
+            'nouvelle-c-te.vercel.app',
+            'meena-peach.vercel.app'
+        ]);
+
+        function cleanDescription(description) {
+            if (!description) return '';
+            return description
+                .replace(/\s*\|?\s*designed by mander labs.*$/i, '')
+                .replace(/^web design & software engineering by mander labs.*$/i, '')
+                .trim();
+        }
+
+        function formatRepoTitle(name) {
+            return String(name || '')
+                .replace(/[-_]+/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .replace(/\b[a-z]/g, (ch) => ch.toUpperCase());
+        }
+
+        const LOCAL_SHOTS = new Set([
+            'wasteu',
+            'semrushalt',
+            'rentcanpropertyman',
+            'portfolio',
+            'meena',
+            'fitway',
+            'KERN',
+            'CookCan'
+        ]);
+
+        function resolveProjectLinks(repo) {
+            const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const empty = { embed: '', visit: '' };
+            if (rawName === 'portfolio') return empty;
+            let homepage = (repo.homepage || '').trim();
+            if (homepage && !/^https?:\/\//i.test(homepage)) homepage = 'https://' + homepage;
+            let host = '';
+            try { host = homepage ? new URL(homepage).hostname : ''; } catch (err) { homepage = ''; }
+            const safeHome = homepage && isSafeHttpUrl(homepage) && !DEAD_PREVIEW_HOSTS.has(host);
+            const genericHome = GENERIC_PREVIEW_HOSTS.has(host);
+            if (safeHome && !genericHome) return { embed: homepage, visit: homepage };
+            // Studio URL is the real deploy for Mander Labs, but that site refuses to be embedded.
+            if (safeHome && genericHome && rawName === 'manderlabs') return { embed: '', visit: homepage };
+            if (repo.has_pages && repo.name && repo.name !== 'PulsePulse-') {
+                const pagesUrl = 'https://hvndal.github.io/' + encodeURIComponent(repo.name) + '/';
+                return { embed: pagesUrl, visit: pagesUrl };
+            }
+            return empty;
+        }
 
         function renderProjectsGrid(repos) {
             const grid = document.getElementById('projects-grid');
             if (!grid) return;
+            const visible = repos
+                .filter(repo => repo && !repo.fork && repo.name)
+                .slice()
+                .sort((a, b) => {
+                    const liveDelta = (resolveProjectLinks(b).embed ? 1 : 0) - (resolveProjectLinks(a).embed ? 1 : 0);
+                    if (liveDelta !== 0) return liveDelta;
+                    return new Date(b.pushed_at || 0) - new Date(a.pushed_at || 0);
+                });
+
             grid.innerHTML = '';
+            let liveCount = 0;
 
-            repos.forEach((repo, index) => {
+            visible.forEach(repo => {
                 const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                const apiDescription = cleanDescription(repo.description);
                 const meta = projectMetadata[rawName] || {
-                    name: repo.name.replace(/-/g, ' ').toUpperCase(),
-                    subtitle: 'Digital Application & Architecture',
-                    description: repo.description || 'Custom web application engineered with modern front-end architecture and responsive UI components.',
-                    tags: repo.language ? [repo.language, 'Web App'] : ['Web Engineering']
+                    name: formatRepoTitle(repo.name),
+                    subtitle: repo.language ? repo.language + ' repository' : 'GitHub repository',
+                    description: apiDescription || 'Repository on GitHub.',
+                    tags: repo.language ? [repo.language] : ['Web']
                 };
+                const description = (projectMetadata[rawName] && projectMetadata[rawName].description) || apiDescription || 'Repository on GitHub.';
+                const tags = meta.tags.slice();
+                if (repo.language && !tags.some(tag => tag.toLowerCase() === String(repo.language).toLowerCase())) {
+                    tags.unshift(repo.language);
+                }
+                const links = resolveProjectLinks(repo);
+                const liveUrl = links.embed;
+                const visitUrl = links.visit || links.embed;
+                if (liveUrl) liveCount += 1;
+                const updated = repo.pushed_at
+                    ? new Date(repo.pushed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                    : 'Public';
+                const safeName = escapeHtml(meta.name);
+                const safeLive = escapeHtml(liveUrl);
+                const safeVisit = escapeHtml(visitUrl);
+                const tagsHtml = tags.map(tag => `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`).join('');
+                const mediaLabel = liveUrl
+                    ? '<span class="project-media-label"><span class="hire-dot"></span>Live preview</span>'
+                    : '<span class="project-media-label is-offline">Source only</span>';
+                const mediaOpen = liveUrl
+                    ? `<button type="button" class="project-media" data-preview-url="${safeLive}" data-preview-title="${safeName}">`
+                    : '<div class="project-media">';
+                const mediaClose = liveUrl ? '</button>' : '</div>';
+                const previewButtons = [
+                    liveUrl ? `<button type="button" class="btn-preview" data-preview-url="${safeLive}" data-preview-title="${safeName}">Live preview</button>` : '',
+                    visitUrl ? `<a class="btn-ghost" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site</a>` : ''
+                ].join('');
+                const sourceHref = isSafeHttpUrl(repo.html_url) ? repo.html_url : 'https://github.com/hvndal/' + encodeURIComponent(repo.name);
+                const initials = escapeHtml(meta.name.replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(word => word[0]).join('').toUpperCase() || 'PR');
+                const mediaVisual = LOCAL_SHOTS.has(repo.name)
+                    ? `<img src="assets/${repo.name}.jpg" alt="${safeName} thumbnail" loading="lazy"/>`
+                    : `<div class="project-fallback" aria-hidden="true">${initials}</div>`;
 
-                const specificImgUrl = `assets/${repo.name}.jpg`;
-                const fallbackImgUrl = `assets/fallback.jpg`;
-                const repoVideoUrl = `https://raw.githubusercontent.com/hvndal/${repo.name}/main/preview.mp4`;
-                const stockVideoUrl = stockVideoLoops[index % stockVideoLoops.length];
-
-                const fallbackDiv = encodeURIComponent(`<div class="w-full h-full bg-cover bg-center filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80" style="background-image: url('${specificImgUrl}'), url('${fallbackImgUrl}')"></div>`);
-
-                const tagsHtml = meta.tags.map(t => `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${t}</span>`).join('');
-
-                const cardHTML = `
-                <article class="w-full glass-panel rounded-2xl border border-white/5 hover:border-[#ff451a]/60 flex flex-col relative group transition-all duration-300 overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(255,69,26,0.2)]">
-                    <div class="bg-[#18131b]/90 text-[#f4f0eb] h-8 flex items-center justify-between px-4 w-full border-none text-xs font-mono">
-                        <span class="uppercase tracking-widest text-[#a398a0]">PROJECT // ${meta.name}</span>
-                        <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-[#ff451a] animate-pulse"></span>
-                            <span class="text-[10px] text-[#ff451a] font-bold uppercase tracking-wider">VIDEO COMING SOON</span>
+                grid.insertAdjacentHTML('beforeend', `
+                <article class="project-card" data-live="${liveUrl ? '1' : '0'}">
+                    ${mediaOpen}
+                        ${mediaVisual}
+                        ${mediaLabel}
+                    ${mediaClose}
+                    <div class="project-body">
+                        <p class="font-mono text-[10px] uppercase tracking-widest text-[#8f868c]">${escapeHtml(updated)}${repo.stargazers_count > 0 ? ' · ' + repo.stargazers_count + ' stars' : ''}</p>
+                        <h3 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide break-words">${safeName}</h3>
+                        <p class="font-mono text-[11px] text-[#ff451a] uppercase tracking-wider font-bold">${escapeHtml(meta.subtitle)}</p>
+                        <p class="font-sans text-sm text-[#c8bfb8] leading-relaxed line-clamp-3">${escapeHtml(description)}</p>
+                        <div class="flex flex-wrap gap-2">${tagsHtml}</div>
+                        <div class="project-actions">
+                            ${previewButtons}
+                            <a class="btn-source" href="${escapeHtml(sourceHref)}" target="_blank" rel="noopener noreferrer">View source</a>
                         </div>
                     </div>
-                    <div class="flex flex-col md:flex-row flex-grow relative">
-                        <div class="w-full md:w-1/3 aspect-video border-b md:border-b-0 md:border-r border-[#f4f0eb]/10 relative p-1 bg-[#0a080c] overflow-hidden flex-shrink-0 group/img">
-                            <!-- Placeholder UI Screenshot Image -->
-                            <img src="${specificImgUrl}" 
-                                 alt="${meta.name} UI Thumbnail"
-                                 class="w-full h-full object-cover filter grayscale group-hover/img:grayscale-0 transition-all duration-500 opacity-80 group-hover/img:scale-105"
-                                 onerror="this.onerror=null; this.src='assets/fallback.jpg';"/>
-                            
-                            <!-- Video Previews Coming Soon Overlay Badge -->
-                            <div class="absolute inset-0 bg-[#080609]/60 backdrop-blur-[2px] flex flex-col items-center justify-center p-3 text-center transition-all group-hover/img:bg-[#080609]/20">
-                                <div class="flex items-center gap-2 bg-[#120e14]/90 border border-[#ff451a]/40 px-3 py-1.5 rounded-full shadow-[0_0_15px_rgba(255,69,26,0.3)]">
-                                    <span class="w-2 h-2 rounded-full bg-[#ff451a] animate-ping"></span>
-                                    <span class="font-mono text-[9px] sm:text-[10px] text-[#f4f0eb] uppercase font-bold tracking-wider">VIDEO PREVIEWS COMING SOON</span>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        <div class="flex-grow p-6 flex flex-col justify-between bg-[#120e14]/90">
-                            <div>
-                                <h3 class="font-headline-md text-xl md:text-2xl text-[#f4f0eb] mb-1 uppercase tracking-wide break-words">${meta.name}</h3>
-                                <p class="font-mono text-xs text-[#ff451a] uppercase tracking-wider mb-3 font-bold">${meta.subtitle}</p>
-                                <p class="font-sans text-sm text-[#a398a0] mb-4 leading-relaxed">${meta.description}</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    ${tagsHtml}
-                                </div>
-                            </div>
-                            <div class="border-none pt-4 mt-auto">
-                                <div class="flex justify-between items-center mb-3 text-xs font-mono text-[#a398a0]">
-                                    <span>GITHUB REPOSITORY</span>
-                                    <span class="text-[#ff451a] font-bold">${repo.stargazers_count > 0 ? repo.stargazers_count + ' STARS' : 'PUBLIC'}</span>
-                                </div>
-                                <div class="flex gap-3">
-                                    <a href="${repo.html_url}" target="_blank" class="flex-1 bg-[#ff451a] text-black font-bold font-mono text-xs uppercase py-2.5 rounded-full text-center hover:bg-white transition-all duration-300 block shadow-[0_0_15px_rgba(255,69,26,0.3)]">
-                                        VIEW SOURCE →
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                `;
-
-                grid.insertAdjacentHTML('beforeend', cardHTML);
+                </article>`);
             });
+
+            const countEl = document.getElementById('live-preview-count');
+            if (countEl) {
+                countEl.textContent = liveCount + ' live preview' + (liveCount === 1 ? '' : 's') + ' · ' + visible.length + ' projects';
+            }
         }
+
+        function openLivePreview(url, title) {
+            if (!isSafeHttpUrl(url)) return;
+            const modal = document.getElementById('live-preview-modal');
+            const frame = document.getElementById('preview-frame');
+            const heading = document.getElementById('preview-title');
+            const openLink = document.getElementById('preview-open');
+            if (!modal || !frame) return;
+            if (heading) heading.textContent = title || 'Live preview';
+            if (openLink) openLink.href = url;
+            frame.src = url;
+            modal.hidden = false;
+            document.body.style.overflow = 'hidden';
+            const closeBtn = document.getElementById('preview-close');
+            if (closeBtn) closeBtn.focus();
+        }
+
+        function closeLivePreview() {
+            const modal = document.getElementById('live-preview-modal');
+            const frame = document.getElementById('preview-frame');
+            if (frame) frame.src = 'about:blank';
+            if (modal) modal.hidden = true;
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('click', (event) => {
+            const trigger = event.target.closest('[data-preview-url]');
+            if (!trigger) return;
+            event.preventDefault();
+            openLivePreview(trigger.getAttribute('data-preview-url'), trigger.getAttribute('data-preview-title'));
+        });
+
+        document.addEventListener('click', (event) => {
+            const modal = document.getElementById('live-preview-modal');
+            if (!modal || modal.hidden) return;
+            if (event.target === modal) closeLivePreview();
+        });
+
+        document.getElementById('preview-close')?.addEventListener('click', closeLivePreview);
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeLivePreview();
+        });
+        window.openLivePreview = openLivePreview;
+        window.closeLivePreview = closeLivePreview;
 
         // 5. Article Database & Reader View
         const blogDatabase = {
