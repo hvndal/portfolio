@@ -178,13 +178,15 @@
         html, body {
             width: 100%;
             min-height: 100%;
+            height: auto;
             background-color: #080609;
             color: #f4f0eb;
             font-family: 'Hanken Grotesk', sans-serif;
             overflow-x: hidden;
+            overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            overscroll-behavior-y: none;
+            overscroll-behavior-y: auto;
         }
         @media (pointer: fine) {
             html, body {
@@ -197,10 +199,6 @@
                 cursor: url("assets/cursors/Text.png") 11 11, url("assets/cursors/Text.cur") 11 11, text;
             }
         }
-        html.has-site-cursor,
-        html.has-site-cursor * {
-            cursor: none !important;
-        }
         #site-cursor {
             position: fixed;
             left: 0;
@@ -208,20 +206,21 @@
             width: 32px;
             height: 32px;
             margin: 0;
-            pointer-events: none;
+            pointer-events: none !important;
             z-index: 100000;
             opacity: 0;
-            will-change: transform, opacity;
             transform: translate3d(-64px, -64px, 0);
+        }
+        #site-cursor,
+        #site-cursor * {
+            pointer-events: none !important;
         }
         #site-cursor img {
             width: 32px;
             height: 32px;
             display: block;
+            pointer-events: none !important;
             filter: drop-shadow(0 0 8px rgba(186, 232, 255, 0.45));
-        }
-        #site-cursor.is-on {
-            opacity: 1;
         }
         #site-cursor.is-tap {
             opacity: 1;
@@ -1927,7 +1926,7 @@
             } else {
                 overlay.classList.remove('flex', 'opacity-100', 'pointer-events-auto');
                 overlay.classList.add('hidden', 'opacity-0', 'pointer-events-none');
-                document.body.style.overflow = '';
+                document.body.style.removeProperty('overflow');
             }
         }
         window.toggleMobileNav = toggleMobileNav;
@@ -2705,67 +2704,19 @@
         window.playSinglePopSFX = playiOSTapPopSFX;
         window.playJuicyPopSFX = playiOSTapPopSFX;
 
-        (function initSiteCursor() {
+        (function initTouchCursor() {
             const cursorEl = document.getElementById('site-cursor');
             if (!cursorEl) return;
             const img = cursorEl.querySelector('img');
-            const POINTER = { src: 'assets/cursors/Pointer.png', x: 4, y: 1 };
-            const LINK = { src: 'assets/cursors/Link.png', x: 9, y: 1 };
-            const TEXT = { src: 'assets/cursors/Text.png', x: 11, y: 11 };
-            const linkSel = 'a, button, [role="button"], [data-target], [data-filter], [data-article], .desktop-nav-btn, .filter-btn, .project-card, .substack-card, label, summary';
-            const textSel = 'input, textarea, [contenteditable="true"]';
-            let mode = POINTER;
-            const fine = window.matchMedia('(pointer: fine)').matches;
-            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            function setMode(next) {
-                if (mode === next) return;
-                mode = next;
-                if (img) img.src = next.src;
-            }
-
-            function hotspotTransform(x, y) {
-                return `translate3d(${x - mode.x}px, ${y - mode.y}px, 0)`;
-            }
-
-            if (fine) {
-                document.documentElement.classList.add('has-site-cursor');
-                let x = window.innerWidth / 2;
-                let y = window.innerHeight / 2;
-                let tx = x;
-                let ty = y;
-                window.addEventListener('pointermove', (e) => {
-                    if (e.pointerType === 'touch') return;
-                    tx = e.clientX;
-                    ty = e.clientY;
-                    cursorEl.classList.add('is-on');
-                    const node = e.target;
-                    if (node && node.closest && node.closest(textSel)) setMode(TEXT);
-                    else if (node && node.closest && node.closest(linkSel)) setMode(LINK);
-                    else setMode(POINTER);
-                    if (reduce) cursorEl.style.transform = hotspotTransform(tx, ty);
-                }, { passive: true });
-                document.addEventListener('mouseleave', () => cursorEl.classList.remove('is-on'));
-                document.addEventListener('mouseenter', () => cursorEl.classList.add('is-on'));
-                if (!reduce) {
-                    const tick = () => {
-                        x += (tx - x) * 0.38;
-                        y += (ty - y) * 0.38;
-                        cursorEl.style.transform = hotspotTransform(x, y);
-                        requestAnimationFrame(tick);
-                    };
-                    requestAnimationFrame(tick);
-                }
-            }
-
+            document.documentElement.classList.remove('has-site-cursor');
             window.addEventListener('pointerdown', (e) => {
-                const isTouch = e.pointerType === 'touch' || window.matchMedia('(pointer: coarse)').matches;
-                if (!isTouch) return;
-                const node = e.target;
-                if (node && node.closest && node.closest(linkSel)) setMode(LINK);
-                else setMode(POINTER);
-                const x = e.clientX - mode.x;
-                const y = e.clientY - mode.y;
+                if (e.pointerType !== 'touch' && !window.matchMedia('(pointer: coarse)').matches) return;
+                const useLink = e.target && e.target.closest && e.target.closest('a, button, [role="button"], [data-target], [data-filter], [data-article]');
+                if (img) img.src = useLink ? 'assets/cursors/Link.png' : 'assets/cursors/Pointer.png';
+                const hx = useLink ? 9 : 4;
+                const hy = useLink ? 1 : 1;
+                const x = e.clientX - hx;
+                const y = e.clientY - hy;
                 cursorEl.style.setProperty('--tap-x', x + 'px');
                 cursorEl.style.setProperty('--tap-y', y + 'px');
                 cursorEl.style.transform = `translate3d(${x}px, ${y}px, 0)`;
