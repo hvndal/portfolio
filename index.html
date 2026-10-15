@@ -123,9 +123,10 @@
     }
     </script>
     
-    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@800;900&family=Bebas+Neue&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -160,9 +161,6 @@
         }
     </script>
 
-    <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     
 
     <style>
@@ -171,7 +169,6 @@
             padding: 0; 
             box-sizing: border-box; 
             -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
         }
         html, body {
             width: 100%;
@@ -184,12 +181,20 @@
             -webkit-overflow-scrolling: touch;
             overscroll-behavior-y: none;
         }
+        @media (pointer: fine) {
+            html, body {
+                cursor: url("assets/cursors/Pointer.cur") 4 2, auto;
+            }
+            a, button, [role="button"], [data-target], [data-filter], .desktop-nav-btn, .filter-btn, .project-card, label, summary {
+                cursor: url("assets/cursors/Link.cur") 8 1, pointer;
+            }
+            input, textarea, [contenteditable="true"] {
+                cursor: url("assets/cursors/Text.cur") 12 12, text;
+            }
+        }
 
-        /* GPU Acceleration for Mobile Smoothness */
-        .glass-panel, .view-section, header, #mobile-nav-overlay {
+        header, #mobile-nav-overlay {
             transform: translateZ(0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
         }
 
         /* Clip Path Hexagon */
@@ -241,10 +246,8 @@
             animation: clickTouchImprint 380ms ease-out forwards;
         }
 
-        /* Smooth View Cross-Fade Transitions */
         .view-section {
-            transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
+            transition: opacity 160ms ease, transform 160ms ease;
         }
         .view-section:not(.active) {
             opacity: 0 !important;
@@ -266,7 +269,7 @@
             background: #080609;
             z-index: 999999;
             pointer-events: none;
-            transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 280ms ease;
         }
         #page-entry-curtain.loaded {
             opacity: 0;
@@ -284,14 +287,11 @@
 
         /* Glassmorphism Utilities */
         .glass-panel {
-            background: rgba(18, 14, 20, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(18, 14, 20, 0.92);
             border: 1px solid rgba(244, 240, 235, 0.1);
         }
         .glass-panel-glow {
-            background: rgba(18, 14, 20, 0.9);
-            backdrop-filter: blur(16px);
+            background: rgba(18, 14, 20, 0.95);
             border: 1px solid rgba(255, 69, 26, 0.4);
             box-shadow: 0 0 25px rgba(255, 69, 26, 0.2);
         }
@@ -304,7 +304,7 @@
             width: 100vw;
             height: 100vh;
             z-index: 0;
-            pointer-events: auto;
+            pointer-events: none;
             touch-action: none;
         }
 
@@ -396,18 +396,62 @@
         .project-card {
             display: flex;
             flex-direction: column;
-            background: rgba(18, 14, 20, 0.8);
+            background: rgba(18, 14, 20, 0.92);
             border: 1px solid rgba(244, 240, 235, 0.1);
             border-radius: 1rem;
             overflow: hidden;
             min-width: 0;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+            transition: border-color 160ms ease, box-shadow 160ms ease;
         }
         .project-card:hover {
             border-color: rgba(255, 69, 26, 0.7);
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+        .project-preview {
+            position: relative;
+            min-height: 164px;
+            display: flex;
+            align-items: flex-end;
+            padding: 14px;
+            overflow: hidden;
+            background:
+                linear-gradient(155deg, rgba(255, 69, 26, 0.18), transparent 46%),
+                repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(244, 240, 235, 0.04) 29px),
+                #100d12;
+        }
+        .project-preview::before {
+            content: "";
+            position: absolute;
+            inset: 18% 16% 28%;
+            border: 1px solid rgba(244, 240, 235, 0.12);
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(8, 6, 9, 0.15), rgba(8, 6, 9, 0.55));
+            box-shadow: inset 0 0 0 1px rgba(255, 69, 26, 0.08);
+        }
+        .project-preview-badge {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 69, 26, 0.45);
+            background: rgba(8, 6, 9, 0.88);
+            color: #ff451a;
+            border-radius: 999px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 7px 12px;
+        }
+        @media (min-width: 1100px) {
+            .project-card { flex-direction: row; }
+            .project-preview {
+                width: 38%;
+                flex: 0 0 38%;
+                min-height: 220px;
+            }
         }
         .project-index {
             display: inline-flex;
@@ -544,13 +588,13 @@
             <!-- Header Navigation Tabs (Desktop) -->
             
             <nav class="hidden md:flex items-center gap-1.5 bg-[#120e14]/90 p-1.5 rounded-full border border-white/5" id="desktop-nav-tabs">
-                <button type="button" onclick="switchSection('view-home')" data-target="view-home" class="desktop-nav-btn is-active px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">HOME</button>
-                <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">PROJECTS</button>
-                <button type="button" onclick="switchSection('view-about')" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ABOUT</button>
-                <button type="button" onclick="switchSection('view-stack')" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">STACK</button>
-                <button type="button" onclick="switchSection('view-blog')" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">BLOG</button>
-                <button type="button" onclick="switchSection('view-mindmap')" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">MINDMAP</button>
-                <button type="button" onclick="switchSection('view-activity')" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ACTIVITY</button>
+                <button type="button" data-target="view-home" class="desktop-nav-btn is-active px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">HOME</button>
+                <button type="button" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">PROJECTS</button>
+                <button type="button" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ABOUT</button>
+                <button type="button" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">STACK</button>
+                <button type="button" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">BLOG</button>
+                <button type="button" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">MINDMAP</button>
+                <button type="button" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ACTIVITY</button>
             </nav>
 
             <!-- Action Button & Mobile Toggle -->
@@ -565,7 +609,7 @@
                     <span id="sfx-icon">🔇</span>
                     <span id="sfx-label" class="font-bold">SFX MUTED</span>
                 </button>
-                <button data-target="view-projects" onclick="switchSection('view-projects')" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
+                <button data-target="view-projects" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
                     VIEW WORK →
                 </button>
                 <button id="open-mobile-nav" type="button" onclick="toggleMobileNav(true)" aria-label="Open Navigation Menu" class="md:hidden text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
@@ -602,7 +646,7 @@
                             <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="inline-flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest font-bold uppercase bg-[#ff451a] text-black hover:bg-white transition-all px-6 py-3 rounded-full shadow-[0_0_15px_rgba(255,69,26,0.3)]">
                                 Hire me
                             </a>
-                            <button type="button" onclick="switchSection('view-projects')" data-target="view-projects" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest uppercase text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 rounded-full hover:border-[#ff451a]">
+                            <button type="button" data-target="view-projects" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest uppercase text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 rounded-full hover:border-[#ff451a]">
                                 <span>View work</span>
                                 <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
                             </button>
@@ -645,7 +689,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-none pb-6">
                     <div>
                         <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb] uppercase tracking-tight">Projects & Products</h2>
-                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Shipped work from GitHub — open a live site or the source.</p>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Shipped work from GitHub. Video previews coming soon.</p>
                         <p id="live-preview-count" class="font-mono text-[10px] text-[#ff451a] uppercase tracking-widest mt-2">Loading projects…</p>
                     </div>
                     <div class="flex flex-wrap gap-2" id="project-filter-btns">
@@ -1490,9 +1534,11 @@
     <!-- WebGL Background Shader Script -->
     <script>
         const canvas = document.getElementById('webgl-canvas');
-        const gl = canvas.getContext('webgl', { powerPreference: "high-performance", alpha: true, antialias: false });
+        const preferLite = window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches;
+        const gl = !preferLite && canvas.getContext('webgl', { powerPreference: "low-power", alpha: true, antialias: false, desynchronized: true });
         let mouseX = 0.5;
         let mouseY = 0.5;
+        let shaderRunning = true;
 
         function updatePointer(x, y) {
             mouseX = x / window.innerWidth;
@@ -1602,38 +1648,50 @@
             const mouseLocation = gl.getUniformLocation(program, "u_mouse");
 
             function resizeCanvas() {
-                const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-                canvas.width = window.innerWidth * dpr;
-                canvas.height = window.innerHeight * dpr;
+                const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+                canvas.width = Math.floor(window.innerWidth * dpr);
+                canvas.height = Math.floor(window.innerHeight * dpr);
                 gl.viewport(0, 0, canvas.width, canvas.height);
             }
-            window.addEventListener('resize', resizeCanvas);
+            window.addEventListener('resize', resizeCanvas, { passive: true });
             resizeCanvas();
 
+            let lastFrame = 0;
             function render(time) {
-                time *= 0.001;
-                gl.uniform1f(timeLocation, time);
+                requestAnimationFrame(render);
+                if (!shaderRunning || document.hidden) return;
+                if (time - lastFrame < 33) return;
+                lastFrame = time;
+                gl.uniform1f(timeLocation, time * 0.001);
                 gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
                 gl.uniform2f(mouseLocation, mouseX, mouseY);
                 gl.drawArrays(gl.TRIANGLES, 0, 6);
-                requestAnimationFrame(render);
             }
+            document.addEventListener('visibilitychange', () => {
+                shaderRunning = !document.hidden;
+            });
             requestAnimationFrame(render);
+        } else if (canvas) {
+            canvas.remove();
         }
     </script>
 
     <!-- Three.js 3D Core Visual Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
     (function() {
         const container = document.getElementById('hero-3d-container');
-        if (!container) return;
+        if (!container || typeof THREE === 'undefined' || window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
 
         const scene = new THREE.Scene();
         const width = container.clientWidth || 400;
         const height = container.clientHeight || 400;
         const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
         
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
+        renderer.setPixelRatio(1);
         renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
@@ -1688,8 +1746,14 @@
             if (e.touches.length > 0) set3DPointer(e.touches[0].clientX, e.touches[0].clientY);
         }, { passive: true });
 
+        let heroPaused = false;
+        window.pauseHero3D = function (paused) {
+            heroPaused = !!paused;
+        };
+
         function animate(t) {
             requestAnimationFrame(animate);
+            if (heroPaused || document.hidden) return;
             group.rotation.x += 0.004 + (mouseY - group.rotation.x) * 0.03;
             group.rotation.y += 0.008 + (mouseX - group.rotation.y) * 0.03;
             group.position.y = Math.sin(t * 0.0012) * 0.25;
@@ -1703,7 +1767,7 @@
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);
-        });
+        }, { passive: true });
 
         animate(0);
     })();
@@ -1795,8 +1859,8 @@
                 if (curtain) curtain.classList.add('loaded');
                 setTimeout(() => {
                     if (curtain && curtain.parentNode) curtain.parentNode.removeChild(curtain);
-                }, 700);
-            }, 300);
+                }, 280);
+            }, 40);
         });
 
         // Global Section Switcher Function with Seamless Cross-Fade
@@ -1804,10 +1868,12 @@
             document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
                 const on = btn.getAttribute('data-target') === targetId;
                 btn.classList.toggle('is-active', on);
-                btn.setAttribute('aria-current', on ? 'page' : 'false');
+                if (on) btn.setAttribute('aria-current', 'page');
+                else btn.removeAttribute('aria-current');
             });
         }
 
+        let sectionSwitchToken = 0;
         function switchSection(targetId) {
             if (!targetId) return;
             const currentActive = document.querySelector('.view-section.active');
@@ -1815,28 +1881,33 @@
             if (!targetSec) return;
 
             syncDesktopNav(targetId);
+            if (typeof window.pauseHero3D === 'function') window.pauseHero3D(targetId !== 'view-home');
 
             if (targetSec === currentActive) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 return;
             }
 
+            const token = ++sectionSwitchToken;
             if (currentActive) {
                 currentActive.style.opacity = '0';
                 currentActive.style.transform = 'translateY(-8px)';
                 setTimeout(() => {
-                    currentActive.classList.remove('active');
-                    currentActive.style.display = 'none';
-                    
+                    if (token !== sectionSwitchToken) return;
+                    document.querySelectorAll('.view-section.active').forEach((sec) => {
+                        sec.classList.remove('active');
+                        sec.style.display = 'none';
+                    });
                     targetSec.style.display = 'flex';
                     targetSec.style.opacity = '0';
-                    targetSec.style.transform = 'translateY(12px)';
+                    targetSec.style.transform = 'translateY(8px)';
                     requestAnimationFrame(() => {
+                        if (token !== sectionSwitchToken) return;
                         targetSec.classList.add('active');
                         targetSec.style.opacity = '1';
                         targetSec.style.transform = 'translateY(0)';
                     });
-                }, 160);
+                }, 60);
             } else {
                 targetSec.style.display = 'flex';
                 targetSec.classList.add('active');
@@ -1889,8 +1960,10 @@
             }
         }
 
-        async function fetchJson(url) {
-            const response = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+        async function fetchJson(url, extraHeaders) {
+            const headers = Object.assign({}, extraHeaders || {});
+            if (String(url).includes('api.github.com')) headers.Accept = 'application/vnd.github+json';
+            const response = await fetch(url, { headers });
             if (!response.ok) throw new Error('Request failed: ' + response.status);
             return response.json();
         }
@@ -1978,6 +2051,20 @@
             let user = null;
             let repos = null;
             let events = null;
+
+            try {
+                const fallback = await fetchJson('data/github-fallback.json');
+                user = fallback.user || null;
+                if (Array.isArray(fallback.repos)) repos = fallback.repos;
+                if (Array.isArray(repos)) {
+                    allReposData = repos;
+                    renderProjectsGrid(repos);
+                }
+                applyGithubProfile(user, repos);
+            } catch (err) {
+                console.error('GitHub fallback error:', err);
+            }
+
             try {
                 const results = await Promise.allSettled([
                     fetchJson('https://api.github.com/users/hvndal'),
@@ -1991,22 +2078,12 @@
                 console.error('GitHub fetch error:', err);
             }
 
-            if (!user || !Array.isArray(repos)) {
-                try {
-                    const fallback = await fetchJson('data/github-fallback.json');
-                    user = user || fallback.user;
-                    if (!Array.isArray(repos) && Array.isArray(fallback.repos)) repos = fallback.repos;
-                } catch (err) {
-                    console.error('GitHub fallback error:', err);
-                }
-            }
-
             if (Array.isArray(repos)) {
                 allReposData = repos;
                 renderProjectsGrid(repos);
             } else {
                 const grid = document.getElementById('projects-grid');
-                if (grid) {
+                if (grid && !grid.querySelector('article')) {
                     grid.innerHTML = '<p class="font-mono text-xs text-[#a398a0] xl:col-span-2">Projects could not be loaded. <a class="text-[#ff451a] underline" href="https://github.com/hvndal" target="_blank" rel="noopener noreferrer">Open GitHub</a>.</p>';
                 }
             }
@@ -2014,7 +2091,7 @@
             if (events) renderCommitFeed(events);
             else {
                 const container = document.getElementById('commit-feed-container');
-                if (container) container.innerHTML = '<div class="font-mono text-xs text-[#a398a0] p-4 text-center">Live commit feed is on the <a class="text-[#54a0fe] underline" href="https://github.com/hvndal" target="_blank" rel="noopener noreferrer">GitHub profile</a>.</div>';
+                if (container && !container.querySelector('.glass-panel')) container.innerHTML = '<div class="font-mono text-xs text-[#a398a0] p-4 text-center">Live commit feed is on the <a class="text-[#54a0fe] underline" href="https://github.com/hvndal" target="_blank" rel="noopener noreferrer">GitHub profile</a>.</div>';
             }
         }
 
@@ -2222,6 +2299,9 @@
 
                 grid.insertAdjacentHTML('beforeend', `
                 <article class="project-card">
+                    <div class="project-preview" aria-hidden="true">
+                        <span class="project-preview-badge">Video preview coming soon</span>
+                    </div>
                     <div class="project-body">
                         <div class="project-topline">
                             <span class="project-index">${num}</span>
@@ -2288,24 +2368,67 @@
                 .filter(Boolean);
         }
 
-        async function fetchSubstackArchivePage(offset) {
-            const endpoint = `https://${SUBSTACK_PUBLICATION}.substack.com/api/v1/archive?sort=new&limit=50&offset=${offset}`;
+        async function fetchSubstackArchivePage(base, offset) {
+            const endpoint = `${base}${base.includes('?') ? '&' : '?'}sort=new&limit=50&offset=${offset}`;
             const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
             if (!response.ok) throw new Error('Substack archive ' + response.status);
             return await response.json();
         }
 
-        async function fetchAllSubstackPosts() {
+        async function fetchAllSubstackFromArchive(base) {
             const all = [];
             let offset = 0;
             for (let page = 0; page < 20; page += 1) {
-                const batch = await fetchSubstackArchivePage(offset);
+                const batch = await fetchSubstackArchivePage(base, offset);
                 if (!Array.isArray(batch) || batch.length === 0) break;
                 all.push(...batch);
                 if (batch.length < 50) break;
                 offset += 50;
             }
             return normalizeSubstackPosts(all);
+        }
+
+        function parseSubstackRss(xmlText) {
+            const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
+            if (doc.querySelector('parsererror')) return [];
+            return Array.from(doc.querySelectorAll('item')).map((item) => {
+                const title = (item.querySelector('title')?.textContent || '').trim();
+                const url = (item.querySelector('link')?.textContent || '').trim();
+                const subtitle = (item.querySelector('description')?.textContent || '').replace(/<[^>]+>/g, '').trim();
+                const date = (item.querySelector('pubDate')?.textContent || '').trim();
+                const cover = item.querySelector('enclosure')?.getAttribute('url') || '';
+                return { title, canonical_url: url, subtitle, post_date: date, cover_image: cover, wordcount: 0 };
+            });
+        }
+
+        async function fetchAllSubstackPosts() {
+            const sources = [];
+            if (location.protocol !== 'file:') {
+                sources.push('/api/substack');
+            }
+            sources.push(`https://${SUBSTACK_PUBLICATION}.substack.com/api/v1/archive`);
+            for (const base of sources) {
+                try {
+                    const posts = await fetchAllSubstackFromArchive(base);
+                    if (posts.length) return { posts, label: base.startsWith('/') ? 'live API' : 'Substack API' };
+                } catch (err) {
+                    console.error('Substack archive failed', base, err);
+                }
+            }
+            const feeds = [];
+            if (location.protocol !== 'file:') feeds.push('/api/substack-feed');
+            feeds.push(`${SUBSTACK_HOME}/feed`);
+            for (const feedUrl of feeds) {
+                try {
+                    const response = await fetch(feedUrl, { headers: { Accept: 'application/rss+xml, application/xml, text/xml' } });
+                    if (!response.ok) continue;
+                    const posts = normalizeSubstackPosts(parseSubstackRss(await response.text()));
+                    if (posts.length) return { posts, label: 'RSS' };
+                } catch (err) {
+                    console.error('Substack RSS failed', feedUrl, err);
+                }
+            }
+            return { posts: [], label: '' };
         }
 
         function renderSubstackFeed(posts, sourceLabel) {
@@ -2353,24 +2476,24 @@
         async function loadSubstackPosts() {
             const status = document.getElementById('substack-sync-status');
             try {
+                const fallback = await fetchJson(SUBSTACK_FALLBACK);
+                const cached = normalizeSubstackPosts(fallback.posts || fallback);
+                if (cached.length) renderSubstackFeed(cached, 'cached snapshot');
+            } catch (err) {
+                console.error('Substack fallback failed:', err);
+            }
+            try {
                 const live = await fetchAllSubstackPosts();
-                if (live.length) {
-                    renderSubstackFeed(live, 'live API');
+                if (live.posts.length) {
+                    renderSubstackFeed(live.posts, live.label);
                     return;
                 }
             } catch (err) {
                 console.error('Substack live sync failed:', err);
             }
-            try {
-                const fallback = await fetchJson(SUBSTACK_FALLBACK);
-                const posts = normalizeSubstackPosts(fallback.posts || fallback);
-                renderSubstackFeed(posts, 'cached snapshot');
-            } catch (err) {
-                console.error('Substack fallback failed:', err);
-                const feed = document.getElementById('substack-feed');
-                if (feed) {
-                    feed.innerHTML = `<p class="font-mono text-xs text-[#a398a0]">Could not sync Substack right now. <a class="text-[#ff451a] underline" href="${SUBSTACK_PROFILE}" target="_blank" rel="noopener noreferrer">Read on Substack</a>.</p>`;
-                }
+            const feed = document.getElementById('substack-feed');
+            if (feed && !feed.querySelector('article')) {
+                feed.innerHTML = `<p class="font-mono text-xs text-[#a398a0]">Could not sync Substack right now. <a class="text-[#ff451a] underline" href="${SUBSTACK_PROFILE}" target="_blank" rel="noopener noreferrer">Read on Substack</a>.</p>`;
                 if (status) status.textContent = 'Sync unavailable · open Substack';
             }
         }
@@ -2413,16 +2536,18 @@
         window.playJuicyPopSFX = playiOSTapPopSFX;
 
         // Tactile Glass Screen Touch Imprint Spawner
-        document.addEventListener('pointerdown', (e) => {
-            try {
-                const imprint = document.createElement('div');
-                imprint.className = 'click-touch-imprint';
-                imprint.style.left = `${e.clientX}px`;
-                imprint.style.top = `${e.clientY}px`;
-                document.body.appendChild(imprint);
-                setTimeout(() => imprint.remove(), 380);
-            } catch(err) {}
-        }, { passive: true });
+        if (window.matchMedia('(pointer: coarse)').matches) {
+            document.addEventListener('pointerdown', (e) => {
+                try {
+                    const imprint = document.createElement('div');
+                    imprint.className = 'click-touch-imprint';
+                    imprint.style.left = `${e.clientX}px`;
+                    imprint.style.top = `${e.clientY}px`;
+                    document.body.appendChild(imprint);
+                    setTimeout(() => imprint.remove(), 380);
+                } catch(err) {}
+            }, { passive: true });
+        }
 
         // Delegated SFX Event Listener for iOS-Style UI Taps & Boops
         document.addEventListener('click', (e) => {
