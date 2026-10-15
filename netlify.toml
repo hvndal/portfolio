@@ -1,0 +1,26 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/api/substack"
+  to = "https://hermanify.substack.com/api/v1/archive"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/substack-feed"
+  to = "https://hermanify.substack.com/feed"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=120"
+    Access-Control-Allow-Origin = "*"
