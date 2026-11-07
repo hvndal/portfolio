@@ -18,13 +18,13 @@
     <link rel="me" href="https://hermanify.substack.com"/>
     <link rel="me" href="https://linkedin.com/in/hermanify"/>
     <link rel="me" href="https://github.com/hvndal"/>
+    <link rel="me" href="https://x.com/harmanify"/>
+    <link rel="me" href="https://instagram.com/hermanify"/>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"/>
     <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png"/>
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
     <link rel="manifest" href="site.webmanifest"/>
     <link rel="alternate" type="application/rss+xml" title="Herman on Substack" href="https://hermanify.substack.com/feed"/>
-    <link rel="preload" as="image" href="assets/cursors/Pointer.png"/>
-    <link rel="preload" as="image" href="assets/cursors/Link.png"/>
 
     <!-- OpenGraph / Social Meta Tags -->
     <meta property="og:site_name" content="Herman Hundal"/>
@@ -188,50 +188,6 @@
             -webkit-overflow-scrolling: touch;
             overscroll-behavior-y: auto;
         }
-        @media (pointer: fine) {
-            html, body {
-                cursor: url("assets/cursors/Pointer.png") 4 1, url("assets/cursors/Pointer.cur") 4 1, auto;
-            }
-            a, button, [role="button"], [data-target], [data-filter], [data-article], .desktop-nav-btn, .filter-btn, .project-card, label, summary {
-                cursor: url("assets/cursors/Link.png") 9 1, url("assets/cursors/Link.cur") 9 1, pointer;
-            }
-            input, textarea, [contenteditable="true"] {
-                cursor: url("assets/cursors/Text.png") 11 11, url("assets/cursors/Text.cur") 11 11, text;
-            }
-        }
-        #site-cursor {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 32px;
-            height: 32px;
-            margin: 0;
-            pointer-events: none !important;
-            z-index: 100000;
-            opacity: 0;
-            transform: translate3d(-64px, -64px, 0);
-        }
-        #site-cursor,
-        #site-cursor * {
-            pointer-events: none !important;
-        }
-        #site-cursor img {
-            width: 32px;
-            height: 32px;
-            display: block;
-            pointer-events: none !important;
-            filter: drop-shadow(0 0 8px rgba(186, 232, 255, 0.45));
-        }
-        #site-cursor.is-tap {
-            opacity: 1;
-            animation: siteCursorTap 320ms ease-out forwards;
-        }
-        @keyframes siteCursorTap {
-            0% { opacity: 1; transform: translate3d(var(--tap-x, 0px), var(--tap-y, 0px), 0) scale(0.82); }
-            70% { opacity: 1; transform: translate3d(var(--tap-x, 0px), var(--tap-y, 0px), 0) scale(1); }
-            100% { opacity: 0; transform: translate3d(var(--tap-x, 0px), var(--tap-y, 0px), 0) scale(1.08); }
-        }
-
         header, #mobile-nav-overlay {
             transform: translateZ(0);
         }
@@ -239,7 +195,7 @@
             padding-top: max(1rem, env(safe-area-inset-top));
         }
         main {
-            padding-top: calc(6rem + env(safe-area-inset-top));
+            padding-top: calc(5.5rem + env(safe-area-inset-top));
         }
         .mobile-nav-btn {
             min-height: 44px;
@@ -287,39 +243,6 @@
             letter-spacing: 0.18em;
         }
 
-        /* Tactile Glass Screen Touch Imprint Animation */
-        @keyframes clickTouchImprint {
-            0% {
-                transform: translate(-50%, -50%) scale(0.6);
-                opacity: 0.95;
-                box-shadow: inset 0 0 12px rgba(255, 69, 26, 0.8), 0 0 15px rgba(255, 69, 26, 0.6);
-            }
-            40% {
-                transform: translate(-50%, -50%) scale(1.15);
-                opacity: 0.75;
-                box-shadow: inset 0 0 18px rgba(244, 240, 235, 0.7), 0 0 22px rgba(255, 69, 26, 0.4);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1.4);
-                opacity: 0;
-                box-shadow: inset 0 0 0px transparent, 0 0 0px transparent;
-            }
-        }
-
-        .click-touch-imprint {
-            position: fixed;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 69, 26, 0.5) 0%, rgba(244, 240, 235, 0.2) 50%, transparent 80%);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 69, 26, 0.6);
-            pointer-events: none;
-            z-index: 99999;
-            animation: clickTouchImprint 380ms ease-out forwards;
-        }
-
         .view-section {
             transition: opacity 160ms ease, transform 160ms ease;
         }
@@ -334,29 +257,6 @@
             opacity: 1 !important;
             transform: translateY(0) !important;
             pointer-events: auto;
-        }
-
-        /* Smooth Initial Page Entry Reveal Curtain */
-        #page-entry-curtain {
-            position: fixed;
-            inset: 0;
-            background: #080609;
-            z-index: 999999;
-            pointer-events: none;
-            transition: opacity 280ms ease;
-        }
-        #page-entry-curtain.loaded {
-            opacity: 0;
-        }
-        #page-entry-progress-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 3px;
-            width: 0%;
-            background: linear-gradient(90deg, #ff451a, #54a0fe);
-            box-shadow: 0 0 14px rgba(255, 69, 26, 0.85);
-            transition: width 380ms ease-out;
         }
 
         /* Glassmorphism Utilities */
@@ -441,30 +341,30 @@
             color: #c8bfb8;
         }
         .desktop-nav-btn {
-            letter-spacing: 0.12em;
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            white-space: nowrap;
-            color: #8f868c;
-            background: transparent;
+            font-family: 'Hanken Grotesk', sans-serif;
+            font-size: 13.5px;
             font-weight: 500;
-            box-shadow: none;
+            letter-spacing: -0.005em;
+            white-space: nowrap;
+            color: #a29aa0;
+            background: transparent;
+            border: 0;
+            padding: 7px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: color 200ms ease, background 200ms ease;
         }
-        .desktop-nav-btn:hover {
-            color: #f4f0eb;
-            background: rgba(244, 240, 235, 0.05);
-        }
+        .desktop-nav-btn:hover { color: #f2efea; background: rgba(255, 255, 255, 0.05); }
         .desktop-nav-btn.is-active,
         .desktop-nav-btn.is-active:hover {
-            color: #000 !important;
-            background: #ff451a !important;
-            font-weight: 700;
-            box-shadow: 0 0 15px rgba(255, 69, 26, 0.4);
+            color: #0b0a0c;
+            background: #f2efea;
+            font-weight: 600;
         }
         .filter-btn.is-active {
-            background: #ff451a !important;
-            color: #000 !important;
-            border-color: #ff451a !important;
+            background: #f2efea !important;
+            color: #0b0a0c !important;
+            border-color: #f2efea !important;
             font-weight: 700;
         }
         .project-card {
@@ -637,9 +537,211 @@
             .substack-cover { min-height: 160px; }
         }
     </style>
+
+    <style id="premium-layer">
+        /* ---------- tokens ---------- */
+        :root {
+            --bg: #09080a; --text: #f2efea; --muted: #9a9298; --line: rgba(255,255,255,0.08);
+            --accent: #ff4f1f; --ease: cubic-bezier(.2,.7,.2,1);
+        }
+        :root body { background: var(--bg); color: var(--text); }
+        body::after {
+            content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(1100px 700px at 88% -12%, rgba(255,79,31,0.12), transparent 62%),
+                radial-gradient(900px 640px at -12% 108%, rgba(138,28,106,0.12), transparent 60%);
+        }
+        body::before {
+            content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .045; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        ::selection { background: var(--accent); color: #120806; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+        /* ---------- header ---------- */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            padding: max(12px, env(safe-area-inset-top)) clamp(16px, 3vw, 40px) 12px;
+            background: rgba(9,8,10,0.62); border-bottom: 1px solid rgba(255,255,255,0.06);
+            -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+        }
+        .brand { display: flex; align-items: center; gap: 12px; background: none; border: 0; padding: 0; cursor: pointer; color: inherit; text-align: left; }
+        .brand-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; filter: grayscale(1); box-shadow: 0 0 0 1px rgba(255,255,255,0.16); transition: filter .4s ease; }
+        .brand:hover .brand-avatar { filter: none; }
+        .brand-name { display: block; font: 600 14.5px/1.2 'Hanken Grotesk', sans-serif; letter-spacing: -0.01em; color: var(--text); }
+        .brand-status { display: flex; align-items: center; gap: 6px; font: 500 12px/1.3 'Hanken Grotesk', sans-serif; color: var(--muted); }
+        .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 0 3px rgba(61,220,132,0.16); flex: none; animation: livePulse 2.4s ease-in-out infinite; }
+        @keyframes livePulse { 50% { box-shadow: 0 0 0 6px rgba(61,220,132,0); } }
+        .nav-pill { display: none; align-items: center; gap: 2px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.07); }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-hire { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 999px; background: var(--accent); color: #140804; font: 600 13.5px 'Hanken Grotesk', sans-serif; text-decoration: none; transition: background .25s ease, transform .25s var(--ease); }
+        .btn-hire:hover { background: #fff; }
+        .menu-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+        .menu-btn span { width: 16px; height: 1.5px; background: var(--text); border-radius: 2px; }
+        @media (min-width: 1024px) { .nav-pill { display: flex; } .menu-btn { display: none; } }
+        @media (max-width: 420px) { .brand-status { display: none; } }
+
+        /* ---------- mobile menu ---------- */
+        :root .mobile-overlay { background: rgba(9,8,10,0.96); -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); padding: max(16px, env(safe-area-inset-top)) 22px max(24px, env(safe-area-inset-bottom)); }
+        .mo-top { display: flex; justify-content: space-between; align-items: center; height: 48px; }
+        .mo-close { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: none; color: var(--text); font-size: 16px; cursor: pointer; }
+        .mo-links { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; margin: auto 0; }
+        :root .mo-links .mobile-nav-btn { justify-content: flex-start; background: none; border: 0; color: var(--text); font: 400 clamp(44px, 13vw, 60px)/1.05 'Bebas Neue', sans-serif; letter-spacing: 0.02em; padding: 4px 0; cursor: pointer; opacity: 0; transform: translateY(12px); }
+        .mobile-overlay.flex .mo-links .mobile-nav-btn { animation: riseIn .55s var(--ease) forwards; }
+        .mo-links .mobile-nav-btn:nth-child(2) { animation-delay: .04s !important; } .mo-links .mobile-nav-btn:nth-child(3) { animation-delay: .08s !important; }
+        .mo-links .mobile-nav-btn:nth-child(4) { animation-delay: .12s !important; } .mo-links .mobile-nav-btn:nth-child(5) { animation-delay: .16s !important; }
+        .mo-links .mobile-nav-btn:nth-child(6) { animation-delay: .2s !important; } .mo-links .mobile-nav-btn:nth-child(7) { animation-delay: .24s !important; }
+        .mo-links .mobile-nav-btn:nth-child(8) { animation-delay: .28s !important; }
+        .mo-links .mobile-nav-btn:hover { color: var(--accent); }
+        .mo-foot { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; color: var(--muted); font: 500 14px 'Hanken Grotesk', sans-serif; }
+        .mo-foot a:not(.btn-hire) { color: var(--muted); text-decoration: none; }
+
+        /* ---------- motion ---------- */
+        @keyframes riseIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+        .rv { opacity: 0; transform: translateY(22px); }
+        .rv.in { opacity: 1; transform: none; transition: opacity .85s var(--ease), transform .85s var(--ease); transition-delay: var(--d, 0ms); }
+
+        /* ---------- hero ---------- */
+        :root #view-home.hero { min-height: calc(100svh - 96px); justify-content: center; gap: 0; padding: 24px 0 20px; }
+        .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: 24px; }
+        .eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0; }
+        .hero-title { font: 400 clamp(72px, 11vw, 160px)/.86 'Bebas Neue', sans-serif; letter-spacing: 0.01em; text-transform: uppercase; margin: 22px 0 26px; color: var(--text); }
+        .hero-title em { font-style: normal; padding-right: .04em;
+            background: linear-gradient(100deg, #ff8a5c 0%, #ff4f1f 45%, #e0371a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        :root .hero-lead { font-size: clamp(17px, 1.45vw, 20px); line-height: 1.6; color: #c9c1bb; max-width: 34rem; margin: 0; }
+        .hero-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 30px; padding: 0; }
+        .hero-tags li { border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; font: 500 13px 'Hanken Grotesk', sans-serif; color: #cfc7c1; background: rgba(255,255,255,0.02); }
+        .hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 24px; border-radius: 999px; font: 600 15px 'Hanken Grotesk', sans-serif; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background .25s ease, border-color .25s ease, color .25s ease, transform .3s var(--ease); }
+        .btn span { transition: transform .3s var(--ease); }
+        .btn:hover span { transform: translateX(4px); }
+        .btn-primary { background: var(--accent); color: #140804; }
+        .btn-primary:hover { background: #fff; }
+        .btn-ghost-lg { background: rgba(255,255,255,0.03); color: var(--text); border-color: rgba(255,255,255,0.16); }
+        .btn-ghost-lg:hover { border-color: rgba(255,255,255,0.4); }
+        .btn-link { display: inline-flex; align-items: center; height: 50px; padding: 0 8px; color: #bdb5b0; font: 500 14.5px 'Hanken Grotesk', sans-serif; text-decoration: none; transition: color .2s ease; }
+        .btn-link:hover { color: var(--text); }
+        .hero-stats { margin: 26px 0 0; font: 500 11px 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: #7d757a; }
+        .hero-visual { position: relative; height: min(580px, 64vh); }
+        .hero-visual::before { content: ""; position: absolute; inset: 16%; border-radius: 50%; background: radial-gradient(circle, rgba(255,79,31,0.2), transparent 66%); filter: blur(24px); }
+        :root #hero-3d-container { position: absolute; inset: 0; }
+        .hero-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px 20px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 18px; margin-top: 28px; font: 500 13px 'Hanken Grotesk', sans-serif; color: var(--muted); }
+        .hero-new { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; padding: 6px 14px 6px 6px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); transition: border-color .25s ease, background .25s ease; }
+        .hero-new b { background: var(--accent); color: #140804; border-radius: 999px; padding: 3px 9px; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+        .hero-new:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 4px; }
+            .hero-visual { height: 300px; margin: 8px -16px 0; }
+            :root #view-home.hero { min-height: 0; }
+        }
+
+        /* ---------- surfaces ---------- */
+        :root .glass-panel {
+            background: linear-gradient(180deg, rgba(255,255,255,0.042), rgba(255,255,255,0.014));
+            border-color: var(--line) !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.045), 0 24px 60px -40px rgba(0,0,0,0.9);
+            transition: transform .45s var(--ease), border-color .3s ease, box-shadow .45s ease, background .3s ease;
+        }
+        :root .glass-panel.rounded-2xl:hover { border-color: rgba(255,255,255,0.17) !important; transform: translateY(-3px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 34px 70px -44px rgba(0,0,0,0.95); }
+        :root [class*="shadow-[0_0"], :root [class*="drop-shadow-[0_0"] { box-shadow: none !important; filter: none !important; }
+        :root .rounded-2xl { border-radius: 20px; }
+        :root [class*="bg-[#ff451a]/15"] { background: rgba(255,79,31,0.08) !important; border-color: rgba(255,79,31,0.22) !important; }
+        :root [class*="bg-[#54a0fe]/15"] { background: rgba(84,160,254,0.08) !important; border-color: rgba(84,160,254,0.22) !important; }
+        :root p.font-sans.text-xs, :root ul.font-sans.text-xs { font-size: 14px; line-height: 1.6; color: #b8b0ab; }
+        
+        /* ---------- project cards ---------- */
+        :root .project-card {
+            flex-direction: column !important; border-radius: 20px; border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255,255,255,0.042), rgba(255,255,255,0.012));
+            transition: transform .5s var(--ease), border-color .3s ease, box-shadow .5s ease;
+            animation: riseIn .75s var(--ease) both; animation-delay: calc(var(--i, 0) * 45ms);
+        }
+        :root .project-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.17); box-shadow: 0 34px 70px -46px rgba(0,0,0,0.95); }
+        :root .project-preview {
+            width: auto !important; flex: none !important; min-height: 0 !important; aspect-ratio: 16 / 9; padding: 0; overflow: hidden;
+            background: radial-gradient(120% 95% at 18% 8%, hsl(var(--h, 20) 42% 24%), hsl(calc(var(--h, 20) + 40) 28% 8%) 72%);
+        }
+        :root .project-preview::before { display: none; }
+        .project-preview::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(9,8,10,0.6)); pointer-events: none; }
+        .project-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 1.1s var(--ease); }
+        .project-card:hover .project-preview img { transform: scale(1.045); }
+        .project-mono { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: italic 400 clamp(64px, 7vw, 96px)/1 'Instrument Serif', serif; color: rgba(255,255,255,0.9); letter-spacing: -0.02em; transition: transform 1.1s var(--ease); }
+        .project-card:hover .project-mono { transform: scale(1.06); }
+        .project-preview-tag { position: absolute; left: 12px; top: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 999px; background: rgba(9,8,10,0.72); border: 1px solid rgba(255,255,255,0.14); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font: 600 11.5px 'Hanken Grotesk', sans-serif; color: var(--text); }
+        :root .project-body { gap: 8px; padding: 18px 20px 20px; }
+        .project-num, .project-date { font: 500 11.5px 'JetBrains Mono', monospace; color: var(--muted); letter-spacing: .04em; }
+        .project-title { font: 700 20px/1.2 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; color: var(--text); margin: 4px 0 0; overflow-wrap: anywhere; }
+        .project-sub { font: 500 11.5px 'JetBrains Mono', monospace; letter-spacing: .06em; text-transform: uppercase; color: #ff7a52; margin: 0; }
+        .project-desc { font-size: 14.5px; line-height: 1.6; color: #bdb5b0; margin: 2px 0 4px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .project-tags span { font: 500 12px 'Hanken Grotesk', sans-serif; color: #bdb5b0; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+        :root .btn-preview, :root .btn-source, :root .btn-ghost {
+            font-family: 'Hanken Grotesk', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: 0; text-transform: none; height: 40px; padding: 0 18px; box-shadow: none;
+        }
+        :root .btn-preview { background: var(--text); color: #0b0a0c; }
+        :root .btn-preview:hover { background: var(--accent); color: #140804; }
+        :root .btn-source, :root .btn-ghost { background: transparent; border-color: rgba(255,255,255,0.16); }
+        :root .btn-source:hover, :root .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: var(--text); }
+
+        /* ---------- substack ---------- */
+        :root .substack-card { border-radius: 20px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,0.042), rgba(255,255,255,0.012)); transition: transform .5s var(--ease), border-color .3s ease; animation: riseIn .75s var(--ease) both; }
+        :root .substack-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.17); box-shadow: none; }
+
+        /* ---------- lab ---------- */
+        .section-head { display: flex; flex-direction: column; gap: 10px; padding-bottom: 8px; }
+        .section-sub { font-size: 17px; line-height: 1.55; color: #bdb5b0; max-width: 40rem; margin: 0; }
+        .serif-em { color: var(--accent); }
+        .lab-feature {
+            display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); border-radius: 26px; overflow: hidden; border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); text-decoration: none; color: inherit;
+            transition: transform .6s var(--ease), border-color .3s ease, box-shadow .6s ease;
+        }
+        .lab-feature:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); box-shadow: 0 50px 100px -60px rgba(255,79,31,0.5); }
+        .lab-art { background: #f5f2ec; display: flex; align-items: center; justify-content: center; padding: clamp(16px, 3vw, 36px); overflow: hidden; min-height: 300px; }
+        .lab-art img { width: 100%; height: auto; max-height: 540px; object-fit: contain; transition: transform 1.4s var(--ease); }
+        .lab-feature:hover .lab-art img { transform: scale(1.04) rotate(-2deg); }
+        .lab-body { padding: clamp(24px, 4vw, 52px); display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+        .lab-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+        .chip-new { background: var(--accent); color: #140804; border-radius: 999px; padding: 3px 9px; font-weight: 700; letter-spacing: .08em; }
+        .lab-body h3 { font: 900 clamp(32px, 4vw, 54px)/1 'Anybody', sans-serif; text-transform: uppercase; letter-spacing: -0.01em; margin: 0; color: var(--text); }
+        .lab-body p { font-size: 16.5px; line-height: 1.6; color: #c4bcb6; margin: 0; max-width: 34rem; }
+        .lab-stats { list-style: none; display: flex; gap: clamp(18px, 3vw, 34px); padding: 16px 0; margin: 2px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .lab-stats li { font: 500 13px 'Hanken Grotesk', sans-serif; color: var(--muted); }
+        .lab-stats b { display: block; font: 600 32px/1.1 'Hanken Grotesk', sans-serif; letter-spacing: -0.03em; color: var(--text); }
+        .lab-cta { display: inline-flex; align-items: center; gap: 10px; font: 600 15.5px 'Hanken Grotesk', sans-serif; color: var(--text); }
+        .lab-cta span { transition: transform .3s var(--ease); }
+        .lab-feature:hover .lab-cta span { transform: translateX(6px); }
+        .lab-note { color: var(--muted); font-size: 14px; margin: 6px 0 0; }
+        @media (max-width: 860px) { .lab-feature { grid-template-columns: 1fr; } .lab-art { min-height: 0; } }
+
+        /* ---------- footer ---------- */
+        .site-footer { position: relative; z-index: 20; width: 100%; max-width: 1440px; margin: 64px auto 0; padding: 0 clamp(16px, 3vw, 48px) max(28px, env(safe-area-inset-bottom)); }
+        .foot-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 36px; }
+        .foot-kicker { display: flex; align-items: center; gap: 8px; font: 500 13px 'Hanken Grotesk', sans-serif; color: var(--muted); margin: 0 0 8px; }
+        .foot-mail { font: 700 clamp(22px, 3.4vw, 40px)/1.1 'Syne', sans-serif; letter-spacing: -0.01em; color: var(--text); text-decoration: none; overflow-wrap: anywhere; transition: color .2s ease; }
+        .foot-mail:hover { color: var(--accent); }
+        .foot-links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+        .foot-links a, .foot-bottom a { color: #bdb5b0; text-decoration: none; font: 500 14px 'Hanken Grotesk', sans-serif; transition: color .2s ease; }
+        .foot-links a:hover, .foot-bottom a:hover { color: var(--text); }
+        .foot-bottom { display: flex; justify-content: space-between; gap: 8px 20px; flex-wrap: wrap; margin-top: 28px; font: 500 13px 'Hanken Grotesk', sans-serif; color: #7d757a; }
+        .foot-bottom a { font-size: 13px; }
+
+
+        /* mindmap + heatmap restraint */
+        :root .mindmap-deck.active-scroll img:nth-child(3) { box-shadow: 0 28px 50px -22px rgba(0,0,0,0.85) !important; }
+        :root .mindmap-deck.active-scroll .glass-panel { border-color: rgba(255,255,255,0.16) !important; box-shadow: none !important; }
+        :root .mindmap-deck img.border-2 { border-width: 1px; }
+        :root #view-activity img[src*="ghchart"] { background: #fbfaf8 !important; filter: invert(0.93) hue-rotate(180deg) saturate(1.2) !important; border-color: rgba(0,0,0,0.08) !important; }
+        @media (prefers-reduced-motion: reduce) {
+            .rv, .rv.in { opacity: 1 !important; transform: none !important; transition: none !important; }
+            :root .project-card, :root .substack-card { animation: none; }
+            :root .mo-links .mobile-nav-btn { opacity: 1; transform: none; animation: none !important; }
+            .live-dot { animation: none; }
+        }
+    </style>
 </head>
 <body class="bg-[#080609] text-[#f4f0eb] antialiased min-h-screen flex flex-col selection:bg-[#ff451a] selection:text-black">
-    <div id="site-cursor" aria-hidden="true"><img src="assets/cursors/Pointer.png" width="32" height="32" alt=""/></div>
 
     <!-- WebGL GLSL Shader Background Canvas -->
     <canvas id="webgl-canvas"></canvas>
@@ -647,50 +749,28 @@
     <!-- Main Content Wrapper -->
     <div class="content-wrapper flex flex-col w-full min-h-screen">
 
-        <!-- Top Header Navigation Bar -->
-        <header class="w-full fixed top-0 left-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 bg-[#080609]/85 backdrop-blur-md border-none">
-            <!-- Logo -->
-            <div class="flex items-center gap-3 cursor-pointer" onclick="switchSection('view-home')">
-                <div class="w-10 h-10 border-2 border-[#ff451a] rounded-full overflow-hidden relative shadow-[0_0_12px_rgba(255,69,26,0.5)] group transition-all duration-300">
-                    <img src="assets/avatar.jpg" alt="Herman Hundal Avatar" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"/>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-xs tracking-widest uppercase text-[#f4f0eb]">HERMAN HUNDAL</span>
-                    <span class="text-[9px] font-mono text-[#ff451a] uppercase tracking-wider whitespace-nowrap">Available for hire</span>
-                </div>
-            </div>
-
-            <!-- Header Navigation Tabs (Desktop) -->
-            
-            <nav class="hidden md:flex items-center gap-1.5 bg-[#120e14]/90 p-1.5 rounded-full border border-white/5" id="desktop-nav-tabs">
-                <button type="button" data-target="view-home" class="desktop-nav-btn is-active px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">HOME</button>
-                <button type="button" data-target="view-projects" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">PROJECTS</button>
-                <button type="button" data-target="view-about" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ABOUT</button>
-                <button type="button" data-target="view-stack" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">STACK</button>
-                <button type="button" data-target="view-blog" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">BLOG</button>
-                <button type="button" data-target="view-mindmap" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">MINDMAP</button>
-                <button type="button" data-target="view-activity" class="desktop-nav-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-200">ACTIVITY</button>
+        <!-- Top Header -->
+        <header id="site-header" class="site-header">
+            <button type="button" class="brand" data-target="view-home" aria-label="Herman Hundal, home">
+                <img src="assets/avatar.jpg" alt="" width="36" height="36" class="brand-avatar"/>
+                <span>
+                    <span class="brand-name">Herman Hundal</span>
+                    <span class="brand-status"><i class="live-dot"></i>Available for hire</span>
+                </span>
+            </button>
+            <nav class="nav-pill" id="desktop-nav-tabs" aria-label="Sections">
+                <button type="button" data-target="view-home" class="desktop-nav-btn is-active">Home</button>
+                <button type="button" data-target="view-projects" class="desktop-nav-btn">Projects</button>
+                <button type="button" data-target="view-lab" class="desktop-nav-btn">Lab</button>
+                <button type="button" data-target="view-about" class="desktop-nav-btn">About</button>
+                <button type="button" data-target="view-stack" class="desktop-nav-btn">Stack</button>
+                <button type="button" data-target="view-blog" class="desktop-nav-btn">Blog</button>
+                <button type="button" data-target="view-mindmap" class="desktop-nav-btn">Mindmap</button>
+                <button type="button" data-target="view-activity" class="desktop-nav-btn">Activity</button>
             </nav>
-
-            <!-- Action Button & Mobile Toggle -->
-            <div class="flex items-center gap-3">
-                <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="hidden xl:inline-flex items-center gap-2 border border-[#54a0fe]/40 bg-[#54a0fe]/10 text-[#54a0fe] px-3.5 py-1.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#54a0fe] hover:text-black transition-colors">
-                    Studio
-                </a>
-                <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="inline-flex items-center gap-2 border border-[#ff451a]/45 bg-[#ff451a]/10 text-[#ff451a] px-3 py-1.5 rounded-full font-mono text-[10px] font-bold uppercase tracking-[0.14em] hover:bg-[#ff451a] hover:text-black transition-colors">
-                    <span class="sm:hidden">Hire</span><span class="hidden sm:inline">Hire me</span>
-                </a>
-                <button id="sfx-toggle-btn" type="button" onclick="toggleSfxMute()" class="flex items-center gap-1.5 glass-panel border border-[#f4f0eb]/20 hover:border-[#ff451a] text-[#f4f0eb] hover:text-[#ff451a] px-3 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer">
-                    <span id="sfx-icon">🔇</span>
-                    <span id="sfx-label" class="font-bold hidden sm:inline">SFX MUTED</span>
-                </button>
-                <button data-target="view-projects" class="hidden sm:inline-flex items-center gap-2 bg-[#ff451a] text-black font-bold text-xs px-5 py-2 rounded-full hover:bg-white transition-all cursor-pointer shadow-[0_0_15px_rgba(255,69,26,0.3)]">
-                    VIEW WORK →
-                </button>
-                <button id="open-mobile-nav" type="button" onclick="toggleMobileNav(true)" aria-label="Open Navigation Menu" class="md:hidden text-[#f4f0eb] hover:text-[#ff451a] transition-colors p-2 flex flex-col gap-1.5 justify-center items-end group cursor-pointer">
-                    <span class="w-6 h-[2px] bg-current transition-all group-hover:w-8"></span>
-                    <span class="w-4 h-[2px] bg-current transition-all group-hover:w-8"></span>
-                </button>
+            <div class="header-actions">
+                <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="btn-hire">Hire me</a>
+                <button id="open-mobile-nav" type="button" onclick="toggleMobileNav(true)" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav-overlay" class="menu-btn"><span></span><span></span></button>
             </div>
         </header>
 
@@ -698,64 +778,33 @@
         <main class="flex-grow flex flex-col min-h-screen relative w-full px-4 md:px-12 max-w-[1440px] mx-auto z-10">
 
             <!-- 1. HOME VIEW -->
-            <section id="view-home" class="view-section active flex flex-col justify-between min-h-[calc(100vh-100px)] py-8 relative">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto z-10 w-full">
-                    <div class="lg:col-span-7 flex flex-col items-start">
-                        <div class="hire-banner mb-6" role="status">
-                            <span>Available for hire</span>
+            <section id="view-home" class="view-section active hero relative">
+                <div class="hero-grid">
+                    <div class="hero-copy">
+                        <p class="eyebrow"><i class="live-dot"></i>Available for hire · Full-time and contract · Remote</p>
+                        <h1 class="hero-title">Herman<br/><em>Hundal</em></h1>
+                        <p class="hero-lead">UI/UX designer and front-end engineer in Vancouver and Langley, BC. I take products from interface design through a working website you can open.</p>
+                        <ul class="hero-tags" aria-label="Disciplines">
+                            <li>UI/UX design</li><li>Front-end development</li><li>Product design</li>
+                        </ul>
+                        <div class="hero-cta">
+                            <a class="btn btn-primary" href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal">Hire me <span aria-hidden="true">→</span></a>
+                            <button type="button" class="btn btn-ghost-lg" data-target="view-projects">View work</button>
+                            <a class="btn-link" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Mander Labs ↗</a>
+                            <a class="btn-link" href="https://linkedin.com/in/hermanify" target="_blank" rel="me noopener noreferrer">LinkedIn ↗</a>
+                            <a class="btn-link" href="https://x.com/harmanify" target="_blank" rel="me noopener noreferrer">X @harmanify ↗</a>
+                            <a class="btn-link" href="https://instagram.com/hermanify" target="_blank" rel="me noopener noreferrer">Instagram @hermanify ↗</a>
+                            <a class="btn-link" href="mailto:harmanify@protonmail.com">harmanify@protonmail.com</a>
                         </div>
-                        <h1 class="cinematic-title text-[64px] sm:text-[88px] md:text-[104px] lg:text-[112px] font-normal text-[#f4f0eb] uppercase select-none tracking-tight leading-none">
-                            HERMAN<br/>HUNDAL
-                        </h1>
-                        <p class="hero-lead mt-5 mb-4">
-                            UI/UX designer and front-end engineer in Vancouver and Langley, BC. I take products from interface design through a working website you can open.
-                        </p>
-                        <p class="cinematic-sub text-[10px] sm:text-xs text-[#8f868c] uppercase tracking-[0.18em] mb-8 flex flex-wrap gap-2 items-center">
-                            <span>UI/UX design</span>
-                            <span class="text-[#ff451a]">•</span>
-                            <span>Front-end development</span>
-                            <span class="text-[#ff451a]">•</span>
-                            <span>Product design</span>
-                        </p>
-                        <div class="flex flex-wrap gap-3 items-center">
-                            <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="inline-flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest font-bold uppercase bg-[#ff451a] text-black hover:bg-white transition-all px-6 py-3 rounded-full shadow-[0_0_15px_rgba(255,69,26,0.3)]">
-                                Hire me
-                            </a>
-                            <button type="button" data-target="view-projects" class="group flex items-center gap-3 text-xs md:text-sm font-mono tracking-widest uppercase text-[#f4f0eb] hover:text-[#ff451a] transition-all cursor-pointer glass-panel px-6 py-3 rounded-full hover:border-[#ff451a]">
-                                <span>View work</span>
-                                <span class="text-[#ff451a] text-base group-hover:translate-x-1 transition-transform">→</span>
-                            </button>
-                            <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="inline-flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest uppercase text-[#54a0fe] glass-panel border border-[#54a0fe]/35 hover:bg-[#54a0fe] hover:text-black transition-all px-5 py-3 rounded-full">
-                                Mander Labs
-                            </a>
-                            <a href="https://linkedin.com/in/hermanify" target="_blank" rel="me noopener noreferrer" class="group flex items-center gap-2.5 text-xs md:text-sm font-mono tracking-widest text-[#f4f0eb] glass-panel border border-[#f4f0eb]/20 hover:border-[#54a0fe] hover:text-[#54a0fe] transition-all px-5 py-3 rounded-full">
-                                <svg class="w-4 h-4 fill-current text-[#54a0fe]" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-                                <span>in/hermanify</span>
-                            </a>
-                        </div>
-                        <p id="home-github-stats" class="font-mono text-[10px] uppercase tracking-[0.16em] text-[#8f868c] mt-6">Loading GitHub profile…</p>
+                        <p id="home-github-stats" class="hero-stats">Loading GitHub profile…</p>
                     </div>
-                    <div class="lg:col-span-5 relative h-[320px] sm:h-[400px] lg:h-[480px] w-full flex items-center justify-center">
-                        <div id="hero-3d-container" class="w-full h-full absolute inset-0"></div>
-                        <div class="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 z-10 bg-[#080609]/80 border border-[#ff451a]/35 px-4 py-3 rounded-2xl backdrop-blur-md">
-                            <div class="font-mono text-[10px] uppercase tracking-wider">
-                                <p class="text-[#f4f0eb] font-bold">Open for new work</p>
-                                <p class="text-[#ff451a]">Full-time and contract · Remote</p>
-                            </div>
-                        </div>
+                    <div class="hero-visual" aria-hidden="true">
+                        <div id="hero-3d-container"></div>
                     </div>
                 </div>
-
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end w-full gap-4 z-10 pt-6 border-none font-mono text-[10px] text-[#8f868c] uppercase tracking-widest">
-                    <div>
-                        <p class="text-[#ff451a]">Available for hire</p>
-                        <p class="text-[#f4f0eb]/70">Vancouver & Langley, BC · Remote worldwide</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="text-[#ff451a]">2026</span>
-                        <span class="w-8 h-[1px] bg-[#f4f0eb]/20"></span>
-                        <span>Portfolio</span>
-                    </div>
+                <div class="hero-foot">
+                    <span>Vancouver &amp; Langley, BC · Remote worldwide</span>
+                    <a class="hero-new" href="/atlas/"><b>New</b>Brain Disorder Atlas, an interactive explainer <span aria-hidden="true">→</span></a>
                 </div>
             </section>
 
@@ -768,7 +817,7 @@
                         <p id="live-preview-count" class="font-mono text-[10px] text-[#ff451a] uppercase tracking-widest mt-2">Loading projects…</p>
                     </div>
                     <div class="flex flex-wrap gap-2" id="project-filter-btns">
-                        <button data-filter="ALL" onclick="filterProjects('ALL')" class="filter-btn is-active border border-[#ff451a] bg-[#ff451a] text-black px-4 py-1.5 rounded-full font-mono text-xs uppercase font-bold transition-all cursor-pointer">ALL</button>
+                        <button data-filter="ALL" onclick="filterProjects('ALL')" class="filter-btn is-active border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">ALL</button>
                         <button data-filter="REACT" onclick="filterProjects('REACT')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">REACT</button>
                         <button data-filter="THREE.JS" onclick="filterProjects('THREE.JS')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">THREE.JS</button>
                         <button data-filter="RUST" onclick="filterProjects('RUST')" class="filter-btn border border-white/5 glass-panel text-[#f4f0eb] px-4 py-1.5 rounded-full font-mono text-xs uppercase hover:border-[#ff451a] transition-all cursor-pointer">RUST / C++</button>
@@ -778,8 +827,8 @@
                     </div>
                 </div>
 
-                <div id="projects-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-6">
-                    <p class="font-mono text-xs text-[#a398a0] uppercase tracking-widest xl:col-span-2">Loading projects from GitHub…</p>
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-6">
+                    <p class="font-mono text-xs text-[#a398a0] uppercase tracking-widest col-span-full">Loading projects from GitHub…</p>
                 </div>
             </section>
 
@@ -806,9 +855,9 @@
                     <div class="md:col-span-7 glass-panel p-8 rounded-2xl border border-white/5 flex flex-col justify-between">
                         <div>
                             <span class="font-mono text-[10px] text-[#ff451a] font-bold uppercase tracking-widest bg-[#ff451a]/15 px-3 py-1 rounded-full border border-[#ff451a]/30 inline-block mb-4">PROFILE PHILOSOPHY</span>
-                            <h1 class="font-headline-lg text-4xl md:text-5xl text-[#f4f0eb] mb-4 uppercase leading-tight">
+                            <h2 class="font-headline-lg text-4xl md:text-5xl text-[#f4f0eb] mb-4 uppercase leading-tight">
                                 PSYCHOLOGY-INFORMED <span class="text-[#ff451a]">UI/UX & FRONTEND ARCHITECTURE</span>
-                            </h1>
+                            </h2>
                             <div class="w-16 h-1 bg-[#ff451a] mb-6"></div>
                             <p class="font-sans text-base text-[#a398a0] leading-relaxed mb-4">
                                 I take web products from business requirements and information architecture through interface design, responsive front-end implementation, Git/GitHub workflows, and Vercel deployment.
@@ -833,24 +882,23 @@
                     <!-- Right Column: Interactive Profile Avatar & Deployment Log -->
                     <div class="md:col-span-5 glass-panel p-8 rounded-2xl border border-white/5 flex flex-col justify-between relative overflow-hidden group">
                         <!-- Interactive Hover Avatar Card -->
-                        <div class="relative w-full p-4 glass-panel rounded-xl border border-white/5 hover:border-[#ff451a] transition-all duration-500 overflow-hidden cursor-pointer mb-6 group/avatar shadow-lg">
+                        <div class="relative w-full p-4 glass-panel rounded-xl border border-white/5 overflow-hidden mb-6">
                             <div class="flex items-center gap-4 relative z-10">
                                 <div class="w-20 h-20 rounded-2xl border-2 border-[#ff451a] overflow-hidden shadow-[0_0_20px_rgba(255,69,26,0.4)] flex-shrink-0 relative">
-                                    <img src="assets/avatar.jpg" alt="Herman Hundal Raw Photo" class="w-full h-full object-cover group-hover/avatar:scale-115 transition-transform duration-500"/>
-                                    <div class="absolute inset-0 bg-[#ff451a]/10 opacity-0 group-hover/avatar:opacity-100 transition-opacity"></div>
+                                    <img src="assets/avatar.jpg" alt="Herman Hundal Raw Photo" class="w-full h-full object-cover"/>
                                 </div>
                                 <div class="flex flex-col">
-                                    <h4 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide group-hover/avatar:text-[#ff451a] transition-colors">HERMAN HUNDAL</h4>
+                                    <h4 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide">HERMAN HUNDAL</h4>
                                     <span class="font-mono text-[10px] text-[#ff451a] uppercase font-bold tracking-wider mt-0.5">UI/UX UNICORN & FRONTEND DEVELOPER</span>
                                     <div class="flex items-center gap-2 mt-2">
-                                        <span class="w-2 h-2 rounded-full bg-[#ff451a] animate-pulse"></span>
-                                        <span class="font-mono text-[9px] text-[#a398a0] uppercase tracking-widest">HOVER FOR PROFILE DETAILS</span>
+                                        <i class="live-dot"></i>
+                                        <span class="font-mono text-[9px] text-[#a398a0] uppercase tracking-widest">PROFILE DETAILS</span>
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- Hover-Reveal Popover Bio Drawer -->
-                            <div class="max-h-0 group-hover/avatar:max-h-60 opacity-0 group-hover/avatar:opacity-100 transition-all duration-500 ease-in-out overflow-hidden border-none mt-4 pt-4 text-xs font-mono text-[#a398a0] space-y-2">
+                            <div class="border-none mt-4 pt-4 text-xs font-mono text-[#a398a0] space-y-2">
                                 <p class="text-[#f4f0eb]"><strong class="text-[#ff451a]">LOCATION:</strong> Vancouver & Langley, BC (Available Worldwide / Remote)</p>
                                 <p><strong class="text-[#ff451a]">SPECIALTY:</strong> Information Architecture, React/TypeScript, Mobile UI</p>
                                 <p><strong class="text-[#ff451a]">LANGUAGES:</strong> English, French (DELF), Punjabi, Hindi, Spanish</p>
@@ -1356,21 +1404,6 @@
                 </div>
 
                 <div class="flex flex-col gap-6 mt-6">
-                    <article class="glass-panel p-5 md:p-6 rounded-2xl border border-[#ff451a]/40 hover:border-[#ff451a] transition-all group relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-4 gap-3">
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-[#ff451a] text-black px-3 py-1 rounded-full font-mono text-[10px] font-bold uppercase">INTERACTIVE</span>
-                                <span class="border border-white/5 px-3 py-1 rounded-full font-mono text-[10px] uppercase text-[#a398a0]">DATA VIZ</span>
-                            </div>
-                            <span class="font-mono text-xs text-[#a398a0] shrink-0">NOV 7, 2026</span>
-                        </div>
-                        <h3 class="font-headline-md text-2xl text-[#f4f0eb] uppercase tracking-wide mb-3">Brain Disorder Atlas</h3>
-                        <p class="font-sans text-sm text-[#a398a0] leading-relaxed max-w-3xl mb-6">94 cognitive and neurological conditions mapped to the brain regions they're linked to. Hover a condition, tap a region, filter by system.</p>
-                        <a href="/atlas/" class="font-mono text-xs text-[#ff451a] font-bold flex items-center gap-2 group-hover:gap-4 transition-all uppercase min-h-11">
-                            OPEN THE ATLAS →
-                        </a>
-                    </article>
-
                     <article class="glass-panel p-5 md:p-6 rounded-2xl border border-white/5 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
                         <div class="flex justify-between items-start mb-4 gap-3">
                             <div class="flex flex-wrap gap-2">
@@ -1433,6 +1466,26 @@
                 </div>
             </section>
 
+            <!-- LAB VIEW -->
+            <section id="view-lab" class="view-section py-6">
+                <div class="section-head">
+                    <p class="eyebrow">Lab</p>
+                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb]">Interactive <span class="serif-em">experiments</span></h2>
+                    <p class="section-sub">Explainers and visual tools I build to make complicated things easier to see. Each one works on desktop and phone.</p>
+                </div>
+                <a class="lab-feature" href="/atlas/">
+                    <div class="lab-art"><img src="assets/previews/atlas.webp" alt="Radial map of 94 brain conditions, coloured by system, with lines running to regions of a drawn brain" width="1100" height="995" fetchpriority="low" decoding="async"/></div>
+                    <div class="lab-body">
+                        <div class="lab-meta"><span class="chip-new">New</span><span>Interactive · Data viz · Nov 2026</span></div>
+                        <h3>Brain Disorder <span class="serif-em">Atlas</span></h3>
+                        <p>94 cognitive and neurological conditions mapped to the brain regions they're linked to. Click any condition for a plain-language explanation, related conditions, and a 3D view of where it lives.</p>
+                        <ul class="lab-stats"><li><b>94</b>conditions</li><li><b>11</b>systems</li><li><b>27</b>brain regions</li></ul>
+                        <span class="lab-cta">Open the atlas <span aria-hidden="true">→</span></span>
+                    </div>
+                </a>
+                <p class="lab-note">Built with SVG, Three.js and Wikipedia's API. More experiments on the way.</p>
+            </section>
+
             <!-- 6. ARTICLE READER VIEW (DYNAMIC) -->
             <section id="view-article" class="view-section py-6">
                 <div class="border-none pb-6 mb-6">
@@ -1461,9 +1514,9 @@
                     <!-- Deck 1: Newspaper Brutalism -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="newspaper">
                         <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
-                            <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
-                            <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
-                            <img src="assets/images/newspaper.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                            <img src="assets/images/thumbs/newspaper.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/thumbs/newspaper.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/thumbs/newspaper.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Newspaper Brutalism</h4>
@@ -1477,9 +1530,9 @@
                     <!-- Deck 2: Acubi Y2K -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="acubi">
                         <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
-                            <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
-                            <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
-                            <img src="assets/images/acubi.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                            <img src="assets/images/thumbs/acubi.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/thumbs/acubi.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/thumbs/acubi.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Acubi Y2K Minimalism</h4>
@@ -1493,9 +1546,9 @@
                     <!-- Deck 3: Bauhausian Geometry -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="bauhaus">
                         <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
-                            <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
-                            <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
-                            <img src="assets/images/bauhaus.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                            <img src="assets/images/thumbs/bauhaus.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/thumbs/bauhaus.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/thumbs/bauhaus.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Bauhausian Geometry</h4>
@@ -1509,9 +1562,9 @@
                     <!-- Deck 4: Showa Retroism -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="showa">
                         <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
-                            <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
-                            <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
-                            <img src="assets/images/showa.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                            <img src="assets/images/thumbs/showa.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/thumbs/showa.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/thumbs/showa.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Showa Retroism</h4>
@@ -1525,9 +1578,9 @@
                     <!-- Deck 5: Vintage Anime -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="anime">
                         <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
-                            <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
-                            <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
-                            <img src="assets/images/anime.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                            <img src="assets/images/thumbs/anime.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/thumbs/anime.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/thumbs/anime.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Vintage 90s Anime</h4>
@@ -1541,9 +1594,9 @@
                     <!-- Deck 6: Solarpunk Tech Greenery -->
                     <div class="mindmap-deck group flex flex-col items-center w-full relative z-10" data-node="solarpunk">
                         <div class="relative w-44 sm:w-56 md:w-48 aspect-[3/4] mb-6">
-                            <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
-                            <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
-                            <img src="assets/images/solarpunk.jpg" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
+                            <img src="assets/images/thumbs/solarpunk.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:-rotate-6 group-hover:-translate-x-3 shadow-lg z-10"/>
+                            <img src="assets/images/thumbs/solarpunk.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border border-white/5 grayscale transition-transform duration-500 origin-bottom group-hover:rotate-6 group-hover:translate-x-3 shadow-lg z-20"/>
+                            <img src="assets/images/thumbs/solarpunk.webp" alt="" loading="lazy" decoding="async" width="390" height="520" class="absolute inset-0 w-full h-full object-cover rounded-xl border-2 border-[#ff451a] transition-transform duration-500 origin-bottom group-hover:-translate-y-4 shadow-2xl z-30"/>
                         </div>
                         <div class="text-center w-full max-w-[340px] glass-panel p-5 rounded-xl border border-white/5 transition-all duration-500">
                             <h4 class="font-headline-md text-lg uppercase tracking-wide text-[#f4f0eb]">Solarpunk / Tech Greenery</h4>
@@ -1556,8 +1609,6 @@
 
                 </div>
             </section>
-
-        </section>
 
             <!-- 8. ACTIVITY / GITHUB TELEMETRY VIEW -->
             <section id="view-activity" class="view-section py-6">
@@ -1631,43 +1682,50 @@
             </section>
         </main>
 
-        <!-- Ultra-Clean Minimal Footer -->
-        <footer class="w-full py-8 px-6 md:px-12 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-[#8f868c] z-20 mt-auto gap-4 border-none">
-            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-                <span>© 2026 HERMAN HUNDAL</span>
-                <span class="hidden sm:inline text-white/10">•</span>
-                <span class="text-[#a398a0]">ENGINEERING & DESIGN IN <a href="https://www.mander.tech/locations/metro-vancouver/vancouver" target="_blank" rel="noopener" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">VANCOUVER</a> & <a href="https://www.mander.tech/locations/metro-vancouver/langley" target="_blank" rel="noopener" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">LANGLEY, BC</a></span>
-                <span class="hidden sm:inline text-white/10">•</span>
-                <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="text-[#ff451a] hover:underline font-bold transition-colors">MANDER LABS ↗</a>
-                <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer" class="text-[#f4f0eb] hover:text-[#ff451a] transition-colors">SUBSTACK ↗</a>
+        <footer class="site-footer">
+            <div class="foot-top">
+                <div>
+                    <p class="foot-kicker"><i class="live-dot"></i>Available for hire</p>
+                    <a class="foot-mail" href="mailto:harmanify@protonmail.com">harmanify@protonmail.com</a>
+                </div>
+                <nav class="foot-links" aria-label="Elsewhere">
+                    <a href="https://linkedin.com/in/hermanify" target="_blank" rel="me noopener noreferrer">LinkedIn // hermanify ↗</a>
+                    <a href="https://x.com/harmanify" target="_blank" rel="me noopener noreferrer">X // @harmanify ↗</a>
+                    <a href="https://instagram.com/hermanify" target="_blank" rel="me noopener noreferrer">Instagram // @hermanify ↗</a>
+                    <a href="https://github.com/hvndal" target="_blank" rel="me noopener noreferrer">GitHub // hvndal ↗</a>
+                    <a href="https://substack.com/@hermanify" target="_blank" rel="me noopener noreferrer">Substack ↗</a>
+                    <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Mander Labs ↗</a>
+                </nav>
             </div>
-            <div class="flex flex-wrap items-center gap-6 uppercase">
-                <a href="mailto:harmanify@protonmail.com" class="text-[#ff451a] font-bold hover:underline">
-                    ✉ HARMANIFY@PROTONMAIL.COM
-                </a>
-                <a href="https://linkedin.com/in/hermanify" target="_blank" rel="noopener noreferrer" class="text-[#54a0fe] font-bold hover:underline">
-                    LINKEDIN // HERMANIFY ↗
-                </a>
-                <a href="https://github.com/hvndal" target="_blank" rel="noopener noreferrer" class="text-[#f4f0eb] hover:underline">
-                    GITHUB // HVNDAL ↗
-                </a>
+            <div class="foot-bottom">
+                <span>© 2026 Herman Hundal</span>
+                <span>Design &amp; engineering in <a href="https://www.mander.tech/locations/metro-vancouver/vancouver" target="_blank" rel="noopener">Vancouver</a> &amp; <a href="https://www.mander.tech/locations/metro-vancouver/langley" target="_blank" rel="noopener">Langley, BC</a></span>
             </div>
         </footer>
 
     </div>
 
     <!-- Mobile Navigation Overlay -->
-    <div id="mobile-nav-overlay" class="fixed inset-0 bg-[#080609]/98 backdrop-blur-2xl z-[100] hidden flex-col justify-center items-center opacity-0 transition-all duration-300">
-        <button id="close-mobile-nav" type="button" onclick="toggleMobileNav(false)" class="absolute top-6 right-6 text-[#f4f0eb] hover:text-[#ff451a] text-3xl p-3 font-mono cursor-pointer">✕</button>
-        <div class="flex flex-col gap-6 text-center font-mono text-2xl uppercase tracking-widest">
-            <button type="button" onclick="switchSection('view-home'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">HOME</button>
-            <button type="button" onclick="switchSection('view-projects'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">PROJECTS</button>
-            <button type="button" onclick="switchSection('view-about'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">ABOUT</button>
-            <button type="button" onclick="switchSection('view-stack'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">STACK</button>
-            <button type="button" onclick="switchSection('view-blog'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">BLOG</button>
-            <button type="button" onclick="switchSection('view-mindmap'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">MINDMAP</button>
-            <button type="button" onclick="switchSection('view-activity'); toggleMobileNav(false);" class="mobile-nav-btn text-[#f4f0eb] hover:text-[#ff451a] py-2 cursor-pointer">GITHUB ACTIVITY</button>
-            <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer" class="mobile-nav-btn text-[#54a0fe] py-2">Studio</a>
+    <div id="mobile-nav-overlay" class="mobile-overlay fixed inset-0 z-[100] hidden flex-col opacity-0 transition-all duration-300" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="mo-top">
+            <span class="brand-name">Herman Hundal</span>
+            <button id="close-mobile-nav" type="button" onclick="toggleMobileNav(false)" aria-label="Close menu" class="mo-close">✕</button>
+        </div>
+        <nav class="mo-links" aria-label="Sections">
+            <button type="button" onclick="switchSection('view-home'); toggleMobileNav(false);" class="mobile-nav-btn">Home</button>
+            <button type="button" onclick="switchSection('view-projects'); toggleMobileNav(false);" class="mobile-nav-btn">Projects</button>
+            <button type="button" onclick="switchSection('view-lab'); toggleMobileNav(false);" class="mobile-nav-btn">Lab</button>
+            <button type="button" onclick="switchSection('view-about'); toggleMobileNav(false);" class="mobile-nav-btn">About</button>
+            <button type="button" onclick="switchSection('view-stack'); toggleMobileNav(false);" class="mobile-nav-btn">Stack</button>
+            <button type="button" onclick="switchSection('view-blog'); toggleMobileNav(false);" class="mobile-nav-btn">Blog</button>
+            <button type="button" onclick="switchSection('view-mindmap'); toggleMobileNav(false);" class="mobile-nav-btn">Mindmap</button>
+            <button type="button" onclick="switchSection('view-activity'); toggleMobileNav(false);" class="mobile-nav-btn">Activity</button>
+        </nav>
+        <div class="mo-foot">
+            <a href="mailto:harmanify@protonmail.com?subject=Available%20for%20hire%20%E2%80%94%20Herman%20Hundal" class="btn-hire">Hire me</a>
+            <a href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Mander Labs ↗</a>
+            <a href="https://x.com/harmanify" target="_blank" rel="me noopener noreferrer">X ↗</a>
+            <a href="https://instagram.com/hermanify" target="_blank" rel="me noopener noreferrer">Instagram ↗</a>
         </div>
     </div>
 
@@ -1816,100 +1874,76 @@
         }
     </script>
 
-    <!-- Three.js 3D Core Visual Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Hero visual: breathing particle sphere (Three.js r128) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
     <script>
-    (function() {
-        const container = document.getElementById('hero-3d-container');
-        if (!container || typeof THREE === 'undefined' || window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches) {
-            return;
-        }
-
+    (function () {
+        const box = document.getElementById('hero-3d-container');
+        if (!box || typeof THREE === 'undefined') return;
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const small = matchMedia('(max-width: 767px), (pointer: coarse)').matches;
+        let renderer;
+        try { renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power' }); } catch (err) { return; }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2));
+        box.appendChild(renderer.domElement);
         const scene = new THREE.Scene();
-        const width = container.clientWidth || 400;
-        const height = container.clientHeight || 400;
-        const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
-        
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
-        renderer.setPixelRatio(1);
-        renderer.setSize(width, height);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
+        const cam = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+        cam.position.z = 6.4;
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-        scene.add(ambientLight);
-        
-        const pointLight = new THREE.PointLight(0xff451a, 2.5, 100);
-        pointLight.position.set(5, 5, 5);
-        scene.add(pointLight);
+        // soft round sprite
+        const c = document.createElement('canvas'); c.width = c.height = 64;
+        const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+        gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.35, 'rgba(255,255,255,0.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+        g.fillStyle = gr; g.fillRect(0, 0, 64, 64);
 
-        const pointLight2 = new THREE.PointLight(0x8a1c6a, 2.0, 100);
-        pointLight2.position.set(-5, -5, -5);
-        scene.add(pointLight2);
-
-        const group = new THREE.Group();
-        const geometry = new THREE.IcosahedronGeometry(1.8, 0);
-        const material = new THREE.MeshPhongMaterial({ 
-            color: 0xff451a, 
-            wireframe: true,
-            transparent: true,
-            opacity: 0.65
-        });
-        const mesh = new THREE.Mesh(geometry, material);
-        group.add(mesh);
-
-        const coreGeo = new THREE.SphereGeometry(0.85, 32, 32);
-        const coreMat = new THREE.MeshStandardMaterial({ 
-            color: 0xffffff, 
-            emissive: 0xff451a,
-            emissiveIntensity: 0.7,
-            roughness: 0.15,
-            metalness: 0.8,
-            transparent: true,
-            opacity: 0.9
-        });
-        const core = new THREE.Mesh(coreGeo, coreMat);
-        group.add(core);
-
-        scene.add(group);
-        camera.position.z = 4.8;
-
-        let mouseX = 0;
-        let mouseY = 0;
-
-        function set3DPointer(x, y) {
-            mouseX = (x - window.innerWidth / 2) * 0.0008;
-            mouseY = (y - window.innerHeight / 2) * 0.0008;
+        const N = small ? 1500 : 3400;
+        const base = new Float32Array(N * 3), pos = new Float32Array(N * 3), col = new Float32Array(N * 3), ph = new Float32Array(N);
+        const warm = new THREE.Color(0xff4f1f), cream = new THREE.Color(0xf2e9df), plum = new THREE.Color(0xa0457f);
+        for (let i = 0; i < N; i++) {
+            const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = i * 2.399963;
+            base[i * 3] = Math.cos(th) * r; base[i * 3 + 1] = y; base[i * 3 + 2] = Math.sin(th) * r;
+            ph[i] = Math.random() * 6.283;
+            const m = Math.random(), cc = m < 0.2 ? warm : m < 0.27 ? plum : cream, k = 0.5 + Math.random() * 0.5;
+            col[i * 3] = cc.r * k; col[i * 3 + 1] = cc.g * k; col[i * 3 + 2] = cc.b * k;
         }
-        document.addEventListener('mousemove', (e) => set3DPointer(e.clientX, e.clientY), { passive: true });
-        document.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) set3DPointer(e.touches[0].clientX, e.touches[0].clientY);
-        }, { passive: true });
+        pos.set(base);
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+        const mat = new THREE.PointsMaterial({ size: small ? 0.075 : 0.062, map: new THREE.CanvasTexture(c), vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+        const sphere = new THREE.Group(); sphere.add(new THREE.Points(geo, mat)); sphere.scale.setScalar(1.7); scene.add(sphere);
+        const ringPts = [];
+        for (let i = 0; i <= 200; i++) { const a = i / 200 * Math.PI * 2; ringPts.push(new THREE.Vector3(Math.cos(a) * 2.15, 0, Math.sin(a) * 2.15)); }
+        const ring = new THREE.Line(new THREE.BufferGeometry().setFromPoints(ringPts), new THREE.LineBasicMaterial({ color: 0xff4f1f, transparent: true, opacity: 0.32 }));
+        ring.rotation.set(1.32, 0, 0.42); scene.add(ring);
 
-        let heroPaused = false;
-        window.pauseHero3D = function (paused) {
-            heroPaused = !!paused;
-        };
+        let tx = 0, ty = 0, mx = 0, my = 0, paused = false, visible = true;
+        window.addEventListener('pointermove', (e) => { tx = e.clientX / innerWidth - 0.5; ty = e.clientY / innerHeight - 0.5; }, { passive: true });
+        window.pauseHero3D = (p) => { paused = !!p; };
+        new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(box);
 
-        function animate(t) {
-            requestAnimationFrame(animate);
-            if (heroPaused || document.hidden) return;
-            group.rotation.x += 0.004 + (mouseY - group.rotation.x) * 0.03;
-            group.rotation.y += 0.008 + (mouseX - group.rotation.y) * 0.03;
-            group.position.y = Math.sin(t * 0.0012) * 0.25;
-            renderer.render(scene, camera);
+        function size() {
+            const w = box.clientWidth, h = box.clientHeight;
+            if (!w || !h) return;
+            renderer.setSize(w, h); cam.aspect = w / h;
+            cam.position.z = cam.aspect < 1 ? 6.4 / Math.max(cam.aspect, 0.6) : 6.4;
+            cam.updateProjectionMatrix();
         }
+        new ResizeObserver(size).observe(box); size();
 
-        window.addEventListener('resize', () => {
-            if (!container) return;
-            const w = container.clientWidth;
-            const h = container.clientHeight;
-            camera.aspect = w / h;
-            camera.updateProjectionMatrix();
-            renderer.setSize(w, h);
-        }, { passive: true });
-
-        animate(0);
+        function frame(ms) {
+            const t = ms * 0.001, a = geo.attributes.position.array;
+            for (let i = 0; i < N; i++) {
+                const j = i * 3, s = 1 + 0.05 * Math.sin(t * 1.1 + ph[i] + base[j + 1] * 4) + 0.03 * Math.sin(t * 0.7 + base[j] * 5);
+                a[j] = base[j] * s; a[j + 1] = base[j + 1] * s; a[j + 2] = base[j + 2] * s;
+            }
+            geo.attributes.position.needsUpdate = true;
+            mx += (tx - mx) * 0.04; my += (ty - my) * 0.04;
+            sphere.rotation.y = t * 0.12 + mx * 0.8; sphere.rotation.x = my * 0.5; ring.rotation.y = Math.sin(t * 0.2) * 0.12;
+            renderer.render(scene, cam);
+        }
+        if (reduce) { frame(0); return; }
+        renderer.setAnimationLoop((ms) => { if (paused || !visible || document.hidden) return; frame(ms); });
     })();
     </script>
 
@@ -1919,21 +1953,12 @@
 
         
         
-        // 0. Global Mobile Nav, SFX, and Filter Helpers
-        let isSfxMuted = true;
-
-        function toggleSfxMute() {
-            isSfxMuted = !isSfxMuted;
-            const icon = document.getElementById('sfx-icon');
-            const label = document.getElementById('sfx-label');
-            if (icon) icon.innerText = isSfxMuted ? '🔇' : '🔊';
-            if (label) label.innerText = isSfxMuted ? 'SFX MUTED' : 'SFX ON';
-        }
-        window.toggleSfxMute = toggleSfxMute;
-
+        // 0. Global mobile nav and filter helpers
         function toggleMobileNav(show) {
             const overlay = document.getElementById('mobile-nav-overlay');
             if (!overlay) return;
+            const opener = document.getElementById('open-mobile-nav');
+            if (opener) opener.setAttribute('aria-expanded', String(!!show));
             if (show) {
                 overlay.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
                 overlay.classList.add('flex', 'opacity-100', 'pointer-events-auto');
@@ -1977,7 +2002,6 @@
                     if (entry.isIntersecting) {
                         if (!entry.target.classList.contains('active-scroll')) {
                             entry.target.classList.add('active-scroll');
-                            if (typeof playJuicyPopSFX === 'function') playJuicyPopSFX(620);
                         }
                     } else {
                         entry.target.classList.remove('active-scroll');
@@ -1988,19 +2012,6 @@
             document.querySelectorAll('.mindmap-deck').forEach(deck => {
                 mindmapObserver.observe(deck);
             });
-        });
-
-        // Smooth Initial Page Entry Reveal Listener
-        document.addEventListener('DOMContentLoaded', () => {
-            const progress = document.getElementById('page-entry-progress-bar');
-            const curtain = document.getElementById('page-entry-curtain');
-            if (progress) progress.style.width = '100%';
-            setTimeout(() => {
-                if (curtain) curtain.classList.add('loaded');
-                setTimeout(() => {
-                    if (curtain && curtain.parentNode) curtain.parentNode.removeChild(curtain);
-                }, 280);
-            }, 40);
         });
 
         // Global Section Switcher Function with Seamless Cross-Fade
@@ -2021,6 +2032,7 @@
             if (!targetSec) return;
 
             syncDesktopNav(targetId);
+            updateHash(targetId);
             if (typeof window.pauseHero3D === 'function') window.pauseHero3D(targetId !== 'view-home');
 
             if (targetSec === currentActive) {
@@ -2044,6 +2056,7 @@
                     requestAnimationFrame(() => {
                         if (token !== sectionSwitchToken) return;
                         targetSec.classList.add('active');
+                        primeReveals(targetSec);
                         targetSec.style.opacity = '1';
                         targetSec.style.transform = 'translateY(0)';
                     });
@@ -2051,6 +2064,7 @@
             } else {
                 targetSec.style.display = 'flex';
                 targetSec.classList.add('active');
+                primeReveals(targetSec);
                 targetSec.style.opacity = '1';
                 targetSec.style.transform = 'translateY(0)';
             }
@@ -2444,8 +2458,9 @@
                 .filter(repo => repo && !repo.fork && repo.name)
                 .slice()
                 .sort((a, b) => {
-                    const visitDelta = (resolveProjectLinks(b).visit ? 1 : 0) - (resolveProjectLinks(a).visit ? 1 : 0);
-                    if (visitDelta !== 0) return visitDelta;
+                    const score = (r) => (resolveProjectLinks(r).visit ? 1 : 0);
+                    const delta = score(b) - score(a);
+                    if (delta !== 0) return delta;
                     return new Date(b.pushed_at || 0) - new Date(a.pushed_at || 0);
                 });
 
@@ -2474,32 +2489,25 @@
                     : 'Public';
                 const safeName = escapeHtml(meta.name);
                 const safeVisit = escapeHtml(visitUrl);
-                const tagsHtml = tags.map(tag => `<span class="bg-[#ff451a]/15 text-[#ff451a] border border-[#ff451a]/30 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold">${escapeHtml(tag)}</span>`).join('');
+                const tagsHtml = tags.map(tag => `<span>${escapeHtml(tag)}</span>`).join('');
                 const sourceHref = isSafeHttpUrl(repo.html_url) ? repo.html_url : 'https://github.com/hvndal/' + encodeURIComponent(repo.name);
                 const num = String(index + 1).padStart(2, '0');
-                const status = visitUrl
-                    ? '<span class="font-mono text-[10px] uppercase tracking-widest text-[#ff451a]">Live site</span>'
-                    : '<span class="font-mono text-[10px] uppercase tracking-widest text-[#8f868c]">Source</span>';
+                const stars = repo.stargazers_count > 0 ? ' · ★ ' + repo.stargazers_count : '';
 
                 grid.insertAdjacentHTML('beforeend', `
-                <article class="project-card">
-                    <div class="project-preview" aria-hidden="true">
-                        <span class="project-preview-badge">Video preview coming soon</span>
-                    </div>
+                <article class="project-card" style="--i:${Math.min(index, 12)}">
                     <div class="project-body">
                         <div class="project-topline">
-                            <span class="project-index">${num}</span>
-                            ${status}
+                            <span class="project-num">${num} · ${visitUrl ? 'Live site' : 'Source'}</span>
+                            <span class="project-date">${escapeHtml(updated)}${stars}</span>
                         </div>
-                        <p class="font-mono text-[10px] uppercase tracking-widest text-[#8f868c]">${escapeHtml(updated)}${repo.stargazers_count > 0 ? ' · ' + repo.stargazers_count + ' stars' : ''}</p>
-                        <h3 class="font-headline-md text-xl text-[#f4f0eb] uppercase tracking-wide break-words">${safeName}</h3>
-                        <p class="font-mono text-[11px] text-[#ff451a] uppercase tracking-wider font-bold">${escapeHtml(meta.subtitle)}</p>
-                        <p class="font-sans text-sm text-[#c8bfb8] leading-relaxed">${escapeHtml(description)}</p>
-                        <div class="flex flex-wrap gap-2">${tagsHtml}</div>
+                        <h3 class="project-title">${safeName}</h3>
+                        <p class="project-sub">${escapeHtml(meta.subtitle)}</p>
+                        <p class="project-desc">${escapeHtml(description)}</p>
+                        <div class="project-tags">${tagsHtml}</div>
                         <div class="project-actions">
-                            ${visitUrl ? `<a class="btn-preview" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site</a>` : ''}
-                            <a class="btn-source" href="${escapeHtml(sourceHref)}" target="_blank" rel="noopener noreferrer">View source</a>
-                            <a class="btn-studio" href="https://www.mander.tech" target="_blank" rel="author me noopener noreferrer">Studio</a>
+                            ${visitUrl ? `<a class="btn-preview" href="${safeVisit}" target="_blank" rel="noopener noreferrer">Open site ↗</a>` : ''}
+                            <a class="btn-source" href="${escapeHtml(sourceHref)}" target="_blank" rel="noopener noreferrer">Source</a>
                         </div>
                     </div>
                 </article>`);
@@ -2684,79 +2692,58 @@
 
         loadSubstackPosts();
 
-        // 6. Rich Web Audio Synthesized Cyber SFX System
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        let audioCtx = null;
-
-        function initAudio() {
-            if (!audioCtx) {
-                try { audioCtx = new AudioCtx(); } catch(e) {}
-            }
-            if (audioCtx && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+        // 6. Shareable section links (#projects, #lab, ...)
+        const HASH_SKIP = new Set(['article']);
+        function updateHash(targetId) {
+            const slug = targetId.replace('view-', '');
+            if (HASH_SKIP.has(slug)) return;
+            const next = slug === 'home' ? location.pathname + location.search : '#' + slug;
+            if ((slug === 'home' && !location.hash) || location.hash === '#' + slug) return;
+            history.replaceState(null, '', next);
         }
-
-        // Auto-unlock Web Audio on first gesture
-        ['pointerdown', 'touchstart', 'keydown'].forEach(evt => {
-            document.addEventListener(evt, initAudio, { once: true, passive: true });
-        });
-
-        // Muted Audio Engine
-        function playiOSTapPopSFX() { return; }
-        function playiOSBoopSFX() { return; }
-
-        function playClickSFX() {
-            playiOSTapPopSFX();
+        function sectionFromHash() {
+            const slug = location.hash.replace('#', '');
+            if (!slug || HASH_SKIP.has(slug)) return null;
+            return document.getElementById('view-' + slug) ? 'view-' + slug : null;
         }
+        window.addEventListener('hashchange', () => { const id = sectionFromHash(); if (id) switchSection(id); });
 
-        function playSectionSwitchSFX() {
-            playiOSBoopSFX();
+        // 7. Reveal-on-scroll for each section's blocks
+        const REVEAL_SEL = '.hero-copy > *, .hero-visual, .hero-foot, .section-head, .lab-feature, .lab-note, h2.font-headline-lg, .glass-panel.rounded-2xl, .mindmap-deck';
+        const revealIO = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
+            entries.forEach((e) => { if (e.isIntersecting || e.boundingClientRect.top < 0) { show(e.target); revealIO.unobserve(e.target); } });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 }) : null;
+        function show(el) {
+            el.classList.add('in');
+            el.addEventListener('transitionend', () => { el.classList.remove('rv', 'in'); el.style.removeProperty('--d'); }, { once: true });
         }
+        function revealCheck() {
+            document.querySelectorAll('.rv:not(.in)').forEach((el) => {
+                if (el.getBoundingClientRect().top < innerHeight * 0.94 && el.offsetParent !== null) show(el);
+            });
+        }
+        function primeReveals(sec) {
+            if (!sec || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const els = Array.from(sec.querySelectorAll(REVEAL_SEL)).filter((el) => !el.parentElement.closest('.rv'));
+            els.forEach((el, i) => {
+                el.classList.remove('in'); el.classList.add('rv');
+                el.style.setProperty('--d', Math.min(i, 8) * 60 + 'ms');
+                if (revealIO) revealIO.observe(el);
+            });
+            setTimeout(revealCheck, 900);   // safety net if the observer is slow to report
+        }
+        window.addEventListener('scroll', revealCheck, { passive: true });
 
-        window.playiOSTapPopSFX = playiOSTapPopSFX;
-        window.playiOSBoopSFX = playiOSBoopSFX;
-        window.playSinglePopSFX = playiOSTapPopSFX;
-        window.playJuicyPopSFX = playiOSTapPopSFX;
+        // Escape closes the mobile menu
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMobileNav(false); });
 
-        (function initTouchCursor() {
-            const cursorEl = document.getElementById('site-cursor');
-            if (!cursorEl) return;
-            const img = cursorEl.querySelector('img');
-            document.documentElement.classList.remove('has-site-cursor');
-            window.addEventListener('pointerdown', (e) => {
-                if (e.pointerType !== 'touch' && !window.matchMedia('(pointer: coarse)').matches) return;
-                const useLink = e.target && e.target.closest && e.target.closest('a, button, [role="button"], [data-target], [data-filter], [data-article]');
-                if (img) img.src = useLink ? 'assets/cursors/Link.png' : 'assets/cursors/Pointer.png';
-                const hx = useLink ? 9 : 4;
-                const hy = useLink ? 1 : 1;
-                const x = e.clientX - hx;
-                const y = e.clientY - hy;
-                cursorEl.style.setProperty('--tap-x', x + 'px');
-                cursorEl.style.setProperty('--tap-y', y + 'px');
-                cursorEl.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-                cursorEl.classList.remove('is-tap');
-                void cursorEl.offsetWidth;
-                cursorEl.classList.add('is-tap');
-                const imprint = document.createElement('div');
-                imprint.className = 'click-touch-imprint';
-                imprint.style.left = `${e.clientX}px`;
-                imprint.style.top = `${e.clientY}px`;
-                document.body.appendChild(imprint);
-                setTimeout(() => imprint.remove(), 380);
-            }, { passive: true });
+        // first paint: open the section named in the URL, else animate the hero in
+        (function boot() {
+            const id = sectionFromHash();
+            if (id && id !== 'view-home') switchSection(id);
+            else primeReveals(document.getElementById('view-home'));
+            if (!revealIO) revealCheck();
         })();
-
-        // Delegated SFX Event Listener for iOS-Style UI Taps & Boops
-        document.addEventListener('click', (e) => {
-            const navEl = e.target.closest('[data-target]');
-            const btnEl = e.target.closest('a, button, [data-filter]');
-            if (navEl) {
-                playiOSBoopSFX();
-            } else if (btnEl) {
-                playiOSTapPopSFX();
-            }
-        });
     </script>
 </body>
 </html>
