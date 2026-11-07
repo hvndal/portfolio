@@ -59,8 +59,8 @@ svg{display:block;width:100%;height:auto}
 .dz{cursor:pointer}
 .dz text{font:400 11px 'Inter',sans-serif;fill:#4a453f;transition:fill .15s}
 .link{fill:none;stroke-width:.8;opacity:.16;transition:opacity .15s}
-.rg{fill:transparent;stroke:rgba(27,25,22,.22);stroke-width:.8;cursor:pointer;transition:fill .15s}
-.rg:hover{fill:rgba(184,50,31,.08)}
+.rg{fill:transparent;stroke:rgba(70,52,36,.16);stroke-width:.7;cursor:pointer;transition:fill .15s,stroke .15s}
+.rg:hover{fill:rgba(184,50,31,.12);stroke:rgba(184,50,31,.6)}
 .rg.deep{stroke-dasharray:2.5 2.5}
 .rl{font:500 8.5px 'Inter',sans-serif;fill:var(--ink);pointer-events:none;text-anchor:middle;opacity:0}
 svg.focus .dz text{fill:#b3ada4}
@@ -532,12 +532,55 @@ const SIL=[
  'M335 520 C318 440 360 372 440 360 C500 340 590 350 640 390 C690 428 700 500 676 556 C664 584 640 596 610 592 C590 600 560 606 520 600 C470 606 420 600 388 584 C356 570 340 548 335 520Z',
  'M590 596 C610 580 660 584 676 600 C690 618 672 642 640 646 C612 650 588 632 590 596Z',
  'M555 600 L583 602 L578 680 L560 680Z'];
-const FOLDS='M503 362 C500 400 505 430 502 470 M420 540 C470 525 530 520 600 528';
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 
+// Illustrated side view: lobe tints, main fissures, seeded fold texture, shading, cerebellar folia.
+function brainArt(p){
+  let seed=11; const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  let folds='';
+  for(let k=0;k<78;k++){
+    let x=345+rnd()*345, y=356+rnd()*240, a=rnd()*6.283; const pts=[[x,y]];
+    const n=3+Math.floor(rnd()*3);
+    for(let j=0;j<n;j++){a+=(rnd()-.5)*2.2; x+=Math.cos(a)*(11+rnd()*7); y+=Math.sin(a)*(11+rnd()*7); pts.push([x,y]);}
+    let d=`M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+    for(let j=1;j<pts.length-1;j++){const mx=(pts[j][0]+pts[j+1][0])/2, my=(pts[j][1]+pts[j+1][1])/2; d+=` Q${pts[j][0].toFixed(1)} ${pts[j][1].toFixed(1)} ${mx.toFixed(1)} ${my.toFixed(1)}`;}
+    folds+=`<path d="${d}"/>`;
+  }
+  let folia='';
+  for(let j=0;j<7;j++){const y=590+j*7.5; folia+=`<path d="M586 ${y+6} Q632 ${y-8} ${684} ${y+8}"/>`;}
+  return `<defs>
+    <clipPath id="${p}c"><path d="${SIL[0]}"/></clipPath>
+    <clipPath id="${p}cb"><path d="${SIL[1]}"/></clipPath>
+    <radialGradient id="${p}hi" cx="38%" cy="28%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="${p}lo" cx="62%" cy="86%" r="62%"><stop offset="0" stop-color="#5a4430" stop-opacity=".2"/><stop offset="1" stop-color="#5a4430" stop-opacity="0"/></radialGradient>
+    <linearGradient id="${p}bs" x1="0" x2="1"><stop offset="0" stop-color="#d9cbb6"/><stop offset=".5" stop-color="#e9dfcf"/><stop offset="1" stop-color="#cdbda5"/></linearGradient>
+    <filter id="${p}glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7"/></filter>
+  </defs>
+  <path d="${SIL[2]}" fill="url(#${p}bs)" stroke="rgba(27,25,22,.35)" stroke-width="1"/>
+  <path d="${SIL[1]}" fill="#dccdb7"/>
+  <g clip-path="url(#${p}cb)" fill="none" stroke="rgba(90,68,48,.3)" stroke-width="1.1" stroke-linecap="round">${folia}</g>
+  <path d="${SIL[1]}" fill="none" stroke="rgba(27,25,22,.38)" stroke-width="1.1"/>
+  <g clip-path="url(#${p}c)">
+    <rect x="320" y="330" width="400" height="300" fill="#eee5d8"/>
+    <path d="M325 330 L506 330 L497 432 L472 528 L410 556 L325 600Z" fill="#efe6d8"/>
+    <path d="M506 330 L720 330 L720 466 L630 482 L562 510 L472 528 L497 432Z" fill="#e9dfcf"/>
+    <path d="M630 482 L720 466 L720 620 L604 612Z" fill="#e3d6c2"/>
+    <path d="M380 566 Q470 534 562 516 Q602 506 630 486 L640 612 L380 630Z" fill="#e6d9c6"/>
+    <g fill="none" stroke="rgba(90,68,48,.22)" stroke-width="1.15" stroke-linecap="round">${folds}</g>
+    <path d="M502 356 C493 400 499 440 480 488 C472 506 469 516 467 524" fill="none" stroke="rgba(70,52,36,.42)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M414 552 C458 532 520 522 562 516 C594 510 612 500 630 484" fill="none" stroke="rgba(70,52,36,.48)" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M640 404 C630 440 628 466 634 498" fill="none" stroke="rgba(70,52,36,.28)" stroke-width="1.4" stroke-linecap="round"/>
+    <rect x="320" y="330" width="400" height="300" fill="url(#${p}hi)"/>
+    <rect x="320" y="330" width="400" height="300" fill="url(#${p}lo)"/>
+  </g>
+  <path d="${SIL[0]}" fill="none" stroke="rgba(27,25,22,.5)" stroke-width="1.3"/>
+  <g font-family="Inter" font-size="7.5" font-weight="600" letter-spacing="1.6" fill="rgba(70,52,36,.38)" text-anchor="middle" pointer-events="none">
+    <text x="398" y="452">FRONTAL</text><text x="572" y="404">PARIETAL</text><text x="662" y="540">OCCIPITAL</text><text x="516" y="580">TEMPORAL</text><text x="636" y="626">CEREBELLUM</text>
+  </g>`;
+}
+
 const gLinks=el('g',{}), gBrain=el('g',{class:'brain',transform:`translate(${CX} ${CY}) scale(${BS}) translate(${-BX} ${-BY})`}), gDots=el('g',{}), gCats=el('g',{});
-SIL.forEach(d=>el('path',{d,fill:'#ece7de',stroke:'rgba(27,25,22,.35)','stroke-width':1},gBrain));
-el('path',{d:FOLDS,fill:'none',stroke:'rgba(27,25,22,.14)','stroke-width':1},gBrain);
+gBrain.innerHTML=brainArt('w');
 const regEls={};
 for(const k in REG){const r=REG[k];
   const e=el('ellipse',{cx:r.x,cy:r.y,rx:r.rx,ry:r.ry,class:'rg'+(r.deep?' deep':''),tabindex:0,role:'button','aria-label':r.n},gBrain);
@@ -597,12 +640,24 @@ function reset(){
 
 // mini brain figure for the popup
 function figure(regs,color){
-  const parts=SIL.map(d=>`<path d="${d}" fill="#ece7de" stroke="rgba(27,25,22,.4)" stroke-width="1"/>`).join('')+
-    `<path d="${FOLDS}" fill="none" stroke="rgba(27,25,22,.14)"/>`;
-  const ghosts=Object.values(REG).map(r=>`<ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="none" stroke="rgba(27,25,22,.12)" stroke-width=".7"${r.deep?' stroke-dasharray="2 2"':''}/>`).join('');
-  const hot=regs.map(k=>{const r=REG[k];return `<ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="${color}" fill-opacity=".38" stroke="${color}" stroke-width="1.4"><animate attributeName="fill-opacity" values=".38;.15;.38" dur="2.4s" repeatCount="indefinite"/></ellipse>`}).join('');
-  const labels=regs.map(k=>{const r=REG[k];return `<text x="${r.x}" y="${r.y-r.ry-5}" text-anchor="middle" font-family="Inter" font-size="10" font-weight="600" fill="#1b1916" paint-order="stroke" stroke="#f5f2ec" stroke-width="3">${esc(r.n)}</text>`}).join('');
-  return `<svg viewBox="318 330 400 380" role="img" aria-label="Brain regions: ${esc(regs.map(k=>REG[k].n).join(', '))}">${parts}${ghosts}${hot}${labels}<text x="340" y="700" font-family="Inter" font-size="9" letter-spacing="1.4" fill="#8c857c">FRONT ←</text></svg>`;
+  const VB=[300,318,440,410], BCX=515, BCY=486;
+  const glow=regs.map(k=>{const r=REG[k];return `<ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx*1.5}" ry="${r.ry*1.6}" fill="#ff5a1f" opacity=".42" filter="url(#fglow)"/>`}).join('');
+  const hot=regs.map(k=>{const r=REG[k];return `<ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="#ff6a2b" fill-opacity=".32" stroke="${color}" stroke-width="1.8"${r.deep?' stroke-dasharray="3 2"':''}/>
+    <ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="none" stroke="#e8542a" stroke-width="1.3"><animate attributeName="rx" values="${r.rx};${r.rx+9}" dur="2.2s" repeatCount="indefinite"/><animate attributeName="ry" values="${r.ry};${r.ry+9}" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="2.2s" repeatCount="indefinite"/></ellipse>`}).join('');
+  const used=[];
+  const labels=regs.map(k=>{const r=REG[k];
+    let dx=r.x-BCX, dy=r.y-BCY; const L=Math.hypot(dx,dy)||1; dx/=L; dy/=L;
+    let lx=r.x+dx*(Math.max(r.rx,r.ry)+46), ly=r.y+dy*(Math.max(r.rx,r.ry)+40);
+    lx=Math.min(VB[0]+VB[2]-12,Math.max(VB[0]+12,lx)); ly=Math.min(VB[1]+VB[3]-26,Math.max(VB[1]+16,ly));
+    while(used.some(u=>Math.abs(u-ly)<16)) ly+=16; used.push(ly);
+    const right=lx>=r.x, tw=r.n.length*5.9+8;
+    let anchor=right?'start':'end', ex=r.x+dx*Math.max(r.rx,r.ry)*.9, ey=r.y+dy*Math.max(r.rx,r.ry)*.9, tx;
+    if((!right&&lx-tw<VB[0])||(right&&lx+tw>VB[0]+VB[2])){ // no room at the side: label above the region
+      anchor='middle'; ex=r.x; ey=r.y-r.ry; lx=Math.min(VB[0]+VB[2]-tw/2,Math.max(VB[0]+tw/2,r.x)); ly=r.y-r.ry-22; tx=lx;
+    } else tx=lx+(right?5:-5);
+    return `<path d="M${ex} ${ey} L${lx} ${ly}" stroke="#1b1916" stroke-width=".9" fill="none"/><circle cx="${ex}" cy="${ey}" r="2" fill="#1b1916"/>
+      <text x="${tx}" y="${anchor==='middle'?ly-4:ly+3.5}" text-anchor="${anchor}" font-family="Inter" font-size="10.5" font-weight="600" fill="#1b1916" paint-order="stroke" stroke="#f5f2ec" stroke-width="4" stroke-linejoin="round">${esc(r.n)}</text>`}).join('');
+  return `<svg viewBox="${VB.join(' ')}" role="img" aria-label="Brain regions: ${esc(regs.map(k=>REG[k].n).join(', '))}">${brainArt('f')}${glow}${hot}${labels}<text x="${VB[0]+14}" y="${VB[1]+VB[3]-12}" font-family="Inter" font-size="9" letter-spacing="1.4" fill="#8c857c">FRONT ←</text></svg>`;
 }
 
 // popup
