@@ -715,6 +715,9 @@
         .lab-cta span { transition: transform .3s var(--ease); }
         .lab-feature:hover .lab-cta span { transform: translateX(6px); }
         .lab-note { color: var(--muted); font-size: 14px; margin: 6px 0 0; }
+        .blog-sub { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+        .blog-sub-head { display: flex; flex-direction: column; gap: 6px; }
+        .blog-sub-gap { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); }
         @media (max-width: 860px) { .lab-feature { grid-template-columns: 1fr; } .lab-art { min-height: 0; } }
 
         /* ---------- footer ---------- */
@@ -772,7 +775,6 @@
             <nav class="nav-pill" id="desktop-nav-tabs" aria-label="Sections">
                 <button type="button" data-target="view-home" class="desktop-nav-btn is-active">Home</button>
                 <button type="button" data-target="view-projects" class="desktop-nav-btn">Projects</button>
-                <button type="button" data-target="view-lab" class="desktop-nav-btn">Lab</button>
                 <button type="button" data-target="view-about" class="desktop-nav-btn">About</button>
                 <button type="button" data-target="view-stack" class="desktop-nav-btn">Stack</button>
                 <button type="button" data-target="view-blog" class="desktop-nav-btn">Blog</button>
@@ -1426,6 +1428,30 @@
                     <p class="font-mono text-xs text-[#a398a0] uppercase mt-2">Design systems, architecture, and engineering essays.</p>
                 </div>
 
+                <!-- Interactive sub-section -->
+                <div class="blog-sub" id="interactive">
+                    <div class="blog-sub-head">
+                        <h3 class="font-headline-md text-2xl md:text-3xl text-[#f4f0eb] uppercase tracking-tight">Interactive</h3>
+                        <p class="font-mono text-xs text-[#a398a0] uppercase">Explainers and visual tools you can click through.</p>
+                    </div>
+                <a class="lab-feature" href="/atlas/">
+                    <div class="lab-art"><img src="assets/previews/atlas.webp" alt="Radial map of 94 brain conditions, coloured by system, with lines running to regions of a drawn brain" width="1100" height="995" fetchpriority="low" decoding="async"/></div>
+                    <div class="lab-body">
+                        <div class="lab-meta"><span class="chip-new">New</span><span>Interactive · Data viz · Nov 2026</span></div>
+                        <h3>Brain Disorder <span class="serif-em">Atlas</span></h3>
+                        <p>94 cognitive and neurological conditions mapped to the brain regions they're linked to. Click any condition for a plain-language explanation, related conditions, and a 3D view of where it lives.</p>
+                        <ul class="lab-stats"><li><b>94</b>conditions</li><li><b>11</b>systems</li><li><b>27</b>brain regions</li></ul>
+                        <span class="lab-cta">Open the atlas <span aria-hidden="true">→</span></span>
+                    </div>
+                </a>
+                <p class="lab-note">Built with SVG, Three.js and Wikipedia's API. More experiments on the way.</p>
+                </div>
+
+                <div class="blog-sub-head blog-sub-gap">
+                    <h3 class="font-headline-md text-2xl md:text-3xl text-[#f4f0eb] uppercase tracking-tight">Essays</h3>
+                    <p class="font-mono text-xs text-[#a398a0] uppercase">Design systems, architecture, and engineering.</p>
+                </div>
+
                 <div class="flex flex-col gap-6 mt-6">
                     <article class="glass-panel p-5 md:p-6 rounded-2xl border border-white/5 hover:border-[#ff451a]/50 transition-all group relative overflow-hidden">
                         <div class="flex justify-between items-start mb-4 gap-3">
@@ -1487,26 +1513,6 @@
                 <div id="substack-feed" class="flex flex-col gap-5 mt-2">
                     <p class="font-mono text-xs text-[#a398a0] uppercase tracking-widest">Loading posts from Substack…</p>
                 </div>
-            </section>
-
-            <!-- LAB VIEW -->
-            <section id="view-lab" class="view-section py-6">
-                <div class="section-head">
-                    <p class="eyebrow">Lab</p>
-                    <h2 class="font-headline-lg text-3xl md:text-5xl text-[#f4f0eb]">Interactive <span class="serif-em">experiments</span></h2>
-                    <p class="section-sub">Explainers and visual tools I build to make complicated things easier to see. Each one works on desktop and phone.</p>
-                </div>
-                <a class="lab-feature" href="/atlas/">
-                    <div class="lab-art"><img src="assets/previews/atlas.webp" alt="Radial map of 94 brain conditions, coloured by system, with lines running to regions of a drawn brain" width="1100" height="995" fetchpriority="low" decoding="async"/></div>
-                    <div class="lab-body">
-                        <div class="lab-meta"><span class="chip-new">New</span><span>Interactive · Data viz · Nov 2026</span></div>
-                        <h3>Brain Disorder <span class="serif-em">Atlas</span></h3>
-                        <p>94 cognitive and neurological conditions mapped to the brain regions they're linked to. Click any condition for a plain-language explanation, related conditions, and a 3D view of where it lives.</p>
-                        <ul class="lab-stats"><li><b>94</b>conditions</li><li><b>11</b>systems</li><li><b>27</b>brain regions</li></ul>
-                        <span class="lab-cta">Open the atlas <span aria-hidden="true">→</span></span>
-                    </div>
-                </a>
-                <p class="lab-note">Built with SVG, Three.js and Wikipedia's API. More experiments on the way.</p>
             </section>
 
             <!-- 6. ARTICLE READER VIEW (DYNAMIC) -->
@@ -1737,7 +1743,6 @@
         <nav class="mo-links" aria-label="Sections">
             <button type="button" onclick="switchSection('view-home'); toggleMobileNav(false);" class="mobile-nav-btn">Home</button>
             <button type="button" onclick="switchSection('view-projects'); toggleMobileNav(false);" class="mobile-nav-btn">Projects</button>
-            <button type="button" onclick="switchSection('view-lab'); toggleMobileNav(false);" class="mobile-nav-btn">Lab</button>
             <button type="button" onclick="switchSection('view-about'); toggleMobileNav(false);" class="mobile-nav-btn">About</button>
             <button type="button" onclick="switchSection('view-stack'); toggleMobileNav(false);" class="mobile-nav-btn">Stack</button>
             <button type="button" onclick="switchSection('view-blog'); toggleMobileNav(false);" class="mobile-nav-btn">Blog</button>
@@ -2741,7 +2746,7 @@
 
         loadSubstackPosts();
 
-        // 6. Shareable section links (#projects, #lab, ...)
+        // 6. Shareable section links (#projects, #blog, ...)
         const HASH_SKIP = new Set(['article']);
         function updateHash(targetId) {
             const slug = targetId.replace('view-', '');
@@ -2751,14 +2756,15 @@
             history.replaceState(null, '', next);
         }
         function sectionFromHash() {
-            const slug = location.hash.replace('#', '');
+            let slug = location.hash.replace('#', '');
+            if (slug === 'lab' || slug === 'interactive') slug = 'blog';
             if (!slug || HASH_SKIP.has(slug)) return null;
             return document.getElementById('view-' + slug) ? 'view-' + slug : null;
         }
         window.addEventListener('hashchange', () => { const id = sectionFromHash(); if (id) switchSection(id); });
 
         // 7. Reveal-on-scroll for each section's blocks
-        const REVEAL_SEL = '.hero-copy > *, .hero-visual, .hero-foot, .section-head, .lab-feature, .lab-note, h2.font-headline-lg, .glass-panel.rounded-2xl, .mindmap-deck';
+        const REVEAL_SEL = '.hero-copy > *, .hero-visual, .hero-foot, .section-head, .blog-sub-head, .lab-feature, .lab-note, h2.font-headline-lg, .glass-panel.rounded-2xl, .mindmap-deck';
         const revealIO = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
             entries.forEach((e) => { if (e.isIntersecting || e.boundingClientRect.top < 0) { show(e.target); revealIO.unobserve(e.target); } });
         }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 }) : null;
