@@ -166,6 +166,58 @@ dialog[open]{animation:pop .22s ease-out}
 .pop-body>:nth-child(2){animation-delay:.04s}.pop-body>:nth-child(3){animation-delay:.08s}.pop-body>:nth-child(4){animation-delay:.12s}
 .pop-body>:nth-child(n+5){animation-delay:.16s}
 .pop-fig svg{animation:rise .6s cubic-bezier(.2,.7,.2,1)}
+
+/* ---------- ring / tree toggle + tree view ---------- */
+.view-toggle{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
+.view-toggle button{display:inline-flex;align-items:center;gap:7px;border:0;background:none;border-radius:999px;padding:6px 15px;min-height:34px;font:600 12.5px 'Inter',sans-serif;color:var(--muted);cursor:pointer;transition:background .2s,color .2s}
+.view-toggle button svg{width:14px;height:14px;flex:none}
+.view-toggle button[aria-selected=true]{background:var(--ink);color:var(--paper)}
+.view-toggle button:not([aria-selected=true]):hover{color:var(--ink)}
+#tree-wrap{display:none;max-width:1100px;margin:6px auto 0}
+body.tree-mode #tree-wrap{display:block;animation:rise .5s cubic-bezier(.2,.7,.2,1)}
+body.tree-mode .stage,body.tree-mode #caption{display:none}
+.tree-scroll{overflow:hidden;transition:height .54s cubic-bezier(.2,.7,.2,1)}
+#tree{display:block;overflow:visible}
+.tn{cursor:pointer;outline:none}
+.tn .hit{fill:transparent;transition:fill .15s}
+.tn:hover .hit{fill:rgba(27,25,22,.045)}
+.tn:focus-visible .hit{fill:rgba(184,50,31,.07);stroke:var(--accent);stroke-width:1.5}
+.tn text{font:500 12.5px 'Inter',sans-serif;fill:#3b3732;dominant-baseline:central}
+.tn.sys text{font-size:14px;font-weight:600;fill:var(--ink)}
+.tn.root text{font:italic 400 24px 'Instrument Serif',serif;fill:var(--ink)}
+.tn.reg text{font:italic 400 14px 'Newsreader',serif;fill:#34302b}
+.tn.rel text{font-size:12px;fill:#5d5750}
+.tn.more text{font-style:italic;fill:var(--muted)}
+.tn .cnt{font:500 11px 'Inter',sans-serif;fill:#a39b92}
+.tn.on tspan:first-child{font-weight:600;fill:var(--ink)}
+.tn.reg.on tspan:first-child{fill:var(--accent)}
+.tn .dot{transform-box:fill-box;transform-origin:center;transition:transform .2s}
+.tn:hover .dot{transform:scale(1.3)}
+.tl{fill:none;stroke-width:1.3;stroke-opacity:.5;stroke-linecap:round}
+.tl.on{stroke-width:2.1;stroke-opacity:.95}
+#tree.mode-indent .tn text{font-size:14.5px}
+#tree.mode-indent .tn.sys text{font-size:15.5px}
+#tree.mode-indent .tn.reg text{font-size:16px}
+#tree.mode-indent .tn.root text{font-size:22px}
+.tree-card{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 28px;border-top:1px solid var(--line);padding:18px 0 6px;min-height:88px}
+.tree-card h3{font:400 32px/1.05 'Instrument Serif',serif;margin:6px 0 8px}
+.tree-card p{margin:0;max-width:640px;font-size:16px;line-height:1.55;color:#34302b}
+.tc-main{flex:1 1 340px;min-width:0}
+.tree-card p.tc-hint{font-style:italic;color:var(--muted)}
+.tc-hint b{font-style:normal;font-weight:500;color:var(--ink)}
+.tc-act{display:flex;flex-wrap:wrap;gap:6px}
+.tc-btn{border:1px solid var(--line);background:none;cursor:pointer;font:500 12.5px 'Inter',sans-serif;padding:8px 14px;min-height:38px;color:var(--ink)}
+.tc-btn:hover{border-color:var(--ink)}
+.tc-btn.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.tc-btn.primary:hover{background:var(--accent);border-color:var(--accent)}
+.arc-hit{cursor:pointer;outline:none}
+.arc-hit:focus-visible{stroke:rgba(184,50,31,.16)}
+@media (max-width:1001px){
+ .tree-card{position:sticky;bottom:0;z-index:4;background:var(--paper);box-shadow:0 -14px 24px -18px rgba(27,25,22,.35);padding:12px 0 calc(10px + env(safe-area-inset-bottom));min-height:0}
+ .tree-card h3{font-size:24px;margin:2px 0 4px}
+ .tree-card p{font-size:14.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+ .tree-card p.tc-hint{-webkit-line-clamp:4}
+}
 @media (prefers-reduced-motion:reduce){.mast>*,.mast h1 .ln>span,.pop-body>*,.reveal,.reveal .step,.reveal .row{opacity:1!important;transform:none!important}
  #wheel .link,#wheel .arc{stroke-dashoffset:0}#wheel .dz,#wheel .brain{opacity:1}.mast h1 em::after{transform:scaleX(1)}}
 @media (max-width:760px){.row::after{display:none}.b3wrap{grid-template-columns:1fr;gap:10px}#b3{height:420px}
@@ -181,11 +233,15 @@ dialog[open]{animation:pop .22s ease-out}
   <header class="mast">
     <div class="cap">An atlas of 94 conditions</div>
     <h1><span class="ln"><span>What happens when</span></span><span class="ln"><span>the brain <em>breaks</em></span></span></h1>
-    <p class="dek">Most of what we know about the brain was learned by studying what happens when one part stops working. Each condition below is a clue. Click one to see where it lives and what it reveals.</p>
+    <p class="dek">Most of what we know about the brain was learned by studying what happens when one part stops working. Each condition below is a clue. Click one to see where it lives and what it reveals, or switch to the tree and follow the connections branch by branch.</p>
     <div class="byline cap">By Herman Hundal</div>
   </header>
 
   <div class="controls">
+    <div class="view-toggle" role="tablist" aria-label="Map view">
+      <button type="button" role="tab" data-view="ring" aria-selected="true"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="2.4" r="1.6" fill="currentColor"/><circle cx="13.2" cy="10.6" r="1.6" fill="currentColor"/><circle cx="2.8" cy="10.6" r="1.6" fill="currentColor"/></svg>Ring</button>
+      <button type="button" role="tab" data-view="tree" aria-selected="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8 C7 8 7 3.5 11 3.5 M3.5 8 H11 M3.5 8 C7 8 7 12.5 11 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="3" cy="8" r="2" fill="currentColor"/><circle cx="12.4" cy="3.5" r="1.7" fill="currentColor"/><circle cx="12.4" cy="8" r="1.7" fill="currentColor"/><circle cx="12.4" cy="12.5" r="1.7" fill="currentColor"/></svg>Tree</button>
+    </div>
     <input class="search" id="q" type="search" placeholder="Search a condition…" aria-label="Search conditions" autocomplete="off"/>
     <div class="chips" id="chips"></div>
     <div class="count" id="count" aria-live="polite"><span id="count-n"></span><button id="clear" hidden>Clear</button></div>
@@ -193,6 +249,10 @@ dialog[open]{animation:pop .22s ease-out}
 
   <div class="stage"><svg id="wheel" viewBox="0 0 1000 1000" role="img" aria-label="Radial atlas of brain disorders linked to brain regions"></svg></div>
   <div class="caption" id="caption" aria-live="polite"></div>
+  <div id="tree-wrap">
+    <div class="tree-scroll" id="tree-scroll"><svg id="tree" role="group" aria-label="The atlas as a tree: systems, conditions, brain regions and linked conditions"></svg></div>
+    <div class="tree-card" id="tree-card" aria-live="polite"></div>
+  </div>
 
   <section class="b3wrap reveal" id="brain3d">
     <div class="side">
@@ -210,7 +270,7 @@ dialog[open]{animation:pop .22s ease-out}
       <div class="steps">
         <div class="step"><b>i.</b><p>Every dot on the ring is a condition, grouped and coloured by the system it disrupts.</p></div>
         <div class="step"><b>ii.</b><p>Lines run to where damage is most often found. Several lines mean the condition depends on a network.</p></div>
-        <div class="step"><b>iii.</b><p>The brain is seen from the side, front to the left. Dashed shapes lie deep inside. Click any of them.</p></div>
+        <div class="step"><b>iii.</b><p>The brain is seen from the side, front to the left. Click any region, or switch to the tree view to explore one branch at a time.</p></div>
       </div>
     </div>
   </section>
@@ -613,7 +673,15 @@ D.forEach(([name,cat,regs,def])=>{
   g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();open(it)}});
 });
 for(const k of order){const C=CATS[k],a0=(C.start-.4)*step-Math.PI/2,a1=(C.end+.4)*step-Math.PI/2,rr=R-16;
-  el('path',{d:`M${CX+rr*Math.cos(a0)} ${CY+rr*Math.sin(a0)} A${rr} ${rr} 0 ${a1-a0>Math.PI?1:0} 1 ${CX+rr*Math.cos(a1)} ${CY+rr*Math.sin(a1)}`,fill:'none',stroke:C.c,'stroke-width':2,class:'arc',pathLength:1},gCats)}
+  const ad=`M${CX+rr*Math.cos(a0)} ${CY+rr*Math.sin(a0)} A${rr} ${rr} 0 ${a1-a0>Math.PI?1:0} 1 ${CX+rr*Math.cos(a1)} ${CY+rr*Math.sin(a1)}`;
+  el('path',{d:ad,fill:'none',stroke:C.c,'stroke-width':2,class:'arc',pathLength:1},gCats);
+  const hit=el('path',{d:ad,fill:'none',stroke:'transparent','stroke-width':18,class:'arc-hit',tabindex:0,role:'button','aria-label':`${C.name}: explore as a tree`},gCats);
+  const goTree=()=>{tOpenSystem(k);setView('tree')};
+  hit.addEventListener('mouseenter',()=>{cap.innerHTML=`<b>${C.name}</b><span>${items.filter(o=>o.cat===k).length} conditions · click to explore as a tree</span>`});
+  hit.addEventListener('mouseleave',reset);
+  hit.addEventListener('click',goTree);
+  hit.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();goTree()}});
+}
 
 // wheel highlight
 const cap=document.getElementById('caption');
@@ -635,7 +703,7 @@ function reset(){
   svg.classList.remove('focus');
   items.forEach(o=>{o.g.classList.remove('on');o.links.forEach(l=>l.classList.remove('on'))});
   lit([]);
-  cap.innerHTML=`<span>Hover a condition or a brain region. Click to open it.</span>`;
+  cap.innerHTML=`<span>Hover a condition or a brain region. Click to open it, or click a coloured arc to explore it as a tree.</span>`;
 }
 
 // mini brain figure for the popup
@@ -688,7 +756,7 @@ function open(it){
       <div class="regs">${it.regs.map(r=>`<button data-r="${r}">${REG[r].n}</button>`).join('')}</div>
       ${rel.length?`<div class="cap k">Related conditions</div><div class="rel">${rel.map(o=>`<button data-n="${esc(o.name)}"><i style="background:${CATS[o.cat].c}"></i>${o.name}</button>`).join('')}</div>`:''}
       <div class="foot"><div>${w?`<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(w.replace(/ /g,'_'))}" target="_blank" rel="noopener">Wikipedia ↗</a>`:''}<a href="https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(it.name)}" target="_blank" rel="noopener">Research ↗</a></div>
-        <div class="navb"><button data-step="-1" aria-label="Previous condition">←</button><button data-step="1" aria-label="Next condition">→</button><button data-step="3d">See in 3D</button><button data-step="r">Surprise me</button></div></div>
+        <div class="navb"><button data-step="-1" aria-label="Previous condition">←</button><button data-step="1" aria-label="Next condition">→</button><button data-step="3d">See in 3D</button><button data-step="tree">Show in tree</button><button data-step="r">Surprise me</button></div></div>
     </div>`);
 }
 function openRegion(k){
@@ -712,12 +780,198 @@ dlg.addEventListener('click',e=>{
   const r=e.target.closest('[data-r]'); if(r) return openRegion(r.dataset.r);
   const n=e.target.closest('[data-n]'); if(n) return open(items.find(o=>o.name===n.dataset.n));
   const st=e.target.closest('[data-step]');
+  if(st&&st.dataset.step==='tree'){const it=cur;dlg.close();Object.assign(tState,{sys:it.cat,cond:it.name,reg:null,sel:'c:'+it.name});setView('tree');return}
   if(st&&st.dataset.step==='3d'){dlg.close();if(window.brain3d)brain3d.show(cur.regs,CATS[cur.cat].c);return}
   if(st){const vis=items.filter(o=>!o.g.classList.contains('dim'));const pool=vis.length?vis:items;
     if(st.dataset.step==='r') return open(pool[Math.floor(Math.random()*pool.length)]);
     const j=Math.max(0,pool.indexOf(cur)); open(pool[(j+ +st.dataset.step+pool.length)%pool.length]);}
 });
 document.addEventListener('keydown',e=>{if(dlg.open&&cur&&(e.key==='ArrowRight'||e.key==='ArrowLeft'))dlg.querySelector(`[data-step="${e.key==='ArrowRight'?1:-1}"]`).click()});
+
+// ---------- tree view: one click grows a branch ----------
+const TNS='http://www.w3.org/2000/svg';
+const treeScroll=document.getElementById('tree-scroll'), treeSvg=document.getElementById('tree'), treeCard=document.getElementById('tree-card');
+const tLinks=document.createElementNS(TNS,'g'), tNodes=document.createElementNS(TNS,'g'); treeSvg.append(tLinks,tNodes);
+const tState={sys:null,cond:null,reg:null,sel:null};
+const tEls=new Map();
+const tReduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const byName=Object.fromEntries(items.map(o=>[o.name,o]));
+const REL_MAX=10;
+let view='ring', tAnim=0, tH=0, tW=0;
+
+function sysNode(k){return {id:'s:'+k,kind:'sys',label:CATS[k].name,color:CATS[k].c,cat:k,count:items.filter(o=>o.cat===k).length,open:tState.sys===k}}
+function condNode(o){return {id:'c:'+o.name,kind:'cond',label:o.name,color:CATS[o.cat].c,it:o,count:o.regs.length,open:tState.cond===o.name}}
+function regNode(o,k){const others=items.filter(x=>x!==o&&x.regs.includes(k));
+  return {id:'r:'+o.name+'|'+k,kind:'reg',label:REG[k].n,color:'#1b1916',reg:k,it:o,others,count:others.length,open:tState.cond===o.name&&tState.reg===k}}
+function relNodes(rn){
+  const out=rn.others.slice(0,REL_MAX).map(x=>({id:'x:'+rn.id+'|'+x.name,kind:'rel',label:x.name,color:CATS[x.cat].c,it:x}));
+  if(rn.others.length>REL_MAX) out.push({id:'m:'+rn.id,kind:'more',label:`+ ${rn.others.length-REL_MAX} more in this region`,color:'#8c857c',reg:rn.reg});
+  return out}
+
+// wide screens: a left-to-right tree whose columns are sized from the real label widths;
+// narrow screens (or when the columns don't fit): an indented tree that reads top to bottom
+let tMeasured=null;
+function tMeasure(){
+  if(tMeasured&&tMeasured.ok) return tMeasured.w;
+  const prev=treeSvg.getAttribute('class'); treeSvg.setAttribute('class','mode-wide');
+  const kinds={sys:order.map(k=>CATS[k].name),cond:items.map(o=>o.name),reg:Object.values(REG).map(r=>r.n),rel:items.map(o=>o.name).concat(['+ 99 more in this region'])};
+  const cnt={sys:'+ 20',cond:'+ 4',reg:'+ 38'}, w={};
+  for(const k in kinds){const g=document.createElementNS(TNS,'g'),t=document.createElementNS(TNS,'text');g.setAttribute('class','tn '+k);g.appendChild(t);treeSvg.appendChild(g);let m=0;
+    for(const lab of kinds[k]){t.textContent='';const a=document.createElementNS(TNS,'tspan');a.textContent=lab;t.appendChild(a);
+      if(cnt[k]){const b=document.createElementNS(TNS,'tspan');b.setAttribute('class','cnt');b.setAttribute('dx','8');b.textContent=cnt[k];t.appendChild(b)}
+      try{m=Math.max(m,t.getComputedTextLength())}catch(err){}}
+    g.remove(); w[k]=m||{sys:170,cond:205,reg:195,rel:180}[k]}
+  if(prev) treeSvg.setAttribute('class',prev); else treeSvg.removeAttribute('class');
+  tMeasured={w,ok:!document.fonts||document.fonts.status==='loaded'}; return w;
+}
+function tColumns(W){
+  const M=tMeasure(), GAP=40, B=1.05;             // B: room for the bolder selected label
+  const X=[34,114]; X[2]=X[1]+12+M.sys*B+GAP; X[3]=X[2]+12+M.cond*B+GAP; X[4]=X[3]+12+M.reg*B+GAP;
+  const need=X[4]+12+M.rel*B+8; if(need>W) return null;
+  const extra=(W-need)/4; return X.map((x,i)=>x+extra*Math.max(0,i-1)*(4/3));
+}
+function tLayout(){const W=Math.max(280,treeScroll.clientWidth||1000), X=tColumns(W); return X?layWide(W,X):layIndent(W)}
+function layWide(W,X){
+  const pad=32, SP=[0,36,26,30,25], list=[];
+  const col=(parent,arr,d)=>{const sp=SP[d];const top=Math.max(pad,parent.y-(arr.length-1)*sp/2);arr.forEach((n,i)=>{n.depth=d;n.parent=parent.id;n.x=X[d];n.y=top+i*sp;list.push(n)})};
+  const sysL=order.map(sysNode); sysL.forEach((n,i)=>{n.depth=1;n.parent='root';n.x=X[1];n.y=pad+i*SP[1]});
+  const root={id:'root',kind:'root',label:'The brain',color:'#1b1916',depth:0,parent:null,x:X[0],y:(sysL[0].y+sysL[sysL.length-1].y)/2};
+  list.push(root,...sysL);
+  const sN=sysL.find(n=>n.open);
+  if(sN){const cs=items.filter(o=>o.cat===sN.cat).map(condNode);col(sN,cs,2);const cN=cs.find(n=>n.open);
+    if(cN){const rs=cN.it.regs.map(k=>regNode(cN.it,k));col(cN,rs,3);const rN=rs.find(n=>n.open);
+      if(rN) col(rN,relNodes(rN),4)}}
+  return {list,W,H:Math.max(...list.map(n=>n.y))+pad,mode:'wide'};
+}
+function layIndent(W){
+  const pad=26, IND=20, list=[]; let y=pad;
+  const push=(n,d,parent,h)=>{n.depth=d;n.parent=parent;n.x=16+d*IND;n.y=y;y+=h;list.push(n);return n};
+  push({id:'root',kind:'root',label:'The brain',color:'#1b1916'},0,null,44);
+  for(const k of order){const sN=push(sysNode(k),1,'root',40);
+    if(!sN.open) continue;
+    for(const o of items.filter(o=>o.cat===k)){const cN=push(condNode(o),2,sN.id,36);
+      if(!cN.open) continue;
+      for(const rk of o.regs){const rN=push(regNode(o,rk),3,cN.id,36);
+        if(rN.open) for(const x of relNodes(rN)) push(x,4,rN.id,32)}}}
+  return {list,W,H:y+4,mode:'indent'};
+}
+
+function tMake(n){
+  const g=document.createElementNS(TNS,'g'), hit=document.createElementNS(TNS,'rect'), c=document.createElementNS(TNS,'circle'), t=document.createElementNS(TNS,'text');
+  hit.setAttribute('class','hit'); hit.setAttribute('rx',8); c.setAttribute('class','dot');
+  g.append(hit,c,t); g.setAttribute('tabindex','0'); g.setAttribute('role','button'); tNodes.appendChild(g);
+  let link=null; if(n.parent){link=document.createElementNS(TNS,'path'); link.setAttribute('class','tl'); tLinks.appendChild(link)}
+  const e={g,hit,c,t,link,n,x:0,y:0,op:0,lw:0};
+  g.addEventListener('click',()=>tClick(e.n));
+  g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();tClick(e.n)}});
+  return e;
+}
+function tUpdate(e,n,L){
+  const expandable=n.kind==='sys'||n.kind==='cond'||(n.kind==='reg'&&n.count>0);
+  const on=!!n.open||tState.sel===n.id;
+  e.g.setAttribute('class',`tn ${n.kind}${on?' on':''}`); e.g.style.pointerEvents='';
+  e.c.setAttribute('r',{root:6.5,sys:6.5,cond:5,reg:4.6,rel:4,more:2.5}[n.kind]);
+  if(n.kind==='reg'){e.c.setAttribute('fill',n.open?'#1b1916':'#fbfaf7');e.c.setAttribute('stroke','#1b1916');e.c.setAttribute('stroke-width',1.5)}
+  else if(n.kind==='more'){e.c.setAttribute('fill','#a39b92');e.c.setAttribute('stroke','none')}
+  else{const solid=n.kind==='root'||n.kind==='rel'||n.open||!expandable;e.c.setAttribute('fill',solid?n.color:'#fbfaf7');e.c.setAttribute('stroke',n.color);e.c.setAttribute('stroke-width',solid?0:2)}
+  const above=n.kind==='root'&&L.mode==='wide';
+  if(above){e.t.setAttribute('transform','rotate(-90)');e.t.setAttribute('x',0);e.t.setAttribute('y',-20);e.t.setAttribute('text-anchor','middle')}
+  else{e.t.removeAttribute('transform');e.t.setAttribute('x',12);e.t.setAttribute('y',0);e.t.removeAttribute('text-anchor')}
+  e.t.textContent=''; const a=document.createElementNS(TNS,'tspan'); a.textContent=n.label; e.t.appendChild(a);
+  if(expandable){const b=document.createElementNS(TNS,'tspan'); b.setAttribute('class','cnt'); b.setAttribute('dx','8'); b.textContent=(n.open?'− ':'+ ')+n.count; e.t.appendChild(b)}
+  let lw=0; try{lw=e.t.getComputedTextLength()}catch(err){} if(!lw) lw=n.label.length*7+(expandable?28:0);
+  e.lw=above?0:lw+12;
+  const hw=L.mode==='indent'?Math.max(140,L.W-n.x-4):e.lw+22;
+  if(above){e.hit.setAttribute('x',-36);e.hit.setAttribute('y',-56);e.hit.setAttribute('width',52);e.hit.setAttribute('height',112)}
+  else{e.hit.setAttribute('x',-12);e.hit.setAttribute('y',L.mode==='indent'?-16:-13);e.hit.setAttribute('width',hw);e.hit.setAttribute('height',L.mode==='indent'?32:26)}
+  if(expandable) e.g.setAttribute('aria-expanded',String(!!n.open)); else e.g.removeAttribute('aria-expanded');
+  e.g.setAttribute('aria-label',{root:'The brain: collapse the tree',rel:`${n.label}: go to this condition`,more:`${n.label}: open the region`}[n.kind]||`${n.label}${expandable?`, ${n.count} ${n.kind==='sys'?'conditions':n.kind==='cond'?'brain regions':'linked conditions'}`:''}`);
+  if(e.link){e.link.setAttribute('stroke',n.kind==='reg'?'#8c857c':(n.kind==='rel'||n.kind==='more'?'#c4bbae':n.color));e.link.classList.toggle('on',on)}
+}
+function tTip(e,mode,pos){const p=pos||e;return mode==='wide'&&e.n.kind!=='root'?{x:p.x+(e.lw||0)+14,y:p.y}:{x:p.x+(mode==='wide'?8:0),y:p.y}}
+function tPath(p,e,mode){
+  if(mode==='indent'){const x0=p.x,y0=p.y+7,x1=e.x-8,y1=e.y; if(y1-y0<8) return `M${x0} ${y0} L${x0} ${Math.max(y0,y1)}`;
+    return `M${x0} ${y0} V${y1-6} Q${x0} ${y1} ${x0+6} ${y1} H${x1}`}
+  const t=tTip(p,'wide'), x1=e.x-8, y1=e.y, mx=t.x+(x1-t.x)*.5;
+  return `M${t.x} ${t.y} C${mx} ${t.y} ${mx} ${y1} ${x1} ${y1}`;
+}
+
+function tRender(o={}){
+  if(view!=='tree') return;
+  const L=tLayout(); tW=L.W;
+  const vis=new Map(L.list.map(n=>[n.id,n]));
+  const fromEl=o.from?tEls.get(o.from):null, fromY=fromEl?fromEl.y:null;
+  treeSvg.setAttribute('class','mode-'+L.mode);
+  treeSvg.setAttribute('width',L.W); treeSvg.setAttribute('height',Math.max(tH,L.H)); treeScroll.style.height=L.H+'px';
+  for(const n of L.list){
+    let e=tEls.get(n.id);
+    if(!e){let a=n.parent,start=null;
+      while(a){const ae=tEls.get(a); if(ae&&!ae.exiting){start=tTip(ae,L.mode);break} const an=vis.get(a); a=an?an.parent:null}
+      e=tMake(n); const st=start||{x:n.x,y:n.y}; e.x=st.x; e.y=st.y; e.op=0; tEls.set(n.id,e)}
+    e.n=n; e.exiting=false; tUpdate(e,n,L);
+    e.fx=e.x; e.fy=e.y; e.fo=e.op; e.tx=n.x; e.ty=n.y; e.to=1;
+  }
+  for(const [id,e] of tEls){ if(vis.has(id)) continue;
+    let a=e.n.parent; while(a&&!vis.has(a)){const ae=tEls.get(a); a=ae?ae.n.parent:null}
+    const ae=a?tEls.get(a):null, t=ae?tTip(ae,L.mode,vis.get(a)):{x:e.x,y:e.y};
+    e.exiting=true; e.anchor=a; e.fx=e.x; e.fy=e.y; e.fo=e.op; e.tx=t.x; e.ty=t.y; e.to=0; e.g.style.pointerEvents='none';
+  }
+  // phones: keep the row you tapped under your finger while rows above it open or close
+  const sy0=window.scrollY; let dScroll=0;
+  if(L.mode==='indent'&&fromEl&&o.anchor&&vis.has(o.anchor)) dScroll=vis.get(o.anchor).y-fromY;
+  const dur=(o.instant||tReduce)?0:540, t0=performance.now();
+  cancelAnimationFrame(tAnim);
+  const frame=now=>{
+    const k=dur?Math.min(1,(now-t0)/dur):1, ease=1-Math.pow(1-k,3);
+    for(const e of tEls.values()){e.x=e.fx+(e.tx-e.fx)*ease;e.y=e.fy+(e.ty-e.fy)*ease;e.op=e.fo+(e.to-e.fo)*ease;
+      e.g.setAttribute('transform',`translate(${e.x.toFixed(1)} ${e.y.toFixed(1)})`);e.g.style.opacity=e.op.toFixed(3)}
+    for(const e of tEls.values()){if(!e.link) continue; const p=tEls.get(e.exiting?e.anchor:e.n.parent);
+      if(!p){e.link.setAttribute('d','');continue} e.link.setAttribute('d',tPath(p,e,L.mode)); e.link.style.opacity=e.op.toFixed(3)}
+    if(dScroll) window.scrollTo(0,sy0+dScroll*ease);
+    if(k<1){tAnim=requestAnimationFrame(frame);return}
+    for(const [id,e] of [...tEls]) if(e.exiting){e.g.remove(); if(e.link) e.link.remove(); tEls.delete(id)}
+    tH=L.H; treeSvg.setAttribute('height',L.H);
+  };
+  if(dur) tAnim=requestAnimationFrame(frame); else frame(t0);
+  tCard();
+}
+function tClick(n){
+  const from=n.id;
+  if(n.kind==='root'){Object.assign(tState,{sys:null,cond:null,reg:null,sel:null});return tRender({from,anchor:'root'})}
+  if(n.kind==='sys'){const open=tState.sys===n.cat;Object.assign(tState,{sys:open?null:n.cat,cond:null,reg:null,sel:open?null:n.id});return tRender({from,anchor:n.id})}
+  if(n.kind==='cond'){const open=tState.cond===n.it.name;Object.assign(tState,{cond:open?null:n.it.name,reg:null,sel:n.id});return tRender({from,anchor:n.id})}
+  if(n.kind==='reg'){const open=tState.reg===n.reg;Object.assign(tState,{reg:open?null:n.reg,sel:n.id});return tRender({from,anchor:n.id})}
+  if(n.kind==='rel') return tGoto(n.it,from);
+  if(n.kind==='more') return openRegion(n.reg);
+}
+function tGoto(it,from){Object.assign(tState,{sys:it.cat,cond:it.name,reg:null,sel:'c:'+it.name});tRender({from,anchor:'c:'+it.name})}
+function tOpenSystem(k){Object.assign(tState,{sys:k,cond:null,reg:null,sel:'s:'+k})}
+function setView(v,opt){
+  view=v; document.body.classList.toggle('tree-mode',v==='tree');
+  document.querySelectorAll('.view-toggle button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.view===v)));
+  if(v==='tree'){tRender(opt||{}); requestAnimationFrame(tReveal)}
+}
+function tReveal(){const bar=document.querySelector('.controls').getBoundingClientRect(), top=document.getElementById('tree-wrap').getBoundingClientRect().top;
+  if(top<bar.bottom-1||top>innerHeight*.7) window.scrollBy({top:top-bar.bottom-6,behavior:tReduce?'auto':'smooth'})}
+function tCard(){
+  const id=tState.sel; let h;
+  if(!id) h=`<div class="tc-main"><p class="tc-hint"><b>Explore the atlas as a tree.</b> Select a system to branch out into its conditions, a condition to see the brain regions it depends on, and a region to see every other condition linked to it. Select any of those to jump there.</p></div>`;
+  else if(id.startsWith('s:')){const k=id.slice(2),C=CATS[k],n=items.filter(o=>o.cat===k).length;
+    h=`<div class="tc-main"><div class="cap" style="color:${C.c}">System · ${n} conditions</div><h3>${C.name}</h3><p>${CATINFO[k]}</p></div><div class="tc-act"><button class="tc-btn" data-act="ring" data-k="${k}">Show on the ring</button></div>`}
+  else if(id.startsWith('c:')){const it=byName[id.slice(2)],C=CATS[it.cat];
+    h=`<div class="tc-main"><div class="cap" style="color:${C.c}">${C.name}</div><h3>${it.name}</h3><p>${it.def}</p></div><div class="tc-act"><button class="tc-btn primary" data-act="read" data-n="${esc(it.name)}">Read full entry</button><button class="tc-btn" data-act="3d" data-n="${esc(it.name)}">See in 3D</button></div>`}
+  else{const k=id.slice(2).split('|')[1],hits=items.filter(o=>o.regs.includes(k));
+    h=`<div class="tc-main"><div class="cap">Brain region · ${hits.length} linked condition${hits.length===1?'':'s'}</div><h3>${REG[k].n}</h3><p>${REGINFO[k]}</p></div><div class="tc-act"><button class="tc-btn primary" data-act="region" data-k="${k}">Open region</button></div>`}
+  treeCard.innerHTML=h;
+}
+treeCard.addEventListener('click',e=>{const b=e.target.closest('[data-act]'); if(!b) return; const a=b.dataset.act;
+  if(a==='read') open(byName[b.dataset.n]);
+  else if(a==='3d'){const it=byName[b.dataset.n]; if(window.brain3d) brain3d.show(it.regs,CATS[it.cat].c)}
+  else if(a==='region') openRegion(b.dataset.k);
+  else if(a==='ring'){const k=b.dataset.k; setView('ring'); if(activeCat!==k) chips.children[order.indexOf(k)].click()}
+});
+document.querySelectorAll('.view-toggle button').forEach(b=>b.addEventListener('click',()=>{if(view!==b.dataset.view) setView(b.dataset.view)}));
+new ResizeObserver(()=>{if(view!=='tree') return; const w=treeScroll.clientWidth; if(w&&Math.abs(w-tW)>2) tRender({instant:true})}).observe(treeScroll);
 
 // filters + search
 const chips=document.getElementById('chips'), q=document.getElementById('q');
@@ -738,12 +992,17 @@ function apply(){
   const n=items.filter(o=>!o.g.classList.contains('dim')).length;
   countN.textContent=n===items.length?`${n} conditions`:`${n} of ${items.length} shown`;
   clearB.hidden=n===items.length;
+  if(view==='tree'){let changed=false;
+    if(s&&first){if(tState.cond!==first.name){Object.assign(tState,{sys:first.cat,cond:first.name,reg:null,sel:'c:'+first.name});changed=true}}
+    else if(activeCat&&tState.sys!==activeCat){tOpenSystem(activeCat);changed=true}
+    if(changed) tRender();
+  }
 }
 const sysEl=document.getElementById('sys');
 order.forEach(k=>{const C=CATS[k],n=items.filter(o=>o.cat===k).length;
   const b=document.createElement('button');b.className='row';b.style.setProperty('--c',C.c);
   b.innerHTML=`<i></i><h3>${C.name}</h3><p>${CATINFO[k]}</p><span>${n}</span>`;
-  b.onclick=()=>{if(activeCat!==k)chips.children[order.indexOf(k)].click();document.querySelector('.controls').scrollIntoView({behavior:'smooth'})};
+  b.onclick=()=>{tOpenSystem(k);setView('tree')};
   sysEl.appendChild(b)});
 reset(); apply();
 // intro: stagger dots round the ring, draw lines and arcs
@@ -763,7 +1022,7 @@ const bar=document.getElementById('progress');
 const revealCheck=()=>document.querySelectorAll('.reveal:not(.in)').forEach(e=>{if(e.getBoundingClientRect().top<innerHeight*0.92){e.classList.add('in');e.querySelectorAll('.step,.row').forEach((c,i)=>c.style.transitionDelay=(i*60)+'ms')}});
 addEventListener('scroll',()=>{const h=document.documentElement;bar.style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight||1)})`;revealCheck()},{passive:true});
 revealCheck();
-window.atlas={REG,REGINFO,items,openRegion};
+window.atlas={REG,REGINFO,items,openRegion,setView,tState,tRender};
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script type="module">
