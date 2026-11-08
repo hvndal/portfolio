@@ -117,7 +117,8 @@ dialog[open]{animation:pop .22s ease-out}
 .b3wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;border-top:1px solid var(--ink);margin-top:56px;padding-top:18px}
 .b3wrap h2{font:400 34px/1 'Instrument Serif',serif;margin:0 0 10px}
 .b3wrap .side p{font-size:16px;line-height:1.55;margin:0 0 14px;color:#3b3732}
-#b3{position:relative;height:min(560px,70vh);background:radial-gradient(ellipse at 50% 45%,#fbfaf7 0,#f5f2ec 70%);border:1px solid var(--line);overflow:hidden;touch-action:none}
+#b3{position:relative;height:min(560px,70vh);background:radial-gradient(ellipse at 50% 45%,#fbfaf7 0,#f5f2ec 70%);border:1px solid var(--line);overflow:hidden;touch-action:pan-y}
+#b3.active{touch-action:none;box-shadow:inset 0 0 0 2px var(--ink)}
 #b3 canvas{display:block;width:100%;height:100%;cursor:grab}
 #b3-labels{position:absolute;inset:0;pointer-events:none}
 .b3-lab{position:absolute;left:0;top:0;white-space:nowrap;background:var(--ink);color:var(--paper);border:0;padding:4px 8px;font:500 11.5px 'Inter',sans-serif;cursor:pointer;transition:opacity .15s;opacity:0;pointer-events:none}
@@ -126,7 +127,36 @@ dialog[open]{animation:pop .22s ease-out}
 #b3-info span{font-size:14.5px;font-style:italic;color:var(--muted)}
 .b3btn{border:1px solid var(--ink);background:none;cursor:pointer;font:500 12.5px 'Inter',sans-serif;padding:8px 12px;min-height:36px}
 .b3btn:hover{background:var(--ink);color:var(--paper)}
-#b3-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;font-style:italic;color:var(--muted)}
+#b3-fallback{position:absolute;inset:0;z-index:5;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;font-style:italic;color:var(--muted);background:#f5f2ec}
+#b3-gate{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;padding:16px}
+#b3-gate img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:.9}
+.gate-box{position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;padding:20px 22px;max-width:330px;background:rgba(251,250,247,.92);border:1px solid var(--line);box-shadow:0 18px 40px -24px rgba(27,25,22,.4)}
+.gate-btn{background:var(--ink);color:var(--paper);border:0;font:600 14px 'Inter',sans-serif;padding:12px 20px;min-height:46px;cursor:pointer;transition:background .2s}
+.gate-btn:hover{background:var(--accent)}
+.gate-box p{margin:0;font-size:14px;line-height:1.45;color:var(--muted);font-style:italic}
+.gate-remember{display:flex;align-items:center;gap:7px;font:500 12.5px 'Inter',sans-serif;color:#3b3732;cursor:pointer;min-height:32px}
+.gate-remember input{width:16px;height:16px;accent-color:var(--ink)}
+#brain3d.on3d #b3-gate{display:none}
+#brain3d.is-loading .gate-btn{opacity:.6;pointer-events:none}
+#brain3d:not(.on3d) #b3-reset,#brain3d:not(.on3d) #b3-off{display:none}
+.b3-touch,.b3-done{position:absolute;z-index:3;border:1px solid var(--ink);font:600 13px 'Inter',sans-serif;cursor:pointer;min-height:42px;padding:0 16px}
+.b3-touch{left:50%;top:14px;transform:translateX(-50%);background:var(--ink);color:var(--paper)}
+.b3-done{right:12px;top:12px;background:var(--paper);color:var(--ink)}
+.b3-touch[hidden],.b3-done[hidden]{display:none}
+.side-btns{display:flex;flex-wrap:wrap;gap:8px}
+/* built-in Wikipedia + sources */
+.wiki{margin-top:4px;padding:14px 16px 12px;background:var(--paper);border-left:2px solid var(--c,var(--accent))}
+.wiki .k{margin:0 0 8px}
+.wiki-text{margin:0;font-size:15.5px;line-height:1.6;color:#34302b}
+.wiki-text.loading{color:var(--muted);font-style:italic}
+.wiki-cite{margin:10px 0 0;font:500 12px/1.5 'Inter',sans-serif;color:var(--muted)}
+.wiki-cite a,.sources a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+.wiki-cite a:hover,.sources a:hover{color:var(--accent)}
+.sources{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;font:400 13.5px/1.5 'Inter',sans-serif;color:#3b3732}
+.sources li{display:flex;gap:8px}
+.sources li::before{content:"";flex:none;width:5px;height:5px;margin-top:8px;border-radius:50%;background:var(--muted)}
+.fix{display:inline-block;margin-top:12px;font:500 12.5px 'Inter',sans-serif;color:var(--muted);text-decoration:none;border-bottom:1px dashed currentColor}
+.fix:hover{color:var(--accent)}
 /* ---- motion ---- */
 .progress{position:fixed;top:0;left:0;right:0;height:2px;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);z-index:20}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -259,9 +289,20 @@ body.tree-mode .stage,body.tree-mode #caption{display:none}
       <h2>The brain, in three dimensions</h2>
       <p>Turn it, zoom in, and click a marked region to see every condition linked to it. Open any condition and press <em>See in 3D</em> to fly to it.</p>
       <p style="font-style:italic;color:var(--muted);font-size:15px">Left hemisphere facing you, front to the left, as on the map. Deep structures light up when selected.</p>
-      <button class="b3btn" id="b3-reset">Reset view</button>
+      <div class="side-btns"><button class="b3btn" id="b3-reset">Reset view</button><button class="b3btn" id="b3-off">Turn 3D off</button></div>
     </div>
-    <div id="b3"><div id="b3-labels"></div><div id="b3-info"></div><div id="b3-fallback">The 3D view needs WebGL, which this browser has turned off. The map above still works.</div></div>
+    <div id="b3"><div id="b3-labels"></div><div id="b3-info"></div>
+      <div id="b3-gate">
+        <img src="brain-poster.webp" alt="Still image of the 3D brain model with its marked regions" width="1400" height="840" decoding="async"/>
+        <div class="gate-box">
+          <button type="button" class="gate-btn" id="b3-load">Load the 3D model</button>
+          <p>About 270 KB, and it uses your graphics card. You can turn it off again at any time.</p>
+          <label class="gate-remember"><input type="checkbox" id="b3-remember" checked/> Remember on this device</label>
+        </div>
+      </div>
+      <button type="button" class="b3-touch" id="b3-touch" hidden>Explore in 3D</button>
+      <button type="button" class="b3-done" id="b3-done" hidden>Done</button>
+      <div id="b3-fallback">The 3D view needs WebGL, which this browser has turned off. The map above still works.</div></div>
   </section>
 
   <section class="sec reveal">
@@ -731,7 +772,8 @@ function figure(regs,color){
 // popup
 const dlg=document.getElementById('pop');
 let cur=null;
-function show(html){
+function show(html,owner){
+  dlg.dataset.owner=owner||'';
   dlg.innerHTML=`<button class="x" data-close aria-label="Close">×</button><div class="pop swap">${html}</div>`;
   if(!dlg.open) dlg.showModal();
   dlg.scrollTop=0; dlg.querySelector('.pop-body').scrollTop=0;
@@ -752,12 +794,16 @@ function open(it){
       <h2 id="pop-title">${it.name}</h2>
       <p class="def">${it.def}</p>
       <p class="why">${WHY[it.name]}</p>
+      ${wikiBlock(w)}
       <div class="cap k">Brain regions</div>
       <div class="regs">${it.regs.map(r=>`<button data-r="${r}">${REG[r].n}</button>`).join('')}</div>
       ${rel.length?`<div class="cap k">Related conditions</div><div class="rel">${rel.map(o=>`<button data-n="${esc(o.name)}"><i style="background:${CATS[o.cat].c}"></i>${o.name}</button>`).join('')}</div>`:''}
-      <div class="foot"><div>${w?`<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(w.replace(/ /g,'_'))}" target="_blank" rel="noopener">Wikipedia ↗</a>`:''}<a href="https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(it.name)}" target="_blank" rel="noopener">Research ↗</a></div>
-        <div class="navb"><button data-step="-1" aria-label="Previous condition">←</button><button data-step="1" aria-label="Next condition">→</button><button data-step="3d">See in 3D</button><button data-step="tree">Show in tree</button><button data-step="r">Surprise me</button></div></div>
-    </div>`);
+      ${sourcesBlock(w,`PubMed: research on ${esc(it.name)}`,`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(it.name)}`,'Plain-language summary and explanation written for this atlas. Region links show where damage is most often reported, not the only possible cause.',it.name)}
+      <div class="foot">
+        <div class="navb"><button data-step="-1" aria-label="Previous condition">←</button><button data-step="1" aria-label="Next condition">→</button><button data-step="3d">See in 3D</button><button data-step="tree">Show in tree</button><button data-step="r">Surprise me</button><button data-step="copy">Copy link</button></div></div>
+    </div>`, 'c:'+it.name);
+  setHash(slug(it.name));
+  if(w) fillWiki(w,'c:'+it.name);
 }
 function openRegion(k){
   cur=null;
@@ -771,9 +817,14 @@ function openRegion(k){
       <div class="cap">${hits.length} linked condition${hits.length===1?'':'s'}</div>
       <h2 id="pop-title">${REG[k].n}</h2>
       <p class="def">${REGINFO[k]}</p>
+      ${wikiBlock(REGWIKI[k])}
       <div class="cap k">When it's damaged</div>
       <div class="rel">${hits.map(o=>`<button data-n="${esc(o.name)}"><i style="background:${CATS[o.cat].c}"></i>${o.name}</button>`).join('')}</div>
-    </div>`);
+      ${sourcesBlock(REGWIKI[k],`PubMed: research on the ${esc(REG[k].n.toLowerCase())}`,`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(REG[k].n)}`,'Region positions are schematic, drawn to show relationships rather than exact anatomy.',REG[k].n)}
+      <div class="foot"><div class="navb"><button data-step="copy">Copy link</button></div></div>
+    </div>`, 'r:'+k);
+  setHash('region-'+slug(REG[k].n));
+  if(REGWIKI[k]) fillWiki(REGWIKI[k],'r:'+k);
 }
 dlg.addEventListener('click',e=>{
   if(e.target===dlg||e.target.closest('[data-close]')) return dlg.close();
@@ -781,12 +832,65 @@ dlg.addEventListener('click',e=>{
   const n=e.target.closest('[data-n]'); if(n) return open(items.find(o=>o.name===n.dataset.n));
   const st=e.target.closest('[data-step]');
   if(st&&st.dataset.step==='tree'){const it=cur;dlg.close();Object.assign(tState,{sys:it.cat,cond:it.name,reg:null,sel:'c:'+it.name});setView('tree');return}
-  if(st&&st.dataset.step==='3d'){dlg.close();if(window.brain3d)brain3d.show(cur.regs,CATS[cur.cat].c);return}
+  if(st&&st.dataset.step==='3d'){const it=cur;dlg.close();show3D(it.regs,CATS[it.cat].c);return}
+  if(st&&st.dataset.step==='copy'){copyLink(st);return}
   if(st){const vis=items.filter(o=>!o.g.classList.contains('dim'));const pool=vis.length?vis:items;
     if(st.dataset.step==='r') return open(pool[Math.floor(Math.random()*pool.length)]);
     const j=Math.max(0,pool.indexOf(cur)); open(pool[(j+ +st.dataset.step+pool.length)%pool.length]);}
 });
 document.addEventListener('keydown',e=>{if(dlg.open&&cur&&(e.key==='ArrowRight'||e.key==='ArrowLeft'))dlg.querySelector(`[data-step="${e.key==='ArrowRight'?1:-1}"]`).click()});
+
+// ---------- built-in Wikipedia, sources, shareable links ----------
+const REGWIKI={pfc:'Prefrontal cortex',pm:'Premotor cortex',m1:'Primary motor cortex',s1:'Primary somatosensory cortex',broca:"Broca's area",ins:'Insular cortex',par:'Parietal lobe',ang:'Angular gyrus',wer:"Wernicke's area",aud:'Auditory cortex',temp:'Temporal lobe',occ:'Visual cortex',v5:'Visual cortex',v4:'Visual cortex',ffa:'Fusiform face area',hip:'Hippocampus',amy:'Amygdala',thal:'Thalamus',bg:'Basal ganglia',cc:'Corpus callosum',cing:'Cingulate cortex',ofc:'Orbitofrontal cortex',olf:'Olfactory bulb',opt:'Optic chiasm',cb:'Cerebellum',bs:'Brainstem',cord:'Spinal cord'};
+const wikiUrl=t=>'https://en.wikipedia.org/wiki/'+encodeURIComponent(t.replace(/ /g,'_'));
+const wikiCache=new Map();
+function wikiSummary(t){
+  if(!wikiCache.has(t)){const p=fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(t.replace(/ /g,'_')),{headers:{Accept:'application/json'}})
+    .then(r=>{if(!r.ok) throw new Error('Wikipedia '+r.status);return r.json()});wikiCache.set(t,p);p.catch(()=>wikiCache.delete(t))}
+  return wikiCache.get(t);
+}
+function wikiBlock(t){
+  if(!t) return '';
+  return `<section class="wiki"><div class="cap k">From Wikipedia · ${esc(t)}</div><p class="wiki-text loading">Loading the Wikipedia summary…</p><p class="wiki-cite"></p></section>`;
+}
+function fillWiki(t,owner){
+  wikiSummary(t).then(d=>{
+    if(dlg.dataset.owner!==owner) return;
+    const box=dlg.querySelector('.wiki'); if(!box) return;
+    const txt=box.querySelector('.wiki-text'); txt.classList.remove('loading'); txt.textContent=d.extract||'No summary is available for this article.';
+    const title=d.title||t;
+    box.querySelector('.wiki-cite').innerHTML=`Text from the Wikipedia article <a href="${wikiUrl(title)}" target="_blank" rel="noopener">“${esc(title)}”</a>, under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.`;
+  }).catch(()=>{
+    if(dlg.dataset.owner!==owner) return;
+    const txt=dlg.querySelector('.wiki-text'); if(!txt) return; txt.classList.remove('loading');
+    txt.innerHTML=`Wikipedia couldn't be reached just now. <a href="${wikiUrl(t)}" target="_blank" rel="noopener">Read the article on Wikipedia ↗</a>`;
+  });
+}
+function sourcesBlock(w,pmLabel,pmUrl,note,subject){
+  const mail=`mailto:harmanify@protonmail.com?subject=${encodeURIComponent('Atlas correction: '+subject)}`;
+  return `<div class="cap k">Sources</div><ul class="sources">
+    ${w?`<li><span><a href="${wikiUrl(w)}" target="_blank" rel="noopener">Wikipedia: “${esc(w)}”</a> · CC BY-SA 4.0</span></li>`:''}
+    <li><span><a href="${pmUrl}" target="_blank" rel="noopener">${pmLabel}</a></span></li>
+    <li><span>${note}</span></li></ul>
+    <a class="fix" href="${mail}">Spot something wrong? Suggest a correction</a>`;
+}
+const slug=t=>t.toLowerCase().replace(/['’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+function setHash(h){try{history.replaceState(null,'',h?'#'+h:location.pathname+location.search)}catch(e){}}
+function copyLink(btn){
+  const done=()=>{btn.textContent='Link copied';setTimeout(()=>{btn.textContent='Copy link'},1600)};
+  if(navigator.clipboard) navigator.clipboard.writeText(location.href).then(done,()=>{prompt('Copy this link:',location.href)}); else prompt('Copy this link:',location.href);
+}
+function show3D(regs,color){
+  document.getElementById('brain3d').scrollIntoView({behavior:'smooth',block:'center'});
+  if(window.load3D) window.load3D().then(b=>b.show(regs,color)).catch(()=>{});
+}
+function openFromHash(){
+  const h=decodeURIComponent(location.hash.slice(1)); if(!h) return;
+  if(h.startsWith('region-')){const k=Object.keys(REG).find(k=>'region-'+slug(REG[k].n)===h); if(k) openRegion(k); return}
+  const it=items.find(o=>slug(o.name)===h); if(it) open(it);
+}
+dlg.addEventListener('close',()=>setHash(''));
+addEventListener('hashchange',openFromHash);
 
 // ---------- tree view: one click grows a branch ----------
 const TNS='http://www.w3.org/2000/svg';
@@ -966,7 +1070,7 @@ function tCard(){
 }
 treeCard.addEventListener('click',e=>{const b=e.target.closest('[data-act]'); if(!b) return; const a=b.dataset.act;
   if(a==='read') open(byName[b.dataset.n]);
-  else if(a==='3d'){const it=byName[b.dataset.n]; if(window.brain3d) brain3d.show(it.regs,CATS[it.cat].c)}
+  else if(a==='3d'){const it=byName[b.dataset.n]; show3D(it.regs,CATS[it.cat].c)}
   else if(a==='region') openRegion(b.dataset.k);
   else if(a==='ring'){const k=b.dataset.k; setView('ring'); if(activeCat!==k) chips.children[order.indexOf(k)].click()}
 });
@@ -1023,12 +1127,30 @@ const revealCheck=()=>document.querySelectorAll('.reveal:not(.in)').forEach(e=>{
 addEventListener('scroll',()=>{const h=document.documentElement;bar.style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight||1)})`;revealCheck()},{passive:true});
 revealCheck();
 window.atlas={REG,REGINFO,items,openRegion,setView,tState,tRender};
+openFromHash();
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script type="module">
-const c=document.createElement('canvas');
-if(c.getContext('webgl2')||c.getContext('webgl')) import('./brain3d.js').catch(e=>{console.error(e);document.getElementById('b3-fallback').style.display='flex'});
-else document.getElementById('b3-fallback').style.display='flex';
+// 3D is opt-in: nothing downloads until the visitor asks, and the choice can be remembered
+const KEY='atlas-3d', sec=document.getElementById('brain3d');
+const store={get(){try{return localStorage.getItem(KEY)}catch(e){return null}},set(v){try{v?localStorage.setItem(KEY,v):localStorage.removeItem(KEY)}catch(e){}}};
+const hasGL=(()=>{try{const c=document.createElement('canvas');return !!(c.getContext('webgl2')||c.getContext('webgl'))}catch(e){return false}})();
+const fail=()=>{document.getElementById('b3-fallback').style.display='flex'};
+let loading=null;
+window.load3D=function(){
+  if(!hasGL){fail();return Promise.reject(new Error('WebGL unavailable'))}
+  if(window.brain3d&&window.brain3d.ready){window.brain3d.resume();sec.classList.add('on3d');return Promise.resolve(window.brain3d)}
+  if(!loading){sec.classList.add('is-loading');document.getElementById('b3-load').textContent='Loading the 3D model…';
+    loading=import('./brain3d.js').then(()=>{sec.classList.remove('is-loading');sec.classList.add('on3d');return window.brain3d})
+      .catch(e=>{console.error(e);loading=null;sec.classList.remove('is-loading');fail();throw e})}
+  return loading;
+};
+if(!hasGL) fail();
+document.getElementById('b3-load').onclick=()=>{if(document.getElementById('b3-remember').checked) store.set('on');window.load3D().catch(()=>{})};
+document.getElementById('b3-off').onclick=()=>{store.set(null);if(window.brain3d) window.brain3d.pause();sec.classList.remove('on3d');document.getElementById('b3-load').textContent='Load the 3D model'};
+if(store.get()==='on'&&hasGL){   // remembered: load when the section is about to scroll into view
+  const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();window.load3D().catch(()=>{})}},{rootMargin:'400px 0px'});io.observe(sec);
+}
 </script>
 </body>
 </html>

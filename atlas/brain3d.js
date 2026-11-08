@@ -5,14 +5,16 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const A = window.atlas;
 const box = document.getElementById('b3');
+const coarse = matchMedia('(pointer: coarse)').matches;           // touch screens
+const small = coarse || matchMedia('(max-width: 760px)').matches;  // lighter model + render
 const labels = document.getElementById('b3-labels');
 const info = document.getElementById('b3-info');
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
 camera.position.set(-5.1, 0.9, -1.4);
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const renderer = new THREE.WebGLRenderer({ antialias: !small, alpha: true, powerPreference: small ? 'low-power' : 'default' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.5 : 2));
 box.prepend(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -24,6 +26,16 @@ controls.enablePan = false;
 controls.autoRotate = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 controls.autoRotateSpeed = 0.6;
 controls.target.set(0, -0.35, 0);
+// touch: the page keeps scrolling until the visitor chooses to explore the model
+const canvas = renderer.domElement, touchBtn = document.getElementById('b3-touch'), doneBtn = document.getElementById('b3-done');
+function setExplore(on) {
+  controls.enabled = on; box.classList.toggle('active', on && coarse);
+  canvas.style.touchAction = on ? 'none' : 'pan-y';
+  if (touchBtn) touchBtn.hidden = on; if (doneBtn) doneBtn.hidden = !on;
+  if (on) controls.autoRotate = false;
+  showInfo(sel[0] || null);
+}
+if (coarse) { touchBtn.onclick = () => setExplore(true); doneBtn.onclick = () => setExplore(false); }
 
 scene.add(new THREE.HemisphereLight(0xfffaf2, 0xb9ab98, 1.1));
 const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(-3, 4, 3); scene.add(key);
@@ -68,7 +80,7 @@ function blob(sx, sy, sz, detail, shape) {
 const brain = new THREE.Group(); scene.add(brain);
 // cerebrum: two hemispheres with a slight midline gap
 for (const side of [-1, 1]) {
-  const g = blob(0.74, 1.05, 1.72, 64, (x, y, z) => {
+  const g = blob(0.74, 1.05, 1.72, small ? 40 : 64, (x, y, z) => {
     let d = 1 + 0.05 * gyri(x + side * 3, y, z) - 0.03;
     const inner = Math.max(0, -x * side - 0.55); d *= 1 - inner * 0.3;   // flatter midline face
     const under = Math.max(0, -y - 0.3); d *= 1 - under * 0.22;          // flatter underside
@@ -76,11 +88,11 @@ for (const side of [-1, 1]) {
     return d;
   });
   const m = new THREE.Mesh(g, tissue); m.position.x = side * 0.76; brain.add(m);
-  const tg = blob(0.46, 0.4, 0.9, 40, (x, y, z) => 1 + 0.06 * gyri(x + 9 + side, y, z) - 0.03);
+  const tg = blob(0.46, 0.4, 0.9, small ? 26 : 40, (x, y, z) => 1 + 0.06 * gyri(x + 9 + side, y, z) - 0.03);
   const tl = new THREE.Mesh(tg, tissue); tl.position.set(side * 1.0, -0.55, -0.15); tl.rotation.x = 0.18; brain.add(tl);
 }
 // cerebellum with horizontal folds
-const cbG = blob(1.0, 0.5, 0.62, 32, (x, y, z) => 1 + 0.03 * Math.sin(y * 34) + 0.015 * noise(x * 6, y * 6, z * 6));
+const cbG = blob(1.0, 0.5, 0.62, small ? 22 : 32, (x, y, z) => 1 + 0.03 * Math.sin(y * 34) + 0.015 * noise(x * 6, y * 6, z * 6));
 const cb = new THREE.Mesh(cbG, tissue); cb.position.set(0, -0.95, 1.12); brain.add(cb);
 // brainstem
 const bsG = new THREE.CylinderGeometry(0.24, 0.17, 1.4, 32); bsG.rotateX(-0.32);
@@ -104,7 +116,7 @@ const glow = new THREE.SphereGeometry(1, 24, 16);
 for (const k in A.REG) {
   const r = A.REG[k], pos = to3(r, k), deep = k in deepX;
   const mat = new THREE.MeshBasicMaterial({ color: 0xb8321f, transparent: true, opacity: deep ? 0.35 : 0.55, depthTest: !deep });
-  const m = new THREE.Mesh(glow, mat); m.position.copy(pos); m.scale.setScalar(deep ? 0.06 : 0.055); m.userData.k = k;
+  const m = new THREE.Mesh(glow, mat); m.position.copy(pos); m.scale.setScalar((deep ? 0.06 : 0.055) * (coarse ? 1.3 : 1)); m.userData.k = k;
   brain.add(m);
   const lab = document.createElement('button'); lab.className = 'b3-lab'; lab.textContent = r.n; lab.tabIndex = -1;
   lab.onclick = () => A.openRegion(k);
@@ -114,28 +126,38 @@ for (const k in A.REG) {
 
 // state
 let hot = null, sel = [], selColor = 0xb8321f;
-const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
-function pick(e) {
-  const b = renderer.domElement.getBoundingClientRect();
-  mouse.set(((e.clientX - b.left) / b.width) * 2 - 1, -((e.clientY - b.top) / b.height) * 2 + 1);
-  ray.setFromCamera(mouse, camera);
-  const hit = ray.intersectObjects(Object.values(markers).filter(o => !o.deep || sel.includes(o.m.userData.k)).map(o => o.m))[0];
-  return hit ? hit.object.userData.k : null;
+const pv = new THREE.Vector3();
+function pick(e) {   // nearest visible marker on screen, within a finger-sized radius on touch
+  const b = canvas.getBoundingClientRect(), R = e.pointerType === 'mouse' ? 16 : 30, camDir = camera.position.clone().normalize();
+  let best = null, bestD = R;
+  for (const k in markers) {
+    const o = markers[k]; if (o.deep && !sel.includes(k)) continue;
+    o.m.getWorldPosition(pv); if (!o.deep && pv.clone().normalize().dot(camDir) < -0.1) continue;
+    pv.project(camera);
+    const d = Math.hypot((pv.x * 0.5 + 0.5) * b.width - (e.clientX - b.left), (-pv.y * 0.5 + 0.5) * b.height - (e.clientY - b.top));
+    if (d < bestD) { bestD = d; best = k; }
+  }
+  return best;
 }
-renderer.domElement.addEventListener('pointermove', e => {
+canvas.addEventListener('pointermove', e => {
+  if (e.pointerType !== 'mouse') return;
   const k = pick(e); if (k === hot) return; hot = k;
-  renderer.domElement.style.cursor = k ? 'pointer' : 'grab';
+  canvas.style.cursor = k ? 'pointer' : 'grab';
   showInfo(k || sel[0] || null);
 });
 let down = null;
-renderer.domElement.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; controls.autoRotate = false; });
-renderer.domElement.addEventListener('pointerup', e => {
+canvas.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; if (controls.enabled) controls.autoRotate = false; });
+canvas.addEventListener('pointerup', e => {
   if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
   const k = pick(e); if (k) { focusRegions([k], 0xb8321f); A.openRegion(k); }
 });
 
 function showInfo(k) {
-  if (!k) { info.innerHTML = `<span class="cap">Drag to turn · pinch or scroll to zoom · click a marked region</span>`; return; }
+  if (!k) {
+    const tip = !coarse ? 'Drag to turn · scroll to zoom · click a marked region'
+      : controls.enabled ? 'Drag to turn · pinch to zoom · tap a marked region' : 'Tap a marked region · or tap “Explore” to turn it';
+    info.innerHTML = `<span class="cap">${tip}</span>`; return;
+  }
   const n = A.items.filter(o => o.regs.includes(k)).length;
   info.innerHTML = `<b>${A.REG[k].n}</b><span>${A.REGINFO[k]} · ${n} linked condition${n === 1 ? '' : 's'}</span>`;
 }
@@ -152,7 +174,11 @@ function focusRegions(regs, color) {
   showInfo(regs[0]);
 }
 window.brain3d = {
+  ready: true,
+  pause() { if (running) { renderer.setAnimationLoop(null); running = false; } },
+  resume() { if (!running) { renderer.setAnimationLoop(loop); running = true; } },
   show(regs, colorHex) {
+    this.resume();
     document.getElementById('brain3d').scrollIntoView({ behavior: 'smooth', block: 'center' });
     focusRegions(regs, new THREE.Color(colorHex).getHex());
   }
@@ -168,9 +194,9 @@ function resize() {
 new ResizeObserver(resize).observe(box); resize();
 
 const v = new THREE.Vector3(), clock = new THREE.Clock();
-let visible = true;
+let visible = true, running = true;
 new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(box);
-renderer.setAnimationLoop(() => {
+function loop() {
   if (!visible) return;
   const t = clock.getElapsedTime();
   if (fly) { fly.t = Math.min(1, fly.t + 0.025); const s = fly.t * fly.t * (3 - 2 * fly.t);
@@ -192,4 +218,6 @@ renderer.setAnimationLoop(() => {
     o.lab.style.transform = `translate(${(v.x * 0.5 + 0.5) * w}px, ${(-v.y * 0.5 + 0.5) * h}px) translate(-50%, -150%)`;
   }
   renderer.render(scene, camera);
-});
+}
+renderer.setAnimationLoop(loop);
+setExplore(!coarse);
