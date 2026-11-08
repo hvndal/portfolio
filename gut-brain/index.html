@@ -47,6 +47,19 @@ h2{font:700 24px/1.15 'Fraunces',serif;margin:28px 0 6px}
 .nd text{font:600 13px 'Bricolage Grotesque',sans-serif;fill:var(--ink)}
 .nd text.sub{font:500 10.5px 'Bricolage Grotesque',sans-serif;fill:var(--muted)}
 .nd.dim{opacity:.3}
+.vt{display:inline-flex;border:2px solid var(--ink);border-radius:999px;padding:3px;background:var(--card);box-shadow:2px 2px 0 var(--ink);margin:0 0 10px}
+.vt button{border:0;background:none;border-radius:999px;padding:6px 16px;font:600 13px 'Bricolage Grotesque',sans-serif;cursor:pointer;min-height:34px}
+.vt button[aria-selected=true]{background:var(--accent);color:#fff}
+.map svg[hidden]{display:none}
+#ring{max-width:640px}
+.rl{fill:none;stroke:#cfc8d6;stroke-width:1.1;transition:opacity .2s,stroke .2s}
+.rl.on{stroke:var(--c);stroke-width:2}
+.rg .rl.dim,.rg .rn.dim,.rg .rt.dim{opacity:.12}
+.rn{cursor:pointer;transition:opacity .2s}
+.rn text{font:600 9px 'Bricolage Grotesque',sans-serif;fill:var(--ink)}
+.rt{font:500 8.4px 'Bricolage Grotesque',sans-serif;fill:#3a3346;transition:opacity .2s}
+.rt.on{font-weight:700;fill:var(--ink)}
+.rhit{fill:transparent;cursor:pointer}
 .nd.on circle{stroke:var(--ink);stroke-width:3}
 .cnt{font:700 11px 'Bricolage Grotesque',sans-serif;fill:var(--ink);pointer-events:none}
 /* controls */
@@ -111,8 +124,9 @@ summary{font:700 15px 'Bricolage Grotesque',sans-serif;cursor:pointer}
   <ul class="stats"><li><b>83</b>shared loci</li><li class="hot"><b>24</b>same causal variant</li><li><b>11</b>gut-microbe links</li><li><b id="ngenes">86</b>genes</li></ul>
 
   <h2>The map</h2>
-  <p class="hint">Thicker line, more shared loci. Tap a line or a disorder.</p>
-  <div class="map"><svg id="map" viewBox="0 0 360 330" role="group" aria-label="Gut diseases on the left, psychiatric disorders on the right, linked by shared loci"></svg></div>
+  <div class="vt ui" role="tablist" aria-label="Map style"><button role="tab" data-v="ring" aria-selected="true">Ring</button><button role="tab" data-v="lines" aria-selected="false">Lines</button></div>
+  <p class="hint" id="vhint">The original ring: gut disease in the middle, then the mind, then the 83 loci. Tap anything; pinch to zoom.</p>
+  <div class="map"><svg id="ring" viewBox="-252 -252 504 504" role="group" aria-label="Ring: gut diseases in the centre, psychiatric disorders around them, shared loci on the outer ring"></svg><svg id="map" viewBox="0 0 360 330" role="group" aria-label="Gut diseases on the left, psychiatric disorders on the right, linked by shared loci"></svg></div>
 
   <div class="bar">
     <input class="search" id="q" type="search" placeholder="Search a gene, locus or microbe…" aria-label="Search genes, loci or microbes" autocomplete="off" autocapitalize="characters" spellcheck="false"/>
@@ -188,6 +202,47 @@ for(const p of PSY){const n=L.filter(l=>l.p===p).length, y=py(p), a=mk('g',{clas
   a.addEventListener('click',()=>setPair(null,p)); a.addEventListener('keydown',e=>{if(e.key==='Enter'){setPair(null,p)}}); nodes.push({p,el:a})}
 svg.setAttribute('viewBox','-18 0 404 330');
 
+
+// ---- ring: the paper's layout, centre → gut → mind → loci ----
+const ring=document.getElementById('ring'), rmk=(t,a,p)=>mk(t,a,p||ring);
+const order=[]; for(const g of GUT){order.push({gap:2.2}); for(const p of PSY){const ls=L.filter(l=>l.g===g&&l.p===p); order.push({gap:ls.length?.6:.3}); if(!ls.length) order.push({g,p,empty:1}); ls.forEach(l=>order.push({g,p,l}))}}
+const slots=order.reduce((a,o)=>a+(o.gap||1),0); let acc=0; const TAU=Math.PI*2;
+order.forEach(o=>{if(o.gap){acc+=o.gap;return} o.a=(acc+.5)/slots*TAU-Math.PI/2; acc+=1});
+const pol=(r,a)=>[r*Math.cos(a),r*Math.sin(a)], deg=a=>a*180/Math.PI;
+const R1=42,R2=100,R3=150, curve=(r0,a0,r1,a1)=>{const [x0,y0]=pol(r0,a0),[x1,y1]=pol(r1,a1),[cx,cy]=pol((r0+r1)/2,a1),[dx,dy]=pol((r0+r1)/2,a0);return `M${x0.toFixed(1)} ${y0.toFixed(1)} C${dx.toFixed(1)} ${dy.toFixed(1)} ${cx.toFixed(1)} ${cy.toFixed(1)} ${x1.toFixed(1)} ${y1.toFixed(1)}`};
+const rg=rmk('g',{class:'rg'}), rLinks=rmk('g',{},rg), rNodes=rmk('g',{},rg), ringEls=[];
+const meanA=arr=>{let x=0,y=0;arr.forEach(a=>{x+=Math.cos(a);y+=Math.sin(a)});return Math.atan2(y,x)};
+for(const g of GUT){const os=order.filter(o=>o.g===g), ga=meanA(os.map(o=>o.a)), [gx,gy]=pol(R1,ga);
+  ringEls.push({kind:'gl',g,el:rmk('path',{d:`M0 0 L${gx.toFixed(1)} ${gy.toFixed(1)}`,class:'rl',style:`--c:${css(g)}`},rLinks)});
+  for(const p of PSY){const ps=os.filter(o=>o.p===p); if(!ps.length) continue; const pa=meanA(ps.map(o=>o.a)), [px,py]=pol(R2,pa);
+    ringEls.push({kind:'pl',g,p,el:rmk('path',{d:curve(R1,ga,R2,pa),class:'rl',style:`--c:${css(g)}`},rLinks)});
+    for(const o of ps){ if(o.empty) continue; const l=o.l;
+      ringEls.push({kind:'ll',l,el:rmk('path',{d:curve(R2,pa,R3,o.a),class:'rl',style:`--c:${css(g)}`},rLinks)});
+      const [lx,ly]=pol(R3,o.a), n=rmk('g',{class:'rn',tabindex:0,role:'button','aria-label':`${l.band}, ${GN[g]} and ${PN[p]}`},rNodes);
+      rmk('circle',{cx:lx,cy:ly,r:l.co?4.2:3.4,fill:l.co?css('hot'):'#fff',stroke:l.co?css('hot'):css('IBD'),'stroke-width':1.5},n);
+      if(l.mic){const [mx,my]=pol(R3-9,o.a); rmk('circle',{cx:mx,cy:my,r:3.2,fill:css('microbe')},n)}
+      const flip=Math.cos(o.a)<0, [tx,ty]=pol(R3+8,o.a), t=rmk('text',{x:tx,y:ty,class:'rt','dominant-baseline':'middle','text-anchor':flip?'end':'start',transform:`rotate(${(flip?deg(o.a)+180:deg(o.a)).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})`},n);
+      t.textContent=(l.sign==='+'?'+':'−')+l.band+(l.genes.length?'  '+l.genes[0].n:'');
+      const [hx,hy]=pol(R3+30,o.a); rmk('circle',{cx:hx,cy:hy,r:12,class:'rhit'},n);
+      n.addEventListener('click',()=>setPair(g,p)); n.addEventListener('keydown',e=>{if(e.key==='Enter'){setPair(g,p)}});
+      ringEls.push({kind:'loc',l,el:n,t})}
+    const pn=rmk('g',{class:'rn',tabindex:0,role:'button','aria-label':`${GN[g]} and ${PN[p]}`},rNodes);
+    rmk('circle',{cx:px,cy:py,r:ps[0].empty?3.5:5,fill:'#fff',stroke:ps[0].empty?'#cfc8d6':css('ink'),'stroke-width':1.6},pn);
+    const [qx,qy]=pol(R2-13,pa); rmk('text',{x:qx,y:qy,'text-anchor':'middle','dominant-baseline':'middle',transform:`rotate(${(Math.cos(pa)<0?deg(pa)+180:deg(pa)).toFixed(1)} ${qx.toFixed(1)} ${qy.toFixed(1)})`,style:'font-size:8px'},pn).textContent=p;
+    pn.addEventListener('click',()=>setPair(g,p)); ringEls.push({kind:'pn',g,p,el:pn,empty:!!ps[0].empty})}
+  const gn=rmk('g',{class:'rn',tabindex:0,role:'button','aria-label':GN[g]},rNodes);
+  rmk('circle',{cx:gx,cy:gy,r:13,fill:css(g)},gn); rmk('text',{x:gx,y:gy+.5,'text-anchor':'middle','dominant-baseline':'middle',style:'fill:#fff;font-size:7.5px'},gn).textContent=g;
+  gn.addEventListener('click',()=>setPair(g,null)); ringEls.push({kind:'gn',g,el:gn})}
+rmk('circle',{cx:0,cy:0,r:4,fill:css('ink')},rNodes);
+function ringPaint(hits,filtered){const hs=new Set(hits), pk=new Set(hits.map(l=>l.g+'|'+l.p)), gk=new Set(hits.map(l=>l.g));
+  for(const e of ringEls){let on;
+    if(e.kind==='loc'||e.kind==='ll') on=hs.has(e.l); else if(e.kind==='pl'||e.kind==='pn') on=pk.has(e.g+'|'+e.p); else on=gk.has(e.g);
+    if(e.empty) on=!filtered;
+    e.el.classList.toggle('dim',filtered&&!on); if(e.el.classList.contains('rl')) e.el.classList.toggle('on',filtered&&on); if(e.t) e.t.classList.toggle('on',filtered&&on)}}
+document.querySelectorAll('.vt button').forEach(b=>b.onclick=()=>{const v=b.dataset.v; document.querySelectorAll('.vt button').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
+  ring.toggleAttribute('hidden',v!=='ring'); svg.toggleAttribute('hidden',v!=='lines');
+  document.getElementById('vhint').textContent=v==='ring'?'The original ring: gut disease in the middle, then the mind, then the 83 loci. Tap anything; pinch to zoom.':'Thicker line, more shared loci. Tap a line or a disorder.'});
+svg.setAttribute('hidden','');
 // ---- filtering ----
 const multi=new Set([...pairsOf].filter(([,s])=>s.size>1).map(([k])=>k));
 function match(l){
@@ -199,6 +254,7 @@ function match(l){
   return true}
 function render(){
   const hits=L.filter(match), pk=new Set(hits.map(l=>l.g+'|'+l.p)), filtered=hits.length!==L.length;
+  ringPaint(hits,filtered);
   links.forEach(k=>{const on=pk.has(k.g+'|'+k.p); k.el.classList.toggle('dim',filtered&&!on); k.el.classList.toggle('on',filtered&&on)});
   nodes.forEach(nd=>{const on=nd.g?hits.some(l=>l.g===nd.g):hits.some(l=>l.p===nd.p); nd.el.classList.toggle('dim',filtered&&!on); nd.el.classList.toggle('on',(nd.g&&nd.g===state.g)||(nd.p&&nd.p===state.p))});
   const by=new Map(); hits.forEach(l=>{const k=l.g+'|'+l.p; if(!by.has(k)) by.set(k,[]); by.get(k).push(l)});
