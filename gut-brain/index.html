@@ -60,6 +60,45 @@ h2{font:700 24px/1.15 'Fraunces',serif;margin:28px 0 6px}
 .rt{font:500 8.4px 'Bricolage Grotesque',sans-serif;fill:#3a3346;transition:opacity .2s}
 .rt.on{font-weight:700;fill:var(--ink)}
 .rhit{fill:transparent;cursor:pointer}
+.rn.sel circle:first-child{stroke:var(--ink)!important;stroke-width:3!important}
+.rt.sel{font-weight:800;fill:var(--accent)!important}
+.map{position:relative}
+#ring{touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+#ring.zoomed{touch-action:none}
+.zb{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px;z-index:2}
+.zb button{width:38px;height:38px;border-radius:50%;border:2px solid var(--ink);background:var(--card);font:700 18px/1 'Bricolage Grotesque',sans-serif;box-shadow:2px 2px 0 var(--ink);cursor:pointer;display:grid;place-items:center;padding:0}
+.zb button:active{transform:translate(1px,1px);box-shadow:0 0 0 var(--ink)}
+.zb[hidden]{display:none}
+.pick{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 10px;padding:2px 16px 4px}
+.pick::-webkit-scrollbar{display:none}
+.pick .lab{flex:none;align-self:center;font:700 10.5px 'Bricolage Grotesque',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-right:2px}
+.pick .lab.sep{margin-left:8px}
+.pick button{flex:none;display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:999px;background:var(--card);padding:5px 11px;min-height:34px;font:600 12.5px 'Bricolage Grotesque',sans-serif;cursor:pointer}
+.pick button[aria-pressed=true]{background:var(--ink);color:#fff}
+.pick button i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.rcard{margin:12px 0 0;border:2px solid var(--ink);border-radius:18px;background:var(--card);box-shadow:4px 4px 0 var(--c,var(--accent));padding:14px 15px 13px;animation:cin .25s ease}
+@keyframes cin{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:none}}
+.rcard .k{font:700 11px 'Bricolage Grotesque',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--c,var(--muted))}
+.rcard h3{font:700 23px/1.15 'Fraunces',serif;margin:3px 0 4px}
+.rcard p{margin:0 0 9px;font-size:15.5px;line-height:1.5}
+.rcard .what{font-size:14.5px;color:var(--muted);font-style:italic}
+.rcard .bars{display:grid;gap:6px;margin:6px 0 10px}
+.rcard .bar{display:grid;width:100%;max-width:100%;margin:0;box-sizing:border-box;-webkit-appearance:none;appearance:none;grid-template-columns:minmax(0,118px) minmax(0,1fr) 26px;gap:8px;align-items:center;font:600 12.5px 'Bricolage Grotesque',sans-serif;cursor:pointer;background:none;border:0;padding:2px 0;text-align:left;color:var(--ink)}
+.rcard .bar span:nth-child(2){height:12px;border-radius:6px;background:#efebf3;position:relative;overflow:hidden}
+.rcard .bar span:nth-child(2) b{position:absolute;inset:0 auto 0 0;border-radius:6px}
+.rcard .bar em{font-style:normal;text-align:right;color:var(--muted)}
+.rcard .facts{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 10px}
+.rcard .fact{border:1.5px solid var(--line);border-radius:10px;padding:5px 9px;font:600 12px 'Bricolage Grotesque',sans-serif;background:#faf8fb}
+.rcard .fact b{font:700 16px 'Fraunces',serif;margin-right:3px}
+.rcard .sub{font:700 11px 'Bricolage Grotesque',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:8px 0 5px}
+.rcard .tags{margin-bottom:8px}
+.rcard .acts{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.rcard .acts button,.rcard .acts a{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:999px;background:var(--card);padding:6px 12px;min-height:36px;font:600 12.5px 'Bricolage Grotesque',sans-serif;box-shadow:2px 2px 0 var(--ink);cursor:pointer;text-decoration:none;color:var(--ink)}
+.rcard .acts .primary{background:var(--ink);color:#fff}
+.rcard .quick{display:grid;gap:6px;margin-top:6px}
+.rcard .quick button{display:flex;justify-content:space-between;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:#faf8fb;padding:8px 11px;font:600 13.5px 'Bricolage Grotesque',sans-serif;cursor:pointer;color:var(--ink);text-align:left}
+.rcard .quick button span{color:var(--muted);font-weight:500}
+@media (min-width:700px){.pick{margin:0 0 10px;padding:2px 0 4px;flex-wrap:wrap}}
 .nd.on circle{stroke:var(--ink);stroke-width:3}
 .cnt{font:700 11px 'Bricolage Grotesque',sans-serif;fill:var(--ink);pointer-events:none}
 /* controls */
@@ -125,9 +164,11 @@ summary{font:700 15px 'Bricolage Grotesque',sans-serif;cursor:pointer}
 
   <h2>The map</h2>
   <div class="vt ui" role="tablist" aria-label="Map style"><button role="tab" data-v="ring" aria-selected="true">Ring</button><button role="tab" data-v="lines" aria-selected="false">Lines</button></div>
-  <p class="hint" id="vhint">The original ring: gut disease in the middle, then the mind, then the 83 loci. Tap anything; pinch to zoom.</p>
-  <div class="map"><svg id="ring" viewBox="-252 -252 504 504" role="group" aria-label="Ring: gut diseases in the centre, psychiatric disorders around them, shared loci on the outer ring"></svg><svg id="map" viewBox="0 0 360 330" role="group" aria-label="Gut diseases on the left, psychiatric disorders on the right, linked by shared loci"></svg></div>
+  <div class="pick" id="pick" role="group" aria-label="Pick a disorder"></div>
+  <p class="hint" id="vhint">Pick a disorder, or tap anything on the ring. Pinch or use + to zoom, drag to move.</p>
+  <div class="map"><div class="zb" id="zb"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button><button id="zfit" aria-label="Show the whole ring">⤢</button></div><svg id="ring" viewBox="-252 -252 504 504" role="group" aria-label="Ring: gut diseases in the centre, psychiatric disorders around them, shared loci on the outer ring"></svg><svg id="map" viewBox="0 0 360 330" role="group" aria-label="Gut diseases on the left, psychiatric disorders on the right, linked by shared loci"></svg></div>
 
+  <div class="rcard" id="rcard" aria-live="polite"></div>
   <div class="bar">
     <input class="search" id="q" type="search" placeholder="Search a gene, locus or microbe…" aria-label="Search genes, loci or microbes" autocomplete="off" autocapitalize="characters" spellcheck="false"/>
     <div class="pills" role="group" aria-label="Highlight">
@@ -165,7 +206,7 @@ summary{font:700 15px 'Bricolage Grotesque',sans-serif;cursor:pointer}
     <p style="margin-top:16px" class="ui">By Herman Hundal · <a href="https://x.com/harmanify" target="_blank" rel="noopener">@harmanify</a></p>
   </div>
 </div>
-<script src="data.js?v=2"></script>
+<script src="data.js?v=3"></script>
 <script>
 const G=window.GB, GUT=['GERD','IBD','IBS','PUD'], PSY=['MDD','SCZ','BIP','ADHD','AN','PTSD'];
 const GN={GERD:'Acid reflux',IBD:'Inflammatory bowel',IBS:'Irritable bowel',PUD:'Peptic ulcer'};
@@ -178,7 +219,7 @@ const L=[]; for(const g of GUT) for(const p of PSY) for(const [band,sign,co,mic,
   L.push({g,p,band,sign,co:!!co,mic,genes:genes.map(x=>({n:x.replace('*',''),ts:x.endsWith('*')}))});
 const pairsOf=new Map(); for(const l of L) for(const x of l.genes){const k=x.n; if(!pairsOf.has(k)) pairsOf.set(k,new Set()); pairsOf.get(k).add(l.g+'×'+l.p)}
 document.getElementById('ngenes').textContent=pairsOf.size;
-const state={g:null,p:null,f:null,q:'',gene:null};
+const state={g:null,p:null,f:null,q:'',gene:null,loc:null};
 
 // ---- map: gut on the left, mind on the right ----
 const NS='http://www.w3.org/2000/svg', svg=document.getElementById('map');
@@ -224,12 +265,13 @@ for(const g of GUT){const os=order.filter(o=>o.g===g), ga=meanA(os.map(o=>o.a)),
       const flip=Math.cos(o.a)<0, [tx,ty]=pol(R3+8,o.a), t=rmk('text',{x:tx,y:ty,class:'rt','dominant-baseline':'middle','text-anchor':flip?'end':'start',transform:`rotate(${(flip?deg(o.a)+180:deg(o.a)).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})`},n);
       t.textContent=(l.sign==='+'?'+':'−')+l.band+(l.genes.length?'  '+l.genes[0].n:'');
       const [hx,hy]=pol(R3+30,o.a); rmk('circle',{cx:hx,cy:hy,r:12,class:'rhit'},n);
-      n.addEventListener('click',()=>setPair(g,p)); n.addEventListener('keydown',e=>{if(e.key==='Enter'){setPair(g,p)}});
+      rmk('title',{},n).textContent=`${l.band} · ${GN[g]} × ${PN[p]}${l.genes.length?' · '+l.genes.map(x=>x.n).join(', '):''}`;
+      l.a=o.a; l.pa=pa; n.addEventListener('click',()=>selectLoc(l)); n.addEventListener('keydown',e=>{if(e.key==='Enter'){selectLoc(l)}});
       ringEls.push({kind:'loc',l,el:n,t})}
     const pn=rmk('g',{class:'rn',tabindex:0,role:'button','aria-label':`${GN[g]} and ${PN[p]}`},rNodes);
     rmk('circle',{cx:px,cy:py,r:ps[0].empty?3.5:5,fill:'#fff',stroke:ps[0].empty?'#cfc8d6':css('ink'),'stroke-width':1.6},pn);
     const [qx,qy]=pol(R2-13,pa); rmk('text',{x:qx,y:qy,'text-anchor':'middle','dominant-baseline':'middle',transform:`rotate(${(Math.cos(pa)<0?deg(pa)+180:deg(pa)).toFixed(1)} ${qx.toFixed(1)} ${qy.toFixed(1)})`,style:'font-size:8px'},pn).textContent=p;
-    pn.addEventListener('click',()=>setPair(g,p)); ringEls.push({kind:'pn',g,p,el:pn,empty:!!ps[0].empty})}
+    pn.addEventListener('click',()=>{if(!ps[0].empty) setPair(g,p)}); ringEls.push({kind:'pn',g,p,el:pn,empty:!!ps[0].empty,pa})}
   const gn=rmk('g',{class:'rn',tabindex:0,role:'button','aria-label':GN[g]},rNodes);
   rmk('circle',{cx:gx,cy:gy,r:13,fill:css(g)},gn); rmk('text',{x:gx,y:gy+.5,'text-anchor':'middle','dominant-baseline':'middle',style:'fill:#fff;font-size:7.5px'},gn).textContent=g;
   gn.addEventListener('click',()=>setPair(g,null)); ringEls.push({kind:'gn',g,el:gn})}
@@ -238,11 +280,106 @@ function ringPaint(hits,filtered){const hs=new Set(hits), pk=new Set(hits.map(l=
   for(const e of ringEls){let on;
     if(e.kind==='loc'||e.kind==='ll') on=hs.has(e.l); else if(e.kind==='pl'||e.kind==='pn') on=pk.has(e.g+'|'+e.p); else on=gk.has(e.g);
     if(e.empty) on=!filtered;
-    e.el.classList.toggle('dim',filtered&&!on); if(e.el.classList.contains('rl')) e.el.classList.toggle('on',filtered&&on); if(e.t) e.t.classList.toggle('on',filtered&&on)}}
+    e.el.classList.toggle('dim',filtered&&!on); if(e.el.classList.contains('rl')) e.el.classList.toggle('on',filtered&&on); if(e.t) e.t.classList.toggle('on',filtered&&on);
+    if(e.kind==='loc'){const sel=state.loc===e.l; e.el.classList.toggle('sel',sel); e.t.classList.toggle('sel',sel)}}}
 document.querySelectorAll('.vt button').forEach(b=>b.onclick=()=>{const v=b.dataset.v; document.querySelectorAll('.vt button').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
-  ring.toggleAttribute('hidden',v!=='ring'); svg.toggleAttribute('hidden',v!=='lines');
-  document.getElementById('vhint').textContent=v==='ring'?'The original ring: gut disease in the middle, then the mind, then the 83 loci. Tap anything; pinch to zoom.':'Thicker line, more shared loci. Tap a line or a disorder.'});
+  ring.toggleAttribute('hidden',v!=='ring'); svg.toggleAttribute('hidden',v!=='lines'); document.getElementById('zb').hidden=v!=='ring';
+  document.getElementById('vhint').textContent=v==='ring'?'Pick a disorder, or tap anything on the ring. Pinch or use + to zoom, drag to move.':'Thicker line, more shared loci. Tap a line or a disorder.'; if(v==='ring') render()});
 svg.setAttribute('hidden','');
+
+// ---- plain-language notes ----
+const GD={GERD:'Stomach acid rising into the food pipe: heartburn and regurgitation.',IBD:"Long-term inflammation of the gut: Crohn's disease and ulcerative colitis.",IBS:'Recurring belly pain with changed bowel habits, without visible damage to the gut.',PUD:'Open sores in the lining of the stomach or the first part of the small intestine.'};
+const PD={MDD:'Persistent low mood and loss of interest or pleasure.',SCZ:'Psychosis: hallucinations, delusions and disorganised thinking.',BIP:'Swings between depression and highs of mania or hypomania.',ADHD:'Ongoing inattention, hyperactivity or impulsivity.',AN:'Restricted eating, low weight and an intense fear of gaining weight.',PTSD:'Lasting stress reactions after a traumatic event.'};
+const GTALK={GERD:'heartburn or reflux',IBD:'gut inflammation, bloody stools or weight loss',IBS:'belly pain, bloating or changed bowel habits',PUD:'burning stomach pain'};
+const PTALK={MDD:'low mood',SCZ:'changes in thinking or perception',BIP:'mood swings',ADHD:'focus or impulsivity',AN:'eating and weight worries',PTSD:'trauma-related stress'};
+const GF={GERD:'acid reflux (GERD)',IBD:'inflammatory bowel disease',IBS:'irritable bowel syndrome',PUD:'peptic ulcer disease'};
+const PF={MDD:'depression',SCZ:'schizophrenia',BIP:'bipolar disorder',ADHD:'ADHD',AN:'anorexia',PTSD:'PTSD'};
+const NOTE='Shared genes help explain why these conditions often show up in the same people. They point to biology both sides have in common, not to one disorder causing the other, and genes are only part of anyone’s risk.';
+const short=p=>PN[p]==='ADHD'||PN[p]==='PTSD'?p:PN[p];
+const uniq=a=>[...new Set(a)];
+const geneTags=ls=>{const c=new Map(); ls.forEach(l=>l.genes.forEach(x=>{const k=x.n; c.set(k,{n:k,ts:x.ts,c:(c.get(k)?c.get(k).c:0)+1})})); return [...c.values()].sort((a,b)=>b.c-a.c||b.ts-a.ts)};
+const tagsHTML=gs=>gs.slice(0,14).map(x=>`<button class="tag gene${x.ts?' ts':''}" data-cg="${x.n}">${x.n}${x.c>1?` ×${x.c}`:''}</button>`).join('');
+const micHTML=ls=>{const m=uniq(ls.filter(l=>l.mic).flatMap(l=>l.mic.split(', '))); return m.length?`<div class="sub">Gut microbes linked</div><div class="tags">${m.map(x=>`<span class="tag mic" style="cursor:default"><span class="dot mic"></span>${esc(x)}</span>`).join('')}</div>`:''};
+const factsHTML=ls=>{const same=ls.filter(l=>l.sign==='+').length; return `<div class="facts"><span class="fact"><b>${ls.length}</b>shared loci</span><span class="fact"><b>${same}</b>same direction</span><span class="fact"><b>${ls.filter(l=>l.co).length}</b>same causal variant</span>${ls.some(l=>l.mic)?`<span class="fact"><b>${ls.filter(l=>l.mic).length}</b>microbe links</span>`:''}</div>`};
+const acts=(n,extra='')=>`<div class="acts"><button class="primary" data-act="list">See the ${n} loci ↓</button>${extra}<button data-act="share">Share this</button></div>`;
+function cardRender(hits,filtered){
+  const c=document.getElementById('rcard'); let h, col=css('accent');
+  if(state.loc){const l=state.loc, others=L.filter(x=>x!==l&&x.band===l.band); col=css(l.g);
+    h=`<div class="k">Locus · ${GN[l.g]} × ${short(l.p)}</div><h3>${l.band}</h3>
+      <p>${l.sign==='+'?`The variant here pushes both conditions <b>the same way</b>: it nudges the risk of ${GTALK[l.g].split(',')[0]} and ${PTALK[l.p]} up (or down) together.`:`The variant here pushes the two conditions <b>in opposite directions</b>: it raises the risk of one while lowering the other.`}
+      ${l.co?' Both signals most likely come from <b>one single causal variant</b>, not two neighbouring ones.':''}${l.mic?` The same spot is also tied to how much <b>${esc(l.mic)}</b> lives in the gut.`:''}</p>
+      ${l.genes.length?`<div class="sub">Genes here · tap to trace</div><div class="tags">${tagsHTML(l.genes.map(x=>({...x,c:1})))}</div>`:'<p class="what">The paper names no top gene for this locus.</p>'}
+      ${others.length?`<div class="sub">Same locus in other pairs</div><div class="quick">${others.map(x=>`<button data-loc="${L.indexOf(x)}">${GN[x.g]} × ${short(x.p)}<span>${x.sign==='+'?'same':'opposite'} direction</span></button>`).join('')}</div>`:''}
+      <div class="acts"><button data-act="pair" data-g="${l.g}" data-p="${l.p}">All ${GN[l.g].toLowerCase()} × ${short(l.p)} loci</button><button data-act="share">Share this</button></div>`}
+  else if(state.gene){const ls=L.filter(l=>l.genes.some(x=>x.n===state.gene)), ps=uniq(ls.map(l=>l.g+'|'+l.p));
+    h=`<div class="k">Gene</div><h3>${state.gene}</h3><p>Shows up at ${ls.length} shared ${ls.length===1?'locus':'loci'}, across ${ps.length} gut–mind pair${ps.length===1?'':'s'}.</p>
+      <div class="quick">${ps.map(k=>{const [g,p]=k.split('|');return `<button data-act="pair" data-g="${g}" data-p="${p}">${GN[g]} × ${short(p)}<span>open</span></button>`}).join('')}</div>
+      <div class="acts"><a href="https://www.ncbi.nlm.nih.gov/gene/?term=${state.gene}%5Bsym%5D+AND+human%5Borgn%5D" target="_blank" rel="noopener">NCBI Gene ↗</a><a href="https://www.genecards.org/cgi-bin/carddisp.pl?gene=${state.gene}" target="_blank" rel="noopener">GeneCards ↗</a><button data-act="share">Share this</button></div>`}
+  else if(state.g&&state.p){const ls=hits; col=css(state.g);
+    h=`<div class="k">Gut × mind pair</div><h3>${GN[state.g]} × ${short(state.p)}</h3>${ls.length?factsHTML(ls):'<p>No shared loci were found for this pair.</p>'}
+      <div class="sub">Most shared genes · tap to trace</div><div class="tags">${tagsHTML(geneTags(ls))||'<span class="none">none named</span>'}</div>${micHTML(ls)}
+      <p class="what">What this means: if you live with ${GF[state.g]}, it’s worth mentioning ${PTALK[state.p]} to your doctor too, and the other way round. ${NOTE} Not medical advice.</p>${acts(ls.length)}`}
+  else if(state.p&&!state.f&&!state.q){const ls=hits, rows=GUT.map(g=>({g,n:ls.filter(l=>l.g===g).length})).sort((a,b)=>b.n-a.n), mx=Math.max(1,...rows.map(r=>r.n));
+    h=`<div class="k">Psychiatric disorder</div><h3>${PN[state.p]}</h3><p>${PD[state.p]}</p>${factsHTML(ls)}
+      <div class="sub">Which gut diseases share the most · tap a bar</div><div class="bars">${rows.map(r=>`<button class="bar" data-act="pair" data-g="${r.g}" data-p="${state.p}" ${r.n?'':'disabled'}><span>${GS[r.g]} (${r.g})</span><span><b style="width:${r.n/mx*100}%;background:${css(r.g)}"></b></span><em>${r.n}</em></button>`).join('')}</div>
+      <div class="sub">Genes that come up · tap to trace</div><div class="tags">${tagsHTML(geneTags(ls))}</div>${micHTML(ls)}
+      <p class="what">What this means: in this study ${PF[state.p]} shares the most DNA with ${rows.filter(r=>r.n&&r.n===rows[0].n).map(r=>GF[r.g]).join(' and ')}. If you live with ${PF[state.p]} and notice gut symptoms such as ${GTALK[rows[0].g]}, they’re worth raising with your doctor, since gut and mental-health care can work together. ${NOTE} Not medical advice.</p>${acts(ls.length)}`}
+  else if(state.g&&!state.f&&!state.q){const ls=hits, rows=PSY.map(p=>({p,n:ls.filter(l=>l.p===p).length})).sort((a,b)=>b.n-a.n), mx=Math.max(1,...rows.map(r=>r.n)); col=css(state.g);
+    h=`<div class="k">Gut disease</div><h3>${GN[state.g]} (${state.g})</h3><p>${GD[state.g]}</p>${factsHTML(ls)}
+      <div class="sub">Which mental-health conditions share the most · tap a bar</div><div class="bars">${rows.map(r=>`<button class="bar" data-act="pair" data-g="${state.g}" data-p="${r.p}" ${r.n?'':'disabled'}><span>${short(r.p)}</span><span><b style="width:${r.n/mx*100}%;background:${css(state.g)}"></b></span><em>${r.n}</em></button>`).join('')}</div>
+      <div class="sub">Genes that come up · tap to trace</div><div class="tags">${tagsHTML(geneTags(ls))}</div>${micHTML(ls)}
+      <p class="what">What this means: in this study ${GF[state.g]} shares the most DNA with ${rows.filter(r=>r.n&&r.n===rows[0].n).map(r=>PF[r.p]).join(' and ')}. If you live with ${GF[state.g]} and notice ${PTALK[rows[0].p]}, it’s worth raising with your doctor, since mental-health care can be part of gut care. ${NOTE} Not medical advice.</p>${acts(ls.length)}`}
+  else if(filtered){h=`<div class="k">Highlighted</div><h3>${hits.length} of 83 loci</h3>${factsHTML(hits)}${micHTML(hits)}${acts(hits.length)}`}
+  else{const top=[...new Set(L.map(l=>l.g+'|'+l.p))].map(k=>{const [g,p]=k.split('|');return {g,p,n:L.filter(l=>l.g===g&&l.p===p).length}}).sort((a,b)=>b.n-a.n).slice(0,4);
+    h=`<div class="k">Start here</div><h3>Tap the ring, or pick a disorder above</h3><p>Every dot on the outer ring is a stretch of DNA linked to both a gut disease (centre) and a mental-health condition (middle ring). Orange dots share the very same causal variant.</p>
+      <div class="sub">Strongest overlaps</div><div class="quick">${top.map(t=>`<button data-act="pair" data-g="${t.g}" data-p="${t.p}">${GN[t.g]} × ${short(t.p)}<span>${t.n} loci</span></button>`).join('')}</div>`}
+  c.style.setProperty('--c',col); c.innerHTML=h;
+}
+document.getElementById('rcard').addEventListener('click',e=>{const b=e.target.closest('button,a'); if(!b||b.tagName==='A') return;
+  if(b.dataset.cg){state.gene=b.dataset.cg; state.g=state.p=null; state.loc=null; state.q=''; q.value=''; render(); return}
+  if(b.dataset.loc){selectLoc(L[+b.dataset.loc]); return}
+  const a=b.dataset.act; if(a==='pair'){state.g=b.dataset.g; state.p=b.dataset.p; state.gene=null; state.loc=null; render()}
+  else if(a==='list') scrollToList();
+  else if(a==='share') document.getElementById('sh').click()});
+function selectLoc(l){if(state.loc===l){state.loc=null}else{state.loc=l; state.g=l.g; state.p=l.p; state.gene=null} render()}
+// ---- "by disorder" picker ----
+const pick=document.getElementById('pick');
+pick.innerHTML=`<span class="lab">Mind</span>${PSY.map(p=>`<button data-pp="${p}" aria-pressed="false">${short(p)}</button>`).join('')}<span class="lab sep">Gut</span>${GUT.map(g=>`<button data-pg="${g}" aria-pressed="false"><i style="background:${css(g)}"></i>${g}</button>`).join('')}`;
+pick.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.pp){const p=b.dataset.pp; Object.assign(state,{p:state.p===p&&!state.g?null:p,g:null,gene:null,loc:null})}
+  else{const g=b.dataset.pg; Object.assign(state,{g:state.g===g&&!state.p?null:g,p:null,gene:null,loc:null})}
+  state.f=null; state.q=''; q.value=''; render()});
+function pickPaint(){pick.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pp?state.p===b.dataset.pp:state.g===b.dataset.pg)))}
+// ---- zoom and pan on the ring ----
+const FULL={x:-252,y:-252,w:504}; let vb={...FULL}, vbAnim=0;
+const setVB=v=>{vb=v; ring.setAttribute('viewBox',`${v.x.toFixed(1)} ${v.y.toFixed(1)} ${v.w.toFixed(1)} ${v.w.toFixed(1)}`); ring.classList.toggle('zoomed',v.w<FULL.w-1)};
+function zoomTo(t,ms=480){cancelAnimationFrame(vbAnim); if(matchMedia('(prefers-reduced-motion: reduce)').matches) ms=0; const f={...vb}, t0=performance.now();
+  const step=n=>{const k=ms?Math.min(1,(n-t0)/ms):1, e=1-Math.pow(1-k,3); setVB({x:f.x+(t.x-f.x)*e,y:f.y+(t.y-f.y)*e,w:f.w+(t.w-f.w)*e}); if(k<1) vbAnim=requestAnimationFrame(step)}; vbAnim=requestAnimationFrame(step)}
+const clampVB=v=>{const w=Math.min(FULL.w,Math.max(110,v.w)), lim=FULL.w/2; return {w,x:Math.min(lim-w*.2,Math.max(-lim-w*.8,v.x)),y:Math.min(lim-w*.2,Math.max(-lim-w*.8,v.y))}};
+function ringFit(hits,filtered){
+  if(ring.hasAttribute('hidden')) return;
+  if(!filtered&&!state.loc){zoomTo({...FULL}); return}
+  const pts=[]; const ls=state.loc?[state.loc]:hits;
+  ls.forEach(l=>{pts.push(pol(R3+(state.loc?62:74),l.a),pol(R2-14,l.pa))}); if(!pts.length){zoomTo({...FULL}); return}
+  let x0=Math.min(...pts.map(p=>p[0])),x1=Math.max(...pts.map(p=>p[0])),y0=Math.min(...pts.map(p=>p[1])),y1=Math.max(...pts.map(p=>p[1]));
+  const w=Math.min(FULL.w,Math.max(state.loc?170:220,x1-x0+40,y1-y0+40)), cx=(x0+x1)/2, cy=(y0+y1)/2;
+  zoomTo(w>FULL.w*.82?{...FULL}:clampVB({x:cx-w/2,y:cy-w/2,w}))}
+const zoomBy=(k,cx,cy)=>{const w=vb.w*k; if(cx===undefined){cx=vb.x+vb.w/2; cy=vb.y+vb.w/2} zoomTo(clampVB({x:cx-(cx-vb.x)*k,y:cy-(cy-vb.y)*k,w}),220)};
+document.getElementById('zin').onclick=()=>zoomBy(.66); document.getElementById('zout').onclick=()=>zoomBy(1.5); document.getElementById('zfit').onclick=()=>zoomTo({...FULL});
+const ptrs=new Map(); let gest=null, dragged=false;
+const toSvg=(px,py)=>{const r=ring.getBoundingClientRect(); return [vb.x+(px-r.left)/r.width*vb.w, vb.y+(py-r.top)/r.height*vb.w]};
+ring.addEventListener('pointerdown',e=>{ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY}); dragged=false;
+  if(ptrs.size===2){const [a,b]=[...ptrs.values()]; gest={pinch:true,d:Math.hypot(a.x-b.x,a.y-b.y),vb:{...vb},c:toSvg((a.x+b.x)/2,(a.y+b.y)/2)}}
+  else gest={x:e.clientX,y:e.clientY,vb:{...vb}}});
+ring.addEventListener('pointermove',e=>{if(!ptrs.has(e.pointerId)||!gest) return; ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY}); const r=ring.getBoundingClientRect();
+  if(gest.pinch&&ptrs.size===2){const [a,b]=[...ptrs.values()], d=Math.hypot(a.x-b.x,a.y-b.y), k=gest.d/Math.max(20,d), w=gest.vb.w*k, c=gest.c;
+    cancelAnimationFrame(vbAnim); setVB(clampVB({x:c[0]-(c[0]-gest.vb.x)*k,y:c[1]-(c[1]-gest.vb.y)*k,w})); dragged=true; e.preventDefault(); return}
+  if(vb.w>=FULL.w-1) return; const dx=e.clientX-gest.x, dy=e.clientY-gest.y; if(Math.hypot(dx,dy)>6) dragged=true;
+  if(dragged){cancelAnimationFrame(vbAnim); setVB(clampVB({x:gest.vb.x-dx/r.width*gest.vb.w,y:gest.vb.y-dy/r.height*gest.vb.w,w:gest.vb.w}))}});
+const up=e=>{ptrs.delete(e.pointerId); if(ptrs.size<2&&gest&&gest.pinch) gest=ptrs.size?{x:[...ptrs.values()][0].x,y:[...ptrs.values()][0].y,vb:{...vb}}:null; if(!ptrs.size) gest=null};
+['pointerup','pointercancel','pointerleave'].forEach(t=>ring.addEventListener(t,up));
+ring.addEventListener('click',e=>{if(dragged){e.stopPropagation(); e.preventDefault(); dragged=false}},true);
+ring.addEventListener('wheel',e=>{if(!e.ctrlKey) return; e.preventDefault(); const [cx,cy]=toSvg(e.clientX,e.clientY); cancelAnimationFrame(vbAnim); const k=Math.exp(e.deltaY*.01); setVB(clampVB({x:cx-(cx-vb.x)*k,y:cy-(cy-vb.y)*k,w:vb.w*k}))},{passive:false});
 // ---- filtering ----
 const multi=new Set([...pairsOf].filter(([,s])=>s.size>1).map(([k])=>k));
 function match(l){
@@ -254,7 +391,7 @@ function match(l){
   return true}
 function render(){
   const hits=L.filter(match), pk=new Set(hits.map(l=>l.g+'|'+l.p)), filtered=hits.length!==L.length;
-  ringPaint(hits,filtered);
+  ringPaint(hits,filtered); cardRender(hits,filtered); pickPaint(); ringFit(hits,filtered);
   links.forEach(k=>{const on=pk.has(k.g+'|'+k.p); k.el.classList.toggle('dim',filtered&&!on); k.el.classList.toggle('on',filtered&&on)});
   nodes.forEach(nd=>{const on=nd.g?hits.some(l=>l.g===nd.g):hits.some(l=>l.p===nd.p); nd.el.classList.toggle('dim',filtered&&!on); nd.el.classList.toggle('on',(nd.g&&nd.g===state.g)||(nd.p&&nd.p===state.p))});
   const by=new Map(); hits.forEach(l=>{const k=l.g+'|'+l.p; if(!by.has(k)) by.set(k,[]); by.get(k).push(l)});
@@ -273,19 +410,19 @@ function render(){
   if(state.gene){const ps=[...pairsOf.get(state.gene)||[]]; fo.hidden=false;
     fo.innerHTML=`<b>${state.gene}</b><p>Turns up in ${ps.length} gut–mind pair${ps.length===1?'':'s'}: ${ps.map(x=>x.replace('×',' × ')).join(', ')}.</p><div class="links"><a href="https://www.ncbi.nlm.nih.gov/gene/?term=${state.gene}%5Bsym%5D+AND+human%5Borgn%5D" target="_blank" rel="noopener">NCBI Gene ↗</a><a href="https://www.genecards.org/cgi-bin/carddisp.pl?gene=${state.gene}" target="_blank" rel="noopener">GeneCards ↗</a><a href="https://en.wikipedia.org/wiki/${state.gene}" target="_blank" rel="noopener">Wikipedia ↗</a></div>`}
   else fo.hidden=true;
-  const h=state.gene?'gene='+state.gene:state.g||state.p?'pair='+(state.g||'')+'-'+(state.p||''):state.f?'only='+state.f:'';
+  const h=state.loc?'locus='+state.loc.g+'-'+state.loc.p+'-'+state.loc.band:state.gene?'gene='+state.gene:state.g||state.p?'pair='+(state.g||'')+'-'+(state.p||''):state.f?'only='+state.f:'';
   try{history.replaceState(null,'',h?'#'+h:location.pathname)}catch(e){}
 }
-function setPair(g,p){const same=state.g===g&&state.p===p; Object.assign(state,same?{g:null,p:null}:{g,p}); state.gene=null; render(); if(!same) scrollToList()}
+function setPair(g,p){const same=state.g===g&&state.p===p&&!state.loc; Object.assign(state,same?{g:null,p:null}:{g,p}); state.gene=null; state.loc=null; render()}
 function scrollToList(){const t=document.querySelector('.bar').getBoundingClientRect().top+scrollY-2; if(scrollY<t-40) scrollTo({top:t,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
 document.querySelectorAll('.pill').forEach(b=>b.onclick=()=>{state.f=state.f===b.dataset.f?null:b.dataset.f; render()});
-const q=document.getElementById('q'); q.addEventListener('input',()=>{state.q=q.value.trim(); state.gene=null; render()});
-document.getElementById('clear').onclick=()=>{Object.assign(state,{g:null,p:null,f:null,q:'',gene:null}); q.value=''; render()};
-document.getElementById('list').addEventListener('click',e=>{const b=e.target.closest('[data-gene]'); if(b){state.gene=state.gene===b.dataset.gene?null:b.dataset.gene; state.g=state.p=null; state.q=''; q.value=''; render(); scrollToList(); return}
+const q=document.getElementById('q'); q.addEventListener('input',()=>{state.q=q.value.trim(); state.gene=null; state.loc=null; render()});
+document.getElementById('clear').onclick=()=>{Object.assign(state,{g:null,p:null,f:null,q:'',gene:null,loc:null}); q.value=''; render()};
+document.getElementById('list').addEventListener('click',e=>{const b=e.target.closest('[data-gene]'); if(b){state.gene=state.gene===b.dataset.gene?null:b.dataset.gene; state.g=state.p=null; state.loc=null; state.q=''; q.value=''; render(); scrollToList(); return}
   const m=e.target.closest('[data-m]'); if(m){state.q=m.dataset.m; q.value=m.dataset.m; state.gene=null; render(); scrollToList()}});
 // links in, links out
 (function(){const h=decodeURIComponent(location.hash.slice(1)); const [k,v]=h.split('=');
-  if(k==='gene'&&pairsOf.has(v)) state.gene=v; else if(k==='pair'){const [g,p]=v.split('-'); if(GUT.includes(g)) state.g=g; if(PSY.includes(p)) state.p=p} else if(k==='only'&&['co','mic','multi','opp'].includes(v)) state.f=v})();
+  if(k==='gene'&&pairsOf.has(v)) state.gene=v; else if(k==='pair'){const [g,p]=v.split('-'); if(GUT.includes(g)) state.g=g; if(PSY.includes(p)) state.p=p} else if(k==='only'&&['co','mic','multi','opp'].includes(v)) state.f=v; else if(k==='locus'){const [g,p,b]=v.split('-'); const l=L.find(x=>x.g===g&&x.p===p&&x.band===b); if(l){state.loc=l; state.g=g; state.p=p}}})();
 render();
 const share=()=>({url:location.href,text:'Your gut and your mind share genes: 83 stretches of DNA shared by gut diseases and psychiatric disorders, mapped interactively by @harmanify'});
 document.getElementById('shx').onclick=()=>{const s=share(); document.getElementById('shx').href=`https://x.com/intent/post?text=${encodeURIComponent(s.text)}&url=${encodeURIComponent(s.url)}`};
