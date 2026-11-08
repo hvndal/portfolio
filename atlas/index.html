@@ -13,6 +13,7 @@
 <meta property="og:url" content="https://hermanify.online/atlas/"/>
 <meta property="og:type" content="article"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@harmanify"/>
 <meta name="twitter:title" content="What happens when the brain breaks"/>
 <meta name="twitter:description" content="An interactive atlas of 94 brain conditions and where they live in the brain."/>
 <meta name="twitter:image" content="https://hermanify.online/assets/previews/atlas-og.jpg"/>
@@ -1085,9 +1086,12 @@ function sourcesBlock(w,pmLabel,pmUrl,note,subject){
 }
 const slug=t=>t.toLowerCase().replace(/['’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
 function setHash(h){try{history.replaceState(null,'',h?'#'+h:location.pathname+location.search)}catch(e){}}
+// links people paste get a picture: /atlas/s/<entry>/ carries that entry's preview image, then opens it here
+function shareUrl(h){return location.origin+'/atlas/'+(h?'s/'+h+'/':'')}
 function copyLink(btn){
+  const link=shareUrl(location.hash.slice(1));
   const done=()=>{btn.textContent='Link copied';setTimeout(()=>{btn.textContent='Copy link'},1600)};
-  if(navigator.clipboard) navigator.clipboard.writeText(location.href).then(done,()=>{prompt('Copy this link:',location.href)}); else prompt('Copy this link:',location.href);
+  if(navigator.clipboard) navigator.clipboard.writeText(link).then(done,()=>{prompt('Copy this link:',link)}); else prompt('Copy this link:',link);
 }
 // "See in 3D" never downloads on its own: if the model isn't loaded yet, it asks first
 let pending3D=null;
@@ -1445,7 +1449,7 @@ function shareRegion(k){shareOpen({key:'r:'+k,kicker:'Brain region',color:TH.acc
 function shareAtlas(){shareOpen({key:'atlas',kicker:'An atlas of 94 conditions',color:TH.acc,title:'What happens when the brain breaks',text:'Most of what we know about the brain was learned by studying what happens when one part stops working. 94 conditions, 11 systems, one interactive map.',regs:[],hash:'',file:'brain-disorder-atlas'})}
 async function shareOpen(o){
   tipHide(0);
-  const url=location.origin+location.pathname+(o.hash?'#'+o.hash:'');
+  const url=shareUrl(o.hash); // a small page per entry whose preview image shows the condition
   const text=o.key==='atlas'?`An interactive atlas of 94 brain disorders: tap any one to see where it lives and what it reveals. By ${HANDLE}`:`${o.title}: ${o.text} From the interactive brain disorder atlas by ${HANDLE}`;
   const e=encodeURIComponent, U=e(url), T=e(text), TU=e(text+' '+url);
   const nets=[['X',`https://x.com/intent/post?text=${T}&url=${U}`,ico('x')],['Facebook',`https://www.facebook.com/sharer/sharer.php?u=${U}`],['LinkedIn',`https://www.linkedin.com/sharing/share-offsite/?url=${U}`],
