@@ -343,6 +343,89 @@ html[data-theme=pop] .tree-card h3{font-size:28px;line-height:1.1}
 @media (max-width:1001px){html[data-theme=pop] .tree-card{background:var(--paper);border-top:3px solid var(--ink)}}
 @media (prefers-reduced-motion:reduce){html[data-theme=pop] .mast::before{animation:none}}
 @media (max-width:560px){.top{font-size:9.5px;letter-spacing:.1em}.theme-btn{margin-left:8px;padding:4px 10px;font-size:10px}}
+
+/* =================== SHARE, TREE PREVIEW, RING FEEDBACK =================== */
+.sh-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:2px solid var(--ink);border-radius:999px;background:var(--card);color:var(--ink);font:600 13px 'Bricolage Grotesque',system-ui,sans-serif;padding:8px 14px;min-height:42px;box-shadow:2px 2px 0 var(--ink);cursor:pointer;text-decoration:none;transition:transform .12s,box-shadow .12s,background .15s}
+.sh-btn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink);background:var(--sun)}
+.sh-btn:active{transform:translate(1px,1px);box-shadow:0 0 0 var(--ink)}
+.sh-btn.primary{background:var(--ink);color:#fff}.sh-btn.primary:hover{background:var(--accent)}
+.sh-btn svg{width:16px;height:16px;flex:none}
+.share-atlas{margin-left:12px;min-height:34px;padding:5px 12px;font-size:12px;vertical-align:middle}
+#share{width:min(600px,calc(100vw - 24px))}
+.sh{padding:24px 22px 22px}
+.sh h2{font:700 26px/1.1 'Fraunces',serif;margin:0 40px 4px 0}
+.sh .sub{margin:0 0 16px;color:var(--muted);font-size:14.5px}
+.sh-wrap{display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start}
+.sh-prev{display:block;width:100%;aspect-ratio:4/5;border:2px solid var(--ink);border-radius:12px;background:var(--paper);object-fit:cover}
+.sh-prev.loading{background:repeating-linear-gradient(45deg,#f4efe6 0 10px,#fbf8f2 10px 20px)}
+.sh-main{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.sh-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.sh-grid .sh-btn{justify-content:flex-start;font-size:12.5px;padding:7px 12px;min-height:40px}
+.sh-note{grid-column:1/-1;font-size:12.5px;line-height:1.45;color:var(--muted);margin:14px 0 0}
+@media (max-width:600px){.sh-wrap{grid-template-columns:1fr}.sh-prev{max-width:230px;margin:0 auto}.sh{padding:58px 16px 24px}.share-atlas{margin:10px auto 0;display:table}#share{width:100vw}}
+.ttip{position:fixed;z-index:40;width:320px;max-width:calc(100vw - 24px);background:var(--card);border:2px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 rgba(31,26,46,.8);padding:12px 14px;opacity:0;transform:translateY(6px);transition:opacity .16s ease,transform .16s ease;pointer-events:none}
+.ttip.on{opacity:1;transform:none;pointer-events:auto}
+.ttip .k{font:600 11px 'Bricolage Grotesque',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.ttip b{display:block;font:700 20px/1.15 'Fraunces',serif;margin:3px 0 5px;color:var(--ink)}
+.ttip p{margin:0 0 8px;font:400 14.5px/1.45 'Newsreader',serif;color:#34302b}
+.ttip .w{font-size:13.5px;color:#4a4356;border-left:3px solid var(--c,var(--accent));padding-left:9px}
+.ttip .w.loading{font-style:italic;color:var(--muted)}
+.ttip .w small{display:block;font:500 10.5px 'Bricolage Grotesque',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.ttip .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.ttip .acts .sh-btn{min-height:34px;padding:5px 12px;font-size:12px}
+.ripple{fill:none;stroke-width:2.5;transform-box:fill-box;transform-origin:center;vector-effect:non-scaling-stroke;pointer-events:none;animation:rip .6s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes rip{from{transform:scale(1);opacity:.95}to{transform:scale(6);opacity:0}}
+.dz circle,.rg{transform-box:fill-box;transform-origin:center}
+.dz.picked circle{animation:pick .38s ease-out forwards}
+@keyframes pick{0%{transform:scale(1)}45%{transform:scale(2.3)}100%{transform:scale(1.7)}}
+.rg.picked{animation:rgpick .38s ease-out}
+@keyframes rgpick{0%{transform:scale(1)}45%{transform:scale(1.18)}100%{transform:scale(1)}}
+#wheel.picking{cursor:progress}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+dialog[open]::backdrop{animation:fadein .3s ease}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+html[data-theme=pop] dialog[open]{animation:pop .34s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion:reduce){.ripple,.dz.picked circle,.rg.picked{animation:none}}
+
+/* =================== PHONE FIRST (600px and below) =================== */
+@keyframes ask{0%,100%{box-shadow:5px 5px 0 rgba(31,26,46,.8)}50%{box-shadow:0 0 0 6px rgba(184,67,95,.35),5px 5px 0 rgba(31,26,46,.8)}}
+#brain3d.asking .gate-box{animation:ask 1.1s ease-in-out 3}
+@media (max-width:600px){
+ html[data-theme=pop] .wrap{padding:14px 14px 56px}
+ html[data-theme=pop] .mast{padding:26px 0 30px}
+ html[data-theme=pop] h1{font-size:clamp(38px,11.5vw,52px);margin:8px 0 12px}
+ html[data-theme=pop] .dek{font-size:16.5px;line-height:1.5}
+ html[data-theme=pop] .byline{margin-top:12px}
+ /* compact sticky bar: toggle + count on one line, search, then one swipeable row of systems */
+ html[data-theme=pop] .controls{display:grid;grid-template-columns:auto 1fr;gap:8px 10px;padding:10px 0 8px;justify-content:stretch}
+ html[data-theme=pop] .view-toggle{grid-column:1;justify-self:start}
+ html[data-theme=pop] .count{grid-column:2;grid-row:1;justify-self:end;min-width:0;font-size:12px}
+ html[data-theme=pop] .search{grid-column:1/-1;width:100%;min-height:42px;font-size:16px}
+ html[data-theme=pop] .chips{grid-column:1/-1;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:8px;padding:2px 2px 6px;margin:0 -14px;padding-left:14px;padding-right:14px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ html[data-theme=pop] .chips::-webkit-scrollbar{display:none}
+ html[data-theme=pop] .chip{flex:none;scroll-snap-align:start;min-height:38px}
+ /* the ring becomes an overview; the tree is the main way in on phones */
+ html[data-theme=pop] .caption{min-height:0;padding:4px 0 0}
+ html[data-theme=pop] .caption b{font-size:22px}
+ /* popups: a full-screen sheet with the actions pinned to the bottom */
+ html[data-theme=pop] dialog{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0;border:0;box-shadow:none}
+ html[data-theme=pop] dialog[open]{animation:sheet .28s cubic-bezier(.2,.7,.2,1)}
+ html[data-theme=pop] .pop{display:flex;flex-direction:column;height:100%;overflow-y:auto}
+ html[data-theme=pop] .pop-fig{border-right:0;border-bottom:2px solid var(--ink);padding:14px 14px 10px;gap:6px;flex:none}
+ html[data-theme=pop] .pop-fig svg{max-height:210px}
+ html[data-theme=pop] .pop-fig figcaption{display:none}
+ html[data-theme=pop] .pop-body{padding:16px 16px 0;overflow:visible;flex:1}
+ html[data-theme=pop] .pop-body h2{font-size:34px;margin:6px 0 10px}
+ html[data-theme=pop] .pop-body .def{font-size:18px}
+ html[data-theme=pop] .rel{grid-template-columns:1fr}
+ html[data-theme=pop] .foot{position:sticky;bottom:0;margin:20px -16px 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--card);border-top:2px solid var(--ink);z-index:2}
+ html[data-theme=pop] .navb{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ html[data-theme=pop] .navb::-webkit-scrollbar{display:none}
+ html[data-theme=pop] .navb button{flex:none;min-height:40px}
+ html[data-theme=pop] .x{position:fixed;top:10px;right:10px;z-index:3;width:42px;height:42px}
+ html[data-theme=pop] .top{font-size:9.5px}
+}
+@keyframes sheet{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.mast>*,.mast h1 .ln>span,.pop-body>*,.reveal,.reveal .step,.reveal .row{opacity:1!important;transform:none!important}
  #wheel .link,#wheel .arc{stroke-dashoffset:0}#wheel .dz,#wheel .brain{opacity:1}.mast h1 em::after{transform:scaleX(1)}}
 @media (max-width:760px){.row::after{display:none}.b3wrap{grid-template-columns:1fr;gap:10px}#b3{height:420px}
@@ -359,7 +442,7 @@ html[data-theme=pop] .tree-card h3{font-size:28px;line-height:1.1}
     <div class="cap">An atlas of 94 conditions</div>
     <h1><span class="ln"><span>What happens when</span></span><span class="ln"><span>the brain <em>breaks</em></span></span></h1>
     <p class="dek">Most of what we know about the brain was learned by studying what happens when one part stops working. Each condition below is a clue. Click one to see where it lives and what it reveals, or switch to the tree and follow the connections branch by branch.</p>
-    <div class="byline cap">By Herman Hundal</div>
+    <div class="byline cap">By Herman Hundal <button type="button" class="sh-btn share-atlas" id="share-atlas">Share the atlas</button></div>
   </header>
 
   <div class="controls">
@@ -392,8 +475,8 @@ html[data-theme=pop] .tree-card h3{font-size:28px;line-height:1.1}
         <script>document.getElementById('b3-poster').src='brain-poster-pop.webp'</script>
         <div class="gate-box">
           <button type="button" class="gate-btn" id="b3-load">Load the 3D model</button>
-          <p>About 270 KB, and it uses your graphics card. You can turn it off again at any time.</p>
-          <label class="gate-remember"><input type="checkbox" id="b3-remember" checked/> Remember on this device</label>
+          <p id="b3-ask">About 270 KB, and it uses your graphics card. You can turn it off again at any time.</p>
+          <label class="gate-remember"><input type="checkbox" id="b3-remember"/> Remember on this device</label>
         </div>
       </div>
       <button type="button" class="b3-touch" id="b3-touch" hidden>Explore in 3D</button>
@@ -424,6 +507,7 @@ html[data-theme=pop] .tree-card h3{font-size:28px;line-height:1.1}
 </div>
 
 <dialog id="pop" aria-labelledby="pop-title"></dialog>
+<dialog id="share" aria-label="Share"></dialog>
 
 <script>
 const POP=document.documentElement.getAttribute('data-theme')==='pop';
@@ -790,8 +874,8 @@ for(const k in REG){const r=REG[k];
   const t=el('text',{x:r.x,y:r.y-r.ry-4,class:'rl'},gBrain); t.textContent=r.n;
   e.addEventListener('mouseenter',()=>litRegion(k));
   e.addEventListener('mouseleave',reset);
-  e.addEventListener('click',()=>openRegion(k));
-  e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();openRegion(k)}});
+  e.addEventListener('click',()=>pickRegion(k));
+  e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();pickRegion(k)}});
   regEls[k]=[e,t];
 }
 el('text',{x:515,y:722,'text-anchor':'middle',fill:TH.muted,'font-size':9,'font-family':'Inter','letter-spacing':'.14em'},gBrain).textContent='FRONT ←   SCHEMATIC SIDE VIEW';
@@ -812,8 +896,8 @@ D.forEach(([name,cat,regs,def])=>{
   g.addEventListener('mouseleave',reset);
   g.addEventListener('focus',()=>hover(it));
   g.addEventListener('blur',reset);
-  g.addEventListener('click',()=>open(it));
-  g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();open(it)}});
+  g.addEventListener('click',()=>pick(it));
+  g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();pick(it)}});
 });
 for(const k of order){const C=CATS[k],a0=(C.start-.4)*step-Math.PI/2,a1=(C.end+.4)*step-Math.PI/2,rr=R-16;
   const ad=`M${CX+rr*Math.cos(a0)} ${CY+rr*Math.sin(a0)} A${rr} ${rr} 0 ${a1-a0>Math.PI?1:0} 1 ${CX+rr*Math.cos(a1)} ${CY+rr*Math.sin(a1)}`;
@@ -902,7 +986,7 @@ function open(it){
       ${rel.length?`<div class="cap k">Related conditions</div><div class="rel">${rel.map(o=>`<button data-n="${esc(o.name)}"><i style="background:${CATS[o.cat].c}"></i>${o.name}</button>`).join('')}</div>`:''}
       ${sourcesBlock(w,`PubMed: research on ${esc(it.name)}`,`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(it.name)}`,'Plain-language summary and explanation written for this atlas. Region links show where damage is most often reported, not the only possible cause.',it.name)}
       <div class="foot">
-        <div class="navb"><button data-step="-1" aria-label="Previous condition">←</button><button data-step="1" aria-label="Next condition">→</button><button data-step="3d">See in 3D</button><button data-step="tree">Show in tree</button><button data-step="r">Surprise me</button><button data-step="copy">Copy link</button></div></div>
+        <div class="navb"><button data-step="-1" aria-label="Previous condition">←</button><button data-step="1" aria-label="Next condition">→</button><button data-step="3d">See in 3D</button><button data-step="tree">Show in tree</button><button data-step="share">Share</button><button data-step="r">Surprise me</button><button data-step="copy">Copy link</button></div></div>
     </div>`, 'c:'+it.name);
   setHash(slug(it.name));
   if(w) fillWiki(w,'c:'+it.name);
@@ -923,7 +1007,7 @@ function openRegion(k){
       <div class="cap k">When it's damaged</div>
       <div class="rel">${hits.map(o=>`<button data-n="${esc(o.name)}"><i style="background:${CATS[o.cat].c}"></i>${o.name}</button>`).join('')}</div>
       ${sourcesBlock(REGWIKI[k],`PubMed: research on the ${esc(REG[k].n.toLowerCase())}`,`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(REG[k].n)}`,'Region positions are schematic, drawn to show relationships rather than exact anatomy.',REG[k].n)}
-      <div class="foot"><div class="navb"><button data-step="copy">Copy link</button></div></div>
+      <div class="foot"><div class="navb"><button data-step="share">Share</button><button data-step="copy">Copy link</button></div></div>
     </div>`, 'r:'+k);
   setHash('region-'+slug(REG[k].n));
   if(REGWIKI[k]) fillWiki(REGWIKI[k],'r:'+k);
@@ -936,6 +1020,7 @@ dlg.addEventListener('click',e=>{
   if(st&&st.dataset.step==='tree'){const it=cur;dlg.close();Object.assign(tState,{sys:it.cat,cond:it.name,reg:null,sel:'c:'+it.name});setView('tree');return}
   if(st&&st.dataset.step==='3d'){const it=cur;dlg.close();show3D(it.regs,CATS[it.cat].c);return}
   if(st&&st.dataset.step==='copy'){copyLink(st);return}
+  if(st&&st.dataset.step==='share'){const o=dlg.dataset.owner; if(o.startsWith('r:')) shareRegion(o.slice(2)); else if(cur) shareCond(cur); return}
   if(st){const vis=items.filter(o=>!o.g.classList.contains('dim'));const pool=vis.length?vis:items;
     if(st.dataset.step==='r') return open(pool[Math.floor(Math.random()*pool.length)]);
     const j=Math.max(0,pool.indexOf(cur)); open(pool[(j+ +st.dataset.step+pool.length)%pool.length]);}
@@ -982,10 +1067,19 @@ function copyLink(btn){
   const done=()=>{btn.textContent='Link copied';setTimeout(()=>{btn.textContent='Copy link'},1600)};
   if(navigator.clipboard) navigator.clipboard.writeText(location.href).then(done,()=>{prompt('Copy this link:',location.href)}); else prompt('Copy this link:',location.href);
 }
+// "See in 3D" never downloads on its own: if the model isn't loaded yet, it asks first
+let pending3D=null;
 function show3D(regs,color){
-  document.getElementById('brain3d').scrollIntoView({behavior:'smooth',block:'center'});
-  if(window.load3D) window.load3D().then(b=>b.show(regs,color)).catch(()=>{});
+  const sec=document.getElementById('brain3d');
+  sec.scrollIntoView({behavior:'smooth',block:'center'});
+  if(window.brain3d&&window.brain3d.ready&&sec.classList.contains('on3d')){window.brain3d.show(regs,color);return}
+  pending3D={regs,color};
+  const ask=document.getElementById('b3-ask');
+  if(ask) ask.textContent=`Load the 3D model to see ${regs.length===1?'this region':'these regions'}? About 270 KB, and it uses your graphics card.`;
+  sec.classList.remove('asking'); void sec.offsetWidth; sec.classList.add('asking');
+  setTimeout(()=>{const b=document.getElementById('b3-load'); if(b) b.focus({preventScroll:true})},500);
 }
+window.after3DLoad=b=>{if(pending3D){const p=pending3D;pending3D=null;b.show(p.regs,p.color)}};
 function openFromHash(){
   const h=decodeURIComponent(location.hash.slice(1)); if(!h) return;
   if(h.startsWith('region-')){const k=Object.keys(REG).find(k=>'region-'+slug(REG[k].n)===h); if(k) openRegion(k); return}
@@ -1068,7 +1162,9 @@ function tMake(n){
   g.append(hit,c,t); g.setAttribute('tabindex','0'); g.setAttribute('role','button'); tNodes.appendChild(g);
   let link=null; if(n.parent){link=document.createElementNS(TNS,'path'); link.setAttribute('class','tl'); tLinks.appendChild(link)}
   const e={g,hit,c,t,link,n,x:0,y:0,op:0,lw:0};
-  g.addEventListener('click',()=>tClick(e.n));
+  g.addEventListener('click',()=>{tipHide(0);tClick(e.n)});
+  g.addEventListener('mouseenter',()=>tipShow(e));
+  g.addEventListener('mouseleave',()=>tipHide());
   g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();tClick(e.n)}});
   return e;
 }
@@ -1155,7 +1251,7 @@ function tOpenSystem(k){Object.assign(tState,{sys:k,cond:null,reg:null,sel:'s:'+
 function setView(v,opt){
   view=v; document.body.classList.toggle('tree-mode',v==='tree');
   document.querySelectorAll('.view-toggle button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.view===v)));
-  if(v==='tree'){tRender(opt||{}); requestAnimationFrame(tReveal)}
+  if(v==='tree'){tRender(opt||{}); if(!(opt&&opt.quiet)) requestAnimationFrame(tReveal)}
 }
 function tReveal(){const bar=document.querySelector('.controls').getBoundingClientRect(), top=document.getElementById('tree-wrap').getBoundingClientRect().top;
   if(top<bar.bottom-1||top>innerHeight*.7) window.scrollBy({top:top-bar.bottom-6,behavior:tReduce?'auto':'smooth'})}
@@ -1165,7 +1261,7 @@ function tCard(){
   else if(id.startsWith('s:')){const k=id.slice(2),C=CATS[k],n=items.filter(o=>o.cat===k).length;
     h=`<div class="tc-main"><div class="cap" style="color:${C.c}">System · ${n} conditions</div><h3>${C.name}</h3><p>${CATINFO[k]}</p></div><div class="tc-act"><button class="tc-btn" data-act="ring" data-k="${k}">Show on the ring</button></div>`}
   else if(id.startsWith('c:')){const it=byName[id.slice(2)],C=CATS[it.cat];
-    h=`<div class="tc-main"><div class="cap" style="color:${C.c}">${C.name}</div><h3>${it.name}</h3><p>${it.def}</p></div><div class="tc-act"><button class="tc-btn primary" data-act="read" data-n="${esc(it.name)}">Read full entry</button><button class="tc-btn" data-act="3d" data-n="${esc(it.name)}">See in 3D</button></div>`}
+    h=`<div class="tc-main"><div class="cap" style="color:${C.c}">${C.name}</div><h3>${it.name}</h3><p>${it.def}</p></div><div class="tc-act"><button class="tc-btn primary" data-act="read" data-n="${esc(it.name)}">Read full entry</button><button class="tc-btn" data-act="3d" data-n="${esc(it.name)}">See in 3D</button><button class="tc-btn" data-act="share" data-n="${esc(it.name)}">Share</button></div>`}
   else{const k=id.slice(2).split('|')[1],hits=items.filter(o=>o.regs.includes(k));
     h=`<div class="tc-main"><div class="cap">Brain region · ${hits.length} linked condition${hits.length===1?'':'s'}</div><h3>${REG[k].n}</h3><p>${REGINFO[k]}</p></div><div class="tc-act"><button class="tc-btn primary" data-act="region" data-k="${k}">Open region</button></div>`}
   treeCard.innerHTML=h;
@@ -1174,6 +1270,7 @@ treeCard.addEventListener('click',e=>{const b=e.target.closest('[data-act]'); if
   if(a==='read') open(byName[b.dataset.n]);
   else if(a==='3d'){const it=byName[b.dataset.n]; show3D(it.regs,CATS[it.cat].c)}
   else if(a==='region') openRegion(b.dataset.k);
+  else if(a==='share') shareCond(byName[b.dataset.n]);
   else if(a==='ring'){const k=b.dataset.k; setView('ring'); if(activeCat!==k) chips.children[order.indexOf(k)].click()}
 });
 document.querySelectorAll('.view-toggle button').forEach(b=>b.addEventListener('click',()=>{if(view!==b.dataset.view) setView(b.dataset.view)}));
@@ -1228,7 +1325,139 @@ const bar=document.getElementById('progress');
 const revealCheck=()=>document.querySelectorAll('.reveal:not(.in)').forEach(e=>{if(e.getBoundingClientRect().top<innerHeight*0.92){e.classList.add('in');e.querySelectorAll('.step,.row').forEach((c,i)=>c.style.transitionDelay=(i*60)+'ms')}});
 addEventListener('scroll',()=>{const h=document.documentElement;bar.style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight||1)})`;revealCheck()},{passive:true});
 revealCheck();
-window.atlas={REG,REGINFO,items,openRegion,setView,tState,tRender};
+
+// ---------- ring feedback: show the pick, then open ----------
+let picking=0;
+const pickWait=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?0:380;
+function ripple(parent,x,y,r,color){const c=el('circle',{cx:x,cy:y,r,class:'ripple',stroke:color},parent);setTimeout(()=>c.remove(),650)}
+function pick(it){
+  if(picking) return; hover(it);
+  const c=it.g.querySelector('circle'); ripple(gDots,+c.getAttribute('cx'),+c.getAttribute('cy'),5,CATS[it.cat].c);
+  it.g.classList.add('picked'); svg.classList.add('picking');
+  cap.innerHTML=`<b>${it.name}</b><span>Opening…</span>`;
+  picking=setTimeout(()=>{picking=0;it.g.classList.remove('picked');svg.classList.remove('picking');open(it)},pickWait());
+}
+function pickRegion(k){
+  if(picking) return; litRegion(k);
+  const r=REG[k], e=regEls[k][0]; ripple(gBrain,r.x,r.y,Math.max(r.rx,r.ry),TH.acc);
+  e.classList.add('picked'); svg.classList.add('picking');
+  cap.innerHTML=`<b>${REG[k].n}</b><span>Opening…</span>`;
+  picking=setTimeout(()=>{picking=0;e.classList.remove('picked');svg.classList.remove('picking');openRegion(k)},pickWait());
+}
+
+// ---------- tree: hover a condition or region for a brief, with Wikipedia ----------
+const tip=document.createElement('div'); tip.className='ttip'; tip.setAttribute('role','tooltip'); tip.id='ttip'; document.body.appendChild(tip);
+const finePtr=matchMedia('(hover: hover) and (pointer: fine)');
+let tipT=0, tipH=0, tipKey='';
+const firstSentences=(t,n=2)=>{const m=(t||'').match(/[^.!?]+[.!?]+(\s|$)/g); const out=m?m.slice(0,n).join('').trim():(t||''); return out.length>260?out.slice(0,257).replace(/\s+\S*$/,'')+'…':out};
+function tipShow(e){
+  const n=e.n; if(!finePtr.matches||!['cond','reg','rel'].includes(n.kind)) return;
+  clearTimeout(tipH); clearTimeout(tipT);
+  tipT=setTimeout(()=>{
+    let key,k,b,d,w,c,acts;
+    if(n.kind==='reg'){key='r:'+n.reg;k='Brain region';c=TH.acc;b=REG[n.reg].n;d=REGINFO[n.reg];w=REGWIKI[n.reg];
+      acts=`<button class="sh-btn primary" data-t="region" data-k="${n.reg}">Open all info</button><button class="sh-btn" data-t="sreg" data-k="${n.reg}">Share</button>`}
+    else{const it=n.it;key='c:'+it.name;k=CATS[it.cat].name;c=CATS[it.cat].c;b=it.name;d=it.def;w=WIKI[it.name];
+      acts=`<button class="sh-btn primary" data-t="read" data-n="${esc(it.name)}">Open all info</button><button class="sh-btn" data-t="scond" data-n="${esc(it.name)}">Share</button>`}
+    tipKey=key; tip.style.setProperty('--c',c);
+    tip.innerHTML=`<div class="k" style="color:${c}">${esc(k)}</div><b>${esc(b)}</b><p>${esc(d)}</p>${w?`<p class="w loading"><small>Wikipedia</small><span>Loading…</span></p>`:''}<div class="acts">${acts}</div>`;
+    const r=e.t.getBoundingClientRect(), tw=tip.offsetWidth||320;
+    let x=r.right+16, y=r.top-14;
+    if(x+tw>innerWidth-12) x=Math.max(12,Math.min(r.left,innerWidth-tw-12)), y=r.bottom+10;
+    tip.style.left=x+'px'; tip.style.top=Math.max(12,y)+'px';
+    tip.classList.add('on');
+    const th=tip.offsetHeight; if(y+th>innerHeight-12) tip.style.top=Math.max(12,(x===r.right+16?innerHeight-th-12:r.top-th-10))+'px';
+    if(w) wikiSummary(w).then(dd=>{if(tipKey!==key) return; const ww=tip.querySelector('.w'); if(!ww) return; ww.classList.remove('loading'); ww.querySelector('span').textContent=firstSentences(dd.extract)||'No summary available.'})
+      .catch(()=>{if(tipKey!==key) return; const ww=tip.querySelector('.w'); if(ww) ww.remove()});
+  },200);
+}
+function tipHide(ms=220){clearTimeout(tipT); clearTimeout(tipH); tipH=setTimeout(()=>{tip.classList.remove('on');tipKey=''},ms)}
+tip.addEventListener('mouseenter',()=>clearTimeout(tipH));
+tip.addEventListener('mouseleave',()=>tipHide());
+tip.addEventListener('click',ev=>{const b=ev.target.closest('[data-t]'); if(!b) return; tipHide(0); const t=b.dataset.t;
+  if(t==='read') open(byName[b.dataset.n]); else if(t==='region') openRegion(b.dataset.k);
+  else if(t==='scond') shareCond(byName[b.dataset.n]); else if(t==='sreg') shareRegion(b.dataset.k)});
+addEventListener('scroll',()=>{if(tip.classList.contains('on')) tipHide(0)},{passive:true});
+
+// ---------- share: a 1080×1350 card signed @harmanify, plus every major network ----------
+const HANDLE='@harmanify', SITE='hermanify.online/atlas';
+const shareDlg=document.getElementById('share'), cardCache=new Map();
+const ICO={x:'<path d="M3 3h4.6l4.1 5.6L16.6 3H21l-7.2 8.1L21.5 21h-4.6l-4.5-6.1L6.9 21H2.5l7.6-8.6z" fill="currentColor"/>',
+  dl:'<path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+  sh:'<path d="M12 15V3m0 0L7 8m5-5 5 5M5 12v8h14v-8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+  ln:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'};
+const ico=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${ICO[k]}</svg>`;
+function svgToImage(str){return new Promise((res,rej)=>{const url=URL.createObjectURL(new Blob([str.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ')],{type:'image/svg+xml'}));
+  const im=new Image(); im.onload=()=>{res(im);URL.revokeObjectURL(url)}; im.onerror=e=>{URL.revokeObjectURL(url);rej(e)}; im.src=url})}
+function wrapLines(ctx,text,maxW,max){const words=String(text).split(/\s+/),lines=[];let line='',i=0;
+  for(;i<words.length;i++){const t=line?line+' '+words[i]:words[i]; if(ctx.measureText(t).width>maxW&&line){lines.push(line);line=words[i];if(lines.length===max)break} else line=t}
+  if(lines.length<max){if(line) lines.push(line)} else if(i<words.length){let l=lines[max-1];while(l&&ctx.measureText(l+'…').width>maxW) l=l.replace(/\s*\S+$/,''); lines[max-1]=l+'…'}
+  return lines}
+async function makeCard(o){
+  if(cardCache.has(o.key)) return cardCache.get(o.key);
+  const job=(async()=>{
+    await Promise.all(["700 74px Fraunces","400 36px Newsreader","600 28px 'Bricolage Grotesque'","700 40px 'Bricolage Grotesque'"].map(f=>document.fonts.load(f).catch(()=>{})));
+    const W=1080,H=1350,cv=document.createElement('canvas'); cv.width=W; cv.height=H; const x=cv.getContext('2d');
+    x.fillStyle='#fdfcf9'; x.fillRect(0,0,W,H);
+    x.textBaseline='alphabetic';
+    x.font="600 26px 'Bricolage Grotesque',sans-serif"; x.fillStyle=o.color; x.fillText(o.kicker.toUpperCase(),60,92);
+    x.fillStyle='#6e6478'; x.textAlign='right'; x.fillText('BRAIN DISORDER ATLAS',W-60,92); x.textAlign='left';
+    x.fillStyle='#1f1a2e'; x.fillRect(60,118,W-120,4);
+    const box=[60,150,W-120,640]; x.fillStyle='#ffffff'; x.strokeStyle='#1f1a2e'; x.lineWidth=4;
+    x.beginPath(); x.roundRect?x.roundRect(...box,24):x.rect(...box); x.fill(); x.stroke();
+    try{const im=await svgToImage(figure(o.regs,o.color)); const h=600, w=h*440/410; x.drawImage(im,(W-w)/2,170,w,h)}catch(e){}
+    let y=880; x.fillStyle='#1f1a2e'; x.font="700 72px Fraunces,serif";
+    for(const l of wrapLines(x,o.title,W-120,2)){x.fillText(l,60,y);y+=78}
+    y+=8; x.fillStyle='#3a3346'; x.font="400 36px Newsreader,serif";
+    for(const l of wrapLines(x,o.text,W-120,Math.max(1,Math.min(4,Math.floor((1196-y)/48))))){x.fillText(l,60,y);y+=48}
+    x.fillStyle=o.color; x.fillRect(0,1226,W,8);
+    x.fillStyle='#1f1a2e'; x.fillRect(0,1234,W,H-1234);
+    x.fillStyle='#ffffff'; x.save(); x.translate(60,1274); x.scale(1.5,1.5); x.fill(new Path2D('M3 3h4.6l4.1 5.6L16.6 3H21l-7.2 8.1L21.5 21h-4.6l-4.5-6.1L6.9 21H2.5l7.6-8.6z')); x.restore(); x.font="700 40px 'Bricolage Grotesque',sans-serif"; x.fillText(HANDLE,112,1305);
+    x.fillStyle='#e8dfe9'; x.font="500 28px 'Bricolage Grotesque',sans-serif"; x.textAlign='right'; x.fillText(SITE+'  ·  interactive',W-60,1303); x.textAlign='left';
+    return new Promise(res=>cv.toBlob(b=>res(b),'image/png'));
+  })();
+  cardCache.set(o.key,job); job.catch(()=>cardCache.delete(o.key)); return job;
+}
+function shareCond(it){const C=CATS[it.cat];shareOpen({key:'c:'+it.name,kicker:C.name,color:C.c,title:it.name,text:it.def,regs:it.regs,hash:slug(it.name),file:slug(it.name)})}
+function shareRegion(k){shareOpen({key:'r:'+k,kicker:'Brain region',color:TH.acc,title:REG[k].n,text:REGINFO[k],regs:[k],hash:'region-'+slug(REG[k].n),file:'region-'+slug(REG[k].n)})}
+function shareAtlas(){shareOpen({key:'atlas',kicker:'An atlas of 94 conditions',color:TH.acc,title:'What happens when the brain breaks',text:'Most of what we know about the brain was learned by studying what happens when one part stops working. 94 conditions, 11 systems, one interactive map.',regs:[],hash:'',file:'brain-disorder-atlas'})}
+async function shareOpen(o){
+  tipHide(0);
+  const url=location.origin+location.pathname+(o.hash?'#'+o.hash:'');
+  const text=o.key==='atlas'?`An interactive atlas of 94 brain disorders: tap any one to see where it lives and what it reveals. By ${HANDLE}`:`${o.title}: ${o.text} From the interactive brain disorder atlas by ${HANDLE}`;
+  const e=encodeURIComponent, U=e(url), T=e(text), TU=e(text+' '+url);
+  const nets=[['X',`https://x.com/intent/post?text=${T}&url=${U}`,ico('x')],['Facebook',`https://www.facebook.com/sharer/sharer.php?u=${U}`],['LinkedIn',`https://www.linkedin.com/sharing/share-offsite/?url=${U}`],
+    ['Reddit',`https://www.reddit.com/submit?url=${U}&title=${e(o.title+' · brain disorder atlas')}`],['WhatsApp',`https://wa.me/?text=${TU}`],['Telegram',`https://t.me/share/url?url=${U}&text=${T}`],
+    ['Threads',`https://www.threads.net/intent/post?text=${TU}`],['Bluesky',`https://bsky.app/intent/compose?text=${TU}`],['Pinterest',`https://www.pinterest.com/pin/create/button/?url=${U}&description=${T}`],['Email',`mailto:?subject=${e(o.title+' · brain disorder atlas')}&body=${TU}`]];
+  shareDlg.innerHTML=`<button class="x" data-close aria-label="Close">×</button><div class="sh">
+    <h2>Share ${o.key==='atlas'?'the atlas':esc(o.title)}</h2><p class="sub">A ready-made image, signed ${HANDLE}, that links back here.</p>
+    <div class="sh-wrap"><img class="sh-prev loading" alt="Share image for ${esc(o.title)}">
+    <div><div class="sh-main">
+      <button class="sh-btn primary" data-s="native" hidden>${ico('sh')} Share image…</button>
+      <button class="sh-btn${navigator.canShare?'':' primary'}" data-s="dl">${ico('dl')} Download image</button>
+      <button class="sh-btn" data-s="copy">${ico('ln')} Copy link</button></div>
+      <div class="sh-grid">${nets.map(([n,h,i])=>`<a class="sh-btn" href="${h}" target="_blank" rel="noopener">${i||''}${n}</a>`).join('')}<button class="sh-btn" data-s="ig">Instagram</button><button class="sh-btn" data-s="ig">TikTok</button></div></div>
+    <p class="sh-note">Instagram and TikTok don't take links from the web: download the image (or use Share image on a phone) and post it from the app. Link in bio: ${SITE}</p></div></div>`;
+  if(!shareDlg.open) shareDlg.showModal();
+  const prev=shareDlg.querySelector('.sh-prev'), nat=shareDlg.querySelector('[data-s="native"]');
+  let blob=null, file=null;
+  const ready=makeCard(o).then(b=>{blob=b; file=new File([b],o.file+'.png',{type:'image/png'});
+    prev.src=URL.createObjectURL(b); prev.classList.remove('loading');
+    if(navigator.canShare&&navigator.canShare({files:[file]})) nat.hidden=false});
+  const download=()=>ready.then(()=>{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=o.file+'-harmanify.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)});
+  const flash=(b,t)=>{const old=b.innerHTML;b.textContent=t;setTimeout(()=>{b.innerHTML=old},1600)};
+  shareDlg.onclick=ev=>{
+    if(ev.target===shareDlg||ev.target.closest('[data-close]')) return shareDlg.close();
+    const b=ev.target.closest('[data-s]'); if(!b) return; const s=b.dataset.s;
+    if(s==='dl'){download();flash(b,'Image saved')}
+    else if(s==='copy'){(navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(()=>flash(b,'Link copied'),()=>prompt('Copy this link:',url))}
+    else if(s==='native'){ready.then(()=>navigator.share({files:[file],title:o.title,text:text+' '+url})).catch(()=>{})}
+    else if(s==='ig'){ready.then(()=>{if(file&&navigator.canShare&&navigator.canShare({files:[file]})) return navigator.share({files:[file]}); download(); flash(b,'Image saved: post it from the app')}).catch(()=>{})}
+  };
+}
+document.getElementById('share-atlas').onclick=shareAtlas;
+window.atlas={REG,REGINFO,items,openRegion,setView,tState,tRender,shareCond,shareAtlas,makeCard};
+if(matchMedia('(max-width: 600px)').matches) setView('tree',{instant:true,quiet:true});
 
 openFromHash();
 </script>
@@ -1249,7 +1478,7 @@ window.load3D=function(){
   return loading;
 };
 if(!hasGL) fail();
-document.getElementById('b3-load').onclick=()=>{if(document.getElementById('b3-remember').checked) store.set('on');window.load3D().catch(()=>{})};
+document.getElementById('b3-load').onclick=()=>{if(document.getElementById('b3-remember').checked) store.set('on');window.load3D().then(b=>{if(window.after3DLoad) window.after3DLoad(b)}).catch(()=>{})};
 document.getElementById('b3-off').onclick=()=>{store.set(null);if(window.brain3d) window.brain3d.pause();sec.classList.remove('on3d');document.getElementById('b3-load').textContent='Load the 3D model'};
 if(store.get()==='on'&&hasGL){   // remembered: load when the section is about to scroll into view
   const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();window.load3D().catch(()=>{})}},{rootMargin:'400px 0px'});io.observe(sec);
