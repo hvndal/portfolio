@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>The Gut–Brain Genome · Herman Hundal</title>
+<meta name="description" content="An interactive map of the 83 genetic loci shared between four gut diseases and six psychiatric disorders, from Gong et al., JAMA Psychiatry 2023."/>
+<meta property="og:title" content="The Gut–Brain Genome"/>
+<meta property="og:description" content="83 stretches of DNA shared by gut diseases and psychiatric disorders. Tap any link, gene or microbe to highlight it."/>
+<meta property="og:image" content="https://hermanify.online/gut-brain/og.jpg"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://hermanify.online/gut-brain/"/><meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:site" content="@harmanify"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..800;1,9..144,500..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet"/>
+<style>
+:root{--paper:#fdfcf9;--card:#fff;--ink:#1f1a2e;--muted:#6e6478;--line:rgba(31,26,46,.16);--accent:#b8435f;--hot:#e8902f;--microbe:#a8957f;
+  --GERD:#c9602a;--IBD:#2f5d9e;--IBS:#2b8a6b;--PUD:#8a4fae}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 'Newsreader',Georgia,serif}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.ui{font-family:'Bricolage Grotesque',system-ui,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:14px 16px 64px}
+.top{display:flex;justify-content:space-between;gap:12px;font:600 10.5px 'Bricolage Grotesque',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-bottom:12px;border-bottom:3px solid var(--ink)}
+.top a{text-decoration:none}
+.kick{font:600 12px 'Bricolage Grotesque',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:26px 0 8px;text-align:center}
+h1{font:700 clamp(36px,10vw,64px)/1.02 'Fraunces',serif;letter-spacing:-.01em;margin:0 0 14px;text-align:center}
+h1 em{color:var(--accent)}
+.dek{font-size:17.5px;line-height:1.55;color:#3a3346;margin:0 auto 18px;max-width:600px;text-align:center}
+.stats{list-style:none;padding:0;margin:0 0 22px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.stats li{border:2px solid var(--ink);border-radius:14px;padding:8px 4px 7px;background:var(--card);box-shadow:2px 2px 0 var(--ink);font:600 10.5px/1.25 'Bricolage Grotesque',sans-serif;color:var(--muted)}
+.stats b{display:block;font:700 24px/1.05 'Fraunces',serif;color:var(--ink)}
+.stats li.hot b{color:var(--hot)}
+h2{font:700 24px/1.15 'Fraunces',serif;margin:28px 0 6px}
+.hint{font-size:15px;color:var(--muted);margin:0 0 12px;font-style:italic}
+/* the map */
+.map{background:var(--card);border:2px solid var(--ink);border-radius:20px;box-shadow:4px 4px 0 rgba(31,26,46,.85);padding:10px 6px 4px}
+.map svg{display:block;width:100%;max-width:560px;margin:0 auto;height:auto;touch-action:manipulation}
+.lk{fill:none;stroke-linecap:round;opacity:.55;transition:opacity .2s,stroke-width .2s;cursor:pointer}
+.lk.dim{opacity:.07}.lk.on{opacity:.95}
+.lkhit{fill:none;stroke:transparent;stroke-width:16;cursor:pointer}
+.nd{cursor:pointer}
+.nd circle{transition:r .2s}
+.nd text{font:600 13px 'Bricolage Grotesque',sans-serif;fill:var(--ink)}
+.nd text.sub{font:500 10.5px 'Bricolage Grotesque',sans-serif;fill:var(--muted)}
+.nd.dim{opacity:.3}
+.nd.on circle{stroke:var(--ink);stroke-width:3}
+.cnt{font:700 11px 'Bricolage Grotesque',sans-serif;fill:var(--ink);pointer-events:none}
+/* controls */
+.bar{position:sticky;top:0;z-index:5;background:rgba(253,252,249,.96);backdrop-filter:blur(8px);margin:18px -16px 0;padding:10px 16px 10px;border-bottom:2px solid var(--ink)}
+.search{width:100%;font:400 16px 'Bricolage Grotesque',sans-serif;border:2px solid var(--ink);border-radius:999px;padding:10px 16px;background:var(--card);color:var(--ink);outline:none}
+.search:focus{box-shadow:0 0 0 3px rgba(184,67,95,.25)}
+.pills{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin:9px -16px 0;padding:0 16px 2px}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:none;display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:999px;background:var(--card);padding:6px 12px;min-height:36px;font:600 13px 'Bricolage Grotesque',sans-serif;box-shadow:2px 2px 0 var(--ink);cursor:pointer}
+.pill[aria-pressed=true]{background:var(--ink);color:#fff}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.dot.hot{background:var(--hot)}.dot.mic{background:var(--microbe)}.dot.gene{background:var(--ink)}
+.status{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;font:500 13px 'Bricolage Grotesque',sans-serif;color:var(--muted)}
+.status button{border:0;background:none;text-decoration:underline;cursor:pointer;color:var(--accent);font-weight:600;padding:4px 0}
+/* gene panel */
+.focus{margin:14px 0 0;border:2px solid var(--ink);border-radius:16px;background:var(--card);padding:12px 14px;box-shadow:3px 3px 0 var(--accent)}
+.focus[hidden]{display:none}
+.focus b{font:700 20px 'Fraunces',serif}
+.focus p{margin:4px 0 8px;font-size:15px}
+.focus .links{display:flex;flex-wrap:wrap;gap:12px;font:600 13px 'Bricolage Grotesque',sans-serif}
+/* results */
+.pair{margin:16px 0 0;border:2px solid var(--ink);border-radius:18px;background:var(--card);overflow:hidden}
+.pair>header{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:11px 14px 9px;border-bottom:2px solid var(--ink);background:color-mix(in srgb,var(--c) 9%,#fff)}
+.pair h3{margin:0;font:700 18px/1.2 'Fraunces',serif}
+.pair h3 i{font-style:normal;color:var(--c)}
+.pair header span{font:600 12px 'Bricolage Grotesque',sans-serif;color:var(--muted);white-space:nowrap}
+.loc{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;padding:10px 14px;border-top:1px solid var(--line)}
+.loc:first-of-type{border-top:0}
+.band{font:700 14px ui-monospace,Consolas,monospace;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.sg{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;font:700 13px 'Bricolage Grotesque',sans-serif;border:1.5px solid var(--ink)}
+.sg.p{background:#eaf4ee}.sg.m{background:#fbeaea}
+.tags{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;font:600 12px 'Bricolage Grotesque',sans-serif;border:1.5px solid var(--ink);background:var(--card);cursor:pointer;min-height:28px}
+.tag.gene.ts{background:var(--ink);color:#fff}
+.tag.co{border-color:var(--hot);background:#fdf1e3;cursor:default}
+.tag.mic{border-color:#8c7a63;background:#f3eee7}
+.tag.hit{outline:3px solid var(--accent);outline-offset:1px}
+.none{font:italic 400 13.5px 'Newsreader',serif;color:var(--muted)}
+.empty{padding:24px 0;text-align:center;color:var(--muted);font-style:italic}
+/* explainer + legend */
+.legend{display:grid;gap:10px;margin:8px 0 0;padding:0;list-style:none}
+.legend li{display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:start;font-size:15.5px;line-height:1.45}
+.legend .k{display:flex;justify-content:center;padding-top:3px}
+details{border:2px solid var(--ink);border-radius:16px;background:var(--card);padding:10px 14px;margin-top:14px}
+summary{font:700 15px 'Bricolage Grotesque',sans-serif;cursor:pointer}
+.src{margin-top:34px;padding-top:16px;border-top:3px solid var(--ink);font-size:14.5px;color:#4a4356}
+.src p{margin:0 0 10px}
+.share{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.btn{display:inline-flex;align-items:center;gap:7px;border:2px solid var(--ink);border-radius:999px;background:var(--card);padding:8px 14px;min-height:40px;font:600 13px 'Bricolage Grotesque',sans-serif;box-shadow:2px 2px 0 var(--ink);cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--ink);color:#fff}
+.btn svg{width:15px;height:15px}
+@media (min-width:700px){.wrap{padding:22px 28px 80px}.bar{margin:18px -28px 0;padding:10px 28px}.pills{margin:9px -28px 0;padding:0 28px 2px}.loc{grid-template-columns:150px 1fr}.stats li{font-size:12px}.stats b{font-size:30px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="/#blog">← Herman Hundal · Blog</a><span>Interactive · Nov 2026</span></div>
+  <div class="kick">The gut–brain axis, in DNA</div>
+  <h1>Your gut and your mind share <em>genes</em></h1>
+  <p class="dek">A large genetic study compared four gut diseases with six psychiatric disorders and found 83 stretches of DNA that both sides have in common. Tap a line, a gene or a gut microbe to highlight where it shows up.</p>
+  <ul class="stats"><li><b>83</b>shared loci</li><li class="hot"><b>24</b>same causal variant</li><li><b>11</b>gut-microbe links</li><li><b id="ngenes">86</b>genes</li></ul>
+
+  <h2>The map</h2>
+  <p class="hint">Thicker line, more shared loci. Tap a line or a disorder.</p>
+  <div class="map"><svg id="map" viewBox="0 0 360 330" role="group" aria-label="Gut diseases on the left, psychiatric disorders on the right, linked by shared loci"></svg></div>
+
+  <div class="bar">
+    <input class="search" id="q" type="search" placeholder="Search a gene, locus or microbe…" aria-label="Search genes, loci or microbes" autocomplete="off" autocapitalize="characters" spellcheck="false"/>
+    <div class="pills" role="group" aria-label="Highlight">
+      <button class="pill" data-f="co" aria-pressed="false"><span class="dot hot"></span>Same causal variant</button>
+      <button class="pill" data-f="mic" aria-pressed="false"><span class="dot mic"></span>Gut microbe link</button>
+      <button class="pill" data-f="multi" aria-pressed="false"><span class="dot gene"></span>Genes in 2+ pairs</button>
+      <button class="pill" data-f="opp" aria-pressed="false">− Opposite direction</button>
+    </div>
+    <div class="status"><span id="status"></span><button id="clear" hidden>Clear</button></div>
+  </div>
+  <div class="focus" id="focus" hidden></div>
+  <div id="list"></div>
+
+  <h2>How to read it</h2>
+  <ul class="legend">
+    <li><span class="k"><span class="band" style="font-size:12px">1q32.1</span></span><span><b>Locus.</b> An address on a chromosome (chromosome 1, long arm, band 32.1) where a variant is linked to both disorders.</span></li>
+    <li><span class="k"><span class="sg p">+</span></span><span><b>Same direction.</b> The variant raises (or lowers) the risk of both. <span class="sg m" style="margin-left:4px">−</span> means it pushes them in opposite directions. 53 of the 83 go the same way.</span></li>
+    <li><span class="k"><span class="dot hot" style="width:14px;height:14px"></span></span><span><b>Same causal variant.</b> Colocalisation analysis suggests one single variant drives both signals (posterior probability above 0.7), not two neighbours.</span></li>
+    <li><span class="k"><span class="dot mic" style="width:14px;height:14px"></span></span><span><b>Gut microbe link.</b> The same locus also colocalises with the abundance of a group of gut bacteria.</span></li>
+    <li><span class="k"><span class="tag gene ts" style="cursor:default">GENE</span></span><span><b>Dark gene.</b> Highlighted in the paper as active in gut or brain tissue (E-MAGMA). Light genes are other candidates near the locus.</span></li>
+  </ul>
+  <details><summary>The abbreviations</summary>
+    <p class="ui" style="font-size:14px;line-height:1.7;margin:8px 0 0"><b>GERD</b> gastro-oesophageal reflux disease · <b>IBD</b> inflammatory bowel disease · <b>IBS</b> irritable bowel syndrome · <b>PUD</b> peptic ulcer disease<br/><b>MDD</b> major depression · <b>SCZ</b> schizophrenia · <b>BIP</b> bipolar disorder · <b>ADHD</b> attention-deficit/hyperactivity disorder · <b>AN</b> anorexia nervosa · <b>PTSD</b> post-traumatic stress disorder</p>
+  </details>
+
+  <div class="src">
+    <p><b>Source.</b> Gong W, Guo P, Li Y, et al. <a href="https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2801422" target="_blank" rel="noopener">Role of the Gut-Brain Axis in the Shared Genetic Etiology Between Gastrointestinal Tract Diseases and Psychiatric Disorders: A Genome-Wide Pleiotropic Analysis</a>. <i>JAMA Psychiatry</i>. 2023;80(4):360–370. doi:10.1001/jamapsychiatry.2022.4974</p>
+    <p>Transcribed by hand from the paper's Figure 2 and checked against its totals (83 loci, 24 colocalised, 11 with microbes). Shared genetics means overlapping risk, not that one disorder causes the other. For learning, not diagnosis.</p>
+    <div class="share">
+      <button class="btn primary" id="sh"><svg viewBox="0 0 24 24"><path d="M12 15V3m0 0L7 8m5-5 5 5M5 12v8h14v-8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button>
+      <a class="btn" id="shx" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M3 3h4.6l4.1 5.6L16.6 3H21l-7.2 8.1L21.5 21h-4.6l-4.5-6.1L6.9 21H2.5l7.6-8.6z" fill="currentColor"/></svg>Post on X</a>
+      <button class="btn" id="cp">Copy link</button>
+      <a class="btn" href="/atlas/">Brain Disorder Atlas →</a>
+    </div>
+    <p style="margin-top:16px" class="ui">By Herman Hundal · <a href="https://x.com/harmanify" target="_blank" rel="noopener">@harmanify</a></p>
+  </div>
+</div>
+<script src="data.js"></script>
+<script>
+const G=window.GB, GUT=['GERD','IBD','IBS','PUD'], PSY=['MDD','SCZ','BIP','ADHD','AN','PTSD'];
+const GN={GERD:'Acid reflux',IBD:'Inflammatory bowel',IBS:'Irritable bowel',PUD:'Peptic ulcer'};
+const GS={GERD:'Reflux',IBD:'Inflammatory',IBS:'Irritable',PUD:'Ulcer'};
+const PN={MDD:'Depression',SCZ:'Schizophrenia',BIP:'Bipolar',ADHD:'ADHD',AN:'Anorexia',PTSD:'PTSD'};
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue('--'+n).trim();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// flatten
+const L=[]; for(const g of GUT) for(const p of PSY) for(const [band,sign,co,mic,genes] of (G[g][p]||[]))
+  L.push({g,p,band,sign,co:!!co,mic,genes:genes.map(x=>({n:x.replace('*',''),ts:x.endsWith('*')}))});
+const pairsOf=new Map(); for(const l of L) for(const x of l.genes){const k=x.n; if(!pairsOf.has(k)) pairsOf.set(k,new Set()); pairsOf.get(k).add(l.g+'×'+l.p)}
+document.getElementById('ngenes').textContent=pairsOf.size;
+const state={g:null,p:null,f:null,q:'',gene:null};
+
+// ---- map: gut on the left, mind on the right ----
+const NS='http://www.w3.org/2000/svg', svg=document.getElementById('map');
+const mk=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
+const LX=66, RX=286, gy=g=>48+GUT.indexOf(g)*78, py=p=>34+PSY.indexOf(p)*52.4;
+const links=[], gLinks=mk('g',{}), gNodes=mk('g',{});
+for(const g of GUT) for(const p of PSY){const n=L.filter(l=>l.g===g&&l.p===p).length; if(!n) continue;
+  const d=`M${LX+10} ${gy(g)} C${LX+120} ${gy(g)} ${RX-120} ${py(p)} ${RX-10} ${py(p)}`;
+  const el=mk('path',{d,class:'lk',stroke:css(g),'stroke-width':(1.6+n*1.15).toFixed(1)},gLinks);
+  const hit=mk('path',{d,class:'lkhit',tabindex:0,role:'button','aria-label':`${GN[g]} and ${PN[p]}: ${n} shared loci`},gLinks);
+  hit.addEventListener('click',()=>setPair(g,p)); hit.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setPair(g,p)}});
+  links.push({g,p,n,el})}
+const nodes=[];
+for(const g of GUT){const n=L.filter(l=>l.g===g).length, y=gy(g), a=mk('g',{class:'nd',tabindex:0,role:'button','aria-label':`${GN[g]}: ${n} loci`},gNodes);
+  mk('circle',{cx:LX,cy:y,r:11,fill:css(g)},a); mk('text',{x:LX,y:y+4,'text-anchor':'middle',class:'cnt',fill:'#fff',style:'fill:#fff'},a).textContent=n;
+  mk('text',{x:LX-16,y:y-1,'text-anchor':'end'},a).textContent=g; mk('text',{x:LX-16,y:y+13,'text-anchor':'end',class:'sub'},a).textContent=GS[g];
+  a.addEventListener('click',()=>setPair(g,null)); a.addEventListener('keydown',e=>{if(e.key==='Enter'){setPair(g,null)}}); nodes.push({g,el:a})}
+for(const p of PSY){const n=L.filter(l=>l.p===p).length, y=py(p), a=mk('g',{class:'nd',tabindex:0,role:'button','aria-label':`${PN[p]}: ${n} loci`},gNodes);
+  mk('circle',{cx:RX,cy:y,r:10,fill:'#fff',stroke:css('ink'),'stroke-width':2},a); mk('text',{x:RX,y:y+4,'text-anchor':'middle',class:'cnt'},a).textContent=n;
+  mk('text',{x:RX+16,y:y-1},a).textContent=p; mk('text',{x:RX+16,y:y+13,class:'sub'},a).textContent=PN[p]==='ADHD'||PN[p]==='PTSD'?'':PN[p];
+  a.addEventListener('click',()=>setPair(null,p)); a.addEventListener('keydown',e=>{if(e.key==='Enter'){setPair(null,p)}}); nodes.push({p,el:a})}
+svg.setAttribute('viewBox','-18 0 404 330');
+
+// ---- filtering ----
+const multi=new Set([...pairsOf].filter(([,s])=>s.size>1).map(([k])=>k));
+function match(l){
+  if(state.g&&l.g!==state.g) return false; if(state.p&&l.p!==state.p) return false;
+  if(state.f==='co'&&!l.co) return false; if(state.f==='mic'&&!l.mic) return false; if(state.f==='opp'&&l.sign!=='-') return false;
+  if(state.f==='multi'&&!l.genes.some(x=>multi.has(x.n))) return false;
+  if(state.gene&&!l.genes.some(x=>x.n===state.gene)) return false;
+  if(state.q){const q=state.q.toLowerCase(); if(!(l.band.toLowerCase().includes(q)||l.mic.toLowerCase().includes(q)||l.genes.some(x=>x.n.toLowerCase().includes(q))||l.g.toLowerCase()===q||l.p.toLowerCase()===q)) return false}
+  return true}
+function render(){
+  const hits=L.filter(match), pk=new Set(hits.map(l=>l.g+'|'+l.p)), filtered=hits.length!==L.length;
+  links.forEach(k=>{const on=pk.has(k.g+'|'+k.p); k.el.classList.toggle('dim',filtered&&!on); k.el.classList.toggle('on',filtered&&on)});
+  nodes.forEach(nd=>{const on=nd.g?hits.some(l=>l.g===nd.g):hits.some(l=>l.p===nd.p); nd.el.classList.toggle('dim',filtered&&!on); nd.el.classList.toggle('on',(nd.g&&nd.g===state.g)||(nd.p&&nd.p===state.p))});
+  const by=new Map(); hits.forEach(l=>{const k=l.g+'|'+l.p; if(!by.has(k)) by.set(k,[]); by.get(k).push(l)});
+  const qq=(state.gene||state.q||'').toLowerCase();
+  document.getElementById('list').innerHTML=by.size?[...by].map(([k,ls])=>{const [g,p]=k.split('|'), all=L.filter(l=>l.g===g&&l.p===p).length;
+    return `<section class="pair" style="--c:${css(g)}"><header><h3><i>${GN[g]}</i> × ${PN[p]==='ADHD'||PN[p]==='PTSD'?p:PN[p]}</h3><span>${ls.length===all?all+' loci':ls.length+' of '+all+' loci'}</span></header>${ls.map(l=>`
+      <div class="loc"><div class="band"><span class="sg ${l.sign==='+'?'p':'m'}" title="${l.sign==='+'?'Same direction':'Opposite direction'}">${l.sign==='+'?'+':'−'}</span>${l.band}</div>
+      <div class="tags">${l.co?'<span class="tag co"><span class="dot hot"></span>same variant</span>':''}${l.mic?l.mic.split(', ').map(m=>`<button class="tag mic${qq&&m.toLowerCase().includes(qq)?' hit':''}" data-m="${esc(m)}"><span class="dot mic"></span>${esc(m)}</button>`).join(''):''}
+      ${l.genes.length?l.genes.map(x=>`<button class="tag gene${x.ts?' ts':''}${qq&&x.n.toLowerCase()===qq?' hit':''}" data-gene="${x.n}">${x.n}</button>`).join(''):(l.co||l.mic?'':'<span class="none">no top gene named</span>')}</div></div>`).join('')}</section>`}).join('')
+    :`<p class="empty">Nothing matches. Try clearing the filters.</p>`;
+  const parts=[]; if(state.g) parts.push(GN[state.g]); if(state.p) parts.push(PN[state.p]); if(state.gene) parts.push(state.gene);
+  document.getElementById('status').textContent=filtered?`${hits.length} of 83 loci · ${by.size} pair${by.size===1?'':'s'}${parts.length?' · '+parts.join(' × '):''}`:`All 83 loci across ${by.size} pairs`;
+  document.getElementById('clear').hidden=!filtered;
+  document.querySelectorAll('.pill').forEach(b=>b.setAttribute('aria-pressed',String(state.f===b.dataset.f)));
+  const fo=document.getElementById('focus');
+  if(state.gene){const ps=[...pairsOf.get(state.gene)||[]]; fo.hidden=false;
+    fo.innerHTML=`<b>${state.gene}</b><p>Turns up in ${ps.length} gut–mind pair${ps.length===1?'':'s'}: ${ps.map(x=>x.replace('×',' × ')).join(', ')}.</p><div class="links"><a href="https://www.ncbi.nlm.nih.gov/gene/?term=${state.gene}%5Bsym%5D+AND+human%5Borgn%5D" target="_blank" rel="noopener">NCBI Gene ↗</a><a href="https://www.genecards.org/cgi-bin/carddisp.pl?gene=${state.gene}" target="_blank" rel="noopener">GeneCards ↗</a><a href="https://en.wikipedia.org/wiki/${state.gene}" target="_blank" rel="noopener">Wikipedia ↗</a></div>`}
+  else fo.hidden=true;
+  const h=state.gene?'gene='+state.gene:state.g||state.p?'pair='+(state.g||'')+'-'+(state.p||''):state.f?'only='+state.f:'';
+  try{history.replaceState(null,'',h?'#'+h:location.pathname)}catch(e){}
+}
+function setPair(g,p){const same=state.g===g&&state.p===p; Object.assign(state,same?{g:null,p:null}:{g,p}); state.gene=null; render(); if(!same) scrollToList()}
+function scrollToList(){const t=document.querySelector('.bar').getBoundingClientRect().top+scrollY-2; if(scrollY<t-40) scrollTo({top:t,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+document.querySelectorAll('.pill').forEach(b=>b.onclick=()=>{state.f=state.f===b.dataset.f?null:b.dataset.f; render()});
+const q=document.getElementById('q'); q.addEventListener('input',()=>{state.q=q.value.trim(); state.gene=null; render()});
+document.getElementById('clear').onclick=()=>{Object.assign(state,{g:null,p:null,f:null,q:'',gene:null}); q.value=''; render()};
+document.getElementById('list').addEventListener('click',e=>{const b=e.target.closest('[data-gene]'); if(b){state.gene=state.gene===b.dataset.gene?null:b.dataset.gene; state.g=state.p=null; state.q=''; q.value=''; render(); scrollToList(); return}
+  const m=e.target.closest('[data-m]'); if(m){state.q=m.dataset.m; q.value=m.dataset.m; state.gene=null; render(); scrollToList()}});
+// links in, links out
+(function(){const h=decodeURIComponent(location.hash.slice(1)); const [k,v]=h.split('=');
+  if(k==='gene'&&pairsOf.has(v)) state.gene=v; else if(k==='pair'){const [g,p]=v.split('-'); if(GUT.includes(g)) state.g=g; if(PSY.includes(p)) state.p=p} else if(k==='only'&&['co','mic','multi','opp'].includes(v)) state.f=v})();
+render();
+const share=()=>({url:location.href,text:'Your gut and your mind share genes: 83 stretches of DNA shared by gut diseases and psychiatric disorders, mapped interactively by @harmanify'});
+document.getElementById('shx').onclick=()=>{const s=share(); document.getElementById('shx').href=`https://x.com/intent/post?text=${encodeURIComponent(s.text)}&url=${encodeURIComponent(s.url)}`};
+document.getElementById('sh').onclick=()=>{const s=share(); if(navigator.share) navigator.share({title:'The Gut–Brain Genome',text:s.text,url:s.url}).catch(()=>{}); else document.getElementById('cp').click()};
+document.getElementById('cp').onclick=e=>{const b=e.currentTarget; navigator.clipboard.writeText(location.href).then(()=>{b.textContent='Link copied';setTimeout(()=>b.textContent='Copy link',1500)},()=>prompt('Copy this link:',location.href))};
+</script>
+</body>
+</html>
