@@ -62,8 +62,10 @@ const gyri = (x, y, z) => {
   return 0.7 * g1 + 0.3 * g2;
 };
 
-const tissue = new THREE.MeshStandardMaterial({ color: 0xe9dccd, roughness: 0.78, metalness: 0 });
-const deepMat = new THREE.MeshStandardMaterial({ color: 0xdccbb6, roughness: 0.85 });
+const POP = document.documentElement.getAttribute('data-theme') === 'pop';
+const MARK = POP ? 0x1f1a2e : 0xb8321f;
+const tissue = new THREE.MeshStandardMaterial({ color: POP ? 0xe3aca4 : 0xe9dccd, roughness: 0.75, metalness: 0 });
+const deepMat = new THREE.MeshStandardMaterial({ color: POP ? 0xd39a72 : 0xdccbb6, roughness: 0.85 });
 
 function blob(sx, sy, sz, detail, shape) {
   const g = new THREE.IcosahedronGeometry(1, detail);
@@ -115,7 +117,7 @@ const markers = {};
 const glow = new THREE.SphereGeometry(1, 24, 16);
 for (const k in A.REG) {
   const r = A.REG[k], pos = to3(r, k), deep = k in deepX;
-  const mat = new THREE.MeshBasicMaterial({ color: 0xb8321f, transparent: true, opacity: deep ? 0.35 : 0.55, depthTest: !deep });
+  const mat = new THREE.MeshBasicMaterial({ color: MARK, transparent: true, opacity: deep ? 0.35 : 0.55, depthTest: !deep });
   const m = new THREE.Mesh(glow, mat); m.position.copy(pos); m.scale.setScalar((deep ? 0.06 : 0.055) * (coarse ? 1.3 : 1)); m.userData.k = k;
   brain.add(m);
   const lab = document.createElement('button'); lab.className = 'b3-lab'; lab.textContent = r.n; lab.tabIndex = -1;
@@ -125,7 +127,7 @@ for (const k in A.REG) {
 }
 
 // state
-let hot = null, sel = [], selColor = 0xb8321f;
+let hot = null, sel = [], selColor = MARK;
 const pv = new THREE.Vector3();
 function pick(e) {   // nearest visible marker on screen, within a finger-sized radius on touch
   const b = canvas.getBoundingClientRect(), R = e.pointerType === 'mouse' ? 16 : 30, camDir = camera.position.clone().normalize();
@@ -149,7 +151,7 @@ let down = null;
 canvas.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; if (controls.enabled) controls.autoRotate = false; });
 canvas.addEventListener('pointerup', e => {
   if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
-  const k = pick(e); if (k) { focusRegions([k], 0xb8321f); A.openRegion(k); }
+  const k = pick(e); if (k) { focusRegions([k], MARK); A.openRegion(k); }
 });
 
 function showInfo(k) {
@@ -205,7 +207,7 @@ function loop() {
   const w = box.clientWidth, h = box.clientHeight, camDir = camera.position.clone().normalize();
   for (const k in markers) {
     const o = markers[k], on = sel.includes(k) || k === hot;
-    o.m.material.color.setHex(on && sel.includes(k) ? selColor : 0xb8321f);
+    o.m.material.color.setHex(on && sel.includes(k) ? selColor : MARK);
     o.m.material.opacity = on ? 0.95 : (o.deep ? 0 : 0.32);
     o.m.scale.setScalar(o.base * (on ? 1.9 + 0.3 * Math.sin(t * 4) : 1));
     // label: only for hovered/selected, hidden when on the far side

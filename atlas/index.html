@@ -18,6 +18,8 @@
 <meta name="twitter:image" content="https://hermanify.online/assets/previews/atlas-og.jpg"/>
 <link rel="canonical" href="https://hermanify.online/atlas/"/>
 <link rel="icon" href="/assets/favicon-32.png"/>
+<script>document.documentElement.setAttribute('data-theme','pop')</script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..800;1,9..144,500..800&family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -248,6 +250,99 @@ body.tree-mode .stage,body.tree-mode #caption{display:none}
  .tree-card p{font-size:14.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
  .tree-card p.tc-hint{-webkit-line-clamp:4}
 }
+
+/* =================== PSYCH POP THEME =================== */
+html[data-theme=pop]{--paper:#fdfcf9;--card:#ffffff;--ink:#1f1a2e;--muted:#6e6478;--line:rgba(31,26,46,.2);--accent:#b8435f;--pink:#b8435f;--sun:#e2b24a;--sky:#2f5d9e;--lime:#9fb878;--grape:#5a3f86}
+html[data-theme=pop] body{font-family:'Newsreader',Georgia,serif;background-color:var(--paper);background-image:none}
+html[data-theme=pop] :is(.cap,.chip,.count,.count button,.view-toggle button,.navb button,.regs button,.rel button,.tc-btn,.b3btn,.gate-btn,.gate-remember,.sources,.wiki-cite,.fix,.x,.b3-lab,.b3-touch,.b3-done,.row span,.top,.search,.theme-btn){font-family:'Bricolage Grotesque',system-ui,sans-serif}
+html[data-theme=pop] svg text{font-family:'Bricolage Grotesque',system-ui,sans-serif}
+html[data-theme=pop] :is(h1,.sec h2,.b3wrap h2,.pop-body h2,.tree-card h3,.caption b,#b3-info b,.row h3,.step b){font-family:'Fraunces',serif;font-weight:700;font-optical-sizing:auto;letter-spacing:-.01em}
+/* top bar + masthead */
+html[data-theme=pop] .top{border-bottom:3px solid var(--ink)}
+.theme-btn{border:1px solid var(--line);background:none;border-radius:999px;padding:5px 12px;min-height:32px;font:600 11px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:inherit;cursor:pointer;margin-left:12px}
+.theme-btn:hover{border-color:var(--ink)}
+html[data-theme=pop] .theme-btn{border:1.5px solid var(--ink);background:var(--card);box-shadow:2px 2px 0 var(--ink);color:var(--ink)}
+html[data-theme=pop] .mast{position:relative;overflow:hidden;border-bottom:0;padding-bottom:46px}
+html[data-theme=pop] .mast::before{display:none;content:"";position:absolute;inset:-40% -10% -10%;z-index:-1;background:repeating-conic-gradient(from 0deg at 50% 58%,rgba(226,178,74,.2) 0deg 5deg,transparent 5deg 12deg);-webkit-mask:radial-gradient(circle at 50% 58%,#000 0,#000 28%,transparent 62%);mask:radial-gradient(circle at 50% 58%,#000 0,#000 28%,transparent 62%);animation:spin 240s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+html[data-theme=pop] .mast::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='14' viewBox='0 0 40 14'%3E%3Cpath d='M0 7 Q10 0 20 7 T40 7' fill='none' stroke='%231f1a2e' stroke-width='3'/%3E%3C/svg%3E") repeat-x center/40px 14px}
+html[data-theme=pop] .mast{isolation:isolate}
+html[data-theme=pop] h1{font-size:clamp(44px,8vw,100px);line-height:1.02;font-weight:700;color:var(--ink)}
+html[data-theme=pop] h1 em{font-style:italic;color:var(--pink)}
+html[data-theme=pop] .mast h1 em::after{display:none}
+html[data-theme=pop] .dek{color:#3a3346}
+html[data-theme=pop] .cap{color:#5e556b}
+/* controls */
+html[data-theme=pop] .controls{background:rgba(255,255,255,.95);border-bottom:3px solid var(--ink)}
+html[data-theme=pop] .search{border-bottom:3px solid var(--ink);font-size:16px}
+html[data-theme=pop] .search::placeholder{font-style:normal;color:var(--muted)}
+html[data-theme=pop] .chip{border:1.5px solid var(--ink);border-radius:999px;padding:5px 12px;background:var(--card);color:var(--ink);font-weight:600;box-shadow:2px 2px 0 var(--ink);transition:transform .12s,box-shadow .12s,background .15s}
+html[data-theme=pop] .chip i{width:10px;height:10px;border:1.5px solid var(--ink)}
+html[data-theme=pop] .chip:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+html[data-theme=pop] .chip[aria-pressed=true]{background:var(--c);color:#fff;border-color:var(--ink)}
+html[data-theme=pop] .chip[aria-pressed=true] i{background:#fff}
+html[data-theme=pop] .view-toggle{border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);background:var(--card)}
+html[data-theme=pop] .view-toggle button{color:var(--ink)}
+html[data-theme=pop] .view-toggle button[aria-selected=true]{background:var(--pink);color:#fff}
+html[data-theme=pop] .count button{color:var(--pink)}
+/* the ring */
+html[data-theme=pop] .stage{background:repeating-radial-gradient(circle at 50% 50%,transparent 0 26px,rgba(31,26,46,.03) 26px 27px)}
+html[data-theme=pop] .dz text{fill:#2b1840;font-weight:600}
+html[data-theme=pop] .dz circle{stroke:var(--ink);stroke-width:1.3}
+html[data-theme=pop] svg.focus .dz text{fill:#c9b6d9}
+html[data-theme=pop] svg.focus .dz.on text{fill:var(--ink);font-weight:800}
+html[data-theme=pop] .arc{stroke-width:4;stroke-linecap:round}
+html[data-theme=pop] .link{stroke-width:1.1;opacity:.24}
+html[data-theme=pop] svg.focus .link.on{stroke-width:2.4;opacity:1}
+html[data-theme=pop] .rg{stroke:rgba(31,26,46,.25)}
+html[data-theme=pop] .rg.on{fill:rgba(255,255,255,.55);stroke:var(--ink);stroke-width:1.6}
+html[data-theme=pop] .rl{fill:var(--ink);font-weight:800}
+html[data-theme=pop] .caption b{font-size:28px;color:var(--ink)}
+html[data-theme=pop] .caption span{font-style:normal;color:var(--muted)}
+/* sections */
+html[data-theme=pop] .sec,html[data-theme=pop] .b3wrap{border-top:3px solid var(--ink)}
+html[data-theme=pop] .sec h2,html[data-theme=pop] .b3wrap h2{font-size:30px;line-height:1.1;color:var(--ink)}
+html[data-theme=pop] .step{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:16px;box-shadow:3px 3px 0 rgba(31,26,46,.8)}
+html[data-theme=pop] .step b{font-size:32px;color:var(--pink)}
+html[data-theme=pop] .row{border-bottom:2px dashed rgba(31,26,46,.25);border-radius:10px;padding-left:8px;padding-right:8px}
+html[data-theme=pop] .row:hover{background:#f7f3ec}
+html[data-theme=pop] .row i{width:14px;height:14px;border:2px solid var(--ink)}
+html[data-theme=pop] .row h3{font-size:21px}
+html[data-theme=pop] .note{border-top:3px solid var(--ink);font-style:normal}
+html[data-theme=pop] .progress{background:linear-gradient(90deg,var(--pink),var(--sun),var(--sky));height:4px}
+/* buttons everywhere */
+html[data-theme=pop] :is(.navb button,.regs button,.rel button,.tc-btn,.b3btn,.x,.b3-done){border:2px solid var(--ink);border-radius:999px;background:var(--card);color:var(--ink);font-weight:600;box-shadow:2px 2px 0 var(--ink);transition:transform .12s,box-shadow .12s,background .15s}
+html[data-theme=pop] :is(.navb button,.regs button,.rel button,.tc-btn,.b3btn,.x,.b3-done):hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink);background:var(--sun)}
+html[data-theme=pop] :is(.tc-btn.primary,.gate-btn,.b3-touch){background:var(--pink);color:#fff;border:2px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink)}
+html[data-theme=pop] :is(.tc-btn.primary,.gate-btn,.b3-touch):hover{background:var(--grape,#6c2bd9);color:#fff}
+html[data-theme=pop] .rel button{border-radius:14px}
+html[data-theme=pop] .x{width:40px;border-radius:50%}
+/* popup */
+html[data-theme=pop] dialog{border:3px solid var(--ink);border-radius:24px;box-shadow:5px 5px 0 rgba(31,26,46,.8);background:var(--card)}
+html[data-theme=pop] dialog::backdrop{background:rgba(31,26,46,.22);backdrop-filter:blur(6px)}
+html[data-theme=pop] .pop-fig{border-right:3px solid var(--ink);background-color:color-mix(in srgb,var(--c,#b8435f) 7%,#fdfcf9);background-image:radial-gradient(rgba(31,26,46,.12) 1.1px,transparent 1.4px);background-size:12px 12px}
+html[data-theme=pop] .pop-fig .cap{color:var(--ink)!important;background:var(--card);border:2px solid var(--ink);border-radius:999px;padding:4px 10px;align-self:flex-start}
+html[data-theme=pop] .pop-body h2{font-size:clamp(32px,4.4vw,46px);line-height:1.08;color:var(--ink)}
+html[data-theme=pop] .pop-body .why:first-letter{font-family:'Fraunces',serif;color:var(--c,var(--pink))}
+html[data-theme=pop] .wiki{background:#fff;border:2px solid var(--ink);border-left:8px solid var(--c,var(--pink));border-radius:14px}
+html[data-theme=pop] .foot{border-top:2px dashed rgba(31,26,46,.3)}
+/* 3D section */
+html[data-theme=pop] #b3{border:3px solid var(--ink);border-radius:22px;background:radial-gradient(circle at 50% 42%,#ffffff 0,#f7f3ec 65%,#efe8de 100%)}
+html[data-theme=pop] #b3.active{box-shadow:inset 0 0 0 3px var(--pink)}
+html[data-theme=pop] .gate-box{border:3px solid var(--ink);border-radius:20px;box-shadow:6px 6px 0 var(--ink);background:var(--card)}
+html[data-theme=pop] #b3-info b{font-size:24px}
+html[data-theme=pop] .b3-lab{border-radius:999px;background:var(--ink);font-weight:700}
+/* tree */
+html[data-theme=pop] .tn.root text{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:24px}
+html[data-theme=pop] .tn.reg text{font-style:italic;font-weight:600}
+html[data-theme=pop] .tn text{fill:#2b1840}
+html[data-theme=pop] .tl{stroke-width:2;stroke-opacity:.6}
+html[data-theme=pop] .tl.on{stroke-width:3.2;stroke-opacity:1}
+html[data-theme=pop] .tree-card{border-top:3px solid var(--ink)}
+html[data-theme=pop] .tree-card h3{font-size:28px;line-height:1.1}
+@media (max-width:1001px){html[data-theme=pop] .tree-card{background:var(--paper);border-top:3px solid var(--ink)}}
+@media (prefers-reduced-motion:reduce){html[data-theme=pop] .mast::before{animation:none}}
+@media (max-width:560px){.top{font-size:9.5px;letter-spacing:.1em}.theme-btn{margin-left:8px;padding:4px 10px;font-size:10px}}
 @media (prefers-reduced-motion:reduce){.mast>*,.mast h1 .ln>span,.pop-body>*,.reveal,.reveal .step,.reveal .row{opacity:1!important;transform:none!important}
  #wheel .link,#wheel .arc{stroke-dashoffset:0}#wheel .dz,#wheel .brain{opacity:1}.mast h1 em::after{transform:scaleX(1)}}
 @media (max-width:760px){.row::after{display:none}.b3wrap{grid-template-columns:1fr;gap:10px}#b3{height:420px}
@@ -293,7 +388,8 @@ body.tree-mode .stage,body.tree-mode #caption{display:none}
     </div>
     <div id="b3"><div id="b3-labels"></div><div id="b3-info"></div>
       <div id="b3-gate">
-        <img src="brain-poster.webp" alt="Still image of the 3D brain model with its marked regions" width="1400" height="840" decoding="async"/>
+        <img id="b3-poster" alt="Still image of the 3D brain model with its marked regions" width="1400" height="840" decoding="async"/>
+        <script>document.getElementById('b3-poster').src='brain-poster-pop.webp'</script>
         <div class="gate-box">
           <button type="button" class="gate-btn" id="b3-load">Load the 3D model</button>
           <p>About 270 KB, and it uses your graphics card. You can turn it off again at any time.</p>
@@ -330,12 +426,15 @@ body.tree-mode .stage,body.tree-mode #caption{display:none}
 <dialog id="pop" aria-labelledby="pop-title"></dialog>
 
 <script>
+const POP=document.documentElement.getAttribute('data-theme')==='pop';
+const TH=POP?{ink:'#1f1a2e',muted:'#6e6478',faint:'#cfc4d6',paper:'#f6efe2',card:'#fbf7ef',glow:'#fff6dc',hot:'#ffffff',ring:'#1f1a2e',acc:'#b8435f'}
+            :{ink:'#1b1916',muted:'#8c857c',faint:'#c4bbae',paper:'#f5f2ec',card:'#fbfaf7',glow:'#ff5a1f',hot:'#ff6a2b',ring:'#e8542a',acc:'#b8321f'};
 const CATS = {
   plan:  {name:'Movement planning', c:'#3567a8'},
   exec:  {name:'Movement execution', c:'#5a52a8'},
   speak: {name:'Spoken language', c:'#c45a1c'},
   write: {name:'Written language', c:'#a07c0a'},
-  vis:   {name:'Visual perception', c:'#b8321f'},
+  vis:   {name:'Visual perception', c:TH.acc},
   mot:   {name:'Motivation', c:'#b03a72'},
   aud:   {name:'Audition', c:'#7d48b3'},
   aware: {name:'Awareness', c:'#16806f'},
@@ -343,6 +442,7 @@ const CATS = {
   smell: {name:'Olfaction', c:'#8a6440'},
   ill:   {name:'Illusions', c:'#5f5d6b'}
 };
+if(POP){const P={plan:'#2f5d9e',exec:'#5a3f86',speak:'#c9602a',write:'#b88a14',vis:'#b8323f',mot:'#b8457a',aud:'#2a8199',aware:'#2b8a6b',mem:'#5f8a24',smell:'#8a5a3b',ill:'#8a4fae'};for(const k in P)CATS[k].c=P[k]}
 // Schematic lateral view, front of head on the left.
 const REG = {
   pfc:{n:'Prefrontal cortex',x:368,y:470,rx:42,ry:52},
@@ -637,6 +737,8 @@ const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')
 
 // Illustrated side view: lobe tints, main fissures, seeded fold texture, shading, cerebellar folia.
 function brainArt(p){
+  const A=POP?{base:'#ead8cc',front:'#e2aaa1',par:'#e6c370',occ:'#9cc6c1',temp:'#b9cb93',cb:'#c3b5da',fold:'rgba(31,26,46,.24)',folia:'rgba(31,26,46,.38)',fis:'rgba(31,26,46,.66)',fis2:'rgba(31,26,46,.42)',line:'#1f1a2e',lw:1.7,bs1:'#d39a72',bs2:'#e6bf98',bs3:'#c48558',shade:'#3d2c5e',lab:'rgba(31,26,46,.55)'}
+             :{base:'#eee5d8',front:'#efe6d8',par:'#e9dfcf',occ:'#e3d6c2',temp:'#e6d9c6',cb:'#dccdb7',fold:'rgba(90,68,48,.22)',folia:'rgba(90,68,48,.3)',fis:'rgba(70,52,36,.45)',fis2:'rgba(70,52,36,.28)',line:'rgba(27,25,22,.45)',lw:1.2,bs1:'#d9cbb6',bs2:'#e9dfcf',bs3:'#cdbda5',shade:'#5a4430',lab:'rgba(70,52,36,.38)'};
   let seed=11; const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
   let folds='';
   for(let k=0;k<78;k++){
@@ -653,29 +755,29 @@ function brainArt(p){
     <clipPath id="${p}c"><path d="${SIL[0]}"/></clipPath>
     <clipPath id="${p}cb"><path d="${SIL[1]}"/></clipPath>
     <radialGradient id="${p}hi" cx="38%" cy="28%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></radialGradient>
-    <radialGradient id="${p}lo" cx="62%" cy="86%" r="62%"><stop offset="0" stop-color="#5a4430" stop-opacity=".2"/><stop offset="1" stop-color="#5a4430" stop-opacity="0"/></radialGradient>
-    <linearGradient id="${p}bs" x1="0" x2="1"><stop offset="0" stop-color="#d9cbb6"/><stop offset=".5" stop-color="#e9dfcf"/><stop offset="1" stop-color="#cdbda5"/></linearGradient>
+    <radialGradient id="${p}lo" cx="62%" cy="86%" r="62%"><stop offset="0" stop-color="${A.shade}" stop-opacity=".2"/><stop offset="1" stop-color="${A.shade}" stop-opacity="0"/></radialGradient>
+    <linearGradient id="${p}bs" x1="0" x2="1"><stop offset="0" stop-color="${A.bs1}"/><stop offset=".5" stop-color="${A.bs2}"/><stop offset="1" stop-color="${A.bs3}"/></linearGradient>
     <filter id="${p}glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7"/></filter>
   </defs>
-  <path d="${SIL[2]}" fill="url(#${p}bs)" stroke="rgba(27,25,22,.35)" stroke-width="1"/>
-  <path d="${SIL[1]}" fill="#dccdb7"/>
-  <g clip-path="url(#${p}cb)" fill="none" stroke="rgba(90,68,48,.3)" stroke-width="1.1" stroke-linecap="round">${folia}</g>
-  <path d="${SIL[1]}" fill="none" stroke="rgba(27,25,22,.38)" stroke-width="1.1"/>
+  <path d="${SIL[2]}" fill="url(#${p}bs)" stroke="${A.line}" stroke-width="${A.lw}"/>
+  <path d="${SIL[1]}" fill="${A.cb}"/>
+  <g clip-path="url(#${p}cb)" fill="none" stroke="${A.folia}" stroke-width="1.1" stroke-linecap="round">${folia}</g>
+  <path d="${SIL[1]}" fill="none" stroke="${A.line}" stroke-width="${A.lw}"/>
   <g clip-path="url(#${p}c)">
-    <rect x="320" y="330" width="400" height="300" fill="#eee5d8"/>
-    <path d="M325 330 L506 330 L497 432 L472 528 L410 556 L325 600Z" fill="#efe6d8"/>
-    <path d="M506 330 L720 330 L720 466 L630 482 L562 510 L472 528 L497 432Z" fill="#e9dfcf"/>
-    <path d="M630 482 L720 466 L720 620 L604 612Z" fill="#e3d6c2"/>
-    <path d="M380 566 Q470 534 562 516 Q602 506 630 486 L640 612 L380 630Z" fill="#e6d9c6"/>
-    <g fill="none" stroke="rgba(90,68,48,.22)" stroke-width="1.15" stroke-linecap="round">${folds}</g>
-    <path d="M502 356 C493 400 499 440 480 488 C472 506 469 516 467 524" fill="none" stroke="rgba(70,52,36,.42)" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M414 552 C458 532 520 522 562 516 C594 510 612 500 630 484" fill="none" stroke="rgba(70,52,36,.48)" stroke-width="2.2" stroke-linecap="round"/>
-    <path d="M640 404 C630 440 628 466 634 498" fill="none" stroke="rgba(70,52,36,.28)" stroke-width="1.4" stroke-linecap="round"/>
+    <rect x="320" y="330" width="400" height="300" fill="${A.base}"/>
+    <path d="M325 330 L506 330 L497 432 L472 528 L410 556 L325 600Z" fill="${A.front}"/>
+    <path d="M506 330 L720 330 L720 466 L630 482 L562 510 L472 528 L497 432Z" fill="${A.par}"/>
+    <path d="M630 482 L720 466 L720 620 L604 612Z" fill="${A.occ}"/>
+    <path d="M380 566 Q470 534 562 516 Q602 506 630 486 L640 612 L380 630Z" fill="${A.temp}"/>
+    <g fill="none" stroke="${A.fold}" stroke-width="1.15" stroke-linecap="round">${folds}</g>
+    <path d="M502 356 C493 400 499 440 480 488 C472 506 469 516 467 524" fill="none" stroke="${A.fis}" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M414 552 C458 532 520 522 562 516 C594 510 612 500 630 484" fill="none" stroke="${A.fis}" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M640 404 C630 440 628 466 634 498" fill="none" stroke="${A.fis2}" stroke-width="1.4" stroke-linecap="round"/>
     <rect x="320" y="330" width="400" height="300" fill="url(#${p}hi)"/>
     <rect x="320" y="330" width="400" height="300" fill="url(#${p}lo)"/>
   </g>
-  <path d="${SIL[0]}" fill="none" stroke="rgba(27,25,22,.5)" stroke-width="1.3"/>
-  <g font-family="Inter" font-size="7.5" font-weight="600" letter-spacing="1.6" fill="rgba(70,52,36,.38)" text-anchor="middle" pointer-events="none">
+  <path d="${SIL[0]}" fill="none" stroke="${A.line}" stroke-width="${A.lw}"/>
+  <g font-family="Inter" font-size="7.5" font-weight="600" letter-spacing="1.6" fill="${A.lab}" text-anchor="middle" pointer-events="none">
     <text x="398" y="452">FRONTAL</text><text x="572" y="404">PARIETAL</text><text x="662" y="540">OCCIPITAL</text><text x="516" y="580">TEMPORAL</text><text x="636" y="626">CEREBELLUM</text>
   </g>`;
 }
@@ -692,7 +794,7 @@ for(const k in REG){const r=REG[k];
   e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();openRegion(k)}});
   regEls[k]=[e,t];
 }
-el('text',{x:515,y:722,'text-anchor':'middle',fill:'#8c857c','font-size':9,'font-family':'Inter','letter-spacing':'.14em'},gBrain).textContent='FRONT ←   SCHEMATIC SIDE VIEW';
+el('text',{x:515,y:722,'text-anchor':'middle',fill:TH.muted,'font-size':9,'font-family':'Inter','letter-spacing':'.14em'},gBrain).textContent='FRONT ←   SCHEMATIC SIDE VIEW';
 
 let i=0,prev=null; const items=[];
 D.forEach(([name,cat,regs,def])=>{
@@ -750,9 +852,9 @@ function reset(){
 // mini brain figure for the popup
 function figure(regs,color){
   const VB=[300,318,440,410], BCX=515, BCY=486;
-  const glow=regs.map(k=>{const r=REG[k];return `<ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx*1.5}" ry="${r.ry*1.6}" fill="#ff5a1f" opacity=".42" filter="url(#fglow)"/>`}).join('');
-  const hot=regs.map(k=>{const r=REG[k];return `<ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="#ff6a2b" fill-opacity=".32" stroke="${color}" stroke-width="1.8"${r.deep?' stroke-dasharray="3 2"':''}/>
-    <ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="none" stroke="#e8542a" stroke-width="1.3"><animate attributeName="rx" values="${r.rx};${r.rx+9}" dur="2.2s" repeatCount="indefinite"/><animate attributeName="ry" values="${r.ry};${r.ry+9}" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="2.2s" repeatCount="indefinite"/></ellipse>`}).join('');
+  const glow=regs.map(k=>{const r=REG[k];return `<ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx*1.5}" ry="${r.ry*1.6}" fill="${TH.glow}" opacity=".42" filter="url(#fglow)"/>`}).join('');
+  const hot=regs.map(k=>{const r=REG[k];return `<ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="${TH.hot}" fill-opacity=".32" stroke="${color}" stroke-width="1.8"${r.deep?' stroke-dasharray="3 2"':''}/>
+    <ellipse cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="none" stroke="${TH.ring}" stroke-width="1.3"><animate attributeName="rx" values="${r.rx};${r.rx+9}" dur="2.2s" repeatCount="indefinite"/><animate attributeName="ry" values="${r.ry};${r.ry+9}" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="2.2s" repeatCount="indefinite"/></ellipse>`}).join('');
   const used=[];
   const labels=regs.map(k=>{const r=REG[k];
     let dx=r.x-BCX, dy=r.y-BCY; const L=Math.hypot(dx,dy)||1; dx/=L; dy/=L;
@@ -764,9 +866,9 @@ function figure(regs,color){
     if((!right&&lx-tw<VB[0])||(right&&lx+tw>VB[0]+VB[2])){ // no room at the side: label above the region
       anchor='middle'; ex=r.x; ey=r.y-r.ry; lx=Math.min(VB[0]+VB[2]-tw/2,Math.max(VB[0]+tw/2,r.x)); ly=r.y-r.ry-22; tx=lx;
     } else tx=lx+(right?5:-5);
-    return `<path d="M${ex} ${ey} L${lx} ${ly}" stroke="#1b1916" stroke-width=".9" fill="none"/><circle cx="${ex}" cy="${ey}" r="2" fill="#1b1916"/>
-      <text x="${tx}" y="${anchor==='middle'?ly-4:ly+3.5}" text-anchor="${anchor}" font-family="Inter" font-size="10.5" font-weight="600" fill="#1b1916" paint-order="stroke" stroke="#f5f2ec" stroke-width="4" stroke-linejoin="round">${esc(r.n)}</text>`}).join('');
-  return `<svg viewBox="${VB.join(' ')}" role="img" aria-label="Brain regions: ${esc(regs.map(k=>REG[k].n).join(', '))}">${brainArt('f')}${glow}${hot}${labels}<text x="${VB[0]+14}" y="${VB[1]+VB[3]-12}" font-family="Inter" font-size="9" letter-spacing="1.4" fill="#8c857c">FRONT ←</text></svg>`;
+    return `<path d="M${ex} ${ey} L${lx} ${ly}" stroke="${TH.ink}" stroke-width=".9" fill="none"/><circle cx="${ex}" cy="${ey}" r="2" fill="${TH.ink}"/>
+      <text x="${tx}" y="${anchor==='middle'?ly-4:ly+3.5}" text-anchor="${anchor}" font-family="Inter" font-size="10.5" font-weight="600" fill="${TH.ink}" paint-order="stroke" stroke="${TH.paper}" stroke-width="4" stroke-linejoin="round">${esc(r.n)}</text>`}).join('');
+  return `<svg viewBox="${VB.join(' ')}" role="img" aria-label="Brain regions: ${esc(regs.map(k=>REG[k].n).join(', '))}">${brainArt('f')}${glow}${hot}${labels}<text x="${VB[0]+14}" y="${VB[1]+VB[3]-12}" font-family="Inter" font-size="9" letter-spacing="1.4" fill="${TH.muted}">FRONT ←</text></svg>`;
 }
 
 // popup
@@ -810,7 +912,7 @@ function openRegion(k){
   const hits=items.filter(o=>o.regs.includes(k));
   show(`<figure class="pop-fig" style="margin:0">
       <div class="cap" style="color:var(--accent)">Brain region</div>
-      ${figure([k],'#b8321f')}
+      ${figure([k],TH.acc)}
       <figcaption>${REGINFO[k]}</figcaption>
     </figure>
     <div class="pop-body">
@@ -906,10 +1008,10 @@ let view='ring', tAnim=0, tH=0, tW=0;
 function sysNode(k){return {id:'s:'+k,kind:'sys',label:CATS[k].name,color:CATS[k].c,cat:k,count:items.filter(o=>o.cat===k).length,open:tState.sys===k}}
 function condNode(o){return {id:'c:'+o.name,kind:'cond',label:o.name,color:CATS[o.cat].c,it:o,count:o.regs.length,open:tState.cond===o.name}}
 function regNode(o,k){const others=items.filter(x=>x!==o&&x.regs.includes(k));
-  return {id:'r:'+o.name+'|'+k,kind:'reg',label:REG[k].n,color:'#1b1916',reg:k,it:o,others,count:others.length,open:tState.cond===o.name&&tState.reg===k}}
+  return {id:'r:'+o.name+'|'+k,kind:'reg',label:REG[k].n,color:TH.ink,reg:k,it:o,others,count:others.length,open:tState.cond===o.name&&tState.reg===k}}
 function relNodes(rn){
   const out=rn.others.slice(0,REL_MAX).map(x=>({id:'x:'+rn.id+'|'+x.name,kind:'rel',label:x.name,color:CATS[x.cat].c,it:x}));
-  if(rn.others.length>REL_MAX) out.push({id:'m:'+rn.id,kind:'more',label:`+ ${rn.others.length-REL_MAX} more in this region`,color:'#8c857c',reg:rn.reg});
+  if(rn.others.length>REL_MAX) out.push({id:'m:'+rn.id,kind:'more',label:`+ ${rn.others.length-REL_MAX} more in this region`,color:TH.muted,reg:rn.reg});
   return out}
 
 // wide screens: a left-to-right tree whose columns are sized from the real label widths;
@@ -939,7 +1041,7 @@ function layWide(W,X){
   const pad=32, SP=[0,36,26,30,25], list=[];
   const col=(parent,arr,d)=>{const sp=SP[d];const top=Math.max(pad,parent.y-(arr.length-1)*sp/2);arr.forEach((n,i)=>{n.depth=d;n.parent=parent.id;n.x=X[d];n.y=top+i*sp;list.push(n)})};
   const sysL=order.map(sysNode); sysL.forEach((n,i)=>{n.depth=1;n.parent='root';n.x=X[1];n.y=pad+i*SP[1]});
-  const root={id:'root',kind:'root',label:'The brain',color:'#1b1916',depth:0,parent:null,x:X[0],y:(sysL[0].y+sysL[sysL.length-1].y)/2};
+  const root={id:'root',kind:'root',label:'The brain',color:TH.ink,depth:0,parent:null,x:X[0],y:(sysL[0].y+sysL[sysL.length-1].y)/2};
   list.push(root,...sysL);
   const sN=sysL.find(n=>n.open);
   if(sN){const cs=items.filter(o=>o.cat===sN.cat).map(condNode);col(sN,cs,2);const cN=cs.find(n=>n.open);
@@ -950,7 +1052,7 @@ function layWide(W,X){
 function layIndent(W){
   const pad=26, IND=20, list=[]; let y=pad;
   const push=(n,d,parent,h)=>{n.depth=d;n.parent=parent;n.x=16+d*IND;n.y=y;y+=h;list.push(n);return n};
-  push({id:'root',kind:'root',label:'The brain',color:'#1b1916'},0,null,44);
+  push({id:'root',kind:'root',label:'The brain',color:TH.ink},0,null,44);
   for(const k of order){const sN=push(sysNode(k),1,'root',40);
     if(!sN.open) continue;
     for(const o of items.filter(o=>o.cat===k)){const cN=push(condNode(o),2,sN.id,36);
@@ -975,9 +1077,9 @@ function tUpdate(e,n,L){
   const on=!!n.open||tState.sel===n.id;
   e.g.setAttribute('class',`tn ${n.kind}${on?' on':''}`); e.g.style.pointerEvents='';
   e.c.setAttribute('r',{root:6.5,sys:6.5,cond:5,reg:4.6,rel:4,more:2.5}[n.kind]);
-  if(n.kind==='reg'){e.c.setAttribute('fill',n.open?'#1b1916':'#fbfaf7');e.c.setAttribute('stroke','#1b1916');e.c.setAttribute('stroke-width',1.5)}
-  else if(n.kind==='more'){e.c.setAttribute('fill','#a39b92');e.c.setAttribute('stroke','none')}
-  else{const solid=n.kind==='root'||n.kind==='rel'||n.open||!expandable;e.c.setAttribute('fill',solid?n.color:'#fbfaf7');e.c.setAttribute('stroke',n.color);e.c.setAttribute('stroke-width',solid?0:2)}
+  if(n.kind==='reg'){e.c.setAttribute('fill',n.open?TH.ink:TH.card);e.c.setAttribute('stroke',TH.ink);e.c.setAttribute('stroke-width',1.5)}
+  else if(n.kind==='more'){e.c.setAttribute('fill',TH.muted);e.c.setAttribute('stroke','none')}
+  else{const solid=n.kind==='root'||n.kind==='rel'||n.open||!expandable;e.c.setAttribute('fill',solid?n.color:TH.card);e.c.setAttribute('stroke',n.color);e.c.setAttribute('stroke-width',solid?0:2)}
   const above=n.kind==='root'&&L.mode==='wide';
   if(above){e.t.setAttribute('transform','rotate(-90)');e.t.setAttribute('x',0);e.t.setAttribute('y',-20);e.t.setAttribute('text-anchor','middle')}
   else{e.t.removeAttribute('transform');e.t.setAttribute('x',12);e.t.setAttribute('y',0);e.t.removeAttribute('text-anchor')}
@@ -990,7 +1092,7 @@ function tUpdate(e,n,L){
   else{e.hit.setAttribute('x',-12);e.hit.setAttribute('y',L.mode==='indent'?-16:-13);e.hit.setAttribute('width',hw);e.hit.setAttribute('height',L.mode==='indent'?32:26)}
   if(expandable) e.g.setAttribute('aria-expanded',String(!!n.open)); else e.g.removeAttribute('aria-expanded');
   e.g.setAttribute('aria-label',{root:'The brain: collapse the tree',rel:`${n.label}: go to this condition`,more:`${n.label}: open the region`}[n.kind]||`${n.label}${expandable?`, ${n.count} ${n.kind==='sys'?'conditions':n.kind==='cond'?'brain regions':'linked conditions'}`:''}`);
-  if(e.link){e.link.setAttribute('stroke',n.kind==='reg'?'#8c857c':(n.kind==='rel'||n.kind==='more'?'#c4bbae':n.color));e.link.classList.toggle('on',on)}
+  if(e.link){e.link.setAttribute('stroke',n.kind==='reg'?TH.muted:(n.kind==='rel'||n.kind==='more'?TH.faint:n.color));e.link.classList.toggle('on',on)}
 }
 function tTip(e,mode,pos){const p=pos||e;return mode==='wide'&&e.n.kind!=='root'?{x:p.x+(e.lw||0)+14,y:p.y}:{x:p.x+(mode==='wide'?8:0),y:p.y}}
 function tPath(p,e,mode){
@@ -1127,6 +1229,7 @@ const revealCheck=()=>document.querySelectorAll('.reveal:not(.in)').forEach(e=>{
 addEventListener('scroll',()=>{const h=document.documentElement;bar.style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight||1)})`;revealCheck()},{passive:true});
 revealCheck();
 window.atlas={REG,REGINFO,items,openRegion,setView,tState,tRender};
+
 openFromHash();
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
