@@ -666,8 +666,8 @@
         }
         :root .project-preview::before { display: none; }
         .project-preview::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(9,8,10,0.6)); pointer-events: none; }
-        .project-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 1.1s var(--ease); }
-        .project-card:hover .project-preview img { transform: scale(1.045); }
+        .project-preview img, .project-preview video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 1.1s var(--ease); display: block; }
+        .project-card:hover .project-preview img, .project-card:hover .project-preview video { transform: scale(1.045); }
         .project-mono { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: italic 400 clamp(64px, 7vw, 96px)/1 'Instrument Serif', serif; color: rgba(255,255,255,0.9); letter-spacing: -0.02em; transition: transform 1.1s var(--ease); }
         .project-card:hover .project-mono { transform: scale(1.06); }
         .project-preview-tag { position: absolute; left: 12px; top: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 999px; background: rgba(9,8,10,0.72); border: 1px solid rgba(255,255,255,0.14); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font: 600 11.5px 'Hanken Grotesk', sans-serif; color: var(--text); }
@@ -2049,6 +2049,8 @@
                 const tagsText = art.innerText.toUpperCase();
                 const show = tag === 'ALL' || tagsText.includes(tag);
                 art.style.display = show ? 'flex' : 'none';
+                const vid = art.querySelector('video');
+                if (vid && !show) vid.pause();
             });
         }
         window.filterProjects = filterProjects;
@@ -2098,6 +2100,9 @@
             syncDesktopNav(targetId);
             updateHash(targetId);
             if (typeof window.pauseHero3D === 'function') window.pauseHero3D(targetId !== 'view-home');
+            if (targetId !== 'view-projects') {
+                document.querySelectorAll('#projects-grid video.project-video').forEach(v => v.pause());
+            }
 
             if (targetSec === currentActive) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2123,6 +2128,9 @@
                         primeReveals(targetSec);
                         targetSec.style.opacity = '1';
                         targetSec.style.transform = 'translateY(0)';
+                        if (targetId === 'view-projects' && typeof setupProjectVideoObserver === 'function') {
+                            setupProjectVideoObserver();
+                        }
                     });
                 }, 60);
             } else {
@@ -2131,6 +2139,9 @@
                 primeReveals(targetSec);
                 targetSec.style.opacity = '1';
                 targetSec.style.transform = 'translateY(0)';
+                if (targetId === 'view-projects' && typeof setupProjectVideoObserver === 'function') {
+                    setupProjectVideoObserver();
+                }
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2312,12 +2323,16 @@
         async function loadGithubData() {
             let user = null;
             let repos = null;
+            let fallbackRepos = null;
             let events = null;
 
             try {
                 const fallback = await fetchJson('data/github-fallback.json');
                 user = fallback.user || null;
-                if (Array.isArray(fallback.repos)) repos = fallback.repos;
+                if (Array.isArray(fallback.repos)) {
+                    fallbackRepos = fallback.repos;
+                    repos = fallback.repos;
+                }
                 if (Array.isArray(repos)) {
                     allReposData = repos;
                     renderProjectsGrid(repos);
@@ -2334,7 +2349,27 @@
                     fetchJson('https://api.github.com/users/hvndal/events/public')
                 ]);
                 if (results[0].status === 'fulfilled') user = results[0].value;
-                if (results[1].status === 'fulfilled' && Array.isArray(results[1].value)) repos = results[1].value;
+                if (results[1].status === 'fulfilled' && Array.isArray(results[1].value)) {
+                    repos = results[1].value;
+                    const manderDefault = [{
+                        name: 'ManderLabs',
+                        html_url: 'https://github.com/hvndal/ManderLabs',
+                        description: 'Mander Labs design and software engineering studio site.',
+                        homepage: 'https://www.mander.tech/',
+                        language: 'JavaScript',
+                        has_pages: false,
+                        fork: false,
+                        stargazers_count: 0,
+                        pushed_at: '2026-10-09T15:01:40Z'
+                    }];
+                    const extraList = Array.isArray(fallbackRepos) ? fallbackRepos : manderDefault;
+                    const existingNames = new Set(repos.map(r => (r.name || '').toLowerCase()));
+                    extraList.forEach(fb => {
+                        if (fb && fb.name && fb.name.toLowerCase() === 'manderlabs' && !existingNames.has('manderlabs')) {
+                            repos.push(fb);
+                        }
+                    });
+                }
                 if (results[2].status === 'fulfilled' && Array.isArray(results[2].value)) events = results[2].value;
             } catch (err) {
                 console.error('GitHub fetch error:', err);
@@ -2357,22 +2392,27 @@
             }
         }
 
-        loadGithubData();
-
-        
-        
         const projectMetadata = {
             'kern': {
                 name: 'KERN Systems Engine',
-                subtitle: 'Low-Level Systems & Telemetry Dashboard',
-                description: 'A brutalist low-level systems monitoring platform built for high-density telemetry visualization, real-time kernel tracking, and sub-millisecond data feeds.',
-                tags: ['Rust / C++', 'Systems Architecture', 'WebGL Shaders']
+                subtitle: 'Project Workspace & Telemetry Dashboard',
+                description: 'A brutalist workspace and systems monitoring platform featuring tasks, calendar, notes, files, and real-time analytics.',
+                tags: ['React', 'TypeScript', 'Rust / C++'],
+                video: 'assets/previews/videos/kern.mp4'
+            },
+            'wasteuniverse': {
+                name: 'Waste Universe',
+                subtitle: 'Municipal Waste & Sustainability Platform',
+                description: 'Production site for a family-owned trash, dumpster, and recycling service serving Massachusetts and Rhode Island.',
+                tags: ['React', 'TailwindCSS', 'Sustainability Tech'],
+                video: 'assets/previews/videos/waste-universe.mp4'
             },
             'wasteu': {
                 name: 'WasteU Eco Platform',
                 subtitle: 'Solarpunk Waste & Sustainability Analytics',
                 description: 'A solarpunk-inspired eco-management suite tracking municipal waste metrics, carbon footprint reduction, and community recycling networks.',
-                tags: ['React', 'Sustainability Tech', 'Data Vis']
+                tags: ['React', 'Sustainability Tech', 'Data Vis'],
+                video: 'assets/previews/videos/waste-universe.mp4'
             },
             'semrushalt': {
                 name: 'Semrush Alt Intelligence',
@@ -2380,83 +2420,191 @@
                 description: 'A high-frequency SEO competitive intelligence dashboard featuring glowing real-time traffic graphs, domain authority metrics, and automated rank tracking.',
                 tags: ['Next.js', 'SEO Analytics', 'TypeScript']
             },
+            'rentcan': {
+                name: 'RentCan Property Manager',
+                subtitle: 'Enterprise Real Estate SaaS & Owner Portal',
+                description: 'Mobile-first property-care and management platform for owners and landlords handling tenant communications, rent tracking, and maintenance dispatch.',
+                tags: ['Full-Stack', 'TailwindCSS', 'Enterprise SaaS'],
+                video: 'assets/previews/videos/rentcan.mp4',
+                liveUrl: 'https://rentcan.in'
+            },
             'rentcanpropertyman': {
                 name: 'RentCan Property Manager',
                 subtitle: 'Enterprise Real Estate SaaS & Tenant Portal',
                 description: 'A Swiss-grid enterprise property management system handling real-time tenant communications, automated rent tracking, and maintenance dispatch.',
-                tags: ['Full-Stack', 'PostgreSQL', 'Enterprise SaaS']
+                tags: ['Full-Stack', 'PostgreSQL', 'Enterprise SaaS'],
+                video: 'assets/previews/videos/rentcan.mp4',
+                liveUrl: 'https://rentcan.in'
             },
             'portfolio': {
                 name: 'Herman Hundal Studio',
                 subtitle: 'Cinematic Dark Mode Designer Portfolio',
-                description: 'A state-of-the-art cinematic dark mode portfolio showcasing Three.js 3D core visual, GLSL shader plumes, synthesized Web Audio SFX, and Lenis smooth scrolling.',
-                tags: ['Three.js', 'GLSL Shaders', 'UI/UX Architecture']
+                description: 'A state-of-the-art cinematic dark mode portfolio showcasing Three.js 3D core visual, GLSL shader plumes, and interactive neuroscience & genomics visualizations.',
+                tags: ['Three.js', 'GLSL Shaders', 'UI/UX Architecture'],
+                image: 'assets/portfolio.jpg'
             },
             'fitway': {
                 name: 'FitWay Infrastructure',
-                subtitle: 'Biker Gothic Commercial Gym Operating System',
-                description: 'An aggressive tech-noir commercial gym management system providing member access logs, workout analytics, and equipment telemetry.',
-                tags: ['TailwindCSS', 'Node.js', 'Mobile UX']
+                subtitle: 'Strength & Performance Club Operating System',
+                description: 'An aggressive tech-noir commercial gym and performance club interface providing member access logs, programs, and facility telemetry.',
+                tags: ['TailwindCSS', 'JavaScript', 'Mobile UX'],
+                video: 'assets/previews/videos/fitaway.mp4'
             },
             'cookcan': {
                 name: 'CookCan AI SaaS',
                 subtitle: 'Multi-Modal Vision Recipe Engine',
                 description: 'An AI-driven pantry scanner leveraging Gemini multi-modal vision models to analyze raw camera streams and generate structured recipes on the fly.',
-                tags: ['Gemini API', 'AI Vision', 'React']
+                tags: ['Gemini API', 'AI Vision', 'React'],
+                image: 'assets/CookCan.jpg'
             },
             'mnema': {
                 name: 'Mnema',
-                subtitle: 'Gamepad reaction benchmark',
-                description: 'A browser tool for measuring gamepad reaction time.',
-                tags: ['TypeScript']
+                subtitle: 'Gamepad Latency & Precision Lab',
+                description: 'Browser lab for measuring gamepad reaction latency, stick precision, and button mapping.',
+                tags: ['TypeScript', 'Gamepad API'],
+                video: 'assets/previews/videos/mnema.mp4'
             },
             'cafenexusdemo': {
                 name: 'Cafe Nexus',
-                subtitle: 'Concept cafe website',
-                description: 'A concept site for Cafe Nexus.',
-                tags: ['HTML']
+                subtitle: 'Concept Cafe Website',
+                description: 'Static concept site and interactive menu showcase for Cafe Nexus.',
+                tags: ['HTML', 'TailwindCSS'],
+                video: 'assets/previews/videos/cafe-nexus.mp4'
             },
             'alyonatutoring': {
                 name: 'Alyona Tutoring',
-                subtitle: 'Langley tutoring site',
-                description: 'Tutoring site for science, chemistry, and math in Langley, BC.',
-                tags: ['HTML']
+                subtitle: 'Langley Science & Math Tutoring',
+                description: 'Private tutoring platform for K–12 science, chemistry, and math students in Langley, BC.',
+                tags: ['HTML', 'TailwindCSS'],
+                video: 'assets/previews/videos/alyona-tutoring.mp4'
+            },
+            'berkshirecustomcleaning': {
+                name: 'Berkshire Custom Cleaning',
+                subtitle: 'Cleaning Company Redesign',
+                description: 'Modern conversion-focused redesign for Berkshire Custom Cleaning serving Pittsfield and the Berkshires.',
+                tags: ['HTML', 'UI/UX'],
+                video: 'assets/previews/videos/berkshire-custom-cleaning.mp4'
             },
             'bccredesign': {
                 name: 'Berkshire Custom Cleaning',
                 subtitle: 'Cleaning company redesign',
                 description: 'Redesign for a cleaning company in Pittsfield and the Berkshires.',
-                tags: ['HTML']
+                tags: ['HTML'],
+                video: 'assets/previews/videos/berkshire-custom-cleaning.mp4'
+            },
+            'bostonbluestone': {
+                name: 'Boston Bluestone',
+                subtitle: 'Stone Fabrication Site Audit & Redesign',
+                description: 'Before-and-after architectural site audit and redesign for Boston Bluestone.',
+                tags: ['HTML', 'UI/UX'],
+                video: 'assets/previews/videos/boston-bluestone.mp4'
             },
             'bostonb': {
                 name: 'Boston Bluestone',
                 subtitle: 'Site audit',
                 description: 'Before-and-after site audit for Boston Bluestone.',
-                tags: ['HTML']
+                tags: ['HTML'],
+                video: 'assets/previews/videos/boston-bluestone.mp4'
             },
             'unapologeticfoods': {
-                name: 'Adda',
-                subtitle: 'Restaurant website',
-                description: 'Restaurant website for Adda in Fishtown, Philadelphia.',
-                tags: ['HTML']
+                name: 'Adda · Unapologetic Foods',
+                subtitle: 'Restaurant Website',
+                description: 'Pitch website for Adda, an Unapologetic Foods restaurant in Philadelphia.',
+                tags: ['HTML', 'UI/UX'],
+                video: 'assets/previews/videos/unapologetic-foods.mp4'
+            },
+            'hermanify': {
+                name: 'Hermanify Retro Arcade',
+                subtitle: 'Original 8-Bit Browser Games',
+                description: 'Browser arcade of original 8-bit games with chiptune audio, CRT shader aesthetics, and touch controls.',
+                tags: ['JavaScript', 'Canvas', 'Web Audio'],
+                video: 'assets/previews/videos/hermanify.mp4'
             },
             'projectisabela': {
                 name: 'Project Isabela',
                 subtitle: 'Retro games',
                 description: 'A retro arcade page for custom 8-bit games.',
-                tags: ['JavaScript']
+                tags: ['JavaScript'],
+                video: 'assets/previews/videos/hermanify.mp4'
+            },
+            'autoesthetica': {
+                name: 'Auto-Esthetica',
+                subtitle: 'Auto Detailing & PPF Studio',
+                description: 'Detailing site for paint-protection film, ceramic coating, and mobile detailing in Québec.',
+                tags: ['HTML', 'TailwindCSS'],
+                video: 'assets/previews/videos/auto-esthetica.mp4'
             },
             'auto': {
                 name: 'Auto-Esthetica',
                 subtitle: 'Auto detailing site',
                 description: 'Detailing site for paint protection film and ceramic coating in Quebec.',
-                tags: ['HTML']
+                tags: ['HTML'],
+                video: 'assets/previews/videos/auto-esthetica.mp4'
             },
             'kineticroast': {
                 name: 'Kinetic Roast',
-                subtitle: 'Coffee brand page',
-                description: 'A page for a coffee brand.',
-                tags: ['TypeScript']
+                subtitle: 'Luxury Coffee Roaster Concept',
+                description: 'Cinematic marketing site for Ember, a luxury specialty coffee roaster built with Next.js.',
+                tags: ['Next.js', 'React', 'TypeScript'],
+                video: 'assets/previews/videos/kinetic-roast.mp4'
+            },
+            'herhomes': {
+                name: 'Her Homes Co.',
+                subtitle: 'Interior Design Studio Website',
+                description: 'Website for Her Homes Co., an interior design studio crafted with bespoke typography and GSAP motion.',
+                tags: ['JavaScript', 'GSAP', 'UI/UX'],
+                video: 'assets/previews/videos/her-homes.mp4'
+            },
+            'machengo': {
+                name: 'Manch Ego',
+                subtitle: 'Food Cart & Catering Brand Site',
+                description: 'Brand site concept for Manch Ego, a mobile food cart and catering business in British Columbia.',
+                tags: ['HTML', 'UI/UX'],
+                video: 'assets/previews/videos/machengo.mp4',
+                liveUrl: 'https://machengo.vercel.app'
+            },
+            'manderlabs': {
+                name: 'Mander Labs',
+                subtitle: 'Design & Software Engineering Studio',
+                description: 'Official studio portal for Mander Labs — digital product design, web architecture, and interactive systems.',
+                tags: ['JavaScript', 'React', 'UI/UX'],
+                video: 'assets/previews/videos/mander.mp4',
+                liveUrl: 'https://www.mander.tech'
+            },
+            'nouvellecote': {
+                name: 'Nouvelle Côte',
+                subtitle: 'Mediterranean & French Dining Concept',
+                description: 'Editorial concept site for Nouvelle Côte, a coastal Mediterranean and French restaurant in Metro Vancouver.',
+                tags: ['HTML', 'UI/UX'],
+                video: 'assets/previews/videos/nouvelle-cote.mp4'
+            },
+            'nouvellecte': {
+                name: 'Nouvelle Côte',
+                subtitle: 'Mediterranean & French Dining Concept',
+                description: 'Editorial concept site for Nouvelle Côte, a coastal Mediterranean and French restaurant in Metro Vancouver.',
+                tags: ['HTML', 'UI/UX'],
+                video: 'assets/previews/videos/nouvelle-cote.mp4'
+            },
+            'rewindnyc': {
+                name: 'Rewind NYC',
+                subtitle: 'Michelin-Starred Restaurant Redesign',
+                description: 'Redesign concept for Rewind, a Michelin-starred restaurant in New York, with scope and SEO architecture.',
+                tags: ['HTML', 'UI/UX', 'SEO'],
+                video: 'assets/previews/videos/rewind-nyc.mp4'
+            },
+            'rewindnycmockupmichilanrestaurant': {
+                name: 'Rewind NYC',
+                subtitle: 'Michelin-Starred Restaurant Redesign',
+                description: 'Demo redesign requested by a New York restaurant.',
+                tags: ['HTML', 'UI/UX'],
+                video: 'assets/previews/videos/rewind-nyc.mp4'
+            },
+            'vancouver3dexplorer': {
+                name: 'Vancouver 3D Explorer',
+                subtitle: 'Real-Time 3D Map & Landmarks',
+                description: 'Interactive real-time 3D map of Vancouver and its landmarks built with Three.js and Vite.',
+                tags: ['Three.js', 'JavaScript', 'WebGL'],
+                video: 'assets/previews/videos/vancouver-3d-explorer.mp4'
             }
         };
 
@@ -2501,6 +2649,10 @@
             const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
             const empty = { visit: '' };
             if (rawName === 'portfolio') return empty;
+            const meta = projectMetadata[rawName];
+            if (meta && meta.liveUrl && isSafeHttpUrl(meta.liveUrl)) {
+                return { visit: meta.liveUrl };
+            }
             let homepage = (repo.homepage || '').trim();
             if (homepage && !/^https?:\/\//i.test(homepage)) homepage = 'https://' + homepage;
             let host = '';
@@ -2515,13 +2667,61 @@
             return empty;
         }
 
+        let projectVideoObserver = null;
+        function setupProjectVideoObserver() {
+            if (projectVideoObserver) projectVideoObserver.disconnect();
+            const startOffset = 1.6;
+            document.querySelectorAll('#projects-grid video.project-video').forEach((video) => {
+                if (!video.dataset.loopBound) {
+                    video.dataset.loopBound = '1';
+                    video.addEventListener('loadedmetadata', () => {
+                        if (video.duration > startOffset + 1 && video.currentTime < startOffset) {
+                            video.currentTime = startOffset;
+                        }
+                    });
+                    video.addEventListener('ended', () => {
+                        video.currentTime = video.duration > startOffset + 1 ? startOffset : 0;
+                        const p = video.play();
+                        if (p && typeof p.catch === 'function') p.catch(() => {});
+                    });
+                }
+            });
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion || typeof IntersectionObserver === 'undefined') return;
+            projectVideoObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        const playPromise = video.play();
+                        if (playPromise && typeof playPromise.catch === 'function') {
+                            playPromise.catch(() => {});
+                        }
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '80px 0px',
+                threshold: 0.25
+            });
+            document.querySelectorAll('#projects-grid video.project-video').forEach((video) => {
+                projectVideoObserver.observe(video);
+            });
+        }
+
         function renderProjectsGrid(repos) {
             const grid = document.getElementById('projects-grid');
             if (!grid) return;
             const visible = repos
-                .filter(repo => repo && !repo.fork && repo.name)
+                .filter(repo => repo && !repo.fork && repo.name && String(repo.name).toLowerCase() !== 'radhya-hillscape')
                 .slice()
                 .sort((a, b) => {
+                    const keyA = (a.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                    const keyB = (b.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                    const hasVidA = projectMetadata[keyA] && projectMetadata[keyA].video ? 2 : 0;
+                    const hasVidB = projectMetadata[keyB] && projectMetadata[keyB].video ? 2 : 0;
+                    if (hasVidB !== hasVidA) return hasVidB - hasVidA;
                     const score = (r) => (resolveProjectLinks(r).visit ? 1 : 0);
                     const delta = score(b) - score(a);
                     if (delta !== 0) return delta;
@@ -2530,6 +2730,7 @@
 
             grid.innerHTML = '';
             let liveCount = 0;
+            let videoCount = 0;
 
             visible.forEach((repo, index) => {
                 const rawName = (repo.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -2548,6 +2749,7 @@
                 const links = resolveProjectLinks(repo);
                 const visitUrl = links.visit;
                 if (visitUrl) liveCount += 1;
+                if (meta.video) videoCount += 1;
                 const updated = repo.pushed_at
                     ? new Date(repo.pushed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
                     : 'Public';
@@ -2557,12 +2759,23 @@
                 const sourceHref = isSafeHttpUrl(repo.html_url) ? repo.html_url : 'https://github.com/hvndal/' + encodeURIComponent(repo.name);
                 const num = String(index + 1).padStart(2, '0');
                 const stars = repo.stargazers_count > 0 ? ' · ★ ' + repo.stargazers_count : '';
+                const hue = (index * 37) % 360;
+                const previewHtml = meta.video
+                    ? `<div class="project-preview" style="--h:${hue}">
+                        <video class="project-video" src="${escapeHtml(meta.video)}#t=1.6" muted playsinline preload="metadata" aria-label="${safeName} video preview"></video>
+                    </div>`
+                    : (meta.image
+                        ? `<div class="project-preview" style="--h:${hue}">
+                            <img src="${escapeHtml(meta.image)}" alt="${safeName} preview" loading="lazy" decoding="async"/>
+                        </div>`
+                        : '');
 
                 grid.insertAdjacentHTML('beforeend', `
                 <article class="project-card" style="--i:${Math.min(index, 12)}">
+                    ${previewHtml}
                     <div class="project-body">
                         <div class="project-topline">
-                            <span class="project-num">${num} · ${visitUrl ? 'Live site' : 'Source'}</span>
+                            <span class="project-num">${num} · ${visitUrl ? 'Live site' : (meta.video ? 'Video preview' : 'Source')}</span>
                             <span class="project-date">${escapeHtml(updated)}${stars}</span>
                         </div>
                         <h3 class="project-title">${safeName}</h3>
@@ -2577,11 +2790,15 @@
                 </article>`);
             });
 
+            setupProjectVideoObserver();
+
             const countEl = document.getElementById('live-preview-count');
             if (countEl) {
-                countEl.textContent = liveCount + ' with live links · ' + visible.length + ' projects';
+                countEl.textContent = videoCount + ' video previews · ' + liveCount + ' live links · ' + visible.length + ' projects';
             }
         }
+
+        loadGithubData();
 
 
         // Substack sync — every published post, any topic
